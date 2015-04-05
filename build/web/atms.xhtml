@@ -21,7 +21,16 @@
         <ui:define name="content">
         
         <div class="col-sm-9 col-md-10 main" >
-          
+            <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">ATMs Laboratório de Testes</div>
+            <div class="panel-body">
+                <ul class="nav nav-pills">
+                    <li class="active">
+                       <h:link value="Novo..." outcome="index"/>  
+                    </li>
+                 </ul>
+            </div> 
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -31,6 +40,8 @@
                             <th>Descrição</th>
                             <th>Depositário</th>
                             <th>Status</th>
+                            <th>Editar</th>
+                            <th>Excluir</th>
                         </tr>
                     </thead>
                     <tr>
@@ -40,6 +51,15 @@
                         <td>Talonadora</td>
                         <td>Não</td>
                         <td>Disponível</td>
+                        <td><button type="button" class="btn btn-default" aria-label="Editar">
+                                Editar
+                            </button>
+                        </td>
+                        <td><button type="button" class="btn btn-default" aria-label="Excluir">
+                                Excluir
+                            </button>
+                        </td>
+                        
                     </tr>
                     <tr>
                         <td>114</td>
@@ -48,6 +68,14 @@
                         <td>ATM com porta frontal</td>
                         <td>Não</td>
                         <td>Reservado para Pedro Bandeira</td>
+                        <td><button type="button" class="btn btn-default" aria-label="Editar">
+                                Editar
+                            </button>
+                        </td>
+                        <td><button type="button" class="btn btn-default" aria-label="Excluir">
+                                Excluir
+                            </button>
+                        </td>
                     </tr>
                     <tr>
                         <td>115</td>
@@ -56,11 +84,19 @@
                         <td>ATM com porta traseira e 4 gavetas</td>
                         <td>Sim</td>
                         <td>Disponível</td>
+                        <td><button type="button" class="btn btn-default" aria-label="Editar">
+                                Editar
+                            </button>
+                        </td>
+                        <td><button type="button" class="btn btn-default" aria-label="Excluir">
+                                Excluir
+                            </button>
+                        </td>
                     </tr>
                 </table>
 
 
-          
+        </div>
       </div><!--/row-->
 	
         </ui:define>

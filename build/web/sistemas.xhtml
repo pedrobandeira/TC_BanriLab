@@ -6,7 +6,7 @@
     <h:head>
    	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 	<meta charset="utf-8"/>
-	<title>ATMs do Laboratório de Testes</title>
+	<title>Sistemas do Laboratório de Testes</title>
 	<meta name="generator" content="Bootply" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 	<h:outputStylesheet name="css/bootstrap.min.css"/>
@@ -14,43 +14,42 @@
 		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
         <h:outputStylesheet name="css/styles.css"/>
+   
     </h:head>
     
     <h:body>
         <ui:composition template="template.xhtml">
         <ui:define name="content">
-        
+
         <div class="col-sm-9 col-md-10 main" >
+            
             <div class="panel panel-default">
             <!-- Default panel contents -->
-            <div class="panel-heading">ATMs Laboratório de Testes</div>
+            <div class="panel-heading">Sistemas Laboratório de Testes</div>
             <div class="panel-body">
                 <ul class="nav nav-pills">
                     <li class="active">
                        <h:link value="Novo..." outcome="index"/>  
                     </li>
                  </ul>
-            </div> 
-                <table class="table table-hover">
+            </div>
+            
+            <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>ATM</th>
-                            <th>Modelo</th>
-                            <th>Patrimônio</th>
-                            <th>Descrição</th>
-                            <th>Depositário</th>
-                            <th>Status</th>
+                            <th>Sistema</th>
+                            <th>Versão produção</th>
+                            <th>Analistas</th>
+                            <th>Ambiente padrão para testes</th>
                             <th>Editar</th>
                             <th>Excluir</th>
                         </tr>
                     </thead>
                     <tr>
-                        <td>104</td>
-                        <td>Perto TDD</td>
-                        <td>612315</td>
-                        <td>Talonadora</td>
-                        <td>Não</td>
-                        <td>Disponível</td>
+                        <td>BMA</td>
+                        <td>4.29</td>
+                        <td>Fulano de Tal, Ciclano de Tal</td>
+                        <td>1 ATM Perto 4100, 1 ATM Itautec MT 2012, 1 TM</td>
                         <td><button type="button" class="btn btn-default" aria-label="Editar">
                                 Editar
                             </button>
@@ -58,16 +57,13 @@
                         <td><button type="button" class="btn btn-default" aria-label="Excluir">
                                 Excluir
                             </button>
-                        </td>
-                        
+                        </td>                   
                     </tr>
                     <tr>
-                        <td>114</td>
-                        <td>Itautec MT 2012</td>
-                        <td>612314</td>
-                        <td>ATM com porta frontal</td>
-                        <td>Não</td>
-                        <td>Reservado para Pedro Bandeira</td>
+                        <td>BNO</td>
+                        <td>9.50.25</td>
+                        <td>Fulano de Tal, Ciclano de Tal</td>
+                        <td>2 Servidores, 1 TM</td>
                         <td><button type="button" class="btn btn-default" aria-label="Editar">
                                 Editar
                             </button>
@@ -78,12 +74,10 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>115</td>
-                        <td>Perto 4100</td>
-                        <td>612317</td>
-                        <td>ATM com porta traseira e 4 gavetas</td>
-                        <td>Sim</td>
-                        <td>Disponível</td>
+                        <td>PWU</td>
+                        <td>3.30</td>
+                        <td>Ciclano de Tal</td>
+                        <td>5 TMs</td>
                         <td><button type="button" class="btn btn-default" aria-label="Editar">
                                 Editar
                             </button>
@@ -96,7 +90,7 @@
                 </table>
 
 
-        </div>
+            </div>
       </div><!--/row-->
 	
         </ui:define>
