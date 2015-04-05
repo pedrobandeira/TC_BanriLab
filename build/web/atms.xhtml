@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+   	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+	<meta charset="utf-8"/>
+	<title>ATMs do Laboratório de Testes</title>
+	<meta name="generator" content="Bootply" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+	<h:outputStylesheet name="css/bootstrap.min.css"/>
+	<!--[if lt IE 9]>
+		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+        <h:outputStylesheet name="css/styles.css"/>
+    </h:head>
+    
+    <h:body>
+        <ui:composition template="template.xhtml">
+        <ui:define name="content">
+        
+        <div class="col-sm-9 col-md-10 main" >
+          
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>ATM</th>
+                            <th>Modelo</th>
+                            <th>Patrimônio</th>
+                            <th>Descrição</th>
+                            <th>Depositário</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>104</td>
+                        <td>Perto TDD</td>
+                        <td>612315</td>
+                        <td>Talonadora</td>
+                        <td>Não</td>
+                        <td>Disponível</td>
+                    </tr>
+                    <tr>
+                        <td>114</td>
+                        <td>Itautec MT 2012</td>
+                        <td>612314</td>
+                        <td>ATM com porta frontal</td>
+                        <td>Não</td>
+                        <td>Reservado para Pedro Bandeira</td>
+                    </tr>
+                    <tr>
+                        <td>115</td>
+                        <td>Perto 4100</td>
+                        <td>612317</td>
+                        <td>ATM com porta traseira e 4 gavetas</td>
+                        <td>Sim</td>
+                        <td>Disponível</td>
+                    </tr>
+                </table>
+
+
+          
+      </div><!--/row-->
+	
+        </ui:define>
+         </ui:composition>
+        
+	<!-- script references -->
+        <h:outputScript name="js/jquery-1.11.2.min.js"/>
+	<h:outputScript name="js/bootstrap.min.js"/>
+        <h:outputScript name="js/scripts.js"/>
+
+    </h:body>
+</html>
+

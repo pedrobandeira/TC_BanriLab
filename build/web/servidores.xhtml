@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+   	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+	<meta charset="utf-8"/>
+	<title>Servidores do Laboratório de Testes</title>
+	<meta name="generator" content="Bootply" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+	<h:outputStylesheet name="css/bootstrap.min.css"/>
+	<!--[if lt IE 9]>
+		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+        <h:outputStylesheet name="css/styles.css"/>
+    </h:head>
+    
+    <h:body>
+        <ui:composition template="template.xhtml">
+        <ui:define name="content">
+        
+        <div class="col-sm-9 col-md-10 main" >
+          
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Servidor</th>
+                            <th>Modelo</th>
+                            <th>Patrimônio</th>
+                            <th>Descrição</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>b0015</td>
+                        <td>Dell T300</td>
+                        <td>611234</td>
+                        <td>Agência 0015</td>
+                        <td>Disponível</td>
+                    </tr>
+                    <tr>
+                        <td>b0021</td>
+                        <td>Dell T310</td>
+                        <td>611235</td>
+                        <td>Agência 0050</td>
+                        <td>Reservado para Pedro Bandeira</td>
+                    </tr>
+                    <tr>
+                        <td>b0030</td>
+                        <td>Dell T300</td>
+                        <td>611230</td>
+                        <td>Agência 0030</td>
+                        <td>Referência de produção</td>
+                    </tr>
+                </table>
+
+
+          
+      </div><!--/row-->
+	
+        </ui:define>
+         </ui:composition>
+        
+	<!-- script references -->
+        <h:outputScript name="js/jquery-1.11.2.min.js"/>
+	<h:outputScript name="js/bootstrap.min.js"/>
+        <h:outputScript name="js/scripts.js"/>
+
+    </h:body>
+</html>
+
