@@ -27,11 +27,52 @@
             <!-- Default panel contents -->
             <div class="panel-heading">Sistemas Laboratório de Testes</div>
             <div class="panel-body">
-                <ul class="nav nav-pills">
-                    <li class="active">
-                       <h:link value="Novo..." outcome="index"/>  
-                    </li>
-                 </ul>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#cadastroServidor">
+                    Novo sistema...
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="cadastroServidor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Novo servidor</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="InputPatrimonio">Patrimônio</label>
+                                        <input type="text" class="form-control" id="InputPatrimonio" placeholder="Digite o número de patrimônio"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="InputServidor">Nome</label>
+                                        <input type="text" class="form-control" id="InputServidor" placeholder="Digite o nome do servidor"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="InputModelo">Modelo</label>
+                                        <input type="text" class="form-control" id="InputModelo" placeholder="Digite o modelo do servidor"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="InputDescricao">Descrição</label>
+                                        <input type="text" class="form-control" id="InputDescricao" placeholder="Informe uma descrição para o servidor"/>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox"/> Check me out
+                                        </label>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                        <button type="submit" class="btn btn-primary">Salvar</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
             
             <table class="table table-hover">
