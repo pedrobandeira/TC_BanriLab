@@ -6,7 +6,7 @@
     <h:head>
    	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 	<meta charset="utf-8"/>
-	<title>Sistemas para homologações no Laboratório de Testes</title>
+	<title>Homologações no Laboratório de Testes</title>
 	<meta name="generator" content="Bootply" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 	<h:outputStylesheet name="css/bootstrap.min.css"/>
@@ -22,14 +22,15 @@
         <ui:define name="content">
 
         <div class="col-sm-9 col-md-10 main" >
+           
             
             <div class="panel panel-default">
             <!-- Default panel contents -->
-            <div class="panel-heading">Sistemas Laboratório de Testes</div>
+            <div class="panel-heading">Homologações no Laboratório de Testes</div>
             <div class="panel-body">
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#cadastroServidor">
-                    Novo sistema...
+                    Nova homologação...
                 </button>
 
                 <!-- Modal -->
@@ -78,19 +79,21 @@
             <table class="table table-hover table-striped">
                     <thead>
                         <tr>
-                            <th>Sistema</th>
-                            <th>Versão produção</th>
-                            <th>Analistas</th>
-                            <th>Ambiente padrão para testes</th>
+                            <th>Servidor</th>
+                            <th>Modelo</th>
+                            <th>Patrimônio</th>
+                            <th>Descrição</th>
+                            <th>Status</th>
                             <th>Editar</th>
                             <th>Excluir</th>
                         </tr>
                     </thead>
                     <tr>
-                        <td>BMA</td>
-                        <td>4.29</td>
-                        <td>Fulano de Tal, Ciclano de Tal</td>
-                        <td>1 ATM Perto 4100, 1 ATM Itautec MT 2012, 1 TM</td>
+                        <td>b0015</td>
+                        <td>Dell T300</td>
+                        <td>611234</td>
+                        <td>Agência 0015</td>
+                        <td>Disponível</td>
                         <td><button type="button" class="btn btn-default" aria-label="Editar">
                                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                             </button>
@@ -101,10 +104,11 @@
                         </td>                   
                     </tr>
                     <tr>
-                        <td>BNO</td>
-                        <td>9.50.25</td>
-                        <td>Fulano de Tal, Ciclano de Tal</td>
-                        <td>2 Servidores, 1 TM</td>
+                        <td>b0021</td>
+                        <td>Dell T310</td>
+                        <td>611235</td>
+                        <td>Agência 0050</td>
+                        <td>Reservado para Pedro Bandeira</td>
                         <td><button type="button" class="btn btn-default" aria-label="Editar">
                                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                             </button>
@@ -115,10 +119,11 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>PWU</td>
-                        <td>3.30</td>
-                        <td>Ciclano de Tal</td>
-                        <td>5 TMs</td>
+                        <td>b0030</td>
+                        <td>Dell T300</td>
+                        <td>611230</td>
+                        <td>Agência 0030</td>
+                        <td>Referência de produção</td>
                         <td><button type="button" class="btn btn-default" aria-label="Editar">
                                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                             </button>
