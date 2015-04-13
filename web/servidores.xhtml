@@ -2,6 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
    	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
@@ -42,33 +43,31 @@
                                 <h4 class="modal-title" id="myModalLabel">Novo servidor</h4>
                             </div>
                             <div class="modal-body">
-                                <form>
+                                <h:form>
                                     <div class="form-group">
                                         <label for="InputPatrimonio">Patrimônio</label>
-                                        <input type="text" class="form-control" id="InputPatrimonio" placeholder="Digite o número de patrimônio"/>
+                                        <p:inputText placeholder="Digite o número de patrimônio do servidor" class="form-control" id="InputPatrimonio" value="#{servidoresBean.servidor.patrimonio}"/>
+                                        
                                     </div>
                                     <div class="form-group">
                                         <label for="InputServidor">Nome</label>
-                                        <input type="text" class="form-control" id="InputServidor" placeholder="Digite o nome do servidor"/>
+                                        <p:inputText placeholder="Digite o nome do servidor" class="form-control" id="InputServidor" value="#{servidoresBean.servidor.nome}"/>
+                                        
                                     </div>
                                     <div class="form-group">
                                         <label for="InputModelo">Modelo</label>
-                                        <input type="text" class="form-control" id="InputModelo" placeholder="Digite o modelo do servidor"/>
+                                        <p:inputText placeholder="Digite o modelo do servidor" class="form-control" id="InputModelo" value="#{servidoresBean.servidor.modelo}"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="InputDescricao">Descrição</label>
-                                        <input type="text" class="form-control" id="InputDescricao" placeholder="Informe uma descrição para o servidor"/>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"/> Check me out
-                                        </label>
+                                        <p:inputText placeholder="Digite uma descrição para o servidor" class="form-control" id="InputDescricao" value="#{servidoresBean.servidor.descricao}"/>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                                        <button type="submit" class="btn btn-primary">Salvar</button>
+                                        <h:commandButton value="Cadastrar" class="btn btn-primary" action="#{servidoresBean.adicionarServidor}"/>
                                     </div>
-                                </form>
+                                </h:form>
+                                
                             </div>
 
                         </div>
@@ -76,65 +75,35 @@
                 </div>
             </div>
             
-            <table class="table table-hover table-striped">
-                    <thead>
-                        <tr>
-                            <th>Servidor</th>
-                            <th>Modelo</th>
-                            <th>Patrimônio</th>
-                            <th>Descrição</th>
-                            <th>Status</th>
-                            <th>Editar</th>
-                            <th>Excluir</th>
-                        </tr>
-                    </thead>
-                    <tr>
-                        <td>b0015</td>
-                        <td>Dell T300</td>
-                        <td>611234</td>
-                        <td>Agência 0015</td>
-                        <td>Disponível</td>
-                        <td><button type="button" class="btn btn-default" aria-label="Editar">
-                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                            </button>
-                        </td>
-                        <td><button type="button" class="btn btn-default" aria-label="Excluir">
-                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            </button>
-                        </td>                   
-                    </tr>
-                    <tr>
-                        <td>b0021</td>
-                        <td>Dell T310</td>
-                        <td>611235</td>
-                        <td>Agência 0050</td>
-                        <td>Reservado para Pedro Bandeira</td>
-                        <td><button type="button" class="btn btn-default" aria-label="Editar">
-                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                            </button>
-                        </td>
-                        <td><button type="button" class="btn btn-default" aria-label="Excluir">
-                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>b0030</td>
-                        <td>Dell T300</td>
-                        <td>611230</td>
-                        <td>Agência 0030</td>
-                        <td>Referência de produção</td>
-                        <td><button type="button" class="btn btn-default" aria-label="Editar">
-                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                            </button>
-                        </td>
-                        <td><button type="button" class="btn btn-default" aria-label="Excluir">
-                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            </button>
-                        </td>
-                    </tr>
-                </table>
+            <p:dataTable var="servidores" value="#{servidoresBean.servidores}">
+                    <p:column headerText="Servidor">
+                        <h:outputText value="#{servidores.nome}" />
+                    </p:column>
 
+                    <p:column headerText="Modelo">
+                        <h:outputText value="#{servidores.modelo}" />
+                    </p:column>
+
+                    <p:column headerText="Patrimônio">
+                        <h:outputText value="#{servidores.patrimonio}" />
+                    </p:column>
+                
+                    <p:column headerText="Status">
+                        <h:outputText value="Disponível" />
+                    </p:column>
+                
+                    <p:column headerText="Editar">
+                        <button type="button" class="btn btn-default" aria-label="Editar">
+                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                        </button>
+                    </p:column>
+                
+                    <p:column headerText="Excluir">
+                        <button type="button" class="btn btn-default" aria-label="Excluir">
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
+                    </p:column>
+                </p:dataTable>
 
             </div>
       </div><!--/row-->

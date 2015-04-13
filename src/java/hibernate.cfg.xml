@@ -6,6 +6,8 @@
     <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
     <property name="hibernate.connection.url">jdbc:postgresql:DB_BanriLab</property>
     <property name="hibernate.connection.username">postgres</property>
-    <property name="hibernate.connection.password">inter10</property>
+    <property name="hibernate.connection.password">1234</property>
+    <property name="hibernate.hbm2ddl.auto">update</property>
+    <mapping class="br.com.banrilab.entidades.Servidores"/>
   </session-factory>
 </hibernate-configuration>
