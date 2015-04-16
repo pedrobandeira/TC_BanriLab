@@ -29,11 +29,33 @@ public class ServidoresBean {
     
     public String adicionarServidor() {
         servidorDao.addServidor(servidor);
+       
+        servidor.setNome(null);
+        servidor.setModelo(null);
+        servidor.setPatrimonio(null);
+        servidor.setDescricao(null);
         return "servidores";
     }
     
-    public String removerServidor() {
-        servidorDao.removeServidor(servidor);
+    public String removerServidor(Servidores s) {
+        this.servidor = s;
+        servidorDao.removeServidor(this.servidor);
+        
+        servidor.setNome(null);
+        servidor.setModelo(null);
+        servidor.setPatrimonio(null);
+        servidor.setDescricao(null);
+       
+        return "servidores";
+    }
+    
+    public String carregarServidor(Servidores s) {
+        this.servidor = s;
+        return "editarservidor";
+    }
+    
+    public String atualizarServidor() {
+        servidorDao.atualizaServidor(servidor);
         return "servidores";
     }
     
@@ -41,8 +63,8 @@ public class ServidoresBean {
         return servidor;
     }
 
-    public void setServidor(Servidores servidor) {
-        this.servidor = servidor;
+    public void setServidor(Servidores s) {
+        this.servidor = s;
     }
 
     @Override

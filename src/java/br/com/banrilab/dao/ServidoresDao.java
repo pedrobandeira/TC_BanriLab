@@ -42,6 +42,21 @@ public class ServidoresDao {
         }
     }
     
+    public void atualizaServidor (Servidores s) {
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            transaction = session.beginTransaction();
+        
+            
+            session.update(s);
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+    
     public void removeServidor (Servidores s) {
         try {
             session = HibernateUtil.getSessionFactory().openSession();

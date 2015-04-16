@@ -22,7 +22,7 @@ public class Servidores implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private int patrimonio;
+    private Integer patrimonio;
     private String nome;
     private String modelo;
     private String descricao;
@@ -35,11 +35,11 @@ public class Servidores implements Serializable {
         this.id = id;
     }
 
-    public int getPatrimonio() {
+    public Integer getPatrimonio() {
         return patrimonio;
     }
 
-    public void setPatrimonio(int patrimonio) {
+    public void setPatrimonio(Integer patrimonio) {
         this.patrimonio = patrimonio;
     }
 
