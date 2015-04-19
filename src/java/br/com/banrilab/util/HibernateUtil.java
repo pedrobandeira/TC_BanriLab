@@ -5,8 +5,11 @@
  */
 package br.com.banrilab.util;
 
-import org.hibernate.cfg.AnnotationConfiguration;
-import org.hibernate.SessionFactory;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.PersistenceUnit;
+
 
 /**
  * Hibernate Utility class with a convenient method to get Session Factory
@@ -15,22 +18,13 @@ import org.hibernate.SessionFactory;
  * @author Pedro
  */
 public class HibernateUtil {
+    @PersistenceUnit(unitName="BanriLabPU2")
+    private EntityManagerFactory factory;
 
-    private static final SessionFactory sessionFactory;
+    public EntityManager getEntityManager() {
+        return factory.createEntityManager();
+    } 
+
     
-    static {
-        try {
-            // Create the SessionFactory from standard (hibernate.cfg.xml) 
-            // config file.
-            sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
-        } catch (Throwable ex) {
-            // Log the exception. 
-            System.err.println("Initial SessionFactory creation failed." + ex);
-            throw new ExceptionInInitializerError(ex);
-        }
-    }
-    
-    public static SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
+
 }

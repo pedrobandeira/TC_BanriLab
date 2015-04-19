@@ -7,9 +7,11 @@ package br.com.banrilab.beans;
 
 import br.com.banrilab.dao.ServidoresDao;
 import br.com.banrilab.entidades.Servidores;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -19,9 +21,11 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean
 @SessionScoped
-public class ServidoresBean {
+public class ServidoresBean implements Serializable {
     private Servidores servidor = new Servidores();
-    private ServidoresDao servidorDao = new ServidoresDao();
+    @EJB
+    private ServidoresDao servidorDao;
+    
     private List<Servidores> servidores = new ArrayList<>();
     
     public ServidoresBean() {
@@ -29,23 +33,14 @@ public class ServidoresBean {
     
     public String adicionarServidor() {
         servidorDao.addServidor(servidor);
-       
-        servidor.setNome(null);
-        servidor.setModelo(null);
-        servidor.setPatrimonio(null);
-        servidor.setDescricao(null);
+        this.servidor = null;
         return "servidores";
     }
     
     public String removerServidor(Servidores s) {
         this.servidor = s;
         servidorDao.removeServidor(this.servidor);
-        
-        servidor.setNome(null);
-        servidor.setModelo(null);
-        servidor.setPatrimonio(null);
-        servidor.setDescricao(null);
-       
+        this.servidor = null;       
         return "servidores";
     }
     
@@ -54,8 +49,8 @@ public class ServidoresBean {
         return "editarservidor";
     }
     
-    public String atualizarServidor() {
-        servidorDao.atualizaServidor(servidor);
+    public String fecharEditar () {
+        this.servidor = null;
         return "servidores";
     }
     

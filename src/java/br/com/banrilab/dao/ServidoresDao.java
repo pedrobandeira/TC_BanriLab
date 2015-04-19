@@ -6,83 +6,45 @@
 package br.com.banrilab.dao;
 
 import br.com.banrilab.entidades.Servidores;
-import br.com.banrilab.util.HibernateUtil;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import javax.persistence.PersistenceContext;
 
 /**
  *
  * @author Pedro
  */
+@Stateless
 public class ServidoresDao {
-    private Session session;
-    private Transaction transaction;
+    @PersistenceContext(unitName = "BanriLabPU2")
+    EntityManager entityManager;
     
     public void addServidor (Servidores s) {
-        try {
-            session = HibernateUtil.getSessionFactory().openSession();
-            transaction = session.beginTransaction();
         
-            Servidores servidor = new Servidores();
-            servidor.setPatrimonio(s.getPatrimonio());
-            servidor.setNome(s.getNome());
-            servidor.setModelo(s.getModelo());
-            servidor.setDescricao(s.getDescricao());
+        // EntityManager entityManager = new HibernateUtil().getEntityManager();
         
-            session.save(servidor);
-            transaction.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
+        if(s.getId() == null)
+            entityManager.persist(s);
+        else
+            entityManager.merge(s);
+        
     }
     
-    public void atualizaServidor (Servidores s) {
-        try {
-            session = HibernateUtil.getSessionFactory().openSession();
-            transaction = session.beginTransaction();
-        
-            
-            session.update(s);
-            transaction.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-    }
     
     public void removeServidor (Servidores s) {
-        try {
-            session = HibernateUtil.getSessionFactory().openSession();
-            transaction = session.beginTransaction();
-        
-            
-            session.delete(s);
-            transaction.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
+        //EntityManager entityManager = new HibernateUtil().getEntityManager();
+
+        Servidores servidorARemover = entityManager.merge(s);
+        entityManager.remove(servidorARemover);
+ 
     }
     
     public List<Servidores> getServidores() {
-  
-        session = HibernateUtil.getSessionFactory().openSession();
-        transaction = session.beginTransaction();
-        
-        Criteria cri = session.createCriteria(Servidores.class);
-        List listaServidores = cri.list();
-
-        session.close();
-        
-        return listaServidores;
+       
+        javax.persistence.criteria.CriteriaQuery cq = entityManager.getCriteriaBuilder().createQuery();
+        cq.select(cq.from(Servidores.class));
+        return entityManager.createQuery(cq).getResultList();
     }
 
     
