@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+	<meta charset="utf-8"/>
+	<title>Login Laboratório de Testes</title>
+	<meta name="generator" content="Bootply" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+	<h:outputStylesheet name="css/bootstrap.min.css"/>
+	<!--[if lt IE 9]>
+		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+        <h:outputStylesheet name="css/styles.css"/>
+    </h:head>
+    <h:body>
+        <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content">
+      <div class="modal-header">
+         <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>-->
+          <div class="alert alert-danger alert-dismissible" role="alert" id="alerta-login">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Dados incorretos!</strong> Verifique os dados digitados e tente novamente.
+        </div>
+          <h1 class="text-center">Login</h1>
+      </div>
+      <div class="modal-body">
+          <h:form class="form col-md-12 center-block">
+            <div class="form-group">
+                 <h:inputText pt:placeholder="Matrícula" class="form-control input-lg" id="InputMatricula" value="#{usuariosBean.usuario.matricula}"/>
+                 
+            </div>
+            <div class="form-group">
+                <h:inputSecret pt:placeholder="Senha" class="form-control input-lg" id="InputSenha" value="#{usuariosBean.usuario.senha}"/>
+            </div>
+            <div class="form-group">
+                <h:commandButton value="Entrar" class="btn btn-primary btn-lg btn-block" action="#{usuariosBean.validaLogin}"/>
+              <span class="pull-right"><a href="#">Register</a></span><span><a href="#">Need help?</a></span>
+            </div>
+              <!-- fazer script para esconder alerta -->
+             <script type="text/javascript">
+                 document.write(#{usuariosBean.exibeAlertaLogin()});
+                 if (#{usuariosBean.exibeAlertaLogin()}) {
+                     document.write("Dados incorretos!");
+                 }
+                 else {
+                     document.write("Ok!");
+                 }
+                       
+                </script>
+          </h:form>
+      </div>
+      <div class="modal-footer">
+          <div class="col-md-12">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+		  </div>	
+      </div>
+  </div>
+  </div>
+</div>
+        <!-- script references -->
+        <h:outputScript name="js/jquery-1.11.2.min.js"/>
+	<h:outputScript name="js/bootstrap.min.js"/>
+        <h:outputScript name="js/scripts.js"/>
+    </h:body>
+</html>

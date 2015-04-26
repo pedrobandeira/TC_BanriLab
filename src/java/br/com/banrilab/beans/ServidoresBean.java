@@ -33,14 +33,22 @@ public class ServidoresBean implements Serializable {
     
     public String adicionarServidor() {
         servidorDao.addServidor(servidor);
-        this.servidor = null;
+        this.servidor.setId(null);
+        this.servidor.setDescricao(null);
+        this.servidor.setModelo(null);
+        this.servidor.setNome(null);
+        this.servidor.setPatrimonio(null);
         return "servidores";
     }
     
     public String removerServidor(Servidores s) {
         this.servidor = s;
         servidorDao.removeServidor(this.servidor);
-        this.servidor = null;       
+        this.servidor.setId(null);
+        this.servidor.setDescricao(null);
+        this.servidor.setModelo(null);
+        this.servidor.setNome(null);
+        this.servidor.setPatrimonio(null);  
         return "servidores";
     }
     
@@ -50,7 +58,11 @@ public class ServidoresBean implements Serializable {
     }
     
     public String fecharEditar () {
-        this.servidor = null;
+        this.servidor.setId(null);
+        this.servidor.setDescricao(null);
+        this.servidor.setModelo(null);
+        this.servidor.setNome(null);
+        this.servidor.setPatrimonio(null);
         return "servidores";
     }
     

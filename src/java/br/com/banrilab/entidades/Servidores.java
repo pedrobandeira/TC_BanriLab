@@ -27,6 +27,9 @@ public class Servidores implements Serializable {
     private String modelo;
     private String descricao;
 
+    public Servidores() {
+    }
+    
     public Long getId() {
         return id;
     }
