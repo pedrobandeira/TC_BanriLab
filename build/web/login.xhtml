@@ -29,36 +29,49 @@ and open the template in the editor.
   <div class="modal-content">
       <div class="modal-header">
          <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>-->
-          <div class="alert alert-danger alert-dismissible" role="alert" id="alerta-login">
+         <!-- <div class="alert alert-info alert-dismissible" role="alert" id="alerta-login">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <strong>Dados incorretos!</strong> Verifique os dados digitados e tente novamente.
-        </div>
+        </div> -->
+         <div id="meuAlerta"></div>
           <h1 class="text-center">Login</h1>
       </div>
       <div class="modal-body">
           <h:form class="form col-md-12 center-block">
+              
+              <!-- Exibe mensagens de alerta de login incorreto -->
+              <p:panel id="basic" rendered="#{usuariosBean.exibeAlertaLogin()}" style="border: 0">
+                  <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Dados incorretos!</strong> Verifique os dados digitados e tente novamente.
+                  </div>
+              </p:panel>
+              <script  type="text/javascript">
+                  #{usuariosBean.limpaAlertaLogin()};
+               </script>
+              
+              <!-- Exibe mensagens de validação de preenchimento dos formulários -->
+              <p:messages closable="true"/>
+   
             <div class="form-group">
-                 <h:inputText pt:placeholder="Matrícula" class="form-control input-lg" id="InputMatricula" value="#{usuariosBean.usuario.matricula}"/>
+                                
+                <h:inputText pt:placeholder="Matrícula" required="true" class="form-control input-lg" label="Matrícula" id="InputMatricula" value="#{usuariosBean.usuario.matricula}">
+                    <f:validateRequired for="InputMatricula" />
+                </h:inputText>              
                  
             </div>
             <div class="form-group">
-                <h:inputSecret pt:placeholder="Senha" class="form-control input-lg" id="InputSenha" value="#{usuariosBean.usuario.senha}"/>
+                <h:inputSecret pt:placeholder="Senha" class="form-control input-lg" label="Senha" id="InputSenha" value="#{usuariosBean.usuario.senha}">
+                    <f:validateRequired for="InputSenha"/>
+                </h:inputSecret>
+                
             </div>
             <div class="form-group">
-                <h:commandButton value="Entrar" class="btn btn-primary btn-lg btn-block" action="#{usuariosBean.validaLogin}"/>
+                <h:commandButton id="BotaoEntrar" value="Entrar" class="btn btn-primary btn-lg btn-block" action="#{usuariosBean.validaLogin}"/>
+                
               <span class="pull-right"><a href="#">Register</a></span><span><a href="#">Need help?</a></span>
             </div>
-              <!-- fazer script para esconder alerta -->
-             <script type="text/javascript">
-                 document.write(#{usuariosBean.exibeAlertaLogin()});
-                 if (#{usuariosBean.exibeAlertaLogin()}) {
-                     document.write("Dados incorretos!");
-                 }
-                 else {
-                     document.write("Ok!");
-                 }
-                       
-                </script>
+                 
           </h:form>
       </div>
       <div class="modal-footer">

@@ -118,6 +118,7 @@ public class UsuariosBean implements Serializable {
         String senha = usuario.getSenha();
         this.usuario.setMatricula(null);
         this.usuario.setSenha(null);
+        this.login.setLoginErro(false);
        
         List<Usuarios> listaUsuarios = new ArrayList<>();
         listaUsuarios = usuarioDao.getUsuarios();
@@ -125,6 +126,7 @@ public class UsuariosBean implements Serializable {
         for (Usuarios user: listaUsuarios) {
             if (user.getMatricula().equals(matricula) && user.getSenha().equals(senha)) {
                 this.login.setLoginErro(false);
+                login.setUsuarioLogado(user);
                 return "index"; }
         }
         this.login.setLoginErro(true);
@@ -133,5 +135,19 @@ public class UsuariosBean implements Serializable {
     
     public boolean exibeAlertaLogin() {
         return login.isLoginErro();
+    }
+    
+    public String exibeNomeUsuarioLogado() {
+        System.out.println("Nome: "+login.getUsuarioLogado().getNome());
+        return login.getUsuarioLogado().getNome();
+    }
+    
+    public String logout() {
+        login.setUsuarioLogado(null);
+        return "login";
+    }
+    
+    public void limpaAlertaLogin() {
+        login.setLoginErro(false);
     }
 }

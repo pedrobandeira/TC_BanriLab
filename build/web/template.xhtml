@@ -34,12 +34,14 @@
           <h:link class="navbar-brand" outcome="index" value="Laboratório de Testes Banrisul"/>
         </div>
         <div class="navbar-collapse collapse">
+            <h:form>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Ajuda</a></li>
-            <li><a href="#">Configurações</a></li>
-            <li><a href="#">Minha conta</a></li>
-            <li><a href="#">Sair</a></li>
+            <li><h:commandButton class="btn btn-link" value="Ajuda" action="#{usuariosBean.logout}"/></li>
+            <li><h:commandButton class="btn btn-link" value="Configurações" action="#{usuariosBean.logout}"/></li>
+            <li><h:commandButton class="btn btn-link" value="Minha Conta" action="#{usuariosBean.logout}"/></li>
+            <li><h:commandButton class="btn btn-link" value="Sair" action="#{usuariosBean.logout}"/></li>
           </ul>
+           </h:form>
           <form class="navbar-form navbar-right">
               <input type="text" class="form-control" title="Digite sua pesquisa e tecle ENTER" placeholder="Pesquisar..."/>
           </form>
