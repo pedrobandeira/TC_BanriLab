@@ -7,7 +7,7 @@
     <h:head>
    	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 	<meta charset="utf-8"/>
-	<title>Servidores do Laboratório de Testes</title>
+	<title>Terminais do Laboratório de Testes</title>
 	<meta name="generator" content="Bootply" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 	<h:outputStylesheet name="css/bootstrap.min.css"/>
@@ -26,41 +26,37 @@
             
             <div class="panel panel-default">
         
-        <!-- Modal Editar Servidor -->
-        <div class="modal fade" data-backdrop="static" id="editarServidor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <!-- Modal Editar Terminal -->
+        <div class="modal fade" data-backdrop="static" id="editarTerminal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel">Editar servidor</h4>
+                                <h4 class="modal-title" id="myModalLabel">Editar terminal</h4>
                             </div>
                             <div class="modal-body">
                                 <h:form>
                                     <div class="form-group">
                                         <label for="OutputId">ID</label>
-                                        <p:outputLabel class="form-control" id="OutputId" value="#{servidoresBean.servidor.id}"/>
+                                        <p:outputLabel class="form-control" id="OutputId" value="#{terminaisBean.terminal.id}"/>
                                         
                                     </div>
                                     <div class="form-group">
                                         <label for="InputPatrimonio">Patrimônio</label>
-                                        <p:inputText type="number" placeholder="Digite o número de patrimônio do servidor" class="form-control" id="InputPatrimonio" value="#{servidoresBean.servidor.patrimonio}"/>
+                                        <p:inputText type="number" placeholder="Digite o número de patrimônio do terminal" class="form-control" id="InputPatrimonio" value="#{terminaisBean.terminal.patrimonio}"/>
                                         
                                     </div>
                                     <div class="form-group">
-                                        <label for="InputServidor">Nome</label>
-                                        <p:inputText placeholder="Digite o nome do servidor" class="form-control" id="InputServidor" value="#{servidoresBean.servidor.nome}"/>
+                                        <label for="InputTerminal">Nome</label>
+                                        <p:inputText placeholder="Digite o nome do terminal" class="form-control" id="InputTerminal" value="#{terminaisBean.terminal.nome}"/>
                                         
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="InputModelo">Modelo</label>
-                                        <p:inputText placeholder="Digite o modelo do servidor" class="form-control" id="InputModelo" value="#{servidoresBean.servidor.modelo}"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="InputDescricao">Descrição</label>
-                                        <p:inputText placeholder="Digite uma descrição para o servidor" class="form-control" id="InputDescricao" value="#{servidoresBean.servidor.descricao}"/>
+                                        <p:inputText placeholder="Digite uma descrição para o terminal" class="form-control" id="InputDescricao" value="#{terminaisBean.terminal.descricao}"/>
                                     </div>
                                     <div class="modal-footer">
-                                        <h:commandButton class="btn btn-default" value="Fechar" action="#{servidoresBean.fecharEditar}"/>
-                                        <h:commandButton value="Salvar" class="btn btn-primary" action="#{servidoresBean.adicionarServidor}"/>
+                                        <h:commandButton class="btn btn-default" value="Fechar" action="#{terminaisBean.fecharEditar}"/>
+                                        <h:commandButton value="Salvar" class="btn btn-primary" action="#{terminaisBean.adicionarTerminal}"/>
                                     </div>
                                 </h:form>
                                 
@@ -71,7 +67,7 @@
                 </div>
         <script type="text/javascript">
         $(window).load(function(){
-        $('#editarServidor').modal('show');
+        $('#editarTerminal').modal('show');
          });
         </script>
     </div>

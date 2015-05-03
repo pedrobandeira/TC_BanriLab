@@ -17,7 +17,6 @@
         <h:outputStylesheet name="css/styles.css"/>
    
     </h:head>
-    
     <h:body>
         <ui:composition template="template.xhtml">
         <ui:define name="content">
@@ -26,23 +25,21 @@
            
             
             <div class="panel panel-default">
-            <!-- Default panel contents -->
-            <div class="panel-heading">ATMs Laboratório de Testes</div>
-            <div class="panel-body">
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#cadastrarAtm">
-                    Novo ATM...
-                </button>
-
-                <!-- Modal Novo ATM -->
-                <div class="modal fade" data-backdrop="static" id="cadastrarAtm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        
+        <!-- Modal Editar Terminal -->
+        <div class="modal fade" data-backdrop="static" id="editarAtm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel">Novo ATM</h4>
+                                <h4 class="modal-title" id="myModalLabel">Editar ATM</h4>
                             </div>
                             <div class="modal-body">
                                 <h:form>
+                                    <div class="form-group">
+                                        <label for="OutputId">ID</label>
+                                        <p:outputLabel class="form-control" id="OutputId" value="#{atmsBean.atm.id}"/>
+                                        
+                                    </div>
                                     <div class="form-group">
                                         <label for="InputPatrimonio">Patrimônio</label>
                                         <p:inputText type="number" placeholder="Digite o número de patrimônio do ATM" class="form-control" id="InputPatrimonio" value="#{atmsBean.atm.patrimonio}"/>
@@ -51,9 +48,7 @@
                                     <div class="form-group">
                                         <label for="InputAtm">Nome</label>
                                         <p:inputText placeholder="Digite o nome do ATM" class="form-control" id="InputAtm" value="#{atmsBean.atm.nome}"/>
-                                        
                                     </div>
-                                    
                                     <div class="form-group">
                                         <label for="InputModelo">Modelo</label>
                                         <p:inputText placeholder="Digite o modelo do ATM" class="form-control" id="InputModelo" value="#{atmsBean.atm.modelo}"/>
@@ -63,10 +58,9 @@
                                         <p:inputText placeholder="Digite uma descrição para o ATM" class="form-control" id="InputDescricao" value="#{atmsBean.atm.descricao}"/>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                                        <h:commandButton value="Cadastrar" class="btn btn-primary" action="#{atmsBean.adicionarAtm}"/>
+                                        <h:commandButton class="btn btn-default" value="Fechar" action="#{atmsBean.fecharEditar}"/>
+                                        <h:commandButton value="Salvar" class="btn btn-primary" action="#{atmsBean.adicionarAtm}"/>
                                     </div>
-                                    
                                 </h:form>
                                 
                             </div>
@@ -74,41 +68,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <h:form>
-                <p:dataTable var="atm" value="#{atmsBean.atms}" editable="false">
-                    <p:column headerText="ATM">
- 
-                        <h:outputText value="#{atm.nome}" />
-                    </p:column>
-                
-                    <p:column headerText="Descrição">
-                        <h:outputText value="#{atm.descricao}" />
-                    </p:column>
-
-                    <p:column headerText="Modelo">
-                        <h:outputText value="#{atm.modelo}" />
-                    </p:column>
-
-                    <p:column headerText="Patrimônio">
-                        <h:outputText value="#{atm.patrimonio}" />
-                    </p:column>
-                
-                    <p:column headerText="Status">
-                        <h:outputText value="Disponível" />
-                    </p:column>
-                
-                    <p:column headerText="Editar" class="text-center">
-                        <h:commandLink class="glyphicon glyphicon-edit" action="#{atmsBean.carregarAtm(atm)}" /> 
-                    </p:column>
-                
-                    <p:column headerText="Excluir" class="text-center">
-                        <h:commandLink class="glyphicon glyphicon-remove" action="#{atmsBean.removerAtm(atm)}" />
-                    </p:column>
-                </p:dataTable>
-                        
-            </h:form>
-            </div>
+        <script type="text/javascript">
+        $(window).load(function(){
+        $('#editarAtm').modal('show');
+         });
+        </script>
+    </div>
       </div><!--/row-->
 	
         </ui:define>

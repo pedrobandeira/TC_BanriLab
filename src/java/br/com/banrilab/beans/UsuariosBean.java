@@ -15,6 +15,7 @@ import java.util.Objects;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -49,6 +50,7 @@ public class UsuariosBean implements Serializable {
     }
     
     public String removerUsuario(Usuarios u) {
+        
         this.usuario = u;
         usuarioDao.removeUsuario(this.usuario);
         this.usuario.setId(null);

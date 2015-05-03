@@ -3,8 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
    	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 	<meta charset="utf-8"/>
@@ -46,32 +45,29 @@
                                 <h:form>
                                     <div class="form-group">
                                         <label for="InputPatrimonio">Patrimônio</label>
-                                        <h:inputText pt:placeholder="Digite o número de patrimônio do servidor" class="form-control" id="InputPatrimonio" value="#{servidoresBean.servidor.patrimonio}"/>
+                                        <p:inputText type="number" placeholder="Digite o número de patrimônio do servidor" class="form-control" id="InputPatrimonio" value="#{servidoresBean.servidor.patrimonio}"/>
                                         
                                     </div>
                                     <div class="form-group">
                                         <label for="InputServidor">Nome</label>
-                                        <h:inputText pt:placeholder="Digite o nome do servidor" class="form-control" id="InputServidor" value="#{servidoresBean.servidor.nome}"/>
+                                        <p:inputText placeholder="Digite o nome do servidor" class="form-control" id="InputServidor" value="#{servidoresBean.servidor.nome}"/>
                                         
                                     </div>
                                     
                                     <div class="form-group">
                                         <label for="InputModelo">Modelo</label>
-                                        <h:inputText pt:placeholder="Digite o modelo do servidor" class="form-control" id="InputModelo" value="#{servidoresBean.servidor.modelo}"/>
+                                        <p:inputText placeholder="Digite o modelo do servidor" class="form-control" id="InputModelo" value="#{servidoresBean.servidor.modelo}"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="InputDescricao">Descrição</label>
-                                        <h:inputText pt:placeholder="Digite uma descrição para o servidor" class="form-control" id="InputDescricao" value="#{servidoresBean.servidor.descricao}"/>
+                                        <p:inputText placeholder="Digite uma descrição para o servidor" class="form-control" id="InputDescricao" value="#{servidoresBean.servidor.descricao}"/>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                                         <h:commandButton value="Cadastrar" class="btn btn-primary" action="#{servidoresBean.adicionarServidor}"/>
-                                    </div>
-                                    
-                                </h:form>
-                                
+                                    </div>        
+                                </h:form>  
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -79,7 +75,6 @@
             <h:form>
                 <p:dataTable var="servidor" value="#{servidoresBean.servidores}" editable="false">
                     <p:column headerText="Servidor">
- 
                         <h:outputText value="#{servidor.nome}" />
                     </p:column>
                 
@@ -100,13 +95,11 @@
                     </p:column>
                 
                     <p:column headerText="Editar" class="text-center">
-                        <h:commandLink class="glyphicon glyphicon-edit" action="#{servidoresBean.carregarServidor(servidor)}" /> 
-                                             
+                        <h:commandLink class="glyphicon glyphicon-edit" action="#{servidoresBean.carregarServidor(servidor)}" />                      
                     </p:column>
                 
                 <p:column headerText="Excluir" class="text-center">
-                    <h:commandLink class="glyphicon glyphicon-remove" action="#{servidoresBean.removerServidor(servidor)}" />
-                                                       
+                    <h:commandLink class="glyphicon glyphicon-remove" action="#{servidoresBean.removerServidor(servidor)}" />                                                
                     </p:column>
                 </p:dataTable>
           
