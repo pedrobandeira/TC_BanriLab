@@ -74,6 +74,20 @@ public class UsuariosBean implements Serializable {
         this.usuario.setSenha(null);
         return "usuarios";
     }
+    public String exibirPerfil(Usuarios u) {
+        if (u.getPerfil() == 1) {
+            return "Admin Laboratório";
+        } else if (u.getPerfil() == 2) {
+            return "Coordenador de testes";
+        } else if (u.getPerfil() == 3) {
+            return "Analista de testes";
+        } else if (u.getPerfil() == 4) {
+            return "Testador";
+        } else if (u.getPerfil() == 5) {
+            return "Desenvolvedor";
+        } 
+        return "Não cadastrado";
+    }
     
     public Usuarios getUsuario() {
         return usuario;
