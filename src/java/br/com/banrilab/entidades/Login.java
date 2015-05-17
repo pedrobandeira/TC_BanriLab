@@ -13,9 +13,19 @@ package br.com.banrilab.entidades;
 public class Login {
     private boolean loginErro;
     private Usuarios usuarioLogado = new Usuarios();
+    private boolean loginRealizado;
 
     public Login() {
         this.loginErro = false;
+        this.loginRealizado = false;
+    }
+
+    public boolean isLoginRealizado() {
+        return loginRealizado;
+    }
+
+    public void setLoginRealizado(boolean loginRealizado) {
+        this.loginRealizado = loginRealizado;
     }
   
     

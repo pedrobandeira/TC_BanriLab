@@ -57,6 +57,15 @@
                                         <label for="InputDescricao">Descrição</label>
                                         <p:inputText placeholder="Digite uma descrição para o ATM" class="form-control" id="InputDescricao" value="#{atmsBean.atm.descricao}"/>
                                     </div>
+                                    <div class="form-group">
+                                        <p:outputLabel value="Possui depositário:  " />
+                                        <p:selectBooleanCheckbox value="#{atmsBean.atm.depositario}" />
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <p:outputLabel value="Possui talonadora:  " />
+                                        <p:selectBooleanCheckbox value="#{atmsBean.atm.talonadora}" />
+                                    </div>
                                     <div class="modal-footer">
                                         <h:commandButton class="btn btn-default" value="Fechar" action="#{atmsBean.fecharEditar}"/>
                                         <h:commandButton value="Salvar" class="btn btn-primary" action="#{atmsBean.adicionarAtm}"/>

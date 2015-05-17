@@ -38,6 +38,8 @@ public class AtmsBean implements Serializable {
         this.atm.setModelo(null);
         this.atm.setNome(null);
         this.atm.setPatrimonio(null);
+        this.atm.setDepositario(false);
+        this.atm.setTalonadora(false);
         return "atms";
     }
     
@@ -49,6 +51,8 @@ public class AtmsBean implements Serializable {
         this.atm.setModelo(null);
         this.atm.setNome(null);
         this.atm.setPatrimonio(null);  
+        this.atm.setDepositario(false);
+        this.atm.setTalonadora(false);
         return "atms";
     }
     
@@ -63,6 +67,8 @@ public class AtmsBean implements Serializable {
         this.atm.setModelo(null);
         this.atm.setNome(null);
         this.atm.setPatrimonio(null);
+        this.atm.setDepositario(false);
+        this.atm.setTalonadora(false);
         return "atms";
     }
     
@@ -103,5 +109,19 @@ public class AtmsBean implements Serializable {
 
     public void setAtms(List<Atms> atms) {
         this.atms = atms;
+    }
+    
+    public String exibirDepositario(Atms a) {
+        if (a.isDepositario()) {
+            return "glyphicon glyphicon-ok";
+        }
+            return "glyphicon glyphicon-minus";
+    }
+    
+    public String exibirTalonadora(Atms a) {
+        if (a.isTalonadora()) {
+            return "glyphicon glyphicon-ok";
+        }
+            return "glyphicon glyphicon-minus";
     }
 }

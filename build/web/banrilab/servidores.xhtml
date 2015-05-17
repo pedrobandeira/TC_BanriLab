@@ -7,7 +7,7 @@
     <h:head>
    	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 	<meta charset="utf-8"/>
-	<title>ATMs do Laboratório de Testes</title>
+	<title>Servidores do Laboratório de Testes</title>
 	<meta name="generator" content="Bootply" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 	<h:outputStylesheet name="css/bootstrap.min.css"/>
@@ -22,76 +22,72 @@
         <ui:composition template="template.xhtml">
         <ui:define name="content">
 
-        <div class="col-sm-9 col-md-10 main" >
+        <div class="col-sm-9 col-md-10 main" style="width: 100%">
            
             
             <div class="panel panel-default">
             <!-- Default panel contents -->
-            <div class="panel-heading">ATMs Laboratório de Testes</div>
+            <div class="panel-heading">Servidores Laboratório de Testes</div>
             <div class="panel-body">
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#cadastrarAtm">
-                    Novo ATM...
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#cadastrarServidor">
+                    Novo servidor...
                 </button>
 
-                <!-- Modal Novo ATM -->
-                <div class="modal fade" data-backdrop="static" id="cadastrarAtm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <!-- Modal Novo Servidor -->
+                <div class="modal fade" data-backdrop="static" id="cadastrarServidor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel">Novo ATM</h4>
+                                <h4 class="modal-title" id="myModalLabel">Novo servidor</h4>
                             </div>
                             <div class="modal-body">
                                 <h:form>
                                     <div class="form-group">
                                         <label for="InputPatrimonio">Patrimônio</label>
-                                        <p:inputText type="number" placeholder="Digite o número de patrimônio do ATM" class="form-control" id="InputPatrimonio" value="#{atmsBean.atm.patrimonio}"/>
+                                        <p:inputText type="number" placeholder="Digite o número de patrimônio do servidor" class="form-control" id="InputPatrimonio" value="#{servidoresBean.servidor.patrimonio}"/>
                                         
                                     </div>
                                     <div class="form-group">
-                                        <label for="InputAtm">Nome</label>
-                                        <p:inputText placeholder="Digite o nome do ATM" class="form-control" id="InputAtm" value="#{atmsBean.atm.nome}"/>
+                                        <label for="InputServidor">Nome</label>
+                                        <p:inputText placeholder="Digite o nome do servidor" class="form-control" id="InputServidor" value="#{servidoresBean.servidor.nome}"/>
                                         
                                     </div>
                                     
                                     <div class="form-group">
                                         <label for="InputModelo">Modelo</label>
-                                        <p:inputText placeholder="Digite o modelo do ATM" class="form-control" id="InputModelo" value="#{atmsBean.atm.modelo}"/>
+                                        <p:inputText placeholder="Digite o modelo do servidor" class="form-control" id="InputModelo" value="#{servidoresBean.servidor.modelo}"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="InputDescricao">Descrição</label>
-                                        <p:inputText placeholder="Digite uma descrição para o ATM" class="form-control" id="InputDescricao" value="#{atmsBean.atm.descricao}"/>
+                                        <p:inputText placeholder="Digite uma descrição para o servidor" class="form-control" id="InputDescricao" value="#{servidoresBean.servidor.descricao}"/>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                                        <h:commandButton value="Cadastrar" class="btn btn-primary" action="#{atmsBean.adicionarAtm}"/>
-                                    </div>
-                                    
-                                </h:form>
-                                
+                                        <h:commandButton value="Cadastrar" class="btn btn-primary" action="#{servidoresBean.adicionarServidor}"/>
+                                    </div>        
+                                </h:form>  
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
             <h:form>
-                <p:dataTable var="atm" value="#{atmsBean.atms}" editable="false">
-                    <p:column headerText="ATM">
- 
-                        <h:outputText value="#{atm.nome}" />
+                <p:dataTable var="servidor" value="#{servidoresBean.servidores}" editable="false">
+                    <p:column headerText="Servidor">
+                        <h:outputText value="#{servidor.nome}" />
                     </p:column>
                 
                     <p:column headerText="Descrição">
-                        <h:outputText value="#{atm.descricao}" />
+                        <h:outputText value="#{servidor.descricao}" />
                     </p:column>
 
                     <p:column headerText="Modelo">
-                        <h:outputText value="#{atm.modelo}" />
+                        <h:outputText value="#{servidor.modelo}" />
                     </p:column>
 
                     <p:column headerText="Patrimônio">
-                        <h:outputText value="#{atm.patrimonio}" />
+                        <h:outputText value="#{servidor.patrimonio}" />
                     </p:column>
                 
                     <p:column headerText="Status">
@@ -99,14 +95,16 @@
                     </p:column>
                 
                     <p:column headerText="Editar" class="text-center">
-                        <h:commandLink class="glyphicon glyphicon-edit" action="#{atmsBean.carregarAtm(atm)}" /> 
+                        <h:commandLink class="glyphicon glyphicon-edit" action="#{servidoresBean.carregarServidor(servidor)}" />                      
                     </p:column>
                 
-                    <p:column headerText="Excluir" class="text-center">
-                        <h:commandLink class="glyphicon glyphicon-remove" action="#{atmsBean.removerAtm(atm)}" />
+                <p:column headerText="Excluir" class="text-center">
+                    <h:commandLink class="glyphicon glyphicon-remove" action="#{servidoresBean.removerServidor(servidor)}" />                                                
                     </p:column>
                 </p:dataTable>
-                        
+          
+
+                
             </h:form>
             </div>
       </div><!--/row-->

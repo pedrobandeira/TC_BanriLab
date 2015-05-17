@@ -23,6 +23,18 @@
             30
         </session-timeout>
     </session-config>
+    
+    <!-- FILTER -->
+    <filter>
+        <filter-name>FiltroAcesso</filter-name>
+        <filter-class>br.com.banrilab.filtros.FiltroAcesso</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FiltroAcesso</filter-name>
+        <url-pattern>/faces/banrilab/*</url-pattern>
+    </filter-mapping>
+    <!-- FILTER -->
+
     <welcome-file-list>
         <welcome-file>faces/login.xhtml</welcome-file>
     </welcome-file-list>

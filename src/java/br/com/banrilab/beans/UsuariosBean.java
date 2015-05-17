@@ -15,7 +15,8 @@ import java.util.Objects;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.swing.JOptionPane;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,6 +32,8 @@ public class UsuariosBean implements Serializable {
     private List<Usuarios> usuarios = new ArrayList<>();
     
     private Login login = new Login();
+    private FacesContext fc;
+    private HttpSession session;
     
     
     public UsuariosBean() {
@@ -135,6 +138,9 @@ public class UsuariosBean implements Serializable {
         this.usuario.setMatricula(null);
         this.usuario.setSenha(null);
         this.login.setLoginErro(false);
+        
+        this.fc = FacesContext.getCurrentInstance();
+        this.session = (HttpSession) fc.getExternalContext().getSession(false);
        
         List<Usuarios> listaUsuarios = new ArrayList<>();
         listaUsuarios = usuarioDao.getUsuarios();
@@ -143,7 +149,9 @@ public class UsuariosBean implements Serializable {
             if (user.getMatricula().equals(matricula) && user.getSenha().equals(senha)) {
                 this.login.setLoginErro(false);
                 login.setUsuarioLogado(user);
-                return "index"; }
+                login.setLoginRealizado(true);
+                session.setAttribute("id", login.getUsuarioLogado().getId());
+                return "banrilab/index"; }
         }
         this.login.setLoginErro(true);
         return "login";
@@ -160,7 +168,8 @@ public class UsuariosBean implements Serializable {
     
     public String logout() {
         login.setUsuarioLogado(null);
-        return "login";
+        session.setAttribute("id", null);
+        return "/login";
     }
     
     public void limpaAlertaLogin() {

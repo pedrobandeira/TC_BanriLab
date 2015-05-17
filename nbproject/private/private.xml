@@ -3,11 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/BanriLab/src/java/br/com/banrilab/beans/UsuariosBean.java</file>
-            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/BanriLab/src/java/br/com/banrilab/beans/ServidoresBean.java</file>
-            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/BanriLab/web/servidores.xhtml</file>
+            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/BanriLab/web/banrilab/atms.xhtml</file>
+            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/BanriLab/web/banrilab/usuarios.xhtml</file>
+            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/BanriLab/web/banrilab/servidores.xhtml</file>
+            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/BanriLab/web/banrilab/terminais.xhtml</file>
             <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/BanriLab/web/login.xhtml</file>
-            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/BanriLab/src/java/br/com/banrilab/entidades/Usuarios.java</file>
         </group>
     </open-files>
 </project-private>

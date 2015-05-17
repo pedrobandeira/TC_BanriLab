@@ -26,6 +26,8 @@ public class Atms implements Serializable {
     private String nome;
     private String modelo;
     private String descricao;
+    private boolean depositario;
+    private boolean talonadora;
     
     public Atms() {
     }
@@ -75,6 +77,22 @@ public class Atms implements Serializable {
         int hash = 7;
         hash = 97 * hash + Objects.hashCode(this.id);
         return hash;
+    }
+
+    public boolean isDepositario() {
+        return depositario;
+    }
+
+    public void setDepositario(boolean depositario) {
+        this.depositario = depositario;
+    }
+
+    public boolean isTalonadora() {
+        return talonadora;
+    }
+
+    public void setTalonadora(boolean talonadora) {
+        this.talonadora = talonadora;
     }
 
     @Override
