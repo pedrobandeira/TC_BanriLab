@@ -102,23 +102,23 @@
                         <h:outputText value="#{atm.patrimonio}" />
                     </p:column>
                     
-                    <p:column headerText="Depositário" class="text-center">
+                    <p:column headerText="Depositário" class="text-center" style="width: 100px">
                         <p:outputLabel class="#{atmsBean.exibirDepositario(atm)}" />
                     </p:column>
                     
-                    <p:column headerText="Talonadora" class="text-center">
+                    <p:column headerText="Talonadora" class="text-center" style="width: 100px">
                         <p:outputLabel class="#{atmsBean.exibirTalonadora(atm)}" />
                     </p:column>
                 
-                    <p:column headerText="Status">
+                    <p:column headerText="Status" style="width: 100px">
                         <h:outputText value="Disponível" />
                     </p:column>
                 
-                    <p:column headerText="Editar" class="text-center">
+                    <p:column headerText="Editar" class="text-center" style="width: 70px">
                         <h:commandLink class="glyphicon glyphicon-edit" action="#{atmsBean.carregarAtm(atm)}" /> 
                     </p:column>
                 
-                    <p:column headerText="Excluir" class="text-center">
+                    <p:column headerText="Excluir" class="text-center" style="width: 70px">
                         <h:commandLink class="glyphicon glyphicon-remove" action="#{atmsBean.removerAtm(atm)}" />
                     </p:column>
                 </p:dataTable>

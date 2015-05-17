@@ -26,6 +26,7 @@ public class Usuarios implements Serializable {
     private String matricula;
     private String nome;
     private String senha;
+    private String email;
     private Integer perfil;
     // perfís: 1 - Admin Lab, 2 - Coord Testes, 3 - Analista Teste, 4 - Testador, 5 - Desenvolvedor
 
@@ -62,6 +63,14 @@ public class Usuarios implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Integer getPerfil() {

@@ -30,6 +30,9 @@ public class UsuariosBean implements Serializable {
     private UsuariosDao usuarioDao;
     
     private List<Usuarios> usuarios = new ArrayList<>();
+    private List<Usuarios> equipeTestes = new ArrayList<>();
+    private List<Usuarios> equipeDesenvolvimento = new ArrayList<>();
+    private List<Usuarios> equipeAdmLaboratorio = new ArrayList<>();
     
     private Login login = new Login();
     private FacesContext fc;
@@ -49,6 +52,7 @@ public class UsuariosBean implements Serializable {
         this.usuario.setNome(null);
         this.usuario.setPerfil(null);
         this.usuario.setSenha(null);
+        this.usuario.setEmail(null);
         return "usuarios";
     }
     
@@ -61,6 +65,7 @@ public class UsuariosBean implements Serializable {
         this.usuario.setNome(null);
         this.usuario.setPerfil(null);
         this.usuario.setSenha(null); 
+        this.usuario.setEmail(null);
         return "usuarios";
     }
     
@@ -75,6 +80,7 @@ public class UsuariosBean implements Serializable {
         this.usuario.setNome(null);
         this.usuario.setPerfil(null);
         this.usuario.setSenha(null);
+        this.usuario.setEmail(null);
         return "usuarios";
     }
     public String exibirPerfil(Usuarios u) {
@@ -130,6 +136,23 @@ public class UsuariosBean implements Serializable {
     public void setUsuarios(List<Usuarios> usuarios) {
         this.usuarios = usuarios;
     }
+
+    public List<Usuarios> getEquipeTestes() {
+        this.equipeTestes = usuarioDao.getEquipeTestes();
+        return equipeTestes;
+    }
+
+    public List<Usuarios> getEquipeDesenvolvimento() {
+        this.equipeDesenvolvimento = usuarioDao.getEquipeDesenvolvimento();
+        return equipeDesenvolvimento;
+    }
+
+    public List<Usuarios> getEquipeAdmLaboratorio() {
+        this.equipeAdmLaboratorio = usuarioDao.getEquipeAdminLaboratorio();
+        return equipeAdmLaboratorio;
+    }
+    
+    
     
     public String validaLogin() {
         

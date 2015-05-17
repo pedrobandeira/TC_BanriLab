@@ -23,9 +23,8 @@
         <ui:composition template="template.xhtml">
         <ui:define name="content">
 
-        <div class="col-sm-9 col-md-10 main" >
+        <div class="col-sm-9 col-md-10 main" style="width: 100%">
            
-            
             <div class="panel panel-default">
             <!-- Default panel contents -->
             <div class="panel-heading">Equipamentos Adicionais Laboratório de Testes</div>
@@ -88,12 +87,12 @@
                         <h:outputText value="Disponível" />
                     </p:column>
                 
-                    <p:column headerText="Editar" class="text-center">
+                    <p:column headerText="Editar" class="text-center" style="width: 70px">
                         <h:commandLink class="glyphicon glyphicon-edit" action="#{equipamentosAdicionaisBean.carregarEquipamentoAdicional(equipamento)}" /> 
                                              
                     </p:column>
                 
-                <p:column headerText="Excluir" class="text-center">
+                <p:column headerText="Excluir" class="text-center" style="width: 70px">
                     <h:commandLink class="glyphicon glyphicon-remove" action="#{equipamentosAdicionaisBean.removerEquipamentoAdicional(equipamento)}" />
                                                        
                     </p:column>

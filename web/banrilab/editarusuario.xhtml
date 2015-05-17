@@ -50,6 +50,10 @@
                                         <p:inputText placeholder="Digite a matrícula do usuário" class="form-control" id="InputMatrícula" value="#{usuariosBean.usuario.matricula}"/>
                                     </div>
                                     <div class="form-group">
+                                        <label for="InputEmail">E-mail</label>
+                                        <p:inputText type="email" placeholder="Digite o e-mail do usuário" class="form-control" id="InputEmail" value="#{usuariosBean.usuario.email}"/>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="InputPerfil">Perfil</label>
                                         <p:selectOneListbox id="InputPerfil" value="#{usuariosBean.usuario.perfil}" style="width:250px">
                                             <f:selectItem itemValue="1" itemLabel="Administração Laboratório" />

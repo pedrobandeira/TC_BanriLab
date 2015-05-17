@@ -23,7 +23,7 @@ and open the template in the editor.
         <![endif]-->
         <h:outputStylesheet name="css/styles.css"/>
     </h:head>
-    <h:body>
+    <h:body style="background-color: #777">
         <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -62,7 +62,7 @@ and open the template in the editor.
                             <div class="form-group">
                                 <h:commandButton id="BotaoEntrar" value="Entrar" class="btn btn-primary btn-lg btn-block" action="#{usuariosBean.validaLogin}"/>
 
-                                <span class="pull-right"><a href="#">Registrar</a></span><span><a href="#">Ajuda</a></span>
+                                <span class="pull-left"><a href="#">Ajuda</a></span>
                             </div>
 
                         </h:form>

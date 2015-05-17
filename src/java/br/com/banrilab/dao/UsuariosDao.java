@@ -10,6 +10,10 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 /**
  *
@@ -43,6 +47,36 @@ public class UsuariosDao {
         javax.persistence.criteria.CriteriaQuery cq = entityManager.getCriteriaBuilder().createQuery();
         cq.select(cq.from(Usuarios.class));
         return entityManager.createQuery(cq).getResultList();
+    }
+    
+    public List<Usuarios> getEquipeTestes() {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Usuarios> c = cb.createQuery(Usuarios.class);
+        Root<Usuarios> usuarios = c.from(Usuarios.class);
+        c.where(usuarios.get("perfil").in("2","3","4") );
+
+        TypedQuery q = entityManager.createQuery(c);
+        return q.getResultList();
+    }
+    
+    public List<Usuarios> getEquipeDesenvolvimento() {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Usuarios> c = cb.createQuery(Usuarios.class);
+        Root<Usuarios> usuarios = c.from(Usuarios.class);
+        c.where(usuarios.get("perfil").in("5") );
+
+        TypedQuery q = entityManager.createQuery(c);
+        return q.getResultList();
+    }
+    
+    public List<Usuarios> getEquipeAdminLaboratorio() {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Usuarios> c = cb.createQuery(Usuarios.class);
+        Root<Usuarios> usuarios = c.from(Usuarios.class);
+        c.where(usuarios.get("perfil").in("1") );
+
+        TypedQuery q = entityManager.createQuery(c);
+        return q.getResultList();
     }
 
     

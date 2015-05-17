@@ -90,15 +90,15 @@
                         <h:outputText value="#{servidor.patrimonio}" />
                     </p:column>
                 
-                    <p:column headerText="Status">
+                    <p:column headerText="Status" style="width: 100px">
                         <h:outputText value="Disponível" />
                     </p:column>
                 
-                    <p:column headerText="Editar" class="text-center">
+                    <p:column headerText="Editar" class="text-center" style="width: 70px">
                         <h:commandLink class="glyphicon glyphicon-edit" action="#{servidoresBean.carregarServidor(servidor)}" />                      
                     </p:column>
                 
-                <p:column headerText="Excluir" class="text-center">
+                <p:column headerText="Excluir" class="text-center" style="width: 70px">
                     <h:commandLink class="glyphicon glyphicon-remove" action="#{servidoresBean.removerServidor(servidor)}" />                                                
                     </p:column>
                 </p:dataTable>
