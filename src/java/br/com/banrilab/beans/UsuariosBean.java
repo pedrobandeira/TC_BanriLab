@@ -98,6 +98,10 @@ public class UsuariosBean implements Serializable {
         return "Não cadastrado";
     }
     
+    public String exibirPerfilUsuarioLogado() {
+        return exibirPerfil(login.getUsuarioLogado());
+    }
+    
     public Usuarios getUsuario() {
         return usuario;
     }
@@ -174,7 +178,16 @@ public class UsuariosBean implements Serializable {
                 login.setUsuarioLogado(user);
                 login.setLoginRealizado(true);
                 session.setAttribute("id", login.getUsuarioLogado().getId());
-                return "banrilab/index"; }
+                session.setAttribute("perfil", login.getUsuarioLogado().getPerfil());
+                System.out.println("Perfil user logado: "+login.getUsuarioLogado().getPerfil());
+                switch(login.getUsuarioLogado().getPerfil()) {
+                    case 1: return "banrilab/adminlab/index";
+                    case 2: return "banrilab/coordenadortestes/index";
+                    case 3: return "banrilab/analistatestes/index";
+                    case 4: return "banrilab/testador/index";   
+                    case 5: return "banrilab/desenvolvedor/index";    
+                }
+                }
         }
         this.login.setLoginErro(true);
         return "login";

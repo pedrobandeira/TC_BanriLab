@@ -44,7 +44,19 @@ public class FiltroAcesso implements Filter {
         if (session == null || session.getAttribute("id") == null) {
             response.sendRedirect(request.getContextPath() + "/faces/login.xhtml"); // No logged-in user found, so redirect to login page.
         } else {
-            chain.doFilter(req, res); // Logged-in user found, so just continue request.
+            if (session.getAttribute("perfil").equals(1) && request.getRequestURI().contains("/faces/banrilab/adminlab/")) {
+                chain.doFilter(req, res); // Logged-in user found, so just continue request.
+            } else if (session.getAttribute("perfil").equals(2) && request.getRequestURI().contains("/faces/banrilab/coordenadortestes/")) {
+                chain.doFilter(req, res); // Logged-in user found, so just continue request.
+            } else if (session.getAttribute("perfil").equals(3) && request.getRequestURI().contains("/faces/banrilab/analistatestes/")) {
+                chain.doFilter(req, res); // Logged-in user found, so just continue request.
+            } else if (session.getAttribute("perfil").equals(4) && request.getRequestURI().contains("/faces/banrilab/testador/")) {
+                chain.doFilter(req, res); // Logged-in user found, so just continue request.
+            } else if (session.getAttribute("perfil").equals(5) && request.getRequestURI().contains("/faces/banrilab/desenvolvedor/")) {
+                chain.doFilter(req, res); // Logged-in user found, so just continue request.
+            } else {
+                response.sendRedirect(request.getContextPath() + "/faces/login.xhtml");
+            }
         }
     }
 
