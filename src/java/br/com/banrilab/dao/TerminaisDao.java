@@ -16,10 +16,11 @@ import javax.persistence.PersistenceContext;
  * @author Pedro
  */
 @Stateless
-public class TerminaisDao {
+public class TerminaisDao implements TerminaisDaoInterface {
     @PersistenceContext(unitName = "BanriLabPU2")
     EntityManager entityManager;
     
+    @Override
     public void addTerminal (Terminais t) {
         
         // EntityManager entityManager = new HibernateUtil().getEntityManager();
@@ -32,6 +33,7 @@ public class TerminaisDao {
     }
     
     
+    @Override
     public void removeTerminal (Terminais t) {
         //EntityManager entityManager = new HibernateUtil().getEntityManager();
 
@@ -40,6 +42,7 @@ public class TerminaisDao {
  
     }
     
+    @Override
     public List<Terminais> getTerminais() {
        
         javax.persistence.criteria.CriteriaQuery cq = entityManager.getCriteriaBuilder().createQuery();

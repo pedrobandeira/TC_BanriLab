@@ -16,10 +16,11 @@ import javax.persistence.PersistenceContext;
  * @author Pedro
  */
 @Stateless
-public class AtmsDao {
+public class AtmsDao implements AtmsDaoInterface {
     @PersistenceContext(unitName = "BanriLabPU2")
     EntityManager entityManager;
     
+    @Override
     public void addAtm (Atms a) {
         
         // EntityManager entityManager = new HibernateUtil().getEntityManager();
@@ -32,6 +33,7 @@ public class AtmsDao {
     }
     
     
+    @Override
     public void removeAtm (Atms a) {
         //EntityManager entityManager = new HibernateUtil().getEntityManager();
 
@@ -40,6 +42,7 @@ public class AtmsDao {
  
     }
     
+    @Override
     public List<Atms> getAtms() {
        
         javax.persistence.criteria.CriteriaQuery cq = entityManager.getCriteriaBuilder().createQuery();

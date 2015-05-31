@@ -16,10 +16,11 @@ import javax.persistence.PersistenceContext;
  * @author Pedro
  */
 @Stateless
-public class HomologacoesDao {
+public class HomologacoesDao implements HomologacoesDaoInterface {
     @PersistenceContext(unitName = "BanriLabPU2")
     EntityManager entityManager;
     
+    @Override
     public void addHomologacao (Homologacoes h) {
         
         // EntityManager entityManager = new HibernateUtil().getEntityManager();
@@ -31,6 +32,7 @@ public class HomologacoesDao {
     }
     
     
+    @Override
     public void removeHomologacao (Homologacoes h) {
         //EntityManager entityManager = new HibernateUtil().getEntityManager();
 
@@ -38,6 +40,7 @@ public class HomologacoesDao {
         entityManager.remove(homologacaoARemover);
     }
     
+    @Override
     public List<Homologacoes> getHomologacoes() {
        
         javax.persistence.criteria.CriteriaQuery cq = entityManager.getCriteriaBuilder().createQuery();

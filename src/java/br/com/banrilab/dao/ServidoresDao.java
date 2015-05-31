@@ -16,10 +16,11 @@ import javax.persistence.PersistenceContext;
  * @author Pedro
  */
 @Stateless
-public class ServidoresDao {
+public class ServidoresDao implements ServidoresDaoInterface {
     @PersistenceContext(unitName = "BanriLabPU2")
     EntityManager entityManager;
     
+    @Override
     public void addServidor (Servidores s) {
         
         // EntityManager entityManager = new HibernateUtil().getEntityManager();
@@ -32,6 +33,7 @@ public class ServidoresDao {
     }
     
     
+    @Override
     public void removeServidor (Servidores s) {
         //EntityManager entityManager = new HibernateUtil().getEntityManager();
 
@@ -40,6 +42,7 @@ public class ServidoresDao {
  
     }
     
+    @Override
     public List<Servidores> getServidores() {
        
         javax.persistence.criteria.CriteriaQuery cq = entityManager.getCriteriaBuilder().createQuery();

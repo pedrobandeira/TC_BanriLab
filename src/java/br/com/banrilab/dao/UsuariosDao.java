@@ -20,10 +20,11 @@ import javax.persistence.criteria.Root;
  * @author Pedro
  */
 @Stateless
-public class UsuariosDao {
+public class UsuariosDao implements UsuariosDaoInterface {
     @PersistenceContext(unitName = "BanriLabPU2")
     EntityManager entityManager;
     
+    @Override
     public void addUsuario (Usuarios u) {
         
         if(u.getId() == null)
@@ -34,6 +35,7 @@ public class UsuariosDao {
     }
     
     
+    @Override
     public void removeUsuario (Usuarios u) {
         //EntityManager entityManager = new HibernateUtil().getEntityManager();
 
@@ -42,6 +44,7 @@ public class UsuariosDao {
  
     }
     
+    @Override
     public List<Usuarios> getUsuarios() {
        
         javax.persistence.criteria.CriteriaQuery cq = entityManager.getCriteriaBuilder().createQuery();
@@ -49,6 +52,7 @@ public class UsuariosDao {
         return entityManager.createQuery(cq).getResultList();
     }
     
+    @Override
     public List<Usuarios> getEquipeTestes() {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Usuarios> c = cb.createQuery(Usuarios.class);
@@ -59,6 +63,7 @@ public class UsuariosDao {
         return q.getResultList();
     }
     
+    @Override
     public List<Usuarios> getEquipeDesenvolvimento() {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Usuarios> c = cb.createQuery(Usuarios.class);
@@ -69,6 +74,7 @@ public class UsuariosDao {
         return q.getResultList();
     }
     
+    @Override
     public List<Usuarios> getEquipeAdminLaboratorio() {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Usuarios> c = cb.createQuery(Usuarios.class);

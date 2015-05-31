@@ -16,10 +16,11 @@ import javax.persistence.PersistenceContext;
  * @author Pedro
  */
 @Stateless
-public class EquipamentosAdicionaisDao {
+public class EquipamentosAdicionaisDao implements EquipamentosAdicionaisInterface {
     @PersistenceContext(unitName = "BanriLabPU2")
     EntityManager entityManager;
     
+    @Override
     public void addEquipamentodicional (EquipamentosAdicionais e) {
         
         // EntityManager entityManager = new HibernateUtil().getEntityManager();
@@ -32,6 +33,7 @@ public class EquipamentosAdicionaisDao {
     }
     
     
+    @Override
     public void removeEquipamentoAdicional (EquipamentosAdicionais e) {
         //EntityManager entityManager = new HibernateUtil().getEntityManager();
 
@@ -40,6 +42,7 @@ public class EquipamentosAdicionaisDao {
  
     }
     
+    @Override
     public List<EquipamentosAdicionais> getEquipamentosAdicionais() {
        
         javax.persistence.criteria.CriteriaQuery cq = entityManager.getCriteriaBuilder().createQuery();
