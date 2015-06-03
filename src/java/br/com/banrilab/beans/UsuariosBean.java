@@ -6,6 +6,7 @@
 package br.com.banrilab.beans;
 
 import br.com.banrilab.dao.UsuariosDao;
+import br.com.banrilab.dao.UsuariosDaoInterface;
 import br.com.banrilab.entidades.Login;
 import br.com.banrilab.entidades.Usuarios;
 import java.io.Serializable;
@@ -27,7 +28,7 @@ import javax.servlet.http.HttpSession;
 public class UsuariosBean implements Serializable {
     private Usuarios usuario = new Usuarios();
     @EJB
-    private UsuariosDao usuarioDao;
+    private UsuariosDaoInterface usuarioDao;
     
     private List<Usuarios> usuarios = new ArrayList<>();
     private List<Usuarios> equipeTestes = new ArrayList<>();

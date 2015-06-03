@@ -16,12 +16,12 @@ import javax.persistence.PersistenceContext;
  * @author Pedro
  */
 @Stateless
-public class EquipamentosAdicionaisDao implements EquipamentosAdicionaisInterface {
+public class EquipamentosAdicionaisDao implements EquipamentosAdicionaisDaoInterface {
     @PersistenceContext(unitName = "BanriLabPU2")
     EntityManager entityManager;
     
     @Override
-    public void addEquipamentodicional (EquipamentosAdicionais e) {
+    public void addEquipamentoAdicional (EquipamentosAdicionais e) {
         
         // EntityManager entityManager = new HibernateUtil().getEntityManager();
         

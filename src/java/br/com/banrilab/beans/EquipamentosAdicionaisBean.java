@@ -5,7 +5,7 @@
  */
 package br.com.banrilab.beans;
 
-import br.com.banrilab.dao.EquipamentosAdicionaisDao;
+import br.com.banrilab.dao.EquipamentosAdicionaisDaoInterface;
 import br.com.banrilab.entidades.EquipamentosAdicionais;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ import javax.faces.bean.SessionScoped;
 public class EquipamentosAdicionaisBean implements Serializable {
     private EquipamentosAdicionais equipamentoAdicional = new EquipamentosAdicionais();
     @EJB
-    private EquipamentosAdicionaisDao equipDao;
+    private EquipamentosAdicionaisDaoInterface equipDao;
     
     private List<EquipamentosAdicionais> equipamentosAdicionais = new ArrayList<>();
     
@@ -32,7 +32,7 @@ public class EquipamentosAdicionaisBean implements Serializable {
     }
     
     public String adicionarEquipamentoAdicional() {
-        equipDao.addEquipamentodicional(equipamentoAdicional);
+        equipDao.addEquipamentoAdicional(equipamentoAdicional);
         this.equipamentoAdicional.setId(null);
         this.equipamentoAdicional.setDescricao(null);
         this.equipamentoAdicional.setNome(null);

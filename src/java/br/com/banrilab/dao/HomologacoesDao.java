@@ -31,7 +31,6 @@ public class HomologacoesDao implements HomologacoesDaoInterface {
             entityManager.merge(h);
     }
     
-    
     @Override
     public void removeHomologacao (Homologacoes h) {
         //EntityManager entityManager = new HibernateUtil().getEntityManager();

@@ -32,7 +32,6 @@ public class ServidoresDao implements ServidoresDaoInterface {
         
     }
     
-    
     @Override
     public void removeServidor (Servidores s) {
         //EntityManager entityManager = new HibernateUtil().getEntityManager();

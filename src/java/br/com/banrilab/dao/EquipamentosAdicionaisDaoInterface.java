@@ -12,8 +12,8 @@ import java.util.List;
  *
  * @author Pedro
  */
-public interface EquipamentosAdicionaisInterface {
-    public void addEquipamentodicional (EquipamentosAdicionais e);
+public interface EquipamentosAdicionaisDaoInterface {
+    public void addEquipamentoAdicional (EquipamentosAdicionais e);
     public void removeEquipamentoAdicional (EquipamentosAdicionais e);
     public List<EquipamentosAdicionais> getEquipamentosAdicionais();
 }

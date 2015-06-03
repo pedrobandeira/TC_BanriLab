@@ -6,6 +6,7 @@
 package br.com.banrilab.beans;
 
 import br.com.banrilab.dao.ServidoresDao;
+import br.com.banrilab.dao.ServidoresDaoInterface;
 import br.com.banrilab.entidades.Servidores;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ import javax.faces.bean.SessionScoped;
 public class ServidoresBean implements Serializable {
     private Servidores servidor = new Servidores();
     @EJB
-    private ServidoresDao servidorDao;
+    private ServidoresDaoInterface servidorDao;
     
     private List<Servidores> servidores = new ArrayList<>();
     

@@ -6,6 +6,7 @@
 package br.com.banrilab.beans;
 
 import br.com.banrilab.dao.AtmsDao;
+import br.com.banrilab.dao.AtmsDaoInterface;
 import br.com.banrilab.entidades.Atms;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ import javax.faces.bean.SessionScoped;
 public class AtmsBean implements Serializable {
     private Atms atm = new Atms();
     @EJB
-    private AtmsDao atmDao;
+    private AtmsDaoInterface atmDao;
     
     private List<Atms> atms = new ArrayList<>();
     

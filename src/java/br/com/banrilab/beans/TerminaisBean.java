@@ -6,6 +6,7 @@
 package br.com.banrilab.beans;
 
 import br.com.banrilab.dao.TerminaisDao;
+import br.com.banrilab.dao.TerminaisDaoInterface;
 import br.com.banrilab.entidades.Terminais;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ import javax.faces.bean.SessionScoped;
 public class TerminaisBean implements Serializable {
     private Terminais terminal = new Terminais();
     @EJB
-    private TerminaisDao terminalDao;
+    private TerminaisDaoInterface terminalDao;
     
     private List<Terminais> terminais = new ArrayList<>();
     

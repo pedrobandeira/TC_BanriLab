@@ -6,6 +6,7 @@
 package br.com.banrilab.beans;
 
 import br.com.banrilab.dao.HomologacoesDao;
+import br.com.banrilab.dao.HomologacoesDaoInterface;
 import br.com.banrilab.entidades.Homologacoes;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ import javax.faces.bean.SessionScoped;
 public class HomologacoesBean implements Serializable {
     private Homologacoes homologacao = new Homologacoes();
     @EJB
-    private HomologacoesDao homologacaoDao;
+    private HomologacoesDaoInterface homologacaoDao;
     
     private List<Homologacoes> homologacoes = new ArrayList<>();
     
