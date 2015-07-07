@@ -33,11 +33,14 @@ public class TerminaisBean implements Serializable {
     }
     
     public String adicionarTerminal() {
+        this.terminal.setDisponivel(true);
         terminalDao.addTerminal(terminal);
         this.terminal.setId(null);
         this.terminal.setDescricao(null);
         this.terminal.setNome(null);
         this.terminal.setPatrimonio(null);
+        this.terminal.setDisponivel(true);
+        this.terminal.setReservavel(false);
         return "terminais";
     }
     
@@ -47,7 +50,9 @@ public class TerminaisBean implements Serializable {
         this.terminal.setId(null);
         this.terminal.setDescricao(null);
         this.terminal.setNome(null);
-        this.terminal.setPatrimonio(null);  
+        this.terminal.setPatrimonio(null);
+        this.terminal.setDisponivel(true);
+        this.terminal.setReservavel(false);
         return "terminais";
     }
     
@@ -61,6 +66,8 @@ public class TerminaisBean implements Serializable {
         this.terminal.setDescricao(null);
         this.terminal.setNome(null);
         this.terminal.setPatrimonio(null);
+        this.terminal.setDisponivel(true);
+        this.terminal.setReservavel(false);
         return "terminais";
     }
     
@@ -71,6 +78,17 @@ public class TerminaisBean implements Serializable {
     public void setTerminal(Terminais t) {
         this.terminal = t;
     }
+        
+    public String exibirDisponibilidade(Terminais t) {
+        if (t.isReservavel()) {
+            if (t.isDisponivel()) {
+                return "Disponível";
+            }
+            return "Reservado";
+        }
+        return "Não reservável";
+    }
+
 
     @Override
     public int hashCode() {

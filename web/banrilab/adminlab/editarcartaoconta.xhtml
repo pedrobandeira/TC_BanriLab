@@ -55,6 +55,10 @@
                                         <p:inputText placeholder="Digite o nome do cliente" class="form-control" id="InputNome" value="#{cartoesContasBean.cartaoConta.nome}"/>
                                     </div>
                                     
+                                    <div class="form-group">
+                                       <p:selectBooleanCheckbox style="font-weight: bold" itemLabel="Equipamento reservável" value="#{cartoesContasBean.cartaoConta.reservavel}"  />
+                                    </div>
+                                    
                                     <div class="modal-footer">
                                         <h:commandButton class="btn btn-default" value="Fechar" action="#{cartoesContasBean.fecharEditar}"/>
                                         <h:commandButton value="Salvar" class="btn btn-primary" action="#{cartoesContasBean.adicionarCartaoConta}"/>

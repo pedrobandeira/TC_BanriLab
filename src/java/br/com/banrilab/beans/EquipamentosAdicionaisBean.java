@@ -32,11 +32,14 @@ public class EquipamentosAdicionaisBean implements Serializable {
     }
     
     public String adicionarEquipamentoAdicional() {
+        this.equipamentoAdicional.setDisponivel(true);
         equipDao.addEquipamentoAdicional(equipamentoAdicional);
         this.equipamentoAdicional.setId(null);
         this.equipamentoAdicional.setDescricao(null);
         this.equipamentoAdicional.setNome(null);
         this.equipamentoAdicional.setPatrimonio(null);
+        this.equipamentoAdicional.setDisponivel(true);
+        this.equipamentoAdicional.setReservavel(false);
         return "equipamentosadicionais";
     }
     
@@ -46,7 +49,9 @@ public class EquipamentosAdicionaisBean implements Serializable {
         this.equipamentoAdicional.setId(null);
         this.equipamentoAdicional.setDescricao(null);
         this.equipamentoAdicional.setNome(null);
-        this.equipamentoAdicional.setPatrimonio(null);  
+        this.equipamentoAdicional.setPatrimonio(null);
+        this.equipamentoAdicional.setDisponivel(true);
+        this.equipamentoAdicional.setReservavel(false);
         return "equipamentosadicionais";
     }
     
@@ -60,6 +65,8 @@ public class EquipamentosAdicionaisBean implements Serializable {
         this.equipamentoAdicional.setDescricao(null);
         this.equipamentoAdicional.setNome(null);
         this.equipamentoAdicional.setPatrimonio(null);
+        this.equipamentoAdicional.setDisponivel(true);
+        this.equipamentoAdicional.setReservavel(false);
         return "equipamentosadicionais";
     }
     
@@ -69,6 +76,16 @@ public class EquipamentosAdicionaisBean implements Serializable {
 
     public void setEquipamentoAdicional(EquipamentosAdicionais e) {
         this.equipamentoAdicional = e;
+    }
+        
+    public String exibirDisponibilidade(EquipamentosAdicionais e) {
+        if (e.isReservavel()) {
+            if (e.isDisponivel()) {
+                return "Disponível";
+            }
+            return "Reservado";
+        }
+        return "Não reservável";
     }
 
     @Override

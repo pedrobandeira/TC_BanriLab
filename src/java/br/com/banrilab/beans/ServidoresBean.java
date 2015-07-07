@@ -33,12 +33,15 @@ public class ServidoresBean implements Serializable {
     }
     
     public String adicionarServidor() {
+        this.servidor.setDisponivel(true);
         servidorDao.addServidor(servidor);
         this.servidor.setId(null);
         this.servidor.setDescricao(null);
         this.servidor.setModelo(null);
         this.servidor.setNome(null);
         this.servidor.setPatrimonio(null);
+        this.servidor.setDisponivel(true);
+        this.servidor.setReservavel(false);
         return "servidores";
     }
     
@@ -49,7 +52,9 @@ public class ServidoresBean implements Serializable {
         this.servidor.setDescricao(null);
         this.servidor.setModelo(null);
         this.servidor.setNome(null);
-        this.servidor.setPatrimonio(null);  
+        this.servidor.setPatrimonio(null);
+        this.servidor.setDisponivel(true);
+        this.servidor.setReservavel(false);
         return "servidores";
     }
     
@@ -64,6 +69,8 @@ public class ServidoresBean implements Serializable {
         this.servidor.setModelo(null);
         this.servidor.setNome(null);
         this.servidor.setPatrimonio(null);
+        this.servidor.setDisponivel(true);
+        this.servidor.setReservavel(false);
         return "servidores";
     }
     
@@ -74,6 +81,17 @@ public class ServidoresBean implements Serializable {
     public void setServidor(Servidores s) {
         this.servidor = s;
     }
+    
+    public String exibirDisponibilidade(Servidores s) {
+        if (s.isReservavel()) {
+            if (s.isDisponivel()) {
+                return "Disponível";
+            }
+            return "Reservado";
+        }
+        return "Não reservável";
+    }
+
 
     @Override
     public int hashCode() {

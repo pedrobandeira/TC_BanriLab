@@ -33,13 +33,14 @@ public class CartoesContasBean implements Serializable {
     
     public String adicionarCartaoConta() {
         
-        cartaoConta.setDisponibilidade(1);
+        cartaoConta.setDisponivel(true);
         cartaoContaDao.addCartaoConta(cartaoConta);
         this.cartaoConta.setId(null);
         this.cartaoConta.setAgencia(null);
         this.cartaoConta.setConta(null);
         this.cartaoConta.setNome(null);
-        this.cartaoConta.setDisponibilidade(null);
+        this.cartaoConta.setDisponivel(true);
+        this.cartaoConta.setReservavel(false);
         return "cartoescontas";
     }
     
@@ -50,7 +51,8 @@ public class CartoesContasBean implements Serializable {
         this.cartaoConta.setAgencia(null);
         this.cartaoConta.setConta(null);
         this.cartaoConta.setNome(null);
-        this.cartaoConta.setDisponibilidade(null); 
+        this.cartaoConta.setDisponivel(true);
+        this.cartaoConta.setReservavel(false);
         return "cartoescontas";
     }
     
@@ -65,7 +67,8 @@ public class CartoesContasBean implements Serializable {
         this.cartaoConta.setAgencia(null);
         this.cartaoConta.setConta(null);
         this.cartaoConta.setNome(null);
-        this.cartaoConta.setDisponibilidade(null); 
+        this.cartaoConta.setDisponivel(true);
+        this.cartaoConta.setReservavel(false); 
         return "cartoescontas";
     }
     
@@ -77,15 +80,14 @@ public class CartoesContasBean implements Serializable {
         this.cartaoConta = c;
     }
     
-    public String exibirStatus(CartoesContas c) {
-        if (c.getDisponibilidade() == 1) {
-            return "Disponível";
-        } else if (c.getDisponibilidade() == 2) {
+    public String exibirDisponibilidade(CartoesContas c) {
+        if (c.isReservavel()) {
+            if (c.isDisponivel()) {
+                return "Disponível";
+            }
             return "Reservado";
-        } else if (c.getDisponibilidade() == 3) {
-            return "Não reservável";
-        } 
-        return "Não cadastrado";
+        }
+        return "Não reservável";
     }
     
 

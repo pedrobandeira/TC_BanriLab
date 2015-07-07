@@ -26,7 +26,8 @@ public class CartoesCredito implements Serializable {
     private Integer bandeira; // 1 - MasterCard, 2 - Visa
     private String numero;
     private String nome;
-    private Integer disponibilidade; // 1 - Disponivel, 2 - Reservado, 3 - Não reservável
+    private boolean disponivel;
+    private boolean reservavel;
 
     public Long getId() {
         return id;
@@ -60,13 +61,23 @@ public class CartoesCredito implements Serializable {
         this.nome = nome;
     }
 
-    public Integer getDisponibilidade() {
-        return disponibilidade;
+    public boolean isDisponivel() {
+        return disponivel;
     }
 
-    public void setDisponibilidade(Integer disponibilidade) {
-        this.disponibilidade = disponibilidade;
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
     }
+
+    public boolean isReservavel() {
+        return reservavel;
+    }
+
+    public void setReservavel(boolean reservavel) {
+        this.reservavel = reservavel;
+    }
+
+    
 
     @Override
     public int hashCode() {

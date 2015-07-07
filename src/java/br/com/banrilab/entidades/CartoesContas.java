@@ -23,10 +23,11 @@ public class CartoesContas implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Integer disponibilidade; // 1 - Disponivel, 2 - Reservado, 3 - Não reservável
     private String agencia;
     private String conta;
     private String nome;
+    private boolean disponivel;
+    private boolean reservavel;
 
     public Long getId() {
         return id;
@@ -43,14 +44,24 @@ public class CartoesContas implements Serializable {
     public void setAgencia(String agencia) {
         this.agencia = agencia;
     }
-    
-    public Integer getDisponibilidade() {
-        return disponibilidade;
+
+    public boolean isDisponivel() {
+        return disponivel;
     }
 
-    public void setDisponibilidade(Integer disponibilidade) {
-        this.disponibilidade = disponibilidade;
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
     }
+
+    public boolean isReservavel() {
+        return reservavel;
+    }
+
+    public void setReservavel(boolean reservavel) {
+        this.reservavel = reservavel;
+    }
+    
+    
 
     public String getConta() {
         return conta;

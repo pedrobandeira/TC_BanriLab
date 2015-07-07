@@ -33,6 +33,7 @@ public class AtmsBean implements Serializable {
     }
     
     public String adicionarAtm() {
+        this.atm.setDisponivel(true);
         atmDao.addAtm(atm);
         this.atm.setId(null);
         this.atm.setDescricao(null);
@@ -41,6 +42,8 @@ public class AtmsBean implements Serializable {
         this.atm.setPatrimonio(null);
         this.atm.setDepositario(false);
         this.atm.setTalonadora(false);
+        this.atm.setDisponivel(true);
+        this.atm.setReservavel(false);
         return "atms";
     }
     
@@ -54,6 +57,8 @@ public class AtmsBean implements Serializable {
         this.atm.setPatrimonio(null);  
         this.atm.setDepositario(false);
         this.atm.setTalonadora(false);
+        this.atm.setDisponivel(true);
+        this.atm.setReservavel(false);
         return "atms";
     }
     
@@ -70,6 +75,8 @@ public class AtmsBean implements Serializable {
         this.atm.setPatrimonio(null);
         this.atm.setDepositario(false);
         this.atm.setTalonadora(false);
+        this.atm.setDisponivel(true);
+        this.atm.setReservavel(false);
         return "atms";
     }
     
@@ -79,6 +86,16 @@ public class AtmsBean implements Serializable {
 
     public void setAtm(Atms a) {
         this.atm = a;
+    }
+        
+    public String exibirDisponibilidade(Atms a) {
+        if (a.isReservavel()) {
+            if (a.isDisponivel()) {
+                return "Disponível";
+            }
+            return "Reservado";
+        }
+        return "Não reservável";
     }
 
     @Override

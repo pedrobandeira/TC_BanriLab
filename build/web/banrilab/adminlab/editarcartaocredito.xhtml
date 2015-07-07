@@ -59,6 +59,11 @@
                                         </p:selectOneListbox>
                                     </div>
                                     
+                                    <div class="form-group">
+                       
+                                        <p:selectBooleanCheckbox value="#{cartoesCreditoBean.cartaoCredito.reservavel}" itemLabel="Equipamento reservável" style="font-weight: bold" />
+                                    </div>
+                                    
                                     <div class="modal-footer">
                                         <h:commandButton class="btn btn-default" value="Fechar" action="#{cartoesCreditoBean.fecharEditar}"/>
                                         <h:commandButton value="Salvar" class="btn btn-primary" action="#{cartoesCreditoBean.adicionarCartaoCredito}"/>

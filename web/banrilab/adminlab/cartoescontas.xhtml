@@ -59,6 +59,10 @@
                                         <p:inputText placeholder="Digite o nome do cliente" class="form-control" id="InputNome" value="#{cartoesContasBean.cartaoConta.nome}"/>
                                     </div>
                                     
+                                    <div class="form-group">
+                                        <p:selectBooleanCheckbox style="font-weight: bold" value="#{cartoesContasBean.cartaoConta.reservavel}"  />
+                                    </div>
+                                    
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                                         <h:commandButton value="Cadastrar" class="btn btn-primary" action="#{cartoesContasBean.adicionarCartaoConta}"/>
@@ -82,8 +86,9 @@
                     <p:column headerText="Nome do cliente" class="text-center" style="width: 300px">
                         <h:outputText value="#{cartao.nome}" />
                     </p:column>
+                    
                     <p:column headerText="Status" class="text-center" style="width: 100px">
-                        <h:outputText value="#{cartoesContasBean.exibirStatus(cartao)}" />
+                        <h:outputText value="#{cartoesContasBean.exibirDisponibilidade(cartao)}" />
                     </p:column>
                 
                     <p:column headerText="Editar" class="text-center" style="width: 70px">

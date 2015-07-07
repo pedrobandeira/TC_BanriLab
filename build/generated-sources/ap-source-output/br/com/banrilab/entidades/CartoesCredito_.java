@@ -9,8 +9,9 @@ import javax.persistence.metamodel.StaticMetamodel;
 public abstract class CartoesCredito_ {
 
 	public static volatile SingularAttribute<CartoesCredito, Long> id;
-	public static volatile SingularAttribute<CartoesCredito, Integer> disponibilidade;
+	public static volatile SingularAttribute<CartoesCredito, Boolean> reservavel;
 	public static volatile SingularAttribute<CartoesCredito, String> nome;
+	public static volatile SingularAttribute<CartoesCredito, Boolean> disponivel;
 	public static volatile SingularAttribute<CartoesCredito, Integer> bandeira;
 	public static volatile SingularAttribute<CartoesCredito, String> numero;
 

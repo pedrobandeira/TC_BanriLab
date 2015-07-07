@@ -32,13 +32,14 @@ public class CartoesCreditoBean implements Serializable {
     }
     
     public String adicionarCartaoCredito() {
-        cartaoCredito.setDisponibilidade(1);
+        cartaoCredito.setDisponivel(true);
         cartaoCreditoDao.addCartaoCredito(cartaoCredito);
         this.cartaoCredito.setId(null);
         this.cartaoCredito.setNumero(null);
         this.cartaoCredito.setBandeira(null);
         this.cartaoCredito.setNome(null);
-        this.cartaoCredito.setDisponibilidade(null);
+        this.cartaoCredito.setDisponivel(true);
+        this.cartaoCredito.setReservavel(false);
         return "cartoescredito";
     }
     
@@ -49,7 +50,8 @@ public class CartoesCreditoBean implements Serializable {
         this.cartaoCredito.setNumero(null);
         this.cartaoCredito.setBandeira(null);
         this.cartaoCredito.setNome(null);
-        this.cartaoCredito.setDisponibilidade(null);
+        this.cartaoCredito.setDisponivel(true);
+        this.cartaoCredito.setReservavel(false);
         return "cartoescredito";
     }
     
@@ -63,7 +65,8 @@ public class CartoesCreditoBean implements Serializable {
         this.cartaoCredito.setNumero(null);
         this.cartaoCredito.setBandeira(null);
         this.cartaoCredito.setNome(null);
-        this.cartaoCredito.setDisponibilidade(null);
+        this.cartaoCredito.setDisponivel(true);
+        this.cartaoCredito.setReservavel(false);
         return "cartoescredito";
     }
     
@@ -84,15 +87,14 @@ public class CartoesCreditoBean implements Serializable {
         return "Não cadastrado";
     }
     
-    public String exibirStatus(CartoesCredito c) {
-        if (c.getDisponibilidade() == 1) {
-            return "Disponível";
-        } else if (c.getDisponibilidade() == 2) {
+    public String exibirDisponibilidade(CartoesCredito c) {
+        if (c.isReservavel()) {
+            if (c.isDisponivel()) {
+                return "Disponível";
+            }
             return "Reservado";
-        } else if (c.getDisponibilidade() == 3) {
-            return "Não reservável";
-        } 
-        return "Não cadastrado";
+        }
+        return "Não reservável";
     }
     
 

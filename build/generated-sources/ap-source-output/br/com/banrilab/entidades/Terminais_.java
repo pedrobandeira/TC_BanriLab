@@ -9,8 +9,10 @@ import javax.persistence.metamodel.StaticMetamodel;
 public abstract class Terminais_ {
 
 	public static volatile SingularAttribute<Terminais, Long> id;
+	public static volatile SingularAttribute<Terminais, Boolean> reservavel;
 	public static volatile SingularAttribute<Terminais, Integer> patrimonio;
 	public static volatile SingularAttribute<Terminais, String> nome;
+	public static volatile SingularAttribute<Terminais, Boolean> disponivel;
 	public static volatile SingularAttribute<Terminais, String> descricao;
 
 }

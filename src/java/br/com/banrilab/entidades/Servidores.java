@@ -26,6 +26,8 @@ public class Servidores implements Serializable {
     private String nome;
     private String modelo;
     private String descricao;
+    private boolean disponivel;
+    private boolean reservavel;
 
     public Servidores() {
     }
@@ -69,6 +71,24 @@ public class Servidores implements Serializable {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
+    public boolean isDisponivel() {
+        return disponivel;
+    }
+
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
+    }
+
+    public boolean isReservavel() {
+        return reservavel;
+    }
+
+    public void setReservavel(boolean reservavel) {
+        this.reservavel = reservavel;
+    }
+
+    
 
     @Override
     public int hashCode() {

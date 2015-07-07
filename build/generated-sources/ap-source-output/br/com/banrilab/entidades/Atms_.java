@@ -10,9 +10,11 @@ public abstract class Atms_ {
 
 	public static volatile SingularAttribute<Atms, Boolean> talonadora;
 	public static volatile SingularAttribute<Atms, Long> id;
+	public static volatile SingularAttribute<Atms, Boolean> reservavel;
 	public static volatile SingularAttribute<Atms, Integer> patrimonio;
 	public static volatile SingularAttribute<Atms, Boolean> depositario;
 	public static volatile SingularAttribute<Atms, String> nome;
+	public static volatile SingularAttribute<Atms, Boolean> disponivel;
 	public static volatile SingularAttribute<Atms, String> modelo;
 	public static volatile SingularAttribute<Atms, String> descricao;
 

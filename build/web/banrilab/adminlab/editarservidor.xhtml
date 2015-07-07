@@ -58,6 +58,9 @@
                                         <label for="InputDescricao">Descrição</label>
                                         <p:inputText placeholder="Digite uma descrição para o servidor" class="form-control" id="InputDescricao" value="#{servidoresBean.servidor.descricao}"/>
                                     </div>
+                                    <div class="form-group">
+                                        <p:selectBooleanCheckbox itemLabel="Equipamento reservável" style="font-weight: bold" value="#{servidoresBean.servidor.reservavel}"  />
+                                    </div>
                                     <div class="modal-footer">
                                         <h:commandButton class="btn btn-default" value="Fechar" action="#{servidoresBean.fecharEditar}"/>
                                         <h:commandButton value="Salvar" class="btn btn-primary" action="#{servidoresBean.adicionarServidor}"/>

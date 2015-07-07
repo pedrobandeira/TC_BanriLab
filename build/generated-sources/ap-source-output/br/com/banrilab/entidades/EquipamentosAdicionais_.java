@@ -9,8 +9,10 @@ import javax.persistence.metamodel.StaticMetamodel;
 public abstract class EquipamentosAdicionais_ {
 
 	public static volatile SingularAttribute<EquipamentosAdicionais, Long> id;
+	public static volatile SingularAttribute<EquipamentosAdicionais, Boolean> reservavel;
 	public static volatile SingularAttribute<EquipamentosAdicionais, Integer> patrimonio;
 	public static volatile SingularAttribute<EquipamentosAdicionais, String> nome;
+	public static volatile SingularAttribute<EquipamentosAdicionais, Boolean> disponivel;
 	public static volatile SingularAttribute<EquipamentosAdicionais, String> descricao;
 
 }

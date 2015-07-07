@@ -54,6 +54,9 @@
                                         <label for="InputDescricao">Descrição</label>
                                         <p:inputText placeholder="Digite uma descrição para o terminal" class="form-control" id="InputDescricao" value="#{terminaisBean.terminal.descricao}"/>
                                     </div>
+                                    <div class="form-group">
+                                        <p:selectBooleanCheckbox itemLabel="Equipamento reservável" style="font-weight: bold" value="#{terminaisBean.terminal.reservavel}"  />
+                                    </div>
                                     <div class="modal-footer">
                                         <h:commandButton class="btn btn-default" value="Fechar" action="#{terminaisBean.fecharEditar}"/>
                                         <h:commandButton value="Salvar" class="btn btn-primary" action="#{terminaisBean.adicionarTerminal}"/>

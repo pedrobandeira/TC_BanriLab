@@ -28,6 +28,8 @@ public class Atms implements Serializable {
     private String descricao;
     private boolean depositario;
     private boolean talonadora;
+    private boolean disponivel;
+    private boolean reservavel;
     
     public Atms() {
     }
@@ -93,6 +95,22 @@ public class Atms implements Serializable {
 
     public void setTalonadora(boolean talonadora) {
         this.talonadora = talonadora;
+    }
+
+    public boolean isDisponivel() {
+        return disponivel;
+    }
+
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
+    }
+
+    public boolean isReservavel() {
+        return reservavel;
+    }
+
+    public void setReservavel(boolean reservavel) {
+        this.reservavel = reservavel;
     }
 
     @Override

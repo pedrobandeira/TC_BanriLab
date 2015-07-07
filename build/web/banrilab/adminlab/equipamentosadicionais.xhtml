@@ -55,6 +55,11 @@
                                         <label for="InputDescricao">Descrição</label>
                                         <p:inputText placeholder="Digite uma descrição para o equipamento" class="form-control" id="InputDescricao" value="#{equipamentosAdicionaisBean.equipamentoAdicional.descricao}"/>
                                     </div>
+                                    
+                                    <div class="form-group">
+                                        <p:selectBooleanCheckbox itemLabel="Equipamento reservável" style="font-weight: bold" value="#{equipamentosAdicionaisBean.equipamentoAdicional.reservavel}"  />
+                                    </div>
+                                    
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                                         <h:commandButton value="Cadastrar" class="btn btn-primary" action="#{equipamentosAdicionaisBean.adicionarEquipamentoAdicional}"/>
@@ -83,10 +88,10 @@
                         <h:outputText value="#{equipamento.patrimonio}" />
                     </p:column>
                 
-                    <p:column headerText="Status">
-                        <h:outputText value="Disponível" />
+                    <p:column headerText="Status" class="text-center" style="width: 100px">
+                        <h:outputText value="#{equipamentosAdicionaisBean.exibirDisponibilidade(equipamento)}" />
                     </p:column>
-                
+                    
                     <p:column headerText="Editar" class="text-center" style="width: 70px">
                         <h:commandLink class="glyphicon glyphicon-edit" action="#{equipamentosAdicionaisBean.carregarEquipamentoAdicional(equipamento)}" /> 
                                              
