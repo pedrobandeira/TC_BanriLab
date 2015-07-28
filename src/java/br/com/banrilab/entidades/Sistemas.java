@@ -25,7 +25,7 @@ public class Sistemas implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Double versao;
+    private String versao;
     private String nome;
     private String descricao;
     @ManyToOne
@@ -42,11 +42,11 @@ public class Sistemas implements Serializable {
         this.id = id;
     }
 
-    public Double getVersao() {
+    public String getVersao() {
         return versao;
     }
 
-    public void setVersao(Double versao) {
+    public void setVersao(String versao) {
         this.versao = versao;
     }
 

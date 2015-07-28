@@ -8,10 +8,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(Homologacoes.class)
 public abstract class Homologacoes_ {
 
-	public static volatile SingularAttribute<Homologacoes, EquipamentosAdicionais> equipamentoAdicional;
-	public static volatile SingularAttribute<Homologacoes, Atms> atm;
 	public static volatile SingularAttribute<Homologacoes, Long> id;
-	public static volatile SingularAttribute<Homologacoes, Terminais> terminal;
 
 }
 

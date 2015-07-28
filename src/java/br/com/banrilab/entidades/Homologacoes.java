@@ -23,9 +23,6 @@ public class Homologacoes implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Atms atm;
-    private Terminais terminal;
-    private EquipamentosAdicionais equipamentoAdicional;
 
     public Homologacoes() {
     }

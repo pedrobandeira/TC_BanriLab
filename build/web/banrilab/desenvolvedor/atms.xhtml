@@ -57,12 +57,12 @@
                         <p:outputLabel class="#{atmsBean.exibirTalonadora(atm)}" />
                     </p:column>
                 
-                    <p:column headerText="Status" style="width: 100px">
-                        <h:outputText value="Disponível" />
+                    <p:column headerText="Status" class="text-center" style="width: 100px">
+                        <h:outputText value="#{atmsBean.exibirDisponibilidade(atm)}" />
                     </p:column>
                 
                     <p:column headerText="Reservar" class="text-center" style="width: 85px">
-                        <h:commandLink class="glyphicon glyphicon-calendar" action="#{atmsBean.carregarAtm(atm)}" /> 
+                        <h:commandLink class="glyphicon glyphicon-calendar" action="#{reservaAtmsBean.carregarAtm(atm)}" /> 
                     </p:column>
                 </p:dataTable>
                         

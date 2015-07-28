@@ -11,7 +11,7 @@ public abstract class Sistemas_ {
 	public static volatile SingularAttribute<Sistemas, Long> id;
 	public static volatile SingularAttribute<Sistemas, Usuarios> responsavel;
 	public static volatile SingularAttribute<Sistemas, String> nome;
-	public static volatile SingularAttribute<Sistemas, Double> versao;
+	public static volatile SingularAttribute<Sistemas, String> versao;
 	public static volatile SingularAttribute<Sistemas, String> descricao;
 
 }

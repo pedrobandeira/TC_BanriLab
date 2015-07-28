@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+   	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+	<meta charset="utf-8"/>
+	<title>ATMs do Laboratório de Testes</title>
+	<meta name="generator" content="Bootply" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+	<h:outputStylesheet name="css/bootstrap.min.css"/>
+	<!--[if lt IE 9]>
+		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+        <h:outputStylesheet name="css/styles.css"/>
+   
+    </h:head>
+    <h:body>
+        <ui:composition template="template.xhtml">
+        <ui:define name="content">
+
+        <div class="col-sm-9 col-md-10 main" >
+           
+            
+            <div class="panel panel-default">
+        
+        <!-- Modal Editar Terminal -->
+                                <h4 class="modal-title" id="myModalLabel">Reservar ATM</h4>
+                            
+                            
+                                
+                                    <div class="form-group">
+                                        <label for="OutputPatrimonio">Patrimônio</label>
+                                        <p:outputLabel class="form-control" id="OutputPatrimonio" value="#{reservaAtmsBean.reservaAtm.atm.patrimonio}"/>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="OutputNome">Nome</label>
+                                        <p:outputLabel class="form-control" id="OutputNome" value="#{reservaAtmsBean.reservaAtm.atm.nome}"/>
+                                        
+                                    </div>
+                                <h:form>    
+                                    <div class="form-group">
+                                        <label for="InputDataFim">Data fim</label><br/>
+                                        <h:inputText id="InputDataFim" value="#{reservaAtmsBean.reservaAtm.dataFim}">  
+                                            <f:convertDateTime pattern="dd/MM/yyyy"/>  
+                                        </h:inputText>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="InputFinalidade">Finalidade</label>
+                                        <p:inputText class="form-control" id="InputFinalidade" value="#{reservaAtmsBean.reservaAtm.finalidade}"/>
+                                        
+                                    </div>
+                                    
+                                    <div>
+                                        <h:commandButton class="btn btn-default" value="Fechar" action="#{reservaAtmsBean.fecharEditar}"/>
+                                        <h:commandButton value="Salvar" class="btn btn-primary" action="#{reservaAtmsBean.adicionarReserva}"/>
+                                    </div>
+                                    <p:messages/>
+                                </h:form>
+                                
+                            </div>
+
+                        </div>
+                    
+                
+        
+ 
+        </ui:define>
+         </ui:composition>
+        
+	<!-- script references -->
+        <h:outputScript name="js/jquery-1.11.2.min.js"/>
+	<h:outputScript name="js/bootstrap.min.js"/>
+        <h:outputScript name="js/scripts.js"/>
+
+    </h:body>
+</html>
+
