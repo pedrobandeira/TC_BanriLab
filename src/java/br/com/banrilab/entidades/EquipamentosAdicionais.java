@@ -28,6 +28,10 @@ public class EquipamentosAdicionais implements Serializable {
     private boolean disponivel;
     private boolean reservavel;
 
+    public EquipamentosAdicionais() {
+        this.reservavel = true;
+    }
+
     public Long getId() {
         return id;
     }

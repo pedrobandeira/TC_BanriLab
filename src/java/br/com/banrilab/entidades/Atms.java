@@ -32,6 +32,7 @@ public class Atms implements Serializable {
     private boolean reservavel;
     
     public Atms() {
+        this.reservavel = true;
     }
 
     public Long getId() {

@@ -32,6 +32,7 @@ public class AtmsBean implements Serializable {
     public AtmsBean() {
     }
     
+    
     public String adicionarAtm() {
         this.atm.setDisponivel(true);
         atmDao.addAtm(atm);
@@ -97,6 +98,7 @@ public class AtmsBean implements Serializable {
         }
         return "Não reservável";
     }
+    
 
     @Override
     public int hashCode() {

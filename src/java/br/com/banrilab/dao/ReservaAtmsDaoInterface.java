@@ -5,6 +5,7 @@
  */
 package br.com.banrilab.dao;
 
+import br.com.banrilab.entidades.Atms;
 import br.com.banrilab.entidades.ReservaAtms;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import java.util.List;
  */
 public interface ReservaAtmsDaoInterface {
     public void addReservaAtms (ReservaAtms r);
+    public void addAtms (Atms a);
     public void removeReservaAtms (ReservaAtms r);
     public List<ReservaAtms> getReservasAtms();
     

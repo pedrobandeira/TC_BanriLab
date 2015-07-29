@@ -5,11 +5,9 @@
         <group>
             <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/BanriLab/web/banrilab/desenvolvedor/atms.xhtml</file>
             <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/BanriLab/src/java/br/com/banrilab/beans/ReservaAtmsBean.java</file>
-            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/BanriLab/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/BanriLab/src/java/br/com/banrilab/dao/ReservaAtmsDao.java</file>
-            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/BanriLab/web/banrilab/adminlab/editaratm.xhtml</file>
             <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/BanriLab/web/banrilab/desenvolvedor/reservaratm.xhtml</file>
-            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/BanriLab/web/login.xhtml</file>
+            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/BanriLab/src/java/br/com/banrilab/beans/AtmsBean.java</file>
+            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/BanriLab/src/java/br/com/banrilab/dao/AtmsDao.java</file>
         </group>
     </open-files>
 </project-private>

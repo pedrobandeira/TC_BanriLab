@@ -62,7 +62,7 @@
                     </p:column>
                 
                     <p:column headerText="Reservar" class="text-center" style="width: 85px">
-                        <h:commandLink class="glyphicon glyphicon-calendar" action="#{reservaAtmsBean.carregarAtm(atm)}" /> 
+                        <h:commandLink class="glyphicon glyphicon-calendar" action="#{reservaAtmsBean.carregarAtm(atm)}" rendered="#{atm.reservavel}" /> 
                     </p:column>
                 </p:dataTable>
                         

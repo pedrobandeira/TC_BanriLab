@@ -29,6 +29,12 @@ public class CartoesCredito implements Serializable {
     private boolean disponivel;
     private boolean reservavel;
 
+    public CartoesCredito() {
+        this.reservavel = true;
+    }
+    
+    
+
     public Long getId() {
         return id;
     }

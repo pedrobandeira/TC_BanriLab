@@ -5,6 +5,7 @@
  */
 package br.com.banrilab.dao;
 
+import br.com.banrilab.entidades.Atms;
 import br.com.banrilab.entidades.ReservaAtms;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -23,16 +24,20 @@ public class ReservaAtmsDao implements ReservaAtmsDaoInterface {
 
     @Override
     public void addReservaAtms(ReservaAtms r) {
-        System.out.println("Entrou no add DAO");
-        System.out.println("ID do ATM no DAO: "+r.getAtm().getId());
-        System.out.println("Data inicio no DAO: "+r.getDataInicio());
-        System.out.println("Data fim no DAO: "+r.getDataFim());
         if(r.getId() == null)
             entityManager.persist(r);
         else
             entityManager.merge(r);
     }
 
+    @Override
+    public void addAtms(Atms a) {
+        if(a.getId() == null)
+            entityManager.persist(a);
+        else
+            entityManager.merge(a);
+    }
+    
     @Override
     public void removeReservaAtms(ReservaAtms r) {
         ReservaAtms reservaARemover = entityManager.merge(r);

@@ -29,6 +29,12 @@ public class CartoesContas implements Serializable {
     private boolean disponivel;
     private boolean reservavel;
 
+    public CartoesContas() {
+        this.reservavel = true;
+    }
+    
+    
+
     public Long getId() {
         return id;
     }

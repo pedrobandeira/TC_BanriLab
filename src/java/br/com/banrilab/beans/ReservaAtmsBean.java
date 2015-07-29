@@ -6,10 +6,8 @@
 package br.com.banrilab.beans;
 
 
-import br.com.banrilab.dao.AtmsDaoInterface;
 import br.com.banrilab.dao.ReservaAtmsDaoInterface;
 import br.com.banrilab.entidades.Atms;
-import br.com.banrilab.entidades.Login;
 import br.com.banrilab.entidades.ReservaAtms;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -30,17 +28,17 @@ public class ReservaAtmsBean implements Serializable {
     private ReservaAtms reservaAtm = new ReservaAtms();
     @EJB
     private ReservaAtmsDaoInterface reservaAtmsDao;
+    //@EJB
+    //private AtmsDaoInterface atmsDao;
     
-    @EJB
-    private AtmsDaoInterface atmsDao;
+    //private Login login;
     
-    private Login login;
-    
-    private AtmsBean atmsBean;
+    //private AtmsBean atmsBean;
     
     private List<ReservaAtms> reservasAtms = new ArrayList<>();
     
     public ReservaAtmsBean() {
+        //atmsBean = new AtmsBean();
     }   
 
     public String adicionarReserva() {
@@ -55,10 +53,10 @@ public class ReservaAtmsBean implements Serializable {
            //this.atmsBean.setAtm(reservaAtm.getAtm());
            //this.atmsBean.getAtm().setDisponivel(false);
            
-           //this.reservaAtm.getAtm().setDisponivel(false);
-           //this.atmsBean.setAtm(this.reservaAtm.getAtm());
+           this.reservaAtm.getAtm().setDisponivel(false);
+          // this.atmsBean.setAtm(this.reservaAtm.getAtm());
            //this.atmsBean.adicionarAtm();
-           
+           this.reservaAtmsDao.addAtms(this.reservaAtm.getAtm());
            this.reservaAtm.setDataInicio(retornaDataAtual());
            reservaAtmsDao.addReservaAtms(reservaAtm);
            this.reservaAtm.setId(null);
@@ -68,14 +66,15 @@ public class ReservaAtmsBean implements Serializable {
            this.reservaAtm.setHomologacao(null);
            this.reservaAtm.setDataInicio(null);
            this.reservaAtm.setDataFim(null);
-           this.reservaAtm.getAtm().setDisponivel(false);
+          
         }
         return "atms";
     }
     
     public String removerReserva(ReservaAtms r) {
         this.reservaAtm = r;
-       
+        this.reservaAtm.getAtm().setDisponivel(true);
+        this.reservaAtmsDao.addAtms(reservaAtm.getAtm());
         reservaAtmsDao.removeReservaAtms(this.reservaAtm);
         this.reservaAtm.setId(null);
         this.reservaAtm.setAtm(null);
@@ -84,7 +83,7 @@ public class ReservaAtmsBean implements Serializable {
         this.reservaAtm.setHomologacao(null);
         this.reservaAtm.setDataInicio(null);
         this.reservaAtm.setDataFim(null);
-        this.reservaAtm.getAtm().setDisponivel(true);
+        
         return "atms";
     }
     
@@ -94,9 +93,13 @@ public class ReservaAtmsBean implements Serializable {
     }
     
     public String carregarAtm(Atms a) {
-        if (a.isDisponivel() && a.isReservavel()){
         this.reservaAtm.setAtm(a);
-        return "reservaratm";
+        if (a.isReservavel()) {
+            if (a.isDisponivel()){
+                return "reservaratm";
+            } else if (!(a.isDisponivel())) {
+                return "editarreserva";
+            }
         }
         return "atms";
     }

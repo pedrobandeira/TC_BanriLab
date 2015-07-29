@@ -13,6 +13,7 @@ public abstract class ReservaAtms_ {
 	public static volatile SingularAttribute<ReservaAtms, Long> id;
 	public static volatile SingularAttribute<ReservaAtms, Date> dataFim;
 	public static volatile SingularAttribute<ReservaAtms, Homologacoes> homologacao;
+	public static volatile SingularAttribute<ReservaAtms, String> finalidade;
 	public static volatile SingularAttribute<ReservaAtms, Date> dataInicio;
 	public static volatile SingularAttribute<ReservaAtms, Usuarios> dono;
 

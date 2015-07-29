@@ -29,6 +29,7 @@ public class Terminais implements Serializable {
     private boolean reservavel;
     
     public Terminais() {
+        this.reservavel = true;
     }
 
     public Long getId() {

@@ -30,6 +30,7 @@ public class Servidores implements Serializable {
     private boolean reservavel;
 
     public Servidores() {
+        this.reservavel = true;
     }
     
     public Long getId() {

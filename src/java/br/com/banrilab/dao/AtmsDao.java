@@ -24,7 +24,7 @@ public class AtmsDao implements AtmsDaoInterface {
     public void addAtm (Atms a) {
         
         // EntityManager entityManager = new HibernateUtil().getEntityManager();
-        
+        System.out.println("Entrou no DAO. Nome ATM: "+a.getNome());
         if(a.getId() == null)
             entityManager.persist(a);
         else
