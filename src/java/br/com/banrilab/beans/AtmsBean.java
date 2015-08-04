@@ -9,6 +9,7 @@ import br.com.banrilab.dao.AtmsDao;
 import br.com.banrilab.dao.AtmsDaoInterface;
 import br.com.banrilab.entidades.Atms;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -44,7 +45,7 @@ public class AtmsBean implements Serializable {
         this.atm.setDepositario(false);
         this.atm.setTalonadora(false);
         this.atm.setDisponivel(true);
-        this.atm.setReservavel(false);
+        this.atm.setReservavel(true);
         return "atms";
     }
     
@@ -59,7 +60,7 @@ public class AtmsBean implements Serializable {
         this.atm.setDepositario(false);
         this.atm.setTalonadora(false);
         this.atm.setDisponivel(true);
-        this.atm.setReservavel(false);
+        this.atm.setReservavel(true);
         return "atms";
     }
     
@@ -77,7 +78,7 @@ public class AtmsBean implements Serializable {
         this.atm.setDepositario(false);
         this.atm.setTalonadora(false);
         this.atm.setDisponivel(true);
-        this.atm.setReservavel(false);
+        this.atm.setReservavel(true);
         return "atms";
     }
     
@@ -94,7 +95,11 @@ public class AtmsBean implements Serializable {
             if (a.isDisponivel()) {
                 return "Disponível";
             }
-            return "Reservado";
+           if (!(a.getReserva().getDono().getNome().isEmpty())) {
+               SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+               return "Reservado para "+a.getReserva().getDono().getNome()+" até "+sdf.format(a.getReserva().getDataFim());
+            } // else if (!(a.getReserva().getHomologacao() is not null
+            else return "Reservado (sem dono)";
         }
         return "Não reservável";
     }
@@ -144,4 +149,6 @@ public class AtmsBean implements Serializable {
         }
             return "glyphicon glyphicon-minus";
     }
+    
+    
 }

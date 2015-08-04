@@ -9,7 +9,9 @@ package br.com.banrilab.beans;
 import br.com.banrilab.dao.ReservaAtmsDaoInterface;
 import br.com.banrilab.entidades.Atms;
 import br.com.banrilab.entidades.ReservaAtms;
+import br.com.banrilab.entidades.Usuarios;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,6 +19,9 @@ import java.util.Objects;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -34,31 +39,30 @@ public class ReservaAtmsBean implements Serializable {
     //private Login login;
     
     //private AtmsBean atmsBean;
-    
     private List<ReservaAtms> reservasAtms = new ArrayList<>();
+    
     
     public ReservaAtmsBean() {
         //atmsBean = new AtmsBean();
     }   
 
+    public Usuarios carregaUsuarioAtivo() {
+        HttpSession httpsession = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        Usuarios usuarioSessao = (Usuarios) httpsession.getAttribute("usuario");
+        return usuarioSessao;
+    }
+    
     public String adicionarReserva() {
-        System.out.println("Entrou no add reserva BEAN");
-        System.out.println("ATM: "+reservaAtm.getAtm().getNome());
-        System.out.println("ID ATM: "+reservaAtm.getAtm().getId());
-        System.out.println("DISPONIVEL: "+reservaAtm.getAtm().isDisponivel());
-        System.out.println("RESERVAVEL: "+reservaAtm.getAtm().isReservavel());
+        
         if (reservaAtm.getAtm().isDisponivel() && reservaAtm.getAtm().isReservavel()) {
-           System.out.println("Entrou no IF");
-            //this.reservaAtm.setDono(login.getUsuarioLogado())
-           //this.atmsBean.setAtm(reservaAtm.getAtm());
-           //this.atmsBean.getAtm().setDisponivel(false);
+           this.reservaAtm.setDono(carregaUsuarioAtivo());
            
-           this.reservaAtm.getAtm().setDisponivel(false);
-          // this.atmsBean.setAtm(this.reservaAtm.getAtm());
-           //this.atmsBean.adicionarAtm();
-           this.reservaAtmsDao.addAtms(this.reservaAtm.getAtm());
            this.reservaAtm.setDataInicio(retornaDataAtual());
            reservaAtmsDao.addReservaAtms(reservaAtm);
+           this.reservaAtm.getAtm().setDisponivel(false);
+           this.reservaAtm.getAtm().setReserva(reservaAtm);
+    
+           this.reservaAtmsDao.addAtms(this.reservaAtm.getAtm());
            this.reservaAtm.setId(null);
            this.reservaAtm.setAtm(null);
            this.reservaAtm.setFinalidade(null);
@@ -102,6 +106,19 @@ public class ReservaAtmsBean implements Serializable {
             }
         }
         return "atms";
+    }
+    
+    public boolean verificaDono(Atms a) {
+        
+        if (a.isDisponivel() && a.isReservavel()) {
+            return true;
+        } 
+        //HttpSession httpsession = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        //Usuarios usuarioSessao = (Usuarios) httpsession.getAttribute("usuario");
+       // if (usuarioSessao.equals(a.getReserva().getDono())) {
+         //   return true;
+        //}
+        return false;
     }
     
     public String fecharEditar () {

@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 /**
  *
@@ -30,6 +31,8 @@ public class Atms implements Serializable {
     private boolean talonadora;
     private boolean disponivel;
     private boolean reservavel;
+    @OneToOne (mappedBy = "atm")
+    private ReservaAtms reserva;
     
     public Atms() {
         this.reservavel = true;
@@ -41,6 +44,14 @@ public class Atms implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public ReservaAtms getReserva() {
+        return reserva;
+    }
+
+    public void setReserva(ReservaAtms reserva) {
+        this.reserva = reserva;
     }
 
     public Integer getPatrimonio() {

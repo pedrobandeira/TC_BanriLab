@@ -178,6 +178,7 @@ public class UsuariosBean implements Serializable {
                 this.login.setLoginErro(false);
                 login.setUsuarioLogado(user);
                 login.setLoginRealizado(true);
+                session.setAttribute("usuario", login.getUsuarioLogado());
                 session.setAttribute("id", login.getUsuarioLogado().getId());
                 session.setAttribute("perfil", login.getUsuarioLogado().getPerfil());
                 System.out.println("Perfil user logado: "+login.getUsuarioLogado().getPerfil());
@@ -188,7 +189,7 @@ public class UsuariosBean implements Serializable {
                     case 4: return "banrilab/testador/index";   
                     case 5: return "banrilab/desenvolvedor/index";    
                 }
-                }
+            }
         }
         this.login.setLoginErro(true);
         return "login";

@@ -32,20 +32,20 @@
             </div>
             <h:form>
                 <p:dataTable var="atm" value="#{atmsBean.atms}" editable="false" >
-                    <p:column headerText="ATM">
+                    <p:column headerText="ATM" style="width: 70px">
  
                         <h:outputText value="#{atm.nome}" />
                     </p:column>
                 
-                    <p:column headerText="Descrição">
+                    <p:column headerText="Descrição" style="width: 100px">
                         <h:outputText value="#{atm.descricao}" />
                     </p:column>
 
-                    <p:column headerText="Modelo">
+                    <p:column headerText="Modelo" style="width: 100px">
                         <h:outputText value="#{atm.modelo}" />
                     </p:column>
 
-                    <p:column headerText="Patrimônio">
+                    <p:column headerText="Patrimônio" style="width: 100px">
                         <h:outputText value="#{atm.patrimonio}" />
                     </p:column>
                     
@@ -57,12 +57,12 @@
                         <p:outputLabel class="#{atmsBean.exibirTalonadora(atm)}" />
                     </p:column>
                 
-                    <p:column headerText="Status" class="text-center" style="width: 100px">
+                    <p:column headerText="Status" class="text-center">
                         <h:outputText value="#{atmsBean.exibirDisponibilidade(atm)}" />
                     </p:column>
                 
                     <p:column headerText="Reservar" class="text-center" style="width: 85px">
-                        <h:commandLink class="glyphicon glyphicon-calendar" action="#{reservaAtmsBean.carregarAtm(atm)}" rendered="#{atm.reservavel}" /> 
+                        <h:commandLink class="glyphicon glyphicon-calendar" action="#{reservaAtmsBean.carregarAtm(atm)}" rendered="#{reservaAtmsBean.verificaDono(atm)}" /> 
                     </p:column>
                 </p:dataTable>
                         
