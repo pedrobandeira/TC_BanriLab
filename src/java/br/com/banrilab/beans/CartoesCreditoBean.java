@@ -34,24 +34,14 @@ public class CartoesCreditoBean implements Serializable {
     public String adicionarCartaoCredito() {
         cartaoCredito.setDisponivel(true);
         cartaoCreditoDao.addCartaoCredito(cartaoCredito);
-        this.cartaoCredito.setId(null);
-        this.cartaoCredito.setNumero(null);
-        this.cartaoCredito.setBandeira(null);
-        this.cartaoCredito.setNome(null);
-        this.cartaoCredito.setDisponivel(true);
-        this.cartaoCredito.setReservavel(false);
+        limpaCampos();
         return "cartoescredito";
     }
     
     public String removerCartaoCredito(CartoesCredito c) {
         this.cartaoCredito = c;
         cartaoCreditoDao.removeCartaoCredito(this.cartaoCredito);
-        this.cartaoCredito.setId(null);
-        this.cartaoCredito.setNumero(null);
-        this.cartaoCredito.setBandeira(null);
-        this.cartaoCredito.setNome(null);
-        this.cartaoCredito.setDisponivel(true);
-        this.cartaoCredito.setReservavel(false);
+        limpaCampos();
         return "cartoescredito";
     }
     
@@ -61,12 +51,7 @@ public class CartoesCreditoBean implements Serializable {
     }
     
     public String fecharEditar () {
-        this.cartaoCredito.setId(null);
-        this.cartaoCredito.setNumero(null);
-        this.cartaoCredito.setBandeira(null);
-        this.cartaoCredito.setNome(null);
-        this.cartaoCredito.setDisponivel(true);
-        this.cartaoCredito.setReservavel(false);
+        limpaCampos();
         return "cartoescredito";
     }
     
@@ -95,6 +80,15 @@ public class CartoesCreditoBean implements Serializable {
             return "Reservado";
         }
         return "Não reservável";
+    }
+    
+    public void limpaCampos() {
+        this.cartaoCredito.setId(null);
+        this.cartaoCredito.setNumero(null);
+        this.cartaoCredito.setBandeira(null);
+        this.cartaoCredito.setNome(null);
+        this.cartaoCredito.setDisponivel(true);
+        this.cartaoCredito.setReservavel(true);
     }
     
 

@@ -27,22 +27,19 @@
             
             <div class="panel panel-default">
         
-        <!-- Modal Editar Terminal -->
+        <!-- Modal Reservar ATM -->
+        <div class="modal fade" data-backdrop="static" id="reservarAtm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
                                 <h4 class="modal-title" id="myModalLabel">Reservar ATM</h4>
-                            
-                            
-                                
-                                    <div class="form-group">
-                                        <label for="OutputPatrimonio">Patrimônio</label>
-                                        <p:outputLabel class="form-control" id="OutputPatrimonio" value="#{reservaAtmsBean.reservaAtm.atm.patrimonio}"/>
-                                    </div>
-                                    
+                            </div>
+                            <div class="modal-body">
+                                <h:form>
                                     <div class="form-group">
                                         <label for="OutputNome">Nome</label>
                                         <p:outputLabel class="form-control" id="OutputNome" value="#{reservaAtmsBean.reservaAtm.atm.nome}"/>
-                                        
                                     </div>
-                                <h:form>    
                                     <div class="form-group">
                                         <label for="InputDataFim">Data fim</label><br/>
                                         <h:inputText id="InputDataFim" value="#{reservaAtmsBean.reservaAtm.dataFim}">  
@@ -55,21 +52,25 @@
                                         <p:inputText class="form-control" id="InputFinalidade" value="#{reservaAtmsBean.reservaAtm.finalidade}"/>
                                         
                                     </div>
-                                    
-                                    <div>
+                                    <div class="modal-footer">
                                         <h:commandButton class="btn btn-default" value="Fechar" action="#{reservaAtmsBean.fecharEditar}"/>
                                         <h:commandButton value="Salvar" class="btn btn-primary" action="#{reservaAtmsBean.adicionarReserva}"/>
                                     </div>
-                                    <p:messages/>
                                 </h:form>
                                 
                             </div>
 
                         </div>
-                    
-                
-        
- 
+                    </div>
+                </div>
+        <script type="text/javascript">
+        $(window).load(function(){
+        $('#reservarAtm').modal('show');
+         });
+        </script>
+    </div>
+      </div><!--/row-->
+	
         </ui:define>
          </ui:composition>
         

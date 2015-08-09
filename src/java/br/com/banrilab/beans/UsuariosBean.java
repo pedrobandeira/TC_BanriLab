@@ -48,12 +48,7 @@ public class UsuariosBean implements Serializable {
             usuario.setSenha(usuario.getMatricula());
         }
         usuarioDao.addUsuario(usuario);
-        this.usuario.setId(null);
-        this.usuario.setMatricula(null);
-        this.usuario.setNome(null);
-        this.usuario.setPerfil(null);
-        this.usuario.setSenha(null);
-        this.usuario.setEmail(null);
+        limpaCampos();
         return "usuarios";
     }
     
@@ -61,12 +56,7 @@ public class UsuariosBean implements Serializable {
         
         this.usuario = u;
         usuarioDao.removeUsuario(this.usuario);
-        this.usuario.setId(null);
-        this.usuario.setMatricula(null);
-        this.usuario.setNome(null);
-        this.usuario.setPerfil(null);
-        this.usuario.setSenha(null); 
-        this.usuario.setEmail(null);
+        limpaCampos();
         return "usuarios";
     }
     
@@ -76,12 +66,7 @@ public class UsuariosBean implements Serializable {
     }
     
     public String fecharEditar () {
-        this.usuario.setId(null);
-        this.usuario.setMatricula(null);
-        this.usuario.setNome(null);
-        this.usuario.setPerfil(null);
-        this.usuario.setSenha(null);
-        this.usuario.setEmail(null);
+        limpaCampos();
         return "usuarios";
     }
     public String exibirPerfil(Usuarios u) {
@@ -157,6 +142,14 @@ public class UsuariosBean implements Serializable {
         return equipeAdmLaboratorio;
     }
     
+    public void limpaCampos() {
+        this.usuario.setId(null);
+        this.usuario.setMatricula(null);
+        this.usuario.setNome(null);
+        this.usuario.setPerfil(null);
+        this.usuario.setSenha(null);
+        this.usuario.setEmail(null);
+    }
     
     
     public String validaLogin() {

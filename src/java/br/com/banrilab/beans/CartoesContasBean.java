@@ -35,24 +35,14 @@ public class CartoesContasBean implements Serializable {
         
         cartaoConta.setDisponivel(true);
         cartaoContaDao.addCartaoConta(cartaoConta);
-        this.cartaoConta.setId(null);
-        this.cartaoConta.setAgencia(null);
-        this.cartaoConta.setConta(null);
-        this.cartaoConta.setNome(null);
-        this.cartaoConta.setDisponivel(true);
-        this.cartaoConta.setReservavel(false);
+        limpaCampos();
         return "cartoescontas";
     }
     
     public String removerCartaoConta(CartoesContas c) {
         this.cartaoConta = c;
         cartaoContaDao.removeCartaoConta(this.cartaoConta);
-        this.cartaoConta.setId(null);
-        this.cartaoConta.setAgencia(null);
-        this.cartaoConta.setConta(null);
-        this.cartaoConta.setNome(null);
-        this.cartaoConta.setDisponivel(true);
-        this.cartaoConta.setReservavel(false);
+        limpaCampos();
         return "cartoescontas";
     }
     
@@ -63,12 +53,7 @@ public class CartoesContasBean implements Serializable {
     
     public String fecharEditar () {
         System.out.println("Entrou no fechar editar");
-        this.cartaoConta.setId(null);
-        this.cartaoConta.setAgencia(null);
-        this.cartaoConta.setConta(null);
-        this.cartaoConta.setNome(null);
-        this.cartaoConta.setDisponivel(true);
-        this.cartaoConta.setReservavel(false); 
+        limpaCampos(); 
         return "cartoescontas";
     }
     
@@ -88,6 +73,15 @@ public class CartoesContasBean implements Serializable {
             return "Reservado";
         }
         return "Não reservável";
+    }
+    
+    public void limpaCampos() {
+        this.cartaoConta.setId(null);
+        this.cartaoConta.setAgencia(null);
+        this.cartaoConta.setConta(null);
+        this.cartaoConta.setNome(null);
+        this.cartaoConta.setDisponivel(true);
+        this.cartaoConta.setReservavel(true);
     }
     
 

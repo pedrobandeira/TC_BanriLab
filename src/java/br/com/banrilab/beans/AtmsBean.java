@@ -37,21 +37,18 @@ public class AtmsBean implements Serializable {
     public String adicionarAtm() {
         this.atm.setDisponivel(true);
         atmDao.addAtm(atm);
-        this.atm.setId(null);
-        this.atm.setDescricao(null);
-        this.atm.setModelo(null);
-        this.atm.setNome(null);
-        this.atm.setPatrimonio(null);
-        this.atm.setDepositario(false);
-        this.atm.setTalonadora(false);
-        this.atm.setDisponivel(true);
-        this.atm.setReservavel(true);
+        limpaCampos();
         return "atms";
     }
     
     public String removerAtm(Atms a) {
         this.atm = a;
         atmDao.removeAtm(this.atm);
+        limpaCampos();
+        return "atms";
+    }
+    
+    public void limpaCampos() {
         this.atm.setId(null);
         this.atm.setDescricao(null);
         this.atm.setModelo(null);
@@ -61,7 +58,6 @@ public class AtmsBean implements Serializable {
         this.atm.setTalonadora(false);
         this.atm.setDisponivel(true);
         this.atm.setReservavel(true);
-        return "atms";
     }
     
     public String carregarAtm(Atms a) {
@@ -70,15 +66,7 @@ public class AtmsBean implements Serializable {
     }
     
     public String fecharEditar () {
-        this.atm.setId(null);
-        this.atm.setDescricao(null);
-        this.atm.setModelo(null);
-        this.atm.setNome(null);
-        this.atm.setPatrimonio(null);
-        this.atm.setDepositario(false);
-        this.atm.setTalonadora(false);
-        this.atm.setDisponivel(true);
-        this.atm.setReservavel(true);
+        limpaCampos();
         return "atms";
     }
     

@@ -34,24 +34,14 @@ public class EquipamentosAdicionaisBean implements Serializable {
     public String adicionarEquipamentoAdicional() {
         this.equipamentoAdicional.setDisponivel(true);
         equipDao.addEquipamentoAdicional(equipamentoAdicional);
-        this.equipamentoAdicional.setId(null);
-        this.equipamentoAdicional.setDescricao(null);
-        this.equipamentoAdicional.setNome(null);
-        this.equipamentoAdicional.setPatrimonio(null);
-        this.equipamentoAdicional.setDisponivel(true);
-        this.equipamentoAdicional.setReservavel(false);
+        limpaCampos();
         return "equipamentosadicionais";
     }
     
     public String removerEquipamentoAdicional(EquipamentosAdicionais e) {
         this.equipamentoAdicional = e;
         equipDao.removeEquipamentoAdicional(this.equipamentoAdicional);
-        this.equipamentoAdicional.setId(null);
-        this.equipamentoAdicional.setDescricao(null);
-        this.equipamentoAdicional.setNome(null);
-        this.equipamentoAdicional.setPatrimonio(null);
-        this.equipamentoAdicional.setDisponivel(true);
-        this.equipamentoAdicional.setReservavel(false);
+        limpaCampos();
         return "equipamentosadicionais";
     }
     
@@ -61,12 +51,7 @@ public class EquipamentosAdicionaisBean implements Serializable {
     }
     
     public String fecharEditar () {
-        this.equipamentoAdicional.setId(null);
-        this.equipamentoAdicional.setDescricao(null);
-        this.equipamentoAdicional.setNome(null);
-        this.equipamentoAdicional.setPatrimonio(null);
-        this.equipamentoAdicional.setDisponivel(true);
-        this.equipamentoAdicional.setReservavel(false);
+        limpaCampos();
         return "equipamentosadicionais";
     }
     
@@ -86,6 +71,15 @@ public class EquipamentosAdicionaisBean implements Serializable {
             return "Reservado";
         }
         return "Não reservável";
+    }
+    
+    public void limpaCampos() {
+        this.equipamentoAdicional.setId(null);
+        this.equipamentoAdicional.setDescricao(null);
+        this.equipamentoAdicional.setNome(null);
+        this.equipamentoAdicional.setPatrimonio(null);
+        this.equipamentoAdicional.setDisponivel(true);
+        this.equipamentoAdicional.setReservavel(true);
     }
 
     @Override

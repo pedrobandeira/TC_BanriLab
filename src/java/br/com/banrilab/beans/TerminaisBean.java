@@ -35,24 +35,14 @@ public class TerminaisBean implements Serializable {
     public String adicionarTerminal() {
         this.terminal.setDisponivel(true);
         terminalDao.addTerminal(terminal);
-        this.terminal.setId(null);
-        this.terminal.setDescricao(null);
-        this.terminal.setNome(null);
-        this.terminal.setPatrimonio(null);
-        this.terminal.setDisponivel(true);
-        this.terminal.setReservavel(false);
+        limpaCampos();
         return "terminais";
     }
     
     public String removerTerminal(Terminais t) {
         this.terminal = t;
         terminalDao.removeTerminal(this.terminal);
-        this.terminal.setId(null);
-        this.terminal.setDescricao(null);
-        this.terminal.setNome(null);
-        this.terminal.setPatrimonio(null);
-        this.terminal.setDisponivel(true);
-        this.terminal.setReservavel(false);
+        limpaCampos();
         return "terminais";
     }
     
@@ -62,12 +52,7 @@ public class TerminaisBean implements Serializable {
     }
     
     public String fecharEditar () {
-        this.terminal.setId(null);
-        this.terminal.setDescricao(null);
-        this.terminal.setNome(null);
-        this.terminal.setPatrimonio(null);
-        this.terminal.setDisponivel(true);
-        this.terminal.setReservavel(false);
+        limpaCampos();
         return "terminais";
     }
     
@@ -87,6 +72,15 @@ public class TerminaisBean implements Serializable {
             return "Reservado";
         }
         return "Não reservável";
+    }
+    
+    public void limpaCampos() {
+        this.terminal.setId(null);
+        this.terminal.setDescricao(null);
+        this.terminal.setNome(null);
+        this.terminal.setPatrimonio(null);
+        this.terminal.setDisponivel(true);
+        this.terminal.setReservavel(true);
     }
 
 

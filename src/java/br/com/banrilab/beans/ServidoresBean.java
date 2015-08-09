@@ -35,26 +35,14 @@ public class ServidoresBean implements Serializable {
     public String adicionarServidor() {
         this.servidor.setDisponivel(true);
         servidorDao.addServidor(servidor);
-        this.servidor.setId(null);
-        this.servidor.setDescricao(null);
-        this.servidor.setModelo(null);
-        this.servidor.setNome(null);
-        this.servidor.setPatrimonio(null);
-        this.servidor.setDisponivel(true);
-        this.servidor.setReservavel(false);
+        limpaCampos();
         return "servidores";
     }
     
     public String removerServidor(Servidores s) {
         this.servidor = s;
         servidorDao.removeServidor(this.servidor);
-        this.servidor.setId(null);
-        this.servidor.setDescricao(null);
-        this.servidor.setModelo(null);
-        this.servidor.setNome(null);
-        this.servidor.setPatrimonio(null);
-        this.servidor.setDisponivel(true);
-        this.servidor.setReservavel(false);
+        limpaCampos();
         return "servidores";
     }
     
@@ -64,13 +52,7 @@ public class ServidoresBean implements Serializable {
     }
     
     public String fecharEditar () {
-        this.servidor.setId(null);
-        this.servidor.setDescricao(null);
-        this.servidor.setModelo(null);
-        this.servidor.setNome(null);
-        this.servidor.setPatrimonio(null);
-        this.servidor.setDisponivel(true);
-        this.servidor.setReservavel(false);
+        limpaCampos();
         return "servidores";
     }
     
@@ -91,7 +73,16 @@ public class ServidoresBean implements Serializable {
         }
         return "Não reservável";
     }
-
+    
+    public void limpaCampos() {
+        this.servidor.setId(null);
+        this.servidor.setDescricao(null);
+        this.servidor.setModelo(null);
+        this.servidor.setNome(null);
+        this.servidor.setPatrimonio(null);
+        this.servidor.setDisponivel(true);
+        this.servidor.setReservavel(true);
+    }
 
     @Override
     public int hashCode() {

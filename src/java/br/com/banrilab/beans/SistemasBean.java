@@ -35,22 +35,14 @@ public class SistemasBean implements Serializable {
         System.out.println("Entrou no addBean");
         //System.out.println("Nome do responsavel: "+sistema.getResponsavel().getNome());
         sistemaDao.addSistema(sistema);
-        this.sistema.setId(null);
-        this.sistema.setDescricao(null);
-        this.sistema.setResponsavel(null);
-        this.sistema.setNome(null);
-        this.sistema.setVersao(null);
+        limpaCampos();
         return "sistemas";
     }
     
     public String removerSistema(Sistemas s) {
         this.sistema = s;
         sistemaDao.removeSistema(this.sistema);
-        this.sistema.setId(null);
-        this.sistema.setDescricao(null);
-        this.sistema.setResponsavel(null);
-        this.sistema.setNome(null);
-        this.sistema.setVersao(null);
+        limpaCampos();
         return "sistemas";
     }
     
@@ -60,11 +52,7 @@ public class SistemasBean implements Serializable {
     }
     
     public String fecharEditar () {
-        this.sistema.setId(null);
-        this.sistema.setDescricao(null);
-        this.sistema.setResponsavel(null);
-        this.sistema.setNome(null);
-        this.sistema.setVersao(null);
+        limpaCampos();
         return "sistemas";
     }
 
@@ -91,6 +79,14 @@ public class SistemasBean implements Serializable {
 
     public void setSistemas(List<Sistemas> sistemas) {
         this.sistemas = sistemas;
+    }
+    
+    public void limpaCampos() {
+        this.sistema.setId(null);
+        this.sistema.setDescricao(null);
+        this.sistema.setResponsavel(null);
+        this.sistema.setNome(null);
+        this.sistema.setVersao(null);
     }
 
     @Override

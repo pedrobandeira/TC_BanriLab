@@ -63,23 +63,13 @@ public class ReservaAtmsBean implements Serializable {
            this.reservaAtm.getAtm().setReserva(reservaAtm);
     
            this.reservaAtmsDao.addAtms(this.reservaAtm.getAtm());
-           this.reservaAtm.setId(null);
-           this.reservaAtm.setAtm(null);
-           this.reservaAtm.setFinalidade(null);
-           this.reservaAtm.setDono(null);
-           this.reservaAtm.setHomologacao(null);
-           this.reservaAtm.setDataInicio(null);
-           this.reservaAtm.setDataFim(null);
+           limpaCampos();
           
         }
         return "atms";
     }
     
-    public String removerReserva(ReservaAtms r) {
-        this.reservaAtm = r;
-        this.reservaAtm.getAtm().setDisponivel(true);
-        this.reservaAtmsDao.addAtms(reservaAtm.getAtm());
-        reservaAtmsDao.removeReservaAtms(this.reservaAtm);
+    public void limpaCampos() {
         this.reservaAtm.setId(null);
         this.reservaAtm.setAtm(null);
         this.reservaAtm.setFinalidade(null);
@@ -87,7 +77,14 @@ public class ReservaAtmsBean implements Serializable {
         this.reservaAtm.setHomologacao(null);
         this.reservaAtm.setDataInicio(null);
         this.reservaAtm.setDataFim(null);
-        
+    }
+    
+    public String removerReserva(ReservaAtms r) {
+        this.reservaAtm = r;
+        this.reservaAtm.getAtm().setDisponivel(true);
+        this.reservaAtmsDao.addAtms(reservaAtm.getAtm());
+        reservaAtmsDao.removeReservaAtms(this.reservaAtm);
+        limpaCampos();
         return "atms";
     }
     
@@ -100,7 +97,7 @@ public class ReservaAtmsBean implements Serializable {
         this.reservaAtm.setAtm(a);
         if (a.isReservavel()) {
             if (a.isDisponivel()){
-                return "reservaratm";
+                return "reservaratms";
             } else if (!(a.isDisponivel())) {
                 return "editarreserva";
             }
@@ -110,25 +107,14 @@ public class ReservaAtmsBean implements Serializable {
     
     public boolean verificaDono(Atms a) {
         
-        if (a.isDisponivel() && a.isReservavel()) {
+        if ((a.isDisponivel() && a.isReservavel()) || (carregaUsuarioAtivo().equals(a.getReserva().getDono()))) {
             return true;
-        } 
-        //HttpSession httpsession = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        //Usuarios usuarioSessao = (Usuarios) httpsession.getAttribute("usuario");
-       // if (usuarioSessao.equals(a.getReserva().getDono())) {
-         //   return true;
-        //}
+        }
         return false;
     }
     
     public String fecharEditar () {
-        this.reservaAtm.setId(null);
-        this.reservaAtm.setAtm(null);
-        this.reservaAtm.setFinalidade(null);
-        this.reservaAtm.setDono(null);
-        this.reservaAtm.setHomologacao(null);
-        this.reservaAtm.setDataInicio(null);
-        this.reservaAtm.setDataFim(null);
+        limpaCampos();
         return "atms";
     }
     
