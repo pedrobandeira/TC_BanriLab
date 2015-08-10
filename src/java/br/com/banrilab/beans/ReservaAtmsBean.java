@@ -11,7 +11,6 @@ import br.com.banrilab.entidades.Atms;
 import br.com.banrilab.entidades.ReservaAtms;
 import br.com.banrilab.entidades.Usuarios;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,7 +19,6 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -54,7 +52,7 @@ public class ReservaAtmsBean implements Serializable {
     
     public String adicionarReserva() {
         
-        if (reservaAtm.getAtm().isDisponivel() && reservaAtm.getAtm().isReservavel()) {
+       // if (reservaAtm.getAtm().isDisponivel() && reservaAtm.getAtm().isReservavel()) {
            this.reservaAtm.setDono(carregaUsuarioAtivo());
            
            this.reservaAtm.setDataInicio(retornaDataAtual());
@@ -65,7 +63,7 @@ public class ReservaAtmsBean implements Serializable {
            this.reservaAtmsDao.addAtms(this.reservaAtm.getAtm());
            limpaCampos();
           
-        }
+       // }
         return "atms";
     }
     
@@ -79,8 +77,8 @@ public class ReservaAtmsBean implements Serializable {
         this.reservaAtm.setDataFim(null);
     }
     
-    public String removerReserva(ReservaAtms r) {
-        this.reservaAtm = r;
+    public String removerReserva() {
+        //this.reservaAtm = r;
         this.reservaAtm.getAtm().setDisponivel(true);
         this.reservaAtmsDao.addAtms(reservaAtm.getAtm());
         reservaAtmsDao.removeReservaAtms(this.reservaAtm);
@@ -88,18 +86,20 @@ public class ReservaAtmsBean implements Serializable {
         return "atms";
     }
     
-    public String carregarReserva(ReservaAtms r) {
+    public void carregarReserva(ReservaAtms r) {
         this.reservaAtm = r;
-        return "editarreserva";
+        //return "editarreserva";
     }
     
     public String carregarAtm(Atms a) {
         this.reservaAtm.setAtm(a);
+        
         if (a.isReservavel()) {
             if (a.isDisponivel()){
                 return "reservaratms";
             } else if (!(a.isDisponivel())) {
-                return "editarreserva";
+                carregarReserva(this.reservaAtm.getAtm().getReserva());
+                return "reservaratms";
             }
         }
         return "atms";

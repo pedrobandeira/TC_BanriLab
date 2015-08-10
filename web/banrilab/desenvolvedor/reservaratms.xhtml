@@ -54,6 +54,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <h:commandButton class="btn btn-default" value="Fechar" action="#{reservaAtmsBean.fecharEditar}"/>
+                                        <h:commandButton class="btn btn-danger" value="Excluir" action="#{reservaAtmsBean.removerReserva}" rendered="#{!reservaAtmsBean.reservaAtm.atm.disponivel}"/>
                                         <h:commandButton value="Salvar" class="btn btn-primary" action="#{reservaAtmsBean.adicionarReserva}"/>
                                     </div>
                                 </h:form>
