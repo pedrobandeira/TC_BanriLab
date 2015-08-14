@@ -29,49 +29,7 @@
             <!-- Default panel contents -->
             <div class="panel-heading">Cartões de Contas Laboratório de Testes</div>
             <div class="panel-body">
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#cadastrarCartaoConta">
-                    Novo cartão de conta...
-                </button>
-
-                <!-- Modal Novo Cartão de Conta -->
-                <div class="modal fade" data-backdrop="static" id="cadastrarCartaoConta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel">Novo cartão de conta</h4>
-                            </div>
-                            <div class="modal-body">
-                                <h:form>
-                                    <div class="form-group">
-                                        <label for="InputAgencia">Agência</label>
-                                        <p:inputText placeholder="Digite o número da agência da conta" class="form-control" id="InputAgencia" value="#{cartoesContasBean.cartaoConta.agencia}"/>
-                                        
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="InputConta">Número da conta</label>
-                                        <p:inputText placeholder="Digite o número da conta" class="form-control" id="InputConta" value="#{cartoesContasBean.cartaoConta.conta}"/>
-                                        
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="InputNome">Nome do cliente</label>
-                                        <p:inputText placeholder="Digite o nome do cliente" class="form-control" id="InputNome" value="#{cartoesContasBean.cartaoConta.nome}"/>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <p:selectBooleanCheckbox style="font-weight: bold" value="#{cartoesContasBean.cartaoConta.reservavel}"  />
-                                    </div>
-                                    
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                                        <h:commandButton value="Cadastrar" class="btn btn-primary" action="#{cartoesContasBean.adicionarCartaoConta}"/>
-                                    </div>        
-                                </h:form>  
-                            </div>
-                        </div>
-                    </div>
-                </div>
+               
             </div>
             <h:form>
                 <p:dataTable var="cartao" value="#{cartoesContasBean.cartoesContas}" editable="false">
@@ -79,24 +37,20 @@
                         <h:outputText value="#{cartao.agencia}" />
                     </p:column>
                 
-                    <p:column headerText="Conta" class="text-center" style="width: 200px">
+                    <p:column headerText="Conta" class="text-center" style="width: 150px">
                         <h:outputText value="#{cartao.conta}" />
                     </p:column>
 
-                    <p:column headerText="Nome do cliente" class="text-center" style="width: 300px">
+                    <p:column headerText="Nome do cliente" class="text-center" style="width: 200px">
                         <h:outputText value="#{cartao.nome}" />
                     </p:column>
                     
-                    <p:column headerText="Status" class="text-center" style="width: 100px">
+                    <p:column headerText="Status" class="text-center">
                         <h:outputText value="#{cartoesContasBean.exibirDisponibilidade(cartao)}" />
                     </p:column>
                 
-                    <p:column headerText="Editar" class="text-center" style="width: 70px">
-                        <h:commandLink class="glyphicon glyphicon-edit" action="#{cartoesContasBean.carregarCartaoConta(cartao)}" />                      
-                    </p:column>
-                
-                <p:column headerText="Excluir" class="text-center" style="width: 70px">
-                    <h:commandLink class="glyphicon glyphicon-remove" action="#{cartoesContasBean.removerCartaoConta(cartao)}" />                                                
+                    <p:column headerText="Reservar" class="text-center" style="width: 85px">
+                        <h:commandLink class="glyphicon glyphicon-calendar" action="#{reservaCartoesContasBean.carregarCartaoConta(cartao)}" rendered="#{reservaCartoesContasBean.verificaDono(cartao)}" /> 
                     </p:column>
                 </p:dataTable>
           

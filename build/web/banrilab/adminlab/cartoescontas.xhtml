@@ -8,6 +8,8 @@
    	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 	<meta charset="utf-8"/>
 	<title>Cartões de Contas do Laboratório de Testes</title>
+        <link rel="icon" href="resources/images/banrisul-icone.png" type="image/x-icon" />
+        <link rel="shortcut icon" href="resources/images/banrisul-icone.png" type="image/x-icon" />
 	<meta name="generator" content="Bootply" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 	<h:outputStylesheet name="css/bootstrap.min.css"/>
@@ -92,11 +94,11 @@
                     </p:column>
                 
                     <p:column headerText="Editar" class="text-center" style="width: 70px">
-                        <h:commandLink class="glyphicon glyphicon-edit" action="#{cartoesContasBean.carregarCartaoConta(cartao)}" />                      
+                        <h:commandLink class="glyphicon glyphicon-edit" action="#{cartoesContasBean.carregarCartaoConta(cartao)}" rendered="#{cartao.disponivel}" />                      
                     </p:column>
                 
                 <p:column headerText="Excluir" class="text-center" style="width: 70px">
-                    <h:commandLink class="glyphicon glyphicon-remove" action="#{cartoesContasBean.removerCartaoConta(cartao)}" />                                                
+                    <h:commandLink class="glyphicon glyphicon-remove" action="#{cartoesContasBean.removerCartaoConta(cartao)}" rendered="#{cartao.disponivel}" />                                                
                     </p:column>
                 </p:dataTable>
           

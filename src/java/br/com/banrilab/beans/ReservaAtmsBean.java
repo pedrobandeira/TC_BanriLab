@@ -16,6 +16,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import javax.ejb.EJB;
+import javax.ejb.Schedule;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -146,6 +147,21 @@ public class ReservaAtmsBean implements Serializable {
         Date data = new Date();
         return data;
     }
+    
+    
+   // @Schedule(minute="*/1", hour="*")
+    /*public void verificaReservasAtms(){
+        System.out.println("Rodando job de reserva atms...");
+        List<ReservaAtms> listaReservas = new ArrayList<>();
+        listaReservas = reservaAtmsDao.getReservasAtms();
+        for (ReservaAtms reserva: listaReservas) {
+            if (reserva.getDataFim().before(retornaDataAtual())) {
+                reserva.getAtm().setDisponivel(true);
+                reservaAtmsDao.addAtms(reserva.getAtm());
+                reservaAtmsDao.removeReservaAtms(reserva);
+            }
+        }
+    }*/
     
     @Override
     public int hashCode() {

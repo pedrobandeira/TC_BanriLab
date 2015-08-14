@@ -6,8 +6,7 @@
             <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/BanriLab/src/java/br/com/banrilab/beans/UsuariosBean.java</file>
             <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/BanriLab/web/banrilab/desenvolvedor/atms.xhtml</file>
             <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/BanriLab/src/java/br/com/banrilab/beans/ReservaAtmsBean.java</file>
-            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/BanriLab/src/java/br/com/banrilab/beans/AtmsBean.java</file>
-            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/BanriLab/web/banrilab/desenvolvedor/reservaratms.xhtml</file>
+            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/BanriLab/src/java/br/com/banrilab/dao/ReservaAtmsDao.java</file>
         </group>
     </open-files>
 </project-private>

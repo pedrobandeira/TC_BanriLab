@@ -43,7 +43,9 @@ public class AtmsBean implements Serializable {
     
     public String removerAtm(Atms a) {
         this.atm = a;
-        atmDao.removeAtm(this.atm);
+        //if (this.atm.isDisponivel()) {
+            atmDao.removeAtm(this.atm);
+       // }
         limpaCampos();
         return "atms";
     }
@@ -62,7 +64,9 @@ public class AtmsBean implements Serializable {
     
     public String carregarAtm(Atms a) {
         this.atm = a;
-        return "editaratm";
+        //if (this.atm.isDisponivel()) {
+            return "editaratm";
+        //} else return "atms";
     }
     
     public String fecharEditar () {

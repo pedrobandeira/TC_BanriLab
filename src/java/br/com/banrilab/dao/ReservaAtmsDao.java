@@ -7,7 +7,9 @@ package br.com.banrilab.dao;
 
 import br.com.banrilab.entidades.Atms;
 import br.com.banrilab.entidades.ReservaAtms;
+import java.util.ArrayList;
 import java.util.List;
+import javax.ejb.Schedule;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -50,5 +52,11 @@ public class ReservaAtmsDao implements ReservaAtmsDaoInterface {
         cq.select(cq.from(ReservaAtms.class));
         return entityManager.createQuery(cq).getResultList();
     }
+    
+   // @Schedule(minute="*/1", hour="*") 
+    /*public void verificaReservasAtms(){
+        System.out.println("Rodando job de reserva atms...");
+        
+        }*/
     
 }

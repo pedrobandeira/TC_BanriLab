@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -28,9 +29,19 @@ public class CartoesContas implements Serializable {
     private String nome;
     private boolean disponivel;
     private boolean reservavel;
+    @OneToOne (mappedBy = "cartao")
+    private ReservaCartoesContas reserva;
 
     public CartoesContas() {
         this.reservavel = true;
+    }
+
+    public ReservaCartoesContas getReserva() {
+        return reserva;
+    }
+
+    public void setReserva(ReservaCartoesContas reserva) {
+        this.reserva = reserva;
     }
     
     

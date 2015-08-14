@@ -9,6 +9,8 @@
    	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 	<meta charset="utf-8"/>
 	<title>ATMs do Laboratório de Testes</title>
+        <link rel="icon" href="resources/images/banrisul-icone.png" type="image/x-icon" />
+        <link rel="shortcut icon" href="resources/images/banrisul-icone.png" type="image/x-icon" />
 	<meta name="generator" content="Bootply" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 	<h:outputStylesheet name="css/bootstrap.min.css"/>
@@ -114,15 +116,15 @@
                         <p:outputLabel class="#{atmsBean.exibirTalonadora(atm)}" />
                     </p:column>
                 
-                    <p:column headerText="Status" class="text-center" style="width: 100px">
+                    <p:column headerText="Status" class="text-center">
                         <h:outputText value="#{atmsBean.exibirDisponibilidade(atm)}" />
                     </p:column>
                     <p:column headerText="Editar" class="text-center" style="width: 70px">
-                        <h:commandLink class="glyphicon glyphicon-edit" action="#{atmsBean.carregarAtm(atm)}" /> 
+                        <h:commandLink class="glyphicon glyphicon-edit" action="#{atmsBean.carregarAtm(atm)}" rendered="#{atm.disponivel}"/> 
                     </p:column>
                 
                     <p:column headerText="Excluir" class="text-center" style="width: 70px">
-                        <h:commandLink class="glyphicon glyphicon-remove" action="#{atmsBean.removerAtm(atm)}" />
+                        <h:commandLink class="glyphicon glyphicon-remove" action="#{atmsBean.removerAtm(atm)}" rendered="#{atm.disponivel}"/>
                     </p:column>
                 </p:dataTable>
                         
