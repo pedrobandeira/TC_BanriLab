@@ -13,6 +13,7 @@ public abstract class Terminais_ {
 	public static volatile SingularAttribute<Terminais, Integer> patrimonio;
 	public static volatile SingularAttribute<Terminais, String> nome;
 	public static volatile SingularAttribute<Terminais, Boolean> disponivel;
+	public static volatile SingularAttribute<Terminais, ReservaTerminais> reserva;
 	public static volatile SingularAttribute<Terminais, String> descricao;
 
 }

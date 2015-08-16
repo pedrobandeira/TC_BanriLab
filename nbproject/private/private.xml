@@ -3,8 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/BanriLab/src/java/br/com/banrilab/beans/ReservaAtmsBean.java</file>
-            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/BanriLab/src/java/br/com/banrilab/beans/AtmsBean.java</file>
+            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/BanriLab/web/banrilab/desenvolvedor/equipamentosadicionais.xhtml</file>
+            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/BanriLab/web/banrilab/desenvolvedor/atms.xhtml</file>
+            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/BanriLab/web/banrilab/desenvolvedor/terminais.xhtml</file>
+            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/BanriLab/src/java/br/com/banrilab/beans/CartoesCreditoBean.java</file>
+            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/BanriLab/src/java/br/com/banrilab/beans/EquipamentosAdicionaisBean.java</file>
+            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/BanriLab/web/banrilab/desenvolvedor/cartoescredito.xhtml</file>
         </group>
     </open-files>
 </project-private>

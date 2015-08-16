@@ -8,6 +8,7 @@ package br.com.banrilab.beans;
 import br.com.banrilab.dao.EquipamentosAdicionaisDaoInterface;
 import br.com.banrilab.entidades.EquipamentosAdicionais;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -68,7 +69,13 @@ public class EquipamentosAdicionaisBean implements Serializable {
             if (e.isDisponivel()) {
                 return "Disponível";
             }
-            return "Reservado";
+            if (e.getReserva() != null) {
+           if (!(e.getReserva().getDono().getNome().isEmpty())) {
+               SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+               return "Reservado para "+e.getReserva().getDono().getNome()+" até "+sdf.format(e.getReserva().getDataFim());
+            }
+            else return "Reservado (sem dono)";
+        }
         }
         return "Não reservável";
     }

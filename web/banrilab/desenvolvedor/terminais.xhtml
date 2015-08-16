@@ -33,7 +33,7 @@
             </div>
             <h:form>
                 <p:dataTable var="terminal" value="#{terminaisBean.terminais}" editable="false">
-                    <p:column headerText="Terminal">
+                    <p:column headerText="Terminal" style="width: 100px">
  
                         <h:outputText value="#{terminal.nome}" />
                     </p:column>
@@ -42,7 +42,7 @@
                         <h:outputText value="#{terminal.descricao}" />
                     </p:column>
 
-                    <p:column headerText="Patrimônio">
+                    <p:column headerText="Patrimônio" style="width: 100px">
                         <h:outputText value="#{terminal.patrimonio}" />
                     </p:column>
                 
