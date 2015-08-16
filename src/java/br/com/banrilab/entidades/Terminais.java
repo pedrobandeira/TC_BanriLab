@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 /**
  *
@@ -27,6 +28,8 @@ public class Terminais implements Serializable {
     private String descricao;
     private boolean disponivel;
     private boolean reservavel;
+    @OneToOne (mappedBy = "terminal")
+    private ReservaTerminais reserva;
     
     public Terminais() {
         this.reservavel = true;
@@ -80,9 +83,13 @@ public class Terminais implements Serializable {
         this.reservavel = reservavel;
     }
 
-    
-    
-    
+    public ReservaTerminais getReserva() {
+        return reserva;
+    }
+
+    public void setReserva(ReservaTerminais reserva) {
+        this.reserva = reserva;
+    }
 
     @Override
     public int hashCode() {

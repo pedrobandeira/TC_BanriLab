@@ -46,12 +46,12 @@
                         <h:outputText value="#{terminal.patrimonio}" />
                     </p:column>
                 
-                    <p:column headerText="Status">
-                        <h:outputText value="Disponível" />
+                    <p:column headerText="Status" class="text-center">
+                        <h:outputText value="#{terminaisBean.exibirDisponibilidade(terminal)}" />
                     </p:column>
-                    
+                
                     <p:column headerText="Reservar" class="text-center" style="width: 85px">
-                        <h:commandLink class="glyphicon glyphicon-calendar" action="#{atmsBean.carregarAtm(atm)}" /> 
+                        <h:commandLink class="glyphicon glyphicon-calendar" action="#{reservaTerminaisBean.carregarTerminal(terminal)}" rendered="#{reservaTerminaisBean.verificaDono(terminal)}" /> 
                     </p:column>
                 </p:dataTable>
                          

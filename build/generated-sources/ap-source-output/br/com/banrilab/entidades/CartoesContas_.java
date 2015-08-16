@@ -14,6 +14,7 @@ public abstract class CartoesContas_ {
 	public static volatile SingularAttribute<CartoesContas, String> conta;
 	public static volatile SingularAttribute<CartoesContas, String> nome;
 	public static volatile SingularAttribute<CartoesContas, Boolean> disponivel;
+	public static volatile SingularAttribute<CartoesContas, ReservaCartoesContas> reserva;
 
 }
 

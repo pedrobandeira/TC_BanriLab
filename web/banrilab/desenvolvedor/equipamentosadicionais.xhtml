@@ -46,14 +46,14 @@
                         <h:outputText value="#{equipamento.patrimonio}" />
                     </p:column>
                 
-                    <p:column headerText="Status">
-                        <h:outputText value="Disponível" />
+                    <p:column headerText="Status" class="text-center">
+                        <h:outputText value="#{equipamentosAdicionaisBean.exibirDisponibilidade(equipamento)}" />
                     </p:column>
                 
                     <p:column headerText="Reservar" class="text-center" style="width: 85px">
-                        <h:commandLink class="glyphicon glyphicon-calendar" action="#{equipamentosAdicionaisBean.carregarEquipamentoAdicional(equipamento)}" /> 
-                                             
+                        <h:commandLink class="glyphicon glyphicon-calendar" action="#{reservaEquipamentosAdicionaisBean.carregarEquipamentoAdicional(equipamento)}" rendered="#{reservaEquipamentosAdicionaisBean.verificaDono(equipamento)}" /> 
                     </p:column>
+                </p:dataTable>
                 
                 </p:dataTable>
           

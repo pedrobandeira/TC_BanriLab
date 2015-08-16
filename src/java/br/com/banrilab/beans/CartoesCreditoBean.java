@@ -7,6 +7,7 @@ package br.com.banrilab.beans;
 
 import br.com.banrilab.entidades.CartoesCredito;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -77,7 +78,13 @@ public class CartoesCreditoBean implements Serializable {
             if (c.isDisponivel()) {
                 return "Disponível";
             }
-            return "Reservado";
+            if (c.getReserva() != null) {
+           if (!(c.getReserva().getDono().getNome().isEmpty())) {
+               SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+               return "Reservado para "+c.getReserva().getDono().getNome()+" até "+sdf.format(c.getReserva().getDataFim());
+            }
+            else return "Reservado (sem dono)";
+        }
         }
         return "Não reservável";
     }

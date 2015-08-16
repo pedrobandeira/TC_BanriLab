@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -28,6 +29,8 @@ public class Servidores implements Serializable {
     private String descricao;
     private boolean disponivel;
     private boolean reservavel;
+    @OneToOne (mappedBy = "servidor")
+    private ReservaServidores reserva;
 
     public Servidores() {
         this.reservavel = true;
@@ -87,6 +90,14 @@ public class Servidores implements Serializable {
 
     public void setReservavel(boolean reservavel) {
         this.reservavel = reservavel;
+    }
+
+    public ReservaServidores getReserva() {
+        return reserva;
+    }
+
+    public void setReserva(ReservaServidores reserva) {
+        this.reserva = reserva;
     }
 
     

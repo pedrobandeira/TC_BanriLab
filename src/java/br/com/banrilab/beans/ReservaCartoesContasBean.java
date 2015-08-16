@@ -102,7 +102,11 @@ public class ReservaCartoesContasBean implements Serializable {
     }
     
     public boolean verificaDono(CartoesContas c) {
-        
+        if (c.getReserva() == null) {
+            if (c.isReservavel()) {
+                return true;
+            } else return false; 
+        }
         if ((c.isDisponivel() && c.isReservavel()) || (carregaUsuarioAtivo().equals(c.getReserva().getDono()))) {
             return true;
         }

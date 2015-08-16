@@ -107,7 +107,11 @@ public class ReservaAtmsBean implements Serializable {
     }
     
     public boolean verificaDono(Atms a) {
-        
+        if (a.getReserva() == null) {
+            if (a.isReservavel()) {
+                return true;
+            } else return false; 
+        }
         if ((a.isDisponivel() && a.isReservavel()) || (carregaUsuarioAtivo().equals(a.getReserva().getDono()))) {
             return true;
         }

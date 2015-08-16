@@ -12,6 +12,7 @@ public abstract class CartoesCredito_ {
 	public static volatile SingularAttribute<CartoesCredito, Boolean> reservavel;
 	public static volatile SingularAttribute<CartoesCredito, String> nome;
 	public static volatile SingularAttribute<CartoesCredito, Boolean> disponivel;
+	public static volatile SingularAttribute<CartoesCredito, ReservaCartoesCredito> reserva;
 	public static volatile SingularAttribute<CartoesCredito, Integer> bandeira;
 	public static volatile SingularAttribute<CartoesCredito, String> numero;
 

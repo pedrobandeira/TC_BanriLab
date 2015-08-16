@@ -9,6 +9,7 @@ import br.com.banrilab.dao.ServidoresDao;
 import br.com.banrilab.dao.ServidoresDaoInterface;
 import br.com.banrilab.entidades.Servidores;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -69,7 +70,13 @@ public class ServidoresBean implements Serializable {
             if (s.isDisponivel()) {
                 return "Disponível";
             }
-            return "Reservado";
+            if (s.getReserva() != null) {
+           if (!(s.getReserva().getDono().getNome().isEmpty())) {
+               SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+               return "Reservado para "+s.getReserva().getDono().getNome()+" até "+sdf.format(s.getReserva().getDataFim());
+            }
+            else return "Reservado (sem dono)";
+        }
         }
         return "Não reservável";
     }

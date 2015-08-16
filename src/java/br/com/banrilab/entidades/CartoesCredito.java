@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -28,13 +29,13 @@ public class CartoesCredito implements Serializable {
     private String nome;
     private boolean disponivel;
     private boolean reservavel;
+    @OneToOne (mappedBy = "cartao")
+    private ReservaCartoesCredito reserva;
 
     public CartoesCredito() {
         this.reservavel = true;
     }
     
-    
-
     public Long getId() {
         return id;
     }
@@ -81,6 +82,14 @@ public class CartoesCredito implements Serializable {
 
     public void setReservavel(boolean reservavel) {
         this.reservavel = reservavel;
+    }
+
+    public ReservaCartoesCredito getReserva() {
+        return reserva;
+    }
+
+    public void setReserva(ReservaCartoesCredito reserva) {
+        this.reserva = reserva;
     }
 
     

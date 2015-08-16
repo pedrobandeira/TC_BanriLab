@@ -9,6 +9,7 @@ import br.com.banrilab.dao.TerminaisDao;
 import br.com.banrilab.dao.TerminaisDaoInterface;
 import br.com.banrilab.entidades.Terminais;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -69,7 +70,13 @@ public class TerminaisBean implements Serializable {
             if (t.isDisponivel()) {
                 return "Disponível";
             }
-            return "Reservado";
+            if (t.getReserva() != null) {
+           if (!(t.getReserva().getDono().getNome().isEmpty())) {
+               SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+               return "Reservado para "+t.getReserva().getDono().getNome()+" até "+sdf.format(t.getReserva().getDataFim());
+            }
+            else return "Reservado (sem dono)";
+        }
         }
         return "Não reservável";
     }

@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 /**
  *
@@ -27,6 +28,8 @@ public class EquipamentosAdicionais implements Serializable {
     private String descricao;
     private boolean disponivel;
     private boolean reservavel;
+    @OneToOne (mappedBy = "equipamento")
+    private ReservaEquipamentosAdicionais reserva;
 
     public EquipamentosAdicionais() {
         this.reservavel = true;
@@ -79,7 +82,14 @@ public class EquipamentosAdicionais implements Serializable {
     public void setReservavel(boolean reservavel) {
         this.reservavel = reservavel;
     } 
-    
+
+    public ReservaEquipamentosAdicionais getReserva() {
+        return reserva;
+    }
+
+    public void setReserva(ReservaEquipamentosAdicionais reserva) {
+        this.reserva = reserva;
+    }
 
     @Override
     public int hashCode() {
