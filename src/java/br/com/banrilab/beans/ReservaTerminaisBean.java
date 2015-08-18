@@ -5,11 +5,8 @@
  */
 package br.com.banrilab.beans;
 
-import br.com.banrilab.dao.ReservaServidoresDaoInterface;
 import br.com.banrilab.dao.ReservaTerminaisDaoInterface;
-import br.com.banrilab.entidades.ReservaServidores;
 import br.com.banrilab.entidades.ReservaTerminais;
-import br.com.banrilab.entidades.Servidores;
 import br.com.banrilab.entidades.Terminais;
 import br.com.banrilab.entidades.Usuarios;
 import java.io.Serializable;
@@ -30,37 +27,37 @@ import javax.servlet.http.HttpSession;
 @ManagedBean
 @SessionScoped
 public class ReservaTerminaisBean implements Serializable {
+
     private ReservaTerminais reservaTerminal = new ReservaTerminais();
     @EJB
     private ReservaTerminaisDaoInterface reservaTerminaisDao;
     private List<ReservaTerminais> reservasTerminais = new ArrayList<>();
-    
-    
+
     public ReservaTerminaisBean() {
-        
-    }   
+
+    }
 
     public Usuarios carregaUsuarioAtivo() {
         HttpSession httpsession = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         Usuarios usuarioSessao = (Usuarios) httpsession.getAttribute("usuario");
         return usuarioSessao;
     }
-    
+
     public String adicionarReserva() {
-        
-           this.reservaTerminal.setDono(carregaUsuarioAtivo());
-           
-           this.reservaTerminal.setDataInicio(retornaDataAtual());
-           reservaTerminaisDao.addReservaTerminais(reservaTerminal);
-           this.reservaTerminal.getTerminal().setDisponivel(false);
-           this.reservaTerminal.getTerminal().setReserva(reservaTerminal);
-    
-           this.reservaTerminaisDao.addTerminais(this.reservaTerminal.getTerminal());
-           limpaCampos();
-          
+
+        this.reservaTerminal.setDono(carregaUsuarioAtivo());
+
+        this.reservaTerminal.setDataInicio(retornaDataAtual());
+        reservaTerminaisDao.addReservaTerminais(reservaTerminal);
+        this.reservaTerminal.getTerminal().setDisponivel(false);
+        this.reservaTerminal.getTerminal().setReserva(reservaTerminal);
+
+        this.reservaTerminaisDao.addTerminais(this.reservaTerminal.getTerminal());
+        limpaCampos();
+
         return "terminais";
     }
-    
+
     public void limpaCampos() {
         this.reservaTerminal.setId(null);
         this.reservaTerminal.setTerminal(null);
@@ -70,7 +67,7 @@ public class ReservaTerminaisBean implements Serializable {
         this.reservaTerminal.setDataInicio(null);
         this.reservaTerminal.setDataFim(null);
     }
-    
+
     public String removerReserva() {
         //this.reservaAtm = r;
         this.reservaTerminal.getTerminal().setDisponivel(true);
@@ -79,17 +76,17 @@ public class ReservaTerminaisBean implements Serializable {
         limpaCampos();
         return "terminais";
     }
-    
+
     public void carregarReserva(ReservaTerminais r) {
         this.reservaTerminal = r;
         //return "editarreserva";
     }
-    
+
     public String carregarTerminal(Terminais t) {
         this.reservaTerminal.setTerminal(t);
-        
+
         if (t.isReservavel()) {
-            if (t.isDisponivel()){
+            if (t.isDisponivel()) {
                 return "reservarterminal";
             } else if (!(t.isDisponivel())) {
                 carregarReserva(this.reservaTerminal.getTerminal().getReserva());
@@ -98,25 +95,32 @@ public class ReservaTerminaisBean implements Serializable {
         }
         return "terminais";
     }
-    
+
     public boolean verificaDono(Terminais t) {
-        
+
         if (t.getReserva() == null) {
             if (t.isReservavel()) {
                 return true;
-            } else return false; 
+            } else {
+                return false;
+            }
         }
-        if ((t.isDisponivel() && t.isReservavel()) || (carregaUsuarioAtivo().equals(t.getReserva().getDono()))) {
+        if (t.getReserva().getHomologacao() == null) {
+            if ((t.isDisponivel() && t.isReservavel()) || (carregaUsuarioAtivo().equals(t.getReserva().getDono()))) {
+                return true;
+            }
+            return false;
+        } else if (carregaUsuarioAtivo().equals(t.getReserva().getHomologacao().getAnalista())) {
             return true;
         }
         return false;
     }
-    
-    public String fecharEditar () {
+
+    public String fecharEditar() {
         limpaCampos();
         return "terminais";
     }
-    
+
     public ReservaTerminais getReservaTerminal() {
         return reservaTerminal;
     }
@@ -140,7 +144,7 @@ public class ReservaTerminaisBean implements Serializable {
     public void setReservasTerminais(List<ReservaTerminais> reservasTerminais) {
         this.reservasTerminais = reservasTerminais;
     }
-    
+
     public Date retornaDataAtual() {
         Date data = new Date();
         return data;
@@ -167,6 +171,5 @@ public class ReservaTerminaisBean implements Serializable {
         }
         return true;
     }
-     
-}
 
+}

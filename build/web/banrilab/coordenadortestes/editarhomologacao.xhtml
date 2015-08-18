@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+   	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+	<meta charset="utf-8"/>
+	<title>Homologações do Laboratório de Testes</title>
+	<meta name="generator" content="Bootply" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+	<h:outputStylesheet name="css/bootstrap.min.css"/>
+	<!--[if lt IE 9]>
+		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+        <h:outputStylesheet name="css/styles.css"/>
+   
+    </h:head>
+    <h:body>
+        <ui:composition template="template.xhtml">
+        <ui:define name="content">
+
+        <div class="col-sm-9 col-md-10 main" >
+                       
+            <div class="panel panel-default">
+        
+        <!-- Modal Editar Homologação -->
+        <div class="modal fade" data-backdrop="static" id="editarHomologacao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">Liberar Homologação</h4>
+                            </div>
+                            <div class="modal-body">
+                                <h:form>
+                                    <div class="form-group">
+                                        <label for="OutputSistema">Sistema</label>
+                                        <p:outputLabel class="form-control" id="OutputSistema" value="#{homologacoesBean.homologacao.sistema.nome}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="OutputVersao">Versão</label>
+                                        <p:outputLabel class="form-control" id="OutputVersao" value="#{homologacoesBean.homologacao.versaoSistema}"/>                                       
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="OutputRequisitos">Requisitos</label>
+                                        <p:inputTextarea disabled="true" class="form-control" id="OutputRequisitos" value="#{homologacoesBean.homologacao.requisitos}"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="OutputObservacoes">Observações</label>
+                                        <p:outputLabel class="form-control" id="OutputObservacoes" value="#{homologacoesBean.homologacao.observacoes}"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="InputAnalista">Analista</label>
+                                        <p:selectOneListbox value="#{homologacoesBean.homologacao.analista}" converter="generic">
+                                            <f:selectItems value="#{usuariosBean.equipeAnalistas}" var="analista" 
+                                                           itemLabel="#{analista.nome}" itemValue="#{analista}"  />
+                                        </p:selectOneListbox>
+                                        <p:messages/>
+                                        
+                                    </div>
+                                    
+                                    <div class="modal-footer">
+                                        <h:commandButton class="btn btn-default" value="Fechar" action="#{homologacoesBean.fecharEditar}"/>
+                                        <h:commandButton class="btn btn-danger" value="Cancelar homologação" action="#{homologacoesBean.cancelarHomologacao}"/>
+                                        <h:commandButton value="Liberar" class="btn btn-primary" action="#{homologacoesBean.liberarHomologacao}"/>
+                                    </div>
+                                </h:form>
+                                
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+        <script type="text/javascript">
+        $(window).load(function(){
+        $('#editarHomologacao').modal('show');
+         });
+        </script>
+    </div>
+      </div><!--/row-->
+	
+        </ui:define>
+         </ui:composition>
+        
+	<!-- script references -->
+        <h:outputScript name="js/jquery-1.11.2.min.js"/>
+	<h:outputScript name="js/bootstrap.min.js"/>
+        <h:outputScript name="js/scripts.js"/>
+
+    </h:body>
+</html>
+

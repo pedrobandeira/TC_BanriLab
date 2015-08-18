@@ -4,12 +4,13 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
    	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 	<meta charset="utf-8"/>
 	<title>Homologações do Laboratório de Testes</title>
+        <link rel="icon" href="resources/images/banrisul-icone.png" type="image/x-icon" />
+        <link rel="shortcut icon" href="resources/images/banrisul-icone.png" type="image/x-icon" />
 	<meta name="generator" content="Bootply" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 	<h:outputStylesheet name="css/bootstrap.min.css"/>
@@ -24,19 +25,20 @@
         <ui:composition template="template.xhtml">
         <ui:define name="content">
 
-        <div class="col-sm-9 col-md-10 main" style="width: 100%">           
+        <div class="col-sm-9 col-md-10 main" style="width: 100%">
+           
             
             <div class="panel panel-default">
             <!-- Default panel contents -->
             <div class="panel-heading">Homologações Laboratório de Testes</div>
             <div class="panel-body">
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#cadastrarHomologacao">
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#solicitarHomologacao">
                     Solicitar homologação...
                 </button>
 
-                <!-- Modal Novo Usuário -->
-                <div class="modal fade" data-backdrop="static" id="cadastrarHomologacao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <!-- Modal Nova Homologação -->
+                <div class="modal fade" data-backdrop="static" id="solicitarHomologacao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -45,81 +47,62 @@
                             <div class="modal-body">
                                 <h:form>
                                     <div class="form-group">
-                                        <label for="InputSistema">Sistema</label><br/>
-                                      <h:selectOneMenu id="InputSistema" style="width:300px">
-                                            <f:selectItem itemLabel="Selecione" itemValue="" />
-                                            <f:selectItem itemLabel="BMA" itemValue="" />
-                                            <f:selectItem itemLabel="BNO" itemValue="" />
-                                            <f:selectItem itemLabel="BMT" itemValue="" />
-                                       </h:selectOneMenu>
+                                        <label for="InputSistema">Sistema</label>
+                                        <p:selectOneListbox value="#{homologacoesBean.homologacao.sistema}" converter="generic">
+                                            <f:selectItems value="#{sistemasBean.sistemas}" var="sistema" 
+                                                           itemLabel="#{sistema.nome}" itemValue="#{sistema}"  />
+                                        </p:selectOneListbox>
+                                        <p:messages/>
                                         
                                     </div>
                                     <div class="form-group">
                                         <label for="InputVersao">Versão</label>
-                                        <p:inputText style="width:300px" placeholder="Digite a versão do sistema a ser homologada" class="form-control" id="InputVersao" value=""/>
-                                        
+                                        <p:inputText placeholder="Digite a versão a ser homologada" class="form-control" id="InputVersao" value="#{homologacoesBean.homologacao.versaoSistema}"/>                                       
                                     </div>
                                     
                                     <div class="form-group">
-                                        <label for="InputPreReq">Pré-requisitos</label>
-                                        <p:inputTextarea placeholder="Informe os pré-requisitos para a homologação" class="form-control" id="InputPreReq" value=""/>
+                                        <label for="InputRequisitos">Requisitos</label>
+                                        <p:inputTextarea placeholder="Informe os sistemas e demais requisitos necessários para realização da homologação" class="form-control" id="InputRequisitos" value="#{homologacoesBean.homologacao.requisitos}"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="InputObservacao">Observações</label>
-                                        <p:inputTextarea placeholder="Observações adicionais" class="form-control" id="InputObservacao" value=""/>
+                                        <label for="InputObservacoes">Observações</label>
+                                        <p:inputTextarea placeholder="Digite as demais observações desejadas, como as DEPs relacionadas" class="form-control" id="InputObservacoes" value="#{homologacoesBean.homologacao.observacoes}"/>
                                     </div>
+                                                                        
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                                        <h:commandButton value="Cadastrar" class="btn btn-primary"/>
-                                    </div>
-                                </h:form>
-                                
+                                        <h:commandButton value="Solicitar" class="btn btn-primary" action="#{homologacoesBean.adicionarHomologacao}"/>
+                                    </div>        
+                                </h:form>  
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
             <h:form>
-                <p:dataTable var="usuario" value="#{usuariosBean.usuarios}" editable="false">
-                    <p:column headerText="Nome">
-                        <h:outputText value="#{usuario.nome}" />
+                <p:dataTable var="homologacao" value="#{homologacoesBean.homologacoes}" editable="false">
+                    <p:column headerText="Sistema">
+                        <h:outputText value="#{homologacao.sistema.nome}" />
                     </p:column>
                 
-                    <p:column headerText="Matrícula" style="width: 90px">
-                        <h:outputText value="#{usuario.matricula}" />
+                    <p:column headerText="Versão">
+                        <h:outputText value="#{homologacao.versaoSistema}" />
                     </p:column>
-                    
-                    <p:column headerText="E-mail" style="width: 260px">
-                        <h:outputText  value="#{usuario.email}" />
-                    </p:column>
-
-                    <p:column headerText="Perfil">
-                        <h:outputText  value="#{usuariosBean.exibirPerfil(usuario)}" />
-                    </p:column>
-                                    
-                    <p:column headerText="Status" style="width: 100px">
-                        <h:outputText value="Disponível" />
+                
+                    <p:column headerText="Status" class="text-center" style="width: 100px">
+                        <h:outputText value="#{homologacoesBean.exibirStatus(homologacao)}" />
                     </p:column>
                 
                     <p:column headerText="Editar" class="text-center" style="width: 70px">
-                        <h:commandLink class="glyphicon glyphicon-edit" action="#{usuariosBean.carregarUsuario(usuario)}" /> 
-                                             
+                        <h:commandLink class="glyphicon glyphicon-edit" action="#{homologacoesBean.carregarHomologacao(homologacao)}" rendered="#{homologacoesBean.verificaSolicitadas(homologacao)}" />                      
                     </p:column>
                 
-                <p:column headerText="Excluir" class="text-center" style="width: 70px">
-                    <h:commandLink class="glyphicon glyphicon-remove" action="#{usuariosBean.removerUsuario(usuario)}" />
-                                                       
-                    </p:column>
                 </p:dataTable>
-          
-
-                
+                          
             </h:form>
             </div>
       </div><!--/row-->
-      
- 	
+	
         </ui:define>
          </ui:composition>
         

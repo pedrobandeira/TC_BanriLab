@@ -3,13 +3,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
    	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 	<meta charset="utf-8"/>
-	<title>Homologações do Laboratório de Testes</title>
-        <link rel="icon" href="resources/images/banrisul-icone.png" type="image/x-icon" />
-        <link rel="shortcut icon" href="resources/images/banrisul-icone.png" type="image/x-icon" />
+	<title>Cartões de Crédito do Laboratório de Testes</title>
 	<meta name="generator" content="Bootply" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 	<h:outputStylesheet name="css/bootstrap.min.css"/>
@@ -29,30 +28,34 @@
             
             <div class="panel panel-default">
             <!-- Default panel contents -->
-            <div class="panel-heading">Homologações Laboratório de Testes</div>
+            <div class="panel-heading">Cartões de Crédito Laboratório de Testes</div>
             <div class="panel-body">
-                               
+                                
             </div>
             <h:form>
-                <p:dataTable var="homologacao" value="#{homologacoesBean.homologacoes}" editable="false">
-                    <p:column headerText="Sistema">
-                        <h:outputText value="#{homologacao.sistema.nome}" />
+                <p:dataTable var="cartao" value="#{cartoesCreditoBean.cartoesCredito}" editable="false">
+                    <p:column headerText="Bandeira" class="text-center" style="width: 100px">
+                        <h:outputText value="#{cartoesCreditoBean.exibirBandeira(cartao)}" />
                     </p:column>
                 
-                    <p:column headerText="Versão">
-                        <h:outputText value="#{homologacao.versaoSistema}" />
+                    <p:column headerText="Número do cartão" class="text-center" style="width: 200px">
+                        <h:outputText value="#{cartao.numero}" />
+                    </p:column>
+
+                    <p:column headerText="Nome do cliente" class="text-center" style="width: 200px">
+                        <h:outputText value="#{cartao.nome}" />
+                    </p:column>
+                    <p:column headerText="Status" class="text-center">
+                        <h:outputText value="#{cartoesCreditoBean.exibirDisponibilidade(cartao)}" />
                     </p:column>
                 
-                    <p:column headerText="Status" class="text-center" style="width: 100px">
-                        <h:outputText value="#{homologacoesBean.exibirStatus(homologacao)}" />
+                    <p:column headerText="Reservar" class="text-center" style="width: 85px">
+                        <h:commandLink class="glyphicon glyphicon-calendar" action="#{reservaCartoesCreditoBean.carregarCartaoCredito(cartao)}" rendered="#{reservaCartoesCreditoBean.verificaDono(cartao)}" /> 
                     </p:column>
-                
-                    <p:column headerText="Liberar" class="text-center" style="width: 70px">
-                        <h:commandLink class="glyphicon glyphicon-edit" action="#{homologacoesBean.carregarHomologacao(homologacao)}" rendered="#{homologacoesBean.verificaSolicitadas(homologacao)}" />                      
-                    </p:column>
-                
                 </p:dataTable>
-                          
+          
+
+                
             </h:form>
             </div>
       </div><!--/row-->

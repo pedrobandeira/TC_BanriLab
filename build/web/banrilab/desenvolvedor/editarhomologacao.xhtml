@@ -9,8 +9,6 @@
    	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 	<meta charset="utf-8"/>
 	<title>Homologações do Laboratório de Testes</title>
-        <link rel="icon" href="resources/images/banrisul-icone.png" type="image/x-icon" />
-        <link rel="shortcut icon" href="resources/images/banrisul-icone.png" type="image/x-icon" />
 	<meta name="generator" content="Bootply" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 	<h:outputStylesheet name="css/bootstrap.min.css"/>
@@ -20,29 +18,21 @@
         <h:outputStylesheet name="css/styles.css"/>
    
     </h:head>
-    
     <h:body>
         <ui:composition template="template.xhtml">
         <ui:define name="content">
 
-        <div class="col-sm-9 col-md-10 main" style="width: 100%">
+        <div class="col-sm-9 col-md-10 main" >
            
             
             <div class="panel panel-default">
-            <!-- Default panel contents -->
-            <div class="panel-heading">Homologações Laboratório de Testes</div>
-            <div class="panel-body">
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#solicitarHomologacao">
-                    Solicitar homologação...
-                </button>
-
-                <!-- Modal Nova Homologação -->
-                <div class="modal fade" data-backdrop="static" id="solicitarHomologacao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        
+        <!-- Modal Editar Homologação -->
+        <div class="modal fade" data-backdrop="static" id="editarHomologacao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel">Nova homologação</h4>
+                                <h4 class="modal-title" id="myModalLabel">Editar Homologação</h4>
                             </div>
                             <div class="modal-body">
                                 <h:form>
@@ -53,7 +43,6 @@
                                                            itemLabel="#{sistema.nome}" itemValue="#{sistema}"  />
                                         </p:selectOneListbox>
                                         <p:messages/>
-                                        
                                     </div>
                                     <div class="form-group">
                                         <label for="InputVersao">Versão</label>
@@ -68,39 +57,24 @@
                                         <label for="InputObservacoes">Observações</label>
                                         <p:inputTextarea placeholder="Digite as demais observações desejadas, como as DEPs relacionadas" class="form-control" id="InputObservacoes" value="#{homologacoesBean.homologacao.observacoes}"/>
                                     </div>
-                                                                        
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                                        <h:commandButton value="Solicitar" class="btn btn-primary" action="#{homologacoesBean.adicionarHomologacao}"/>
-                                    </div>        
-                                </h:form>  
+                                        <h:commandButton class="btn btn-default" value="Fechar" action="#{homologacoesBean.fecharEditar}"/>
+                                        <h:commandButton class="btn btn-danger" value="Cancelar solicitação" action="#{homologacoesBean.removerHomologacao(homologacao)}" rendered="#{!reservaCartoesContasBean.reservaCartoesContas.cartaoConta.disponivel}"/>
+                                        <h:commandButton value="Salvar" class="btn btn-primary" action="#{homologacoesBean.adicionarHomologacao}"/>
+                                    </div>
+                                </h:form>
+                                
                             </div>
+
                         </div>
                     </div>
                 </div>
-            </div>
-            <h:form>
-                <p:dataTable var="homologacao" value="#{homologacoesBean.homologacoes}" editable="false">
-                    <p:column headerText="Sistema">
-                        <h:outputText value="#{homologacao.sistema.nome}" />
-                    </p:column>
-                
-                    <p:column headerText="Versão">
-                        <h:outputText value="#{homologacao.versaoSistema}" />
-                    </p:column>
-                
-                    <p:column headerText="Status" class="text-center" style="width: 100px">
-                        <h:outputText value="#{homologacoesBean.exibirStatus(homologacao)}" />
-                    </p:column>
-                
-                    <p:column headerText="Editar" class="text-center" style="width: 70px">
-                        <h:commandLink class="glyphicon glyphicon-edit" action="#{homologacoesBean.carregarHomologacao(homologacao)}" rendered="#{homologacoesBean.verificaSolicitadas(homologacao)}" />                      
-                    </p:column>
-                
-                </p:dataTable>
-                          
-            </h:form>
-            </div>
+        <script type="text/javascript">
+        $(window).load(function(){
+        $('#editarHomologacao').modal('show');
+         });
+        </script>
+    </div>
       </div><!--/row-->
 	
         </ui:define>

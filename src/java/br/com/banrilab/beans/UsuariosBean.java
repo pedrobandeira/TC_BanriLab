@@ -32,6 +32,8 @@ public class UsuariosBean implements Serializable {
     
     private List<Usuarios> usuarios = new ArrayList<>();
     private List<Usuarios> equipeTestes = new ArrayList<>();
+    private List<Usuarios> equipeAnalistas = new ArrayList<>();
+    private List<Usuarios> equipeCoordenadores = new ArrayList<>();
     private List<Usuarios> equipeDesenvolvimento = new ArrayList<>();
     private List<Usuarios> equipeAdmLaboratorio = new ArrayList<>();
     
@@ -141,6 +143,26 @@ public class UsuariosBean implements Serializable {
         this.equipeAdmLaboratorio = usuarioDao.getEquipeAdminLaboratorio();
         return equipeAdmLaboratorio;
     }
+
+    public List<Usuarios> getEquipeAnalistas() {
+        this.equipeAnalistas= usuarioDao.getEquipeAnalistas();
+        return equipeAnalistas;
+    }
+
+    public void setEquipeAnalistas(List<Usuarios> equipeAnalistas) {
+        this.equipeAnalistas = equipeAnalistas;
+    }
+
+    public List<Usuarios> getEquipeCoordenadores() {
+        this.equipeCoordenadores = usuarioDao.getEquipeCoordenadores();
+        return equipeCoordenadores;
+    }
+
+    public void setEquipeCoordenadores(List<Usuarios> equipeCoordenadores) {
+        this.equipeCoordenadores = equipeCoordenadores;
+    }
+    
+    
     
     public void limpaCampos() {
         this.usuario.setId(null);

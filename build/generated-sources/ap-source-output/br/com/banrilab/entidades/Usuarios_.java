@@ -12,7 +12,9 @@ public abstract class Usuarios_ {
 	public static volatile SingularAttribute<Usuarios, String> email;
 	public static volatile SingularAttribute<Usuarios, Integer> perfil;
 	public static volatile SingularAttribute<Usuarios, String> nome;
+	public static volatile SingularAttribute<Usuarios, Boolean> disponivel;
 	public static volatile SingularAttribute<Usuarios, String> senha;
+	public static volatile SingularAttribute<Usuarios, ReservaUsuarios> reserva;
 	public static volatile SingularAttribute<Usuarios, String> matricula;
 
 }

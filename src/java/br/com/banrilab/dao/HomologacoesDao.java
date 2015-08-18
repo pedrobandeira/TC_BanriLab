@@ -24,7 +24,7 @@ public class HomologacoesDao implements HomologacoesDaoInterface {
     public void addHomologacao (Homologacoes h) {
         
         // EntityManager entityManager = new HibernateUtil().getEntityManager();
-        
+        System.out.println("entrou no add dao");
         if(h.getId() == null)
             entityManager.persist(h);
         else

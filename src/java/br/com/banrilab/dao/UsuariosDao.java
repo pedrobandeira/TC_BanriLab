@@ -57,7 +57,29 @@ public class UsuariosDao implements UsuariosDaoInterface {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Usuarios> c = cb.createQuery(Usuarios.class);
         Root<Usuarios> usuarios = c.from(Usuarios.class);
-        c.where(usuarios.get("perfil").in("2","3","4") );
+        c.where(usuarios.get("perfil").in("4") );
+
+        TypedQuery q = entityManager.createQuery(c);
+        return q.getResultList();
+    }
+    
+    @Override
+    public List<Usuarios> getEquipeAnalistas() {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Usuarios> c = cb.createQuery(Usuarios.class);
+        Root<Usuarios> usuarios = c.from(Usuarios.class);
+        c.where(usuarios.get("perfil").in("3") );
+
+        TypedQuery q = entityManager.createQuery(c);
+        return q.getResultList();
+    }
+    
+    @Override
+    public List<Usuarios> getEquipeCoordenadores() {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Usuarios> c = cb.createQuery(Usuarios.class);
+        Root<Usuarios> usuarios = c.from(Usuarios.class);
+        c.where(usuarios.get("perfil").in("2") );
 
         TypedQuery q = entityManager.createQuery(c);
         return q.getResultList();

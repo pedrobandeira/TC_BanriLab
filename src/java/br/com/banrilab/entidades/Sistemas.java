@@ -5,6 +5,7 @@
  */
 package br.com.banrilab.entidades;
 
+import br.com.banrilab.converters.SampleEntity;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Entity;
@@ -21,7 +22,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="sistemas")
-public class Sistemas implements Serializable {
+public class Sistemas implements Serializable, SampleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

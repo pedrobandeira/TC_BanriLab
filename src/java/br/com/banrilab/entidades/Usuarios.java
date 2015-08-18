@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -29,9 +30,13 @@ public class Usuarios implements Serializable,SampleEntity {
     private String senha;
     private String email;
     private Integer perfil;
+    private boolean disponivel;
     // perfís: 1 - Admin Lab, 2 - Coord Testes, 3 - Analista Teste, 4 - Testador, 5 - Desenvolvedor
+    @OneToOne (mappedBy = "usuario")
+    private ReservaUsuarios reserva;
 
     public Usuarios() {
+        this.disponivel = true;
     }
 
     public Long getId() {
@@ -40,6 +45,14 @@ public class Usuarios implements Serializable,SampleEntity {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public boolean isDisponivel() {
+        return disponivel;
+    }
+
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
     }
 
     public String getMatricula() {
@@ -80,6 +93,14 @@ public class Usuarios implements Serializable,SampleEntity {
 
     public void setPerfil(Integer perfil) {
         this.perfil = perfil;
+    }
+
+    public ReservaUsuarios getReserva() {
+        return reserva;
+    }
+
+    public void setReserva(ReservaUsuarios reserva) {
+        this.reserva = reserva;
     }
 
     @Override

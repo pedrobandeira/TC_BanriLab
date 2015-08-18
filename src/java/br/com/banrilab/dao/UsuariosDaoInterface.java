@@ -17,6 +17,8 @@ public interface UsuariosDaoInterface {
     public void removeUsuario (Usuarios u);
     public List<Usuarios> getUsuarios();
     public List<Usuarios> getEquipeTestes();
+    public List<Usuarios> getEquipeAnalistas();
+    public List<Usuarios> getEquipeCoordenadores();
     public List<Usuarios> getEquipeDesenvolvimento();
     public List<Usuarios> getEquipeAdminLaboratorio();
 }

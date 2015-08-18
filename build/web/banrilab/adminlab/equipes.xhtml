@@ -25,12 +25,83 @@
     <h:body>
         <ui:composition template="template.xhtml">
             <ui:define name="content">
-
+                
                 <div class="col-sm-9 col-md-10 main" style="width: 100%">           
 
                     <div class="panel panel-default">
                         <!-- Default panel contents -->
-                        <div class="panel-heading">Equipe Testes Laboratório de Testes</div>
+                        <div class="panel-heading">Equipe Coordenadores de Testes Laboratório de Testes</div>
+                        <div class="panel-body">
+
+                            <h:form>
+                                <p:dataTable var="eqpcoord" value="#{usuariosBean.equipeCoordenadores}" editable="false">
+                                    <p:column headerText="Nome">
+                                        <h:outputText value="#{eqpcoord.nome}" />
+                                    </p:column>
+
+                                    <p:column headerText="Matrícula" style="width: 90px">
+                                        <h:outputText value="#{eqpcoord.matricula}" />
+                                    </p:column>
+
+                                    <p:column headerText="E-mail" style="width: 260px">
+                                        <h:outputText  value="#{eqpcoord.email}" />
+                                    </p:column>
+
+                                    <p:column headerText="Perfil">
+                                        <h:outputText  value="#{usuariosBean.exibirPerfil(eqpcoord)}" />
+                                    </p:column>
+
+                                    <p:column headerText="Status" style="width: 100px">
+                                        <h:outputText value="Disponível" />
+                                    </p:column>
+                                </p:dataTable>
+
+                            </h:form>
+                        </div>
+                    </div>
+                </div><!--/row-->
+                
+                <div class="col-sm-9 col-md-10 main" style="width: 100%">           
+
+                    <div class="panel panel-default">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading">Equipe Analistas de Testes Laboratório de Testes</div>
+                        <div class="panel-body">
+
+                            <h:form>
+                                <p:dataTable var="eqpanalista" value="#{usuariosBean.equipeAnalistas}" editable="false">
+                                    <p:column headerText="Nome">
+                                        <h:outputText value="#{eqpanalista.nome}" />
+                                    </p:column>
+
+                                    <p:column headerText="Matrícula" style="width: 90px">
+                                        <h:outputText value="#{eqpanalista.matricula}" />
+                                    </p:column>
+
+                                    <p:column headerText="E-mail" style="width: 260px">
+                                        <h:outputText  value="#{eqpanalista.email}" />
+                                    </p:column>
+
+                                    <p:column headerText="Perfil">
+                                        <h:outputText  value="#{usuariosBean.exibirPerfil(eqpanalista)}" />
+                                    </p:column>
+
+                                    <p:column headerText="Status" style="width: 100px">
+                                        <h:outputText value="Disponível" />
+                                    </p:column>
+                                </p:dataTable>
+
+                            </h:form>
+                        </div>
+                    </div>
+                </div><!--/row-->
+                
+                
+                <div class="col-sm-9 col-md-10 main" style="width: 100%">           
+
+                    <div class="panel panel-default">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading">Equipe Testadores Laboratório de Testes</div>
                         <div class="panel-body">
 
                             <h:form>
