@@ -42,16 +42,17 @@
                                     <div class="form-group">
                                         <label for="OutputVersao">Versão</label>
                                         <p:outputLabel class="form-control" id="OutputVersao" value="#{homologacoesBean.homologacao.versaoSistema}"/>                                       
-                                    </div>
+                                       </div>
 									
-									<div class="form-group">
+				                           
+                                    <div class="form-group">
                                         <label for="OutputSolicitante">Solicitante</label>
                                         <p:outputLabel class="form-control" id="OutputSolicitante" value="#{homologacoesBean.homologacao.solicitante.nome}" />
                                     </div>
 									
-									<div class="form-group">
+                                    <div class="form-group">
                                         <label for="OutputDataFim">Data solicitação</label><br/>
-                                        <p:outputLabel id="OutputDataFim" value="#{homologacoesBean.homologacao.dataSolicitacao}">  
+                                        <p:outputLabel id="OutputDataFim" class="form-control" value="#{homologacoesBean.homologacao.dataSolicitacao}">  
                                             <f:convertDateTime pattern="dd/MM/yyyy"/>  
                                         </p:outputLabel>
                                     </div>
@@ -76,8 +77,7 @@
                                     
                                     <div class="modal-footer">
                                         <h:commandButton class="btn btn-default" value="Fechar" action="#{homologacoesBean.fecharEditar}"/>
-                                        <h:commandButton class="btn btn-danger" value="Cancelar homologação" action="#{homologacoesBean.cancelarHomologacao}"/>
-                                        <h:commandButton value="Liberar" class="btn btn-primary" action="#{homologacoesBean.liberarHomologacao}"/>
+                                        <h:commandButton value="Avançar" class="btn btn-primary" onclick="teste()"/>
                                     </div>
                                 </h:form>
                                 
@@ -86,6 +86,9 @@
                         </div>
                     </div>
                 </div>
+        
+        
+        
         <script type="text/javascript">
         $(window).load(function(){
         $('#editarHomologacao').modal('show');

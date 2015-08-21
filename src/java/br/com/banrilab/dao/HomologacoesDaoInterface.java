@@ -16,5 +16,6 @@ public interface HomologacoesDaoInterface {
     public void addHomologacao (Homologacoes h);
     public void removeHomologacao (Homologacoes h);
     public List<Homologacoes> getHomologacoes();
+    public List<Homologacoes> getHomologacoesAbertas();
     
 }

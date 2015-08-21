@@ -27,11 +27,11 @@
             <div class="panel panel-default">
         
         <!-- Modal Editar Homologação -->
-        <div class="modal fade" data-backdrop="static" id="editarHomologacao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" data-backdrop="static" id="visualizarHomologacao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel">Liberar Homologação</h4>
+                                <h4 class="modal-title" id="myModalLabel">Visualizar Homologação</h4>
                             </div>
                             <div class="modal-body">
                                 <h:form>
@@ -42,6 +42,11 @@
                                     <div class="form-group">
                                         <label for="OutputVersao">Versão</label>
                                         <p:outputLabel class="form-control" id="OutputVersao" value="#{homologacoesBean.homologacao.versaoSistema}"/>                                       
+                                    </div>
+									
+									<div class="form-group">
+                                        <label for="OutputCiclo">Ciclo</label>
+                                        <p:outputLabel class="form-control" id="OutputCiclo" value="#{homologacoesBean.homologacao.ciclo}"/>                                       
                                     </div>
 									
 									<div class="form-group">
@@ -62,22 +67,16 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="OutputObservacoes">Observações</label>
-                                        <p:outputLabel class="form-control" id="OutputObservacoes" value="#{homologacoesBean.homologacao.observacoes}"/>
+                                        <p:inputTextarea disabled="true" class="form-control" id="OutputObservacoes" value="#{homologacoesBean.homologacao.observacoes}"/>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="InputAnalista">Analista</label>
-                                        <p:selectOneListbox value="#{homologacoesBean.homologacao.analista}" converter="generic">
-                                            <f:selectItems value="#{usuariosBean.equipeAnalistas}" var="analista" 
-                                                           itemLabel="#{analista.nome}" itemValue="#{analista}"  />
-                                        </p:selectOneListbox>
-                                        <p:messages/>
-                                        
+									<div class="form-group">
+                                        <label for="OutputAnalista">Analista de testes</label>
+                                        <p:outputLabel class="form-control" id="OutputAnalista" value="#{homologacoesBean.homologacao.analista.nome}" />
                                     </div>
-                                    
+                                                                        
                                     <div class="modal-footer">
                                         <h:commandButton class="btn btn-default" value="Fechar" action="#{homologacoesBean.fecharEditar}"/>
-                                        <h:commandButton class="btn btn-danger" value="Cancelar homologação" action="#{homologacoesBean.cancelarHomologacao}"/>
-                                        <h:commandButton value="Liberar" class="btn btn-primary" action="#{homologacoesBean.liberarHomologacao}"/>
+                                    
                                     </div>
                                 </h:form>
                                 
@@ -88,7 +87,7 @@
                 </div>
         <script type="text/javascript">
         $(window).load(function(){
-        $('#editarHomologacao').modal('show');
+        $('#visualizarHomologacao').modal('show');
          });
         </script>
     </div>
@@ -99,7 +98,7 @@
         
 	<!-- script references -->
         <h:outputScript name="js/jquery-1.11.2.min.js"/>
-	<h:outputScript name="js/bootstrap.min.js"/>
+		<h:outputScript name="js/bootstrap.min.js"/>
         <h:outputScript name="js/scripts.js"/>
 
     </h:body>

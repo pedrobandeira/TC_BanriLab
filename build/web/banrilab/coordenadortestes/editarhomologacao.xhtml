@@ -43,6 +43,18 @@
                                         <label for="OutputVersao">Versão</label>
                                         <p:outputLabel class="form-control" id="OutputVersao" value="#{homologacoesBean.homologacao.versaoSistema}"/>                                       
                                     </div>
+									
+									<div class="form-group">
+                                        <label for="OutputSolicitante">Solicitante</label>
+                                        <p:outputLabel class="form-control" id="OutputSolicitante" value="#{homologacoesBean.homologacao.solicitante.nome}" />
+                                    </div>
+									
+									<div class="form-group">
+                                        <label for="OutputDataFim">Data solicitação</label><br/>
+                                        <p:outputLabel id="OutputDataFim" value="#{homologacoesBean.homologacao.dataSolicitacao}">  
+                                            <f:convertDateTime pattern="dd/MM/yyyy"/>  
+                                        </p:outputLabel>
+                                    </div>
                                     
                                     <div class="form-group">
                                         <label for="OutputRequisitos">Requisitos</label>
@@ -92,4 +104,3 @@
 
     </h:body>
 </html>
-

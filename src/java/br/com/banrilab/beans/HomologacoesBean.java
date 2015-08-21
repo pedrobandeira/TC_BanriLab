@@ -11,6 +11,7 @@ import br.com.banrilab.entidades.Homologacoes;
 import br.com.banrilab.entidades.Usuarios;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import javax.ejb.EJB;
@@ -31,6 +32,7 @@ public class HomologacoesBean implements Serializable {
     private HomologacoesDaoInterface homologacaoDao;
     
     private List<Homologacoes> homologacoes = new ArrayList<>();
+	private List<Homologacoes> homologacoesAbertas = new ArrayList<>();
     
     public HomologacoesBean() {
     }
@@ -43,8 +45,9 @@ public class HomologacoesBean implements Serializable {
     
     public String adicionarHomologacao() {
         System.out.println("entrou no add bean");
-        if (homologacao.getId() == null) {
-            homologacao.setSolicitante(carregaUsuarioAtivo());
+        if (this.homologacao.getId() == null) {
+            this.homologacao.setDataSolicitacao(retornaDataAtual());
+			this.homologacao.setSolicitante(carregaUsuarioAtivo());
         }
         homologacaoDao.addHomologacao(homologacao);
         limpaCampos();
@@ -53,6 +56,8 @@ public class HomologacoesBean implements Serializable {
     
     public String cancelarHomologacao() {
         homologacao.setStatus(5);
+		this.homologacao.setDataFim(retornaDataAtual());
+		this.homologacao.setAutorizador(carregaUsuarioAtivo());
         homologacaoDao.addHomologacao(homologacao);
         limpaCampos();
         return "homologacoes";
@@ -60,6 +65,8 @@ public class HomologacoesBean implements Serializable {
     
     public String liberarHomologacao() {
         this.homologacao.setStatus(2);
+		this.homologacao.setDataAutorizacao(retornaDataAtual());
+		this.homologacao.setAutorizador(carregaUsuarioAtivo());
         homologacaoDao.addHomologacao(homologacao);
         limpaCampos();
         return "homologacoes";
@@ -75,6 +82,11 @@ public class HomologacoesBean implements Serializable {
     public String carregarHomologacao(Homologacoes h) {
         this.homologacao = h;
         return "editarhomologacao";
+    }
+	
+    public String visualizarHomologacao(Homologacoes h) {
+        this.homologacao = h;
+	return "visualizarhomologacao";
     }
     
     public String fecharEditar () {
@@ -99,8 +111,24 @@ public class HomologacoesBean implements Serializable {
     }
     
     public boolean verificaSolicitadas (Homologacoes h) {
-        if (h.getStatus() == 1) return true;
+        if ((h.getStatus() == 1) && (carregaUsuarioAtivo().equals(h.getSolicitante()))) return true;
         return false;
+    }
+	
+	public boolean verificaSolicitadasAutorizadas (Homologacoes h) {
+        if ((h.getStatus() == 1) || (h.getStatus() == 2)) return true;
+        return false;
+    }
+	
+	public boolean verificaAutorizadasEmAndamento (Homologacoes h) {
+        if (((h.getStatus() == 2) || (h.getStatus() == 3)) && (carregaUsuarioAtivo().equals(h.getAnalista()))) 
+                return true;
+        return false;
+    }
+	
+	public Date retornaDataAtual() {
+        Date data = new Date();
+        return data;
     }
     
     public void limpaCampos() {
@@ -108,7 +136,9 @@ public class HomologacoesBean implements Serializable {
         this.homologacao.setAutorizador(null);
         this.homologacao.setCiclo(null);
         this.homologacao.setDataFim(null);
-        this.homologacao.setDataInicio(null);
+        this.homologacao.setDataAbertura(null);
+        this.homologacao.setDataAutorizacao(null);
+        this.homologacao.setDataSolicitacao(null);
         this.homologacao.setId(null);
         this.homologacao.setReservasAtms(null);
         this.homologacao.setReservasCartoesContas(null);
@@ -129,7 +159,13 @@ public class HomologacoesBean implements Serializable {
 
     public void setHomologacoes(List<Homologacoes> homologacoes) {
         this.homologacoes = homologacoes;
-    }   
+    }
+
+	public List<Homologacoes> getHomologacoesAbertas() {
+        this.homologacoesAbertas = homologacaoDao.getHomologacoesAbertas();
+        return homologacoesAbertas;
+    }
+
 
     @Override
     public int hashCode() {

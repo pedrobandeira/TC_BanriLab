@@ -53,8 +53,13 @@ public class Homologacoes implements Serializable {
     @OneToMany (mappedBy = "homologacao")
     private List<ReservaUsuarios> reservasTestadores;
     
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dataInicio;
+    
+	@Temporal(javax.persistence.TemporalType.DATE)
+    private Date dataSolicitacao;
+	@Temporal(javax.persistence.TemporalType.DATE)
+    private Date dataAutorizacao;
+	@Temporal(javax.persistence.TemporalType.DATE)
+    private Date dataAbertura;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataFim;
     
@@ -125,14 +130,30 @@ public class Homologacoes implements Serializable {
         this.reservasTerminais = reservasTerminais;
     }
 
-    public Date getDataInicio() {
-        return dataInicio;
+    public Date getDataAbertura() {
+        return dataAbertura;
     }
 
-    public void setDataInicio(Date dataInicio) {
-        this.dataInicio = dataInicio;
+    public void setDataAbertura(Date dataAbertura) {
+        this.dataAbertura = dataAbertura;
+    }
+	
+	public Date getDataAutorizacao() {
+        return dataAutorizacao;
     }
 
+    public void setDataAutorizacao(Date dataAutorizacao) {
+        this.dataAutorizacao = dataAutorizacao;
+	}
+	
+	public Date getDataSolicitacao() {
+        return dataSolicitacao;
+    }
+
+    public void setDataSolicitacao(Date dataSolicitacao) {
+        this.dataSolicitacao = dataSolicitacao;
+    }
+	
     public Date getDataFim() {
         return dataFim;
     }

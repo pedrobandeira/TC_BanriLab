@@ -29,11 +29,11 @@
 
                     <div class="panel panel-default">
                         <!-- Default panel contents -->
-                        <div class="panel-heading">Homologações abertas Laboratório de Testes</div>
+                        <div class="panel-heading">Homologações Laboratório de Testes</div>
                         <div class="panel-body">
 
                             <h:form>
-                                <p:dataTable var="homologacao" value="#{homologacoesBean.homologacoesAbertas}" editable="false">
+                                <p:dataTable var="homologacao" value="#{homologacoesBean.homologacoes}" editable="false">
                                     <p:column headerText="Sistema">
                                         <h:outputText value="#{homologacao.sistema.nome}" />
                                     </p:column>
@@ -46,18 +46,16 @@
                                         <h:outputText value="#{homologacoesBean.exibirStatus(homologacao)}" />
                                     </p:column>
 
-                                    <p:column headerText="Ver detalhes / Abrir" class="text-center" style="width: 120px">
-                                        <h:commandLink class="glyphicon glyphicon-edit" action="#{homologacoesBean.carregarHomologacao(homologacao)}" rendered="#{homologacoesBean.verificaAutorizadasEmAndamento(homologacao)}" />                      
-                                        <h:commandLink class="glyphicon glyphicon-zoom-in" action="#{homologacoesBean.visualizarHomologacao(homologacao)}" rendered="#{!homologacoesBean.verificaAutorizadasEmAndamento(homologacao)}" />
+                                    <p:column headerText="Ver detalhes" class="text-center" style="width: 90px">                 
+                                        <h:commandLink class="glyphicon glyphicon-zoom-in" action="#{homologacoesBean.visualizarHomologacao(homologacao)}"/>
                                     </p:column>
 
                                 </p:dataTable>
 
                             </h:form>
                         </div>
-                        
                         <div class="panel-footer">
-                            <h:link class="btn btn-primary" value="Histórico de Homologações" outcome="historicohomologacoes" />
+                            <h:link value="Voltar para Homologações Abertas" outcome="homologacoes" />
                         </div>
                     </div>
                 </div><!--/row-->

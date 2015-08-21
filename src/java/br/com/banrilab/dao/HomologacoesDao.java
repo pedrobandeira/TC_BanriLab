@@ -10,6 +10,10 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 /**
  *
@@ -46,6 +50,85 @@ public class HomologacoesDao implements HomologacoesDaoInterface {
         cq.select(cq.from(Homologacoes.class));
         return entityManager.createQuery(cq).getResultList();
     }
+	/*
+	public List<Homologacoes> getHomologacoesSolicitadas() {
+      
+		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Homologacoes> c = cb.createQuery(Homologacoes.class);
+        Root<Homologacoes> homologacoes = c.from(Homologacoes.class);
+        c.where(homologacoes.get("status").in("1") );
+
+        TypedQuery q = entityManager.createQuery(c);
+        return q.getResultList();
+		
+    }*/
+	/*
+	public List<Homologacoes> getHomologacoesAutorizadas() {
+       
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Homologacoes> c = cb.createQuery(Homologacoes.class);
+        Root<Homologacoes> homologacoes = c.from(Homologacoes.class);
+        c.where(homologacoes.get("status").in("2") );
+
+        TypedQuery q = entityManager.createQuery(c);
+        return q.getResultList();
+    }*/
+	/*
+	public List<Homologacoes> getHomologacoesEmAndamento() {
+       
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Homologacoes> c = cb.createQuery(Homologacoes.class);
+        Root<Homologacoes> homologacoes = c.from(Homologacoes.class);
+        c.where(homologacoes.get("status").in("3") );
+
+        TypedQuery q = entityManager.createQuery(c);
+        return q.getResultList();
+    }*/
+	/*
+	public List<Homologacoes> getHomologacoesConcluidas() {
+       
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Homologacoes> c = cb.createQuery(Homologacoes.class);
+        Root<Homologacoes> homologacoes = c.from(Homologacoes.class);
+        c.where(homologacoes.get("status").in("4") );
+
+        TypedQuery q = entityManager.createQuery(c);
+        return q.getResultList();
+    }*/
+	/*
+	public List<Homologacoes> getHomologacoesCanceladas() {
+       
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Homologacoes> c = cb.createQuery(Homologacoes.class);
+        Root<Homologacoes> homologacoes = c.from(Homologacoes.class);
+        c.where(homologacoes.get("status").in("5") );
+
+        TypedQuery q = entityManager.createQuery(c);
+        return q.getResultList();
+    } */
+	
+    @Override
+    public List<Homologacoes> getHomologacoesAbertas() {
+       
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Homologacoes> c = cb.createQuery(Homologacoes.class);
+        Root<Homologacoes> homologacoes = c.from(Homologacoes.class);
+        c.where(homologacoes.get("status").in("1","2","3"));
+
+        TypedQuery q = entityManager.createQuery(c);
+        return q.getResultList();
+    }
+	/*
+	public List<Homologacoes> getHomologacoesFechadas() {
+       
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Homologacoes> c = cb.createQuery(Homologacoes.class);
+        Root<Homologacoes> homologacoes = c.from(Homologacoes.class);
+        c.where(homologacoes.get("status").in("4","5") );
+
+        TypedQuery q = entityManager.createQuery(c);
+        return q.getResultList();
+    } */
 
     
 }
