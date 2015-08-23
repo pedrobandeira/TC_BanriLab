@@ -64,7 +64,7 @@
                                     
                                     <div class="form-group">
                                         <label for="InputResponsavel">Responsável</label>
-                                        <p:selectOneListbox value="#{sistemasBean.sistema.responsavel}" converter="generic">
+                                        <p:selectOneListbox scrollHeight="75" value="#{sistemasBean.sistema.responsavel}" converter="generic">
                                             <f:selectItems value="#{usuariosBean.equipeDesenvolvimento}" var="responsavel" 
                                                            itemLabel="#{responsavel.nome}" itemValue="#{responsavel}"  />
                                         </p:selectOneListbox>

@@ -34,46 +34,58 @@
                                 <h4 class="modal-title" id="myModalLabel">Liberar Homologação</h4>
                             </div>
                             <div class="modal-body">
+                                
                                 <h:form>
+                                    <div class="container-fluid">
+                                    <div class="row">
+                                    <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="OutputSistema">Sistema</label>
                                         <p:outputLabel class="form-control" id="OutputSistema" value="#{homologacoesBean.homologacao.sistema.nome}" />
                                     </div>
+                                    </div>
+                                        <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="OutputVersao">Versão</label>
                                         <p:outputLabel class="form-control" id="OutputVersao" value="#{homologacoesBean.homologacao.versaoSistema}"/>                                       
+                                       </div>
+                                        </div>
                                     </div>
 									
-									<div class="form-group">
+				    <div class="row">
+                                    <div class="col-md-5">               
+                                    <div class="form-group">
                                         <label for="OutputSolicitante">Solicitante</label>
                                         <p:outputLabel class="form-control" id="OutputSolicitante" value="#{homologacoesBean.homologacao.solicitante.nome}" />
                                     </div>
-									
-									<div class="form-group">
+                                    </div>
+					<div class="col-md-4">				
+                                    <div class="form-group">
                                         <label for="OutputDataFim">Data solicitação</label><br/>
-                                        <p:outputLabel id="OutputDataFim" value="#{homologacoesBean.homologacao.dataSolicitacao}">  
+                                        <p:outputLabel id="OutputDataFim" class="form-control" value="#{homologacoesBean.homologacao.dataSolicitacao}">  
                                             <f:convertDateTime pattern="dd/MM/yyyy"/>  
                                         </p:outputLabel>
                                     </div>
-                                    
+                                        </div>
+                                    </div>
                                     <div class="form-group">
                                         <label for="OutputRequisitos">Requisitos</label>
                                         <p:inputTextarea disabled="true" class="form-control" id="OutputRequisitos" value="#{homologacoesBean.homologacao.requisitos}"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="OutputObservacoes">Observações</label>
-                                        <p:outputLabel class="form-control" id="OutputObservacoes" value="#{homologacoesBean.homologacao.observacoes}"/>
+                                        <p:inputTextarea disabled="true" class="form-control" id="OutputObservacoes" value="#{homologacoesBean.homologacao.observacoes}"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="InputAnalista">Analista</label>
-                                        <p:selectOneListbox value="#{homologacoesBean.homologacao.analista}" converter="generic">
+                                        <p:selectOneListbox scrollHeight="65" value="#{homologacoesBean.homologacao.analista}" converter="generic">
                                             <f:selectItems value="#{usuariosBean.equipeAnalistas}" var="analista" 
                                                            itemLabel="#{analista.nome}" itemValue="#{analista}"  />
                                         </p:selectOneListbox>
                                         <p:messages/>
                                         
                                     </div>
-                                    
+                                </div>
                                     <div class="modal-footer">
                                         <h:commandButton class="btn btn-default" value="Fechar" action="#{homologacoesBean.fecharEditar}"/>
                                         <h:commandButton class="btn btn-danger" value="Cancelar homologação" action="#{homologacoesBean.cancelarHomologacao}"/>

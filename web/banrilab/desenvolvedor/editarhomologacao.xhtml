@@ -32,21 +32,28 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel">Editar Homologação</h4>
+                                <h4 class="modal-title" id="myModalLabel">Solicitar Homologação</h4>
                             </div>
                             <div class="modal-body">
-                                <h:form>
+                                <h:form>                                 
+                                    
+                                    <div class="container-fluid">
+                                    <div class="row">
+                                    <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="InputSistema">Sistema</label>
-                                        <p:selectOneListbox value="#{homologacoesBean.homologacao.sistema}" converter="generic">
+                                        <p:selectOneListbox scrollHeight="65" value="#{homologacoesBean.homologacao.sistema}" converter="generic">
                                             <f:selectItems value="#{sistemasBean.sistemas}" var="sistema" 
                                                            itemLabel="#{sistema.nome}" itemValue="#{sistema}"  />
                                         </p:selectOneListbox>
-                                        <p:messages/>
+                                        <p:messages/></div>
                                     </div>
+                                        <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="InputVersao">Versão</label>
                                         <p:inputText placeholder="Digite a versão a ser homologada" class="form-control" id="InputVersao" value="#{homologacoesBean.homologacao.versaoSistema}"/>                                       
+                                       </div>
+                                        </div>
                                     </div>
                                     
                                     <div class="form-group">
@@ -57,12 +64,13 @@
                                         <label for="InputObservacoes">Observações</label>
                                         <p:inputTextarea placeholder="Digite as demais observações desejadas, como as DEPs relacionadas" class="form-control" id="InputObservacoes" value="#{homologacoesBean.homologacao.observacoes}"/>
                                     </div>
+                                                                        
                                     <div class="modal-footer">
                                         <h:commandButton class="btn btn-default" value="Fechar" action="#{homologacoesBean.fecharEditar}"/>
-                                        <h:commandButton class="btn btn-danger" value="Cancelar solicitação" action="#{homologacoesBean.removerHomologacao(homologacao)}" rendered="#{!reservaCartoesContasBean.reservaCartoesContas.cartaoConta.disponivel}"/>
-                                        <h:commandButton value="Salvar" class="btn btn-primary" action="#{homologacoesBean.adicionarHomologacao}"/>
+                                        <h:commandButton value="Solicitar" class="btn btn-primary" action="#{homologacoesBean.adicionarHomologacao}"/>
                                     </div>
-                                </h:form>
+                            </div>
+                                </h:form>  
                                 
                             </div>
 

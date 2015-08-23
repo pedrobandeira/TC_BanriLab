@@ -26,7 +26,7 @@
                        
             <div class="panel panel-default">
         
-        <!-- Modal Editar Homologação -->
+        <!-- Modal visualizar Homologação -->
         <div class="modal fade" data-backdrop="static" id="visualizarHomologacao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -34,33 +34,40 @@
                                 <h4 class="modal-title" id="myModalLabel">Visualizar Homologação</h4>
                             </div>
                             <div class="modal-body">
+                                
                                 <h:form>
+                                    <div class="container-fluid">
+                                    <div class="row">
+                                    <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="OutputSistema">Sistema</label>
                                         <p:outputLabel class="form-control" id="OutputSistema" value="#{homologacoesBean.homologacao.sistema.nome}" />
                                     </div>
+                                    </div>
+                                        <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="OutputVersao">Versão</label>
                                         <p:outputLabel class="form-control" id="OutputVersao" value="#{homologacoesBean.homologacao.versaoSistema}"/>                                       
+                                       </div>
+                                        </div>
                                     </div>
 									
-									<div class="form-group">
-                                        <label for="OutputCiclo">Ciclo</label>
-                                        <p:outputLabel class="form-control" id="OutputCiclo" value="#{homologacoesBean.homologacao.ciclo}"/>                                       
-                                    </div>
-									
-									<div class="form-group">
+				    <div class="row">
+                                    <div class="col-md-5">               
+                                    <div class="form-group">
                                         <label for="OutputSolicitante">Solicitante</label>
                                         <p:outputLabel class="form-control" id="OutputSolicitante" value="#{homologacoesBean.homologacao.solicitante.nome}" />
                                     </div>
-									
-									<div class="form-group">
+                                    </div>
+					<div class="col-md-4">				
+                                    <div class="form-group">
                                         <label for="OutputDataFim">Data solicitação</label><br/>
-                                        <p:outputLabel id="OutputDataFim" value="#{homologacoesBean.homologacao.dataSolicitacao}">  
+                                        <p:outputLabel id="OutputDataFim" class="form-control" value="#{homologacoesBean.homologacao.dataSolicitacao}">  
                                             <f:convertDateTime pattern="dd/MM/yyyy"/>  
                                         </p:outputLabel>
                                     </div>
-                                    
+                                        </div>
+                                    </div>
                                     <div class="form-group">
                                         <label for="OutputRequisitos">Requisitos</label>
                                         <p:inputTextarea disabled="true" class="form-control" id="OutputRequisitos" value="#{homologacoesBean.homologacao.requisitos}"/>
@@ -69,14 +76,13 @@
                                         <label for="OutputObservacoes">Observações</label>
                                         <p:inputTextarea disabled="true" class="form-control" id="OutputObservacoes" value="#{homologacoesBean.homologacao.observacoes}"/>
                                     </div>
-									<div class="form-group">
-                                        <label for="OutputAnalista">Analista de testes</label>
-                                        <p:outputLabel class="form-control" id="OutputAnalista" value="#{homologacoesBean.homologacao.analista.nome}" />
+                                    <div class="form-group">
+                                        <label for="OutputAnalista">Analista</label>
+                                        <p:outputLabel class="form-control" value="#{homologacoesBean.homologacao.analista.nome}" />
                                     </div>
-                                                                        
+                                </div>
                                     <div class="modal-footer">
                                         <h:commandButton class="btn btn-default" value="Fechar" action="#{homologacoesBean.fecharEditar}"/>
-                                    
                                     </div>
                                 </h:form>
                                 
@@ -98,7 +104,7 @@
         
 	<!-- script references -->
         <h:outputScript name="js/jquery-1.11.2.min.js"/>
-		<h:outputScript name="js/bootstrap.min.js"/>
+	<h:outputScript name="js/bootstrap.min.js"/>
         <h:outputScript name="js/scripts.js"/>
 
     </h:body>

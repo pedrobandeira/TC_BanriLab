@@ -55,9 +55,9 @@ public class HomologacoesBean implements Serializable {
     }
     
     public String cancelarHomologacao() {
-        homologacao.setStatus(5);
-		this.homologacao.setDataFim(retornaDataAtual());
-		this.homologacao.setAutorizador(carregaUsuarioAtivo());
+        this.homologacao.setStatus(5);
+	this.homologacao.setDataFim(retornaDataAtual());
+	this.homologacao.setAutorizador(carregaUsuarioAtivo());
         homologacaoDao.addHomologacao(homologacao);
         limpaCampos();
         return "homologacoes";
@@ -90,7 +90,7 @@ public class HomologacoesBean implements Serializable {
     }
     
     public String fecharEditar () {
-        this.homologacao.setId(null);
+        limpaCampos();
         return "homologacoes";
     }
     
@@ -150,6 +150,9 @@ public class HomologacoesBean implements Serializable {
         this.homologacao.setSistema(null);
         this.homologacao.setSolicitante(null);
         this.homologacao.setStatus(null);
+        this.homologacao.setVersaoSistema(null);
+        this.homologacao.setRequisitos(null);
+        this.homologacao.setObservacoes(null);
     }
 
     public List<Homologacoes> getHomologacoes() {

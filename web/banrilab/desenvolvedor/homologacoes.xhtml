@@ -45,19 +45,25 @@
                                 <h4 class="modal-title" id="myModalLabel">Nova homologação</h4>
                             </div>
                             <div class="modal-body">
-                                <h:form>
+                                <h:form>                                 
+                                    
+                                    <div class="container-fluid">
+                                    <div class="row">
+                                    <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="InputSistema">Sistema</label>
-                                        <p:selectOneListbox value="#{homologacoesBean.homologacao.sistema}" converter="generic">
+                                        <p:selectOneListbox scrollHeight="65" value="#{homologacoesBean.homologacao.sistema}" converter="generic">
                                             <f:selectItems value="#{sistemasBean.sistemas}" var="sistema" 
                                                            itemLabel="#{sistema.nome}" itemValue="#{sistema}"  />
                                         </p:selectOneListbox>
-                                        <p:messages/>
-                                        
+                                        <p:messages/></div>
                                     </div>
+                                        <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="InputVersao">Versão</label>
                                         <p:inputText placeholder="Digite a versão a ser homologada" class="form-control" id="InputVersao" value="#{homologacoesBean.homologacao.versaoSistema}"/>                                       
+                                       </div>
+                                        </div>
                                     </div>
                                     
                                     <div class="form-group">
@@ -72,7 +78,8 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                                         <h:commandButton value="Solicitar" class="btn btn-primary" action="#{homologacoesBean.adicionarHomologacao}"/>
-                                    </div>        
+                                    </div>
+                            </div>
                                 </h:form>  
                             </div>
                         </div>
