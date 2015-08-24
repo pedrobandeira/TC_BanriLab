@@ -61,6 +61,7 @@ public class ReservaServidoresBean implements Serializable {
         return "servidores";
     }
     
+    
     public void limpaCampos() {
         this.reservaServidor.setId(null);
         this.reservaServidor.setServidor(null);
@@ -104,9 +105,16 @@ public class ReservaServidoresBean implements Serializable {
         if (s.getReserva() == null) {
             if (s.isReservavel()) {
                 return true;
-            } else return false; 
+            } else {
+                return false;
+            }
         }
-        if ((s.isDisponivel() && s.isReservavel()) || (carregaUsuarioAtivo().equals(s.getReserva().getDono()))) {
+        if (s.getReserva().getHomologacao() == null) {
+            if ((s.isDisponivel() && s.isReservavel()) || (carregaUsuarioAtivo().equals(s.getReserva().getDono()))) {
+                return true;
+            }
+            return false;
+        } else if (carregaUsuarioAtivo().equals(s.getReserva().getHomologacao().getAnalista())) {
             return true;
         }
         return false;

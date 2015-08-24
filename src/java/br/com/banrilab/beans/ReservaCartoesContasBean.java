@@ -105,9 +105,16 @@ public class ReservaCartoesContasBean implements Serializable {
         if (c.getReserva() == null) {
             if (c.isReservavel()) {
                 return true;
-            } else return false; 
+            } else {
+                return false;
+            }
         }
-        if ((c.isDisponivel() && c.isReservavel()) || (carregaUsuarioAtivo().equals(c.getReserva().getDono()))) {
+        if (c.getReserva().getHomologacao() == null) {
+            if ((c.isDisponivel() && c.isReservavel()) || (carregaUsuarioAtivo().equals(c.getReserva().getDono()))) {
+                return true;
+            }
+            return false;
+        } else if (carregaUsuarioAtivo().equals(c.getReserva().getHomologacao().getAnalista())) {
             return true;
         }
         return false;

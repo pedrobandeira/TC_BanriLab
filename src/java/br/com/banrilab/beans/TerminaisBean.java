@@ -71,12 +71,16 @@ public class TerminaisBean implements Serializable {
                 return "Disponível";
             }
             if (t.getReserva() != null) {
-           if (!(t.getReserva().getDono().getNome().isEmpty())) {
-               SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-               return "Reservado para "+t.getReserva().getDono().getNome()+" até "+sdf.format(t.getReserva().getDataFim());
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                if (!(t.getReserva().getDono() == null)) {
+                    if (!(t.getReserva().getDono().getNome().isEmpty())) {
+                        return "Reservado para " + t.getReserva().getDono().getNome() + " até " + sdf.format(t.getReserva().getDataFim());
+                    } 
+                }
+                if (!(t.getReserva().getHomologacao() == null)) {
+                    return ("Reservado para "+t.getReserva().getFinalidade()+" até "+ sdf.format(t.getReserva().getDataFim()));
+                }
             }
-            else return "Reservado (sem dono)";
-        }
         }
         return "Não reservável";
     }

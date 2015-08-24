@@ -24,39 +24,40 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class ServidoresBean implements Serializable {
+
     private Servidores servidor = new Servidores();
     @EJB
     private ServidoresDaoInterface servidorDao;
-    
+
     private List<Servidores> servidores = new ArrayList<>();
-    
+
     public ServidoresBean() {
     }
-    
+
     public String adicionarServidor() {
         this.servidor.setDisponivel(true);
         servidorDao.addServidor(servidor);
         limpaCampos();
         return "servidores";
     }
-    
+
     public String removerServidor(Servidores s) {
         this.servidor = s;
         servidorDao.removeServidor(this.servidor);
         limpaCampos();
         return "servidores";
     }
-    
+
     public String carregarServidor(Servidores s) {
         this.servidor = s;
         return "editarservidor";
     }
-    
-    public String fecharEditar () {
+
+    public String fecharEditar() {
         limpaCampos();
         return "servidores";
     }
-    
+
     public Servidores getServidor() {
         return servidor;
     }
@@ -64,23 +65,27 @@ public class ServidoresBean implements Serializable {
     public void setServidor(Servidores s) {
         this.servidor = s;
     }
-    
+
     public String exibirDisponibilidade(Servidores s) {
         if (s.isReservavel()) {
             if (s.isDisponivel()) {
                 return "Disponível";
             }
             if (s.getReserva() != null) {
-           if (!(s.getReserva().getDono().getNome().isEmpty())) {
-               SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-               return "Reservado para "+s.getReserva().getDono().getNome()+" até "+sdf.format(s.getReserva().getDataFim());
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                if (!(s.getReserva().getDono() == null)) {
+                    if (!(s.getReserva().getDono().getNome().isEmpty())) {
+                        return "Reservado para " + s.getReserva().getDono().getNome() + " até " + sdf.format(s.getReserva().getDataFim());
+                    } 
+                }
+                if (!(s.getReserva().getHomologacao() == null)) {
+                    return ("Reservado para "+s.getReserva().getFinalidade()+" até "+ sdf.format(s.getReserva().getDataFim()));
+                }
             }
-            else return "Reservado (sem dono)";
-        }
         }
         return "Não reservável";
     }
-    
+
     public void limpaCampos() {
         this.servidor.setId(null);
         this.servidor.setDescricao(null);

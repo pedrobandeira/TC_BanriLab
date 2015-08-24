@@ -7,7 +7,19 @@ package br.com.banrilab.beans;
 
 import br.com.banrilab.dao.HomologacoesDao;
 import br.com.banrilab.dao.HomologacoesDaoInterface;
+import br.com.banrilab.entidades.Atms;
+import br.com.banrilab.entidades.CartoesContas;
+import br.com.banrilab.entidades.CartoesCredito;
+import br.com.banrilab.entidades.EquipamentosAdicionais;
 import br.com.banrilab.entidades.Homologacoes;
+import br.com.banrilab.entidades.ReservaAtms;
+import br.com.banrilab.entidades.ReservaCartoesContas;
+import br.com.banrilab.entidades.ReservaCartoesCredito;
+import br.com.banrilab.entidades.ReservaEquipamentosAdicionais;
+import br.com.banrilab.entidades.ReservaServidores;
+import br.com.banrilab.entidades.ReservaTerminais;
+import br.com.banrilab.entidades.Servidores;
+import br.com.banrilab.entidades.Terminais;
 import br.com.banrilab.entidades.Usuarios;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -89,6 +101,33 @@ public class HomologacoesBean implements Serializable {
 	return "visualizarhomologacao";
     }
     
+    public String retornaReservaAmbiente() {
+        return "homologacaoambiente";
+    }
+    
+    public String retornaReservaServidores() {
+        return "homologacaoservidores";
+    }
+    
+    public String retornaReservaAtms() {
+        return "homologacaoatms";
+    }
+    
+    public String retornaReservaTerminais() {
+        return "homologacaoterminais";
+    }
+    
+    public String retornaReservaEquipamentosAdicionais() {
+        return "homologacaoequipamentosadicionais";
+    }
+    
+    public String retornaReservaCartoesContas() {
+        return "homologacaocartoescontas";
+    }
+    
+    public String retornaReservaCartoesCredito() {
+        return "homologacaocartoescredito";
+    }
     public String fecharEditar () {
         limpaCampos();
         return "homologacoes";
@@ -192,4 +231,123 @@ public class HomologacoesBean implements Serializable {
         return true;
     }
     
+    public String adicionarReservaServidorHomologacao(Servidores s) {
+           List<ReservaServidores> reservasServidores = new ArrayList<ReservaServidores>();
+           ReservaServidores reserva = new ReservaServidores();
+           reserva.setDataFim(homologacao.getDataFim());
+           reserva.setDataInicio(retornaDataAtual());
+           reserva.setFinalidade("Homologação "+homologacao.getSistema().getNome()+" versão "+homologacao.getVersaoSistema());
+           reserva.setHomologacao(homologacao);
+           reserva.setServidor(s);
+           reservasServidores = homologacao.getReservasServidores();
+           reservasServidores.add(reserva);
+           homologacao.setReservasServidores(reservasServidores);
+           homologacaoDao.addReservaServidores(reserva);
+           reserva.getServidor().setDisponivel(false);
+           reserva.getServidor().setReserva(reserva);
+    
+           homologacaoDao.addServidor(reserva.getServidor());
+          
+        return "homologacaoservidores";
+    }
+    
+    public String adicionarReservaAtmHomologacao(Atms a) {
+           List<ReservaAtms> reservasAtms = new ArrayList<ReservaAtms>();
+           ReservaAtms reserva = new ReservaAtms();
+           reserva.setDataFim(homologacao.getDataFim());
+           reserva.setDataInicio(retornaDataAtual());
+           reserva.setFinalidade("Homologação "+homologacao.getSistema().getNome()+" versão "+homologacao.getVersaoSistema());
+           reserva.setHomologacao(homologacao);
+           reserva.setAtm(a);
+           reservasAtms = homologacao.getReservasAtms();
+           reservasAtms.add(reserva);
+           homologacao.setReservasAtms(reservasAtms);
+           homologacaoDao.addReservaAtms(reserva);
+           reserva.getAtm().setDisponivel(false);
+           reserva.getAtm().setReserva(reserva);
+    
+           homologacaoDao.addAtms(reserva.getAtm());
+          
+        return "homologacaoatms";
+    }
+    
+    public String adicionarReservaTerminalHomologacao(Terminais t) {
+           List<ReservaTerminais> reservasTerminais = new ArrayList<ReservaTerminais>();
+           ReservaTerminais reserva = new ReservaTerminais();
+           reserva.setDataFim(homologacao.getDataFim());
+           reserva.setDataInicio(retornaDataAtual());
+           reserva.setFinalidade("Homologação "+homologacao.getSistema().getNome()+" versão "+homologacao.getVersaoSistema());
+           reserva.setHomologacao(homologacao);
+           reserva.setTerminal(t);
+           reservasTerminais = homologacao.getReservasTerminais();
+           reservasTerminais.add(reserva);
+           homologacao.setReservasTerminais(reservasTerminais);
+           homologacaoDao.addReservaTerminais(reserva);
+           reserva.getTerminal().setDisponivel(false);
+           reserva.getTerminal().setReserva(reserva);
+    
+           homologacaoDao.addTerminais(reserva.getTerminal());
+          
+        return "homologacaoterminais";
+    }
+    
+    public String adicionarReservaEquipamentoAdicionalHomologacao(EquipamentosAdicionais e) {
+           List<ReservaEquipamentosAdicionais> reservasEquipamentosAdicionais = new ArrayList<ReservaEquipamentosAdicionais>();
+           ReservaEquipamentosAdicionais reserva = new ReservaEquipamentosAdicionais();
+           reserva.setDataFim(homologacao.getDataFim());
+           reserva.setDataInicio(retornaDataAtual());
+           reserva.setFinalidade("Homologação "+homologacao.getSistema().getNome()+" versão "+homologacao.getVersaoSistema());
+           reserva.setHomologacao(homologacao);
+           reserva.setEquipamentoAdicional(e);
+           reservasEquipamentosAdicionais = homologacao.getReservasEquipamentosAdicionais();
+           reservasEquipamentosAdicionais.add(reserva);
+           homologacao.setReservasEquipamentosAdicionais(reservasEquipamentosAdicionais);
+           homologacaoDao.addReservaEquipamentosAdicionais(reserva);
+           reserva.getEquipamentoAdicional().setDisponivel(false);
+           reserva.getEquipamentoAdicional().setReserva(reserva);
+    
+           homologacaoDao.addEquipamentosAdicionais(reserva.getEquipamentoAdicional());
+          
+        return "homologacaoequipamentosadicionais";
+    }
+    
+    public String adicionarReservaCartaoContaHomologacao(CartoesContas c) {
+           List<ReservaCartoesContas> reservasCartoesContas = new ArrayList<ReservaCartoesContas>();
+           ReservaCartoesContas reserva = new ReservaCartoesContas();
+           reserva.setDataFim(homologacao.getDataFim());
+           reserva.setDataInicio(retornaDataAtual());
+           reserva.setFinalidade("Homologação "+homologacao.getSistema().getNome()+" versão "+homologacao.getVersaoSistema());
+           reserva.setHomologacao(homologacao);
+           reserva.setCartaoConta(c);
+           reservasCartoesContas = homologacao.getReservasCartoesContas();
+           reservasCartoesContas.add(reserva);
+           homologacao.setReservasCartoesContas(reservasCartoesContas);
+           homologacaoDao.addReservaCartoesContas(reserva);
+           reserva.getCartaoConta().setDisponivel(false);
+           reserva.getCartaoConta().setReserva(reserva);
+    
+           homologacaoDao.addCartoesContas(reserva.getCartaoConta());
+          
+        return "homologacaocartoescontas";
+    }
+    
+    public String adicionarReservaCartaoCreditoHomologacao(CartoesCredito c) {
+           List<ReservaCartoesCredito> reservasCartoesCredito = new ArrayList<ReservaCartoesCredito>();
+           ReservaCartoesCredito reserva = new ReservaCartoesCredito();
+           reserva.setDataFim(homologacao.getDataFim());
+           reserva.setDataInicio(retornaDataAtual());
+           reserva.setFinalidade("Homologação "+homologacao.getSistema().getNome()+" versão "+homologacao.getVersaoSistema());
+           reserva.setHomologacao(homologacao);
+           reserva.setCartaoCredito(c);
+           reservasCartoesCredito = homologacao.getReservasCartoesCreditos();
+           reservasCartoesCredito.add(reserva);
+           homologacao.setReservasCartoesCreditos(reservasCartoesCredito);
+           homologacaoDao.addReservaCartoesCredito(reserva);
+           reserva.getCartaoCredito().setDisponivel(false);
+           reserva.getCartaoCredito().setReserva(reserva);
+    
+           homologacaoDao.addCartoesCredito(reserva.getCartaoCredito());
+          
+        return "homologacaocartoescredito";
+    }
 }

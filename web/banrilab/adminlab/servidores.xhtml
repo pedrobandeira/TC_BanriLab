@@ -81,37 +81,35 @@
             </div>
             <h:form>
                 <p:dataTable var="servidor" value="#{servidoresBean.servidores}" editable="false">
-                    <p:column headerText="Servidor">
+                    <p:column headerText="Servidor" style="width: 90px">
                         <h:outputText value="#{servidor.nome}" />
                     </p:column>
                 
-                    <p:column headerText="Descrição">
+                    <p:column headerText="Descrição" style="width: 100px">
                         <h:outputText value="#{servidor.descricao}" />
                     </p:column>
 
-                    <p:column headerText="Modelo">
+                    <p:column headerText="Modelo" style="width: 80px">
                         <h:outputText value="#{servidor.modelo}" />
                     </p:column>
 
-                    <p:column headerText="Patrimônio">
+                    <p:column headerText="Patrimônio" style="width: 95px">
                         <h:outputText value="#{servidor.patrimonio}" />
                     </p:column>
                 
-                    <p:column headerText="Status" class="text-center" style="width: 100px">
+                    <p:column headerText="Status" class="text-center">
                         <h:outputText value="#{servidoresBean.exibirDisponibilidade(servidor)}" />
                     </p:column>
                 
-                    <p:column headerText="Editar" class="text-center" style="width: 70px">
+                    <p:column headerText="Editar" class="text-center" style="width: 65px">
                         <h:commandLink class="glyphicon glyphicon-edit" action="#{servidoresBean.carregarServidor(servidor)}" rendered="#{servidor.disponivel}" />                      
                     </p:column>
                 
-                <p:column headerText="Excluir" class="text-center" style="width: 70px">
+                <p:column headerText="Excluir" class="text-center" style="width: 65px">
                     <h:commandLink class="glyphicon glyphicon-remove" action="#{servidoresBean.removerServidor(servidor)}" rendered="#{servidor.disponivel}" />                                                
                     </p:column>
                 </p:dataTable>
           
-
-                
             </h:form>
             </div>
       </div><!--/row-->

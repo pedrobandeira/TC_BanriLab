@@ -72,11 +72,15 @@ public class CartoesContasBean implements Serializable {
                 return "Disponível";
             }
             if (c.getReserva() != null) {
-           if (!(c.getReserva().getDono().getNome().isEmpty())) {
-               SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-               return "Reservado para "+c.getReserva().getDono().getNome()+" até "+sdf.format(c.getReserva().getDataFim());
-            }
-            else return "Reservado (sem dono)";
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                if (!(c.getReserva().getDono() == null)) {
+                    if (!(c.getReserva().getDono().getNome().isEmpty())) {
+                        return "Reservado para " + c.getReserva().getDono().getNome() + " até " + sdf.format(c.getReserva().getDataFim());
+                    } 
+                }
+                if (!(c.getReserva().getHomologacao() == null)) {
+                    return ("Reservado para "+c.getReserva().getFinalidade()+" até "+ sdf.format(c.getReserva().getDataFim()));
+                }
             }
         }
         return "Não reservável";

@@ -88,12 +88,16 @@ public class AtmsBean implements Serializable {
                 return "Disponível";
             }
             if (a.getReserva() != null) {
-           if (!(a.getReserva().getDono().getNome().isEmpty())) {
-               SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-               return "Reservado para "+a.getReserva().getDono().getNome()+" até "+sdf.format(a.getReserva().getDataFim());
-            } // else if (!(a.getReserva().getHomologacao() is not null
-            else return "Reservado (sem dono)";
-        }
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                if (!(a.getReserva().getDono() == null)) {
+                    if (!(a.getReserva().getDono().getNome().isEmpty())) {
+                        return "Reservado para " + a.getReserva().getDono().getNome() + " até " + sdf.format(a.getReserva().getDataFim());
+                    } 
+                }
+                if (!(a.getReserva().getHomologacao() == null)) {
+                    return ("Reservado para "+a.getReserva().getFinalidade()+" até "+ sdf.format(a.getReserva().getDataFim()));
+                }
+            }
         }
         return "Não reservável";
 

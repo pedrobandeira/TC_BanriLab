@@ -110,9 +110,16 @@ public class ReservaAtmsBean implements Serializable {
         if (a.getReserva() == null) {
             if (a.isReservavel()) {
                 return true;
-            } else return false; 
+            } else {
+                return false;
+            }
         }
-        if ((a.isDisponivel() && a.isReservavel()) || (carregaUsuarioAtivo().equals(a.getReserva().getDono()))) {
+        if (a.getReserva().getHomologacao() == null) {
+            if ((a.isDisponivel() && a.isReservavel()) || (carregaUsuarioAtivo().equals(a.getReserva().getDono()))) {
+                return true;
+            }
+            return false;
+        } else if (carregaUsuarioAtivo().equals(a.getReserva().getHomologacao().getAnalista())) {
             return true;
         }
         return false;

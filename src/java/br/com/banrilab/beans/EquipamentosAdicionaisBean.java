@@ -70,12 +70,16 @@ public class EquipamentosAdicionaisBean implements Serializable {
                 return "Disponível";
             }
             if (e.getReserva() != null) {
-           if (!(e.getReserva().getDono().getNome().isEmpty())) {
-               SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-               return "Reservado para "+e.getReserva().getDono().getNome()+" até "+sdf.format(e.getReserva().getDataFim());
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                if (!(e.getReserva().getDono() == null)) {
+                    if (!(e.getReserva().getDono().getNome().isEmpty())) {
+                        return "Reservado para " + e.getReserva().getDono().getNome() + " até " + sdf.format(e.getReserva().getDataFim());
+                    } 
+                }
+                if (!(e.getReserva().getHomologacao() == null)) {
+                    return ("Reservado para "+e.getReserva().getFinalidade()+" até "+ sdf.format(e.getReserva().getDataFim()));
+                }
             }
-            else return "Reservado (sem dono)";
-        }
         }
         return "Não reservável";
     }

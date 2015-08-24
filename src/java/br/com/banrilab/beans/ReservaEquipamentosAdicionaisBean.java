@@ -107,9 +107,16 @@ public class ReservaEquipamentosAdicionaisBean implements Serializable {
         if (e.getReserva() == null) {
             if (e.isReservavel()) {
                 return true;
-            } else return false; 
+            } else {
+                return false;
+            }
         }
-        if ((e.isDisponivel() && e.isReservavel()) || (carregaUsuarioAtivo().equals(e.getReserva().getDono()))) {
+        if (e.getReserva().getHomologacao() == null) {
+            if ((e.isDisponivel() && e.isReservavel()) || (carregaUsuarioAtivo().equals(e.getReserva().getDono()))) {
+                return true;
+            }
+            return false;
+        } else if (carregaUsuarioAtivo().equals(e.getReserva().getHomologacao().getAnalista())) {
             return true;
         }
         return false;
