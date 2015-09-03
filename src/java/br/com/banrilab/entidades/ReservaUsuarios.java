@@ -5,6 +5,7 @@
  */
 package br.com.banrilab.entidades;
 
+import br.com.banrilab.converters.SampleEntity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
@@ -23,7 +24,7 @@ import javax.persistence.Temporal;
  */
 @Entity
 @Table(name="reserva_usuarios")
-public class ReservaUsuarios implements Serializable {
+public class ReservaUsuarios implements Serializable, SampleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -39,6 +40,8 @@ public class ReservaUsuarios implements Serializable {
     
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataFim;
+    
+    private String finalidade;
     
     
     public ReservaUsuarios() {
@@ -91,6 +94,15 @@ public class ReservaUsuarios implements Serializable {
         return hash;
     }
 
+    public String getFinalidade() {
+        return finalidade;
+    }
+
+    public void setFinalidade(String finalidade) {
+        this.finalidade = finalidade;
+    }
+
+    
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {

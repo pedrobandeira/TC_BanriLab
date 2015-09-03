@@ -61,8 +61,24 @@
                                                     </div>
                                                     <div class="col-md-4">				
                                                         <div class="form-group">
-                                                            <label for="OutputDataFim">Data solicitação</label><br/>
-                                                            <p:outputLabel id="OutputDataFim" class="form-control" value="#{homologacoesBean.homologacao.dataSolicitacao}">  
+                                                            <label for="OutputDataSolicitacao">Data solicitação</label><br/>
+                                                            <p:outputLabel id="OutputDataSolicitacao" class="form-control" value="#{homologacoesBean.homologacao.dataSolicitacao}">  
+                                                                <f:convertDateTime pattern="dd/MM/yyyy"/>  
+                                                            </p:outputLabel>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-5">               
+                                                        <div class="form-group">
+                                                            <label for="OutputAutorizador">Autorizador</label>
+                                                            <p:outputLabel class="form-control" id="OutputAutorizador" value="#{homologacoesBean.homologacao.autorizador.nome}" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">				
+                                                        <div class="form-group">
+                                                            <label for="OutputDataAutorizacao">Data autorização</label><br/>
+                                                            <p:outputLabel id="OutputDataAutorizacao" class="form-control" value="#{homologacoesBean.homologacao.dataAutorizacao}">  
                                                                 <f:convertDateTime pattern="dd/MM/yyyy"/>  
                                                             </p:outputLabel>
                                                         </div>
@@ -80,35 +96,29 @@
                                                     <label for="OutputAnalista">Analista</label>
                                                     <p:outputLabel id="OutputAnalista" value="#{homologacoesBean.homologacao.analista.nome}" class="form-control" />
                                                 </div>
-                                            
-                                            <div class="form-group">
-                                                <label for="InputDataFim">Data fim</label><br/>
-                                                <p:inputText style="width: 200px" class="form-control" placeholder="Data fim da homologação" id="InputDataFim" value="#{homologacoesBean.homologacao.dataFim}">  
-                                                    <f:convertDateTime pattern="dd/MM/yyyy"/>  
-                                                </p:inputText>
+
                                             </div>
-                                    </div>
 
-                                    <div class="modal-footer">
-                                        <h:commandButton class="btn btn-default" value="Fechar" action="#{homologacoesBean.fecharEditar}"/>
-                                        <h:commandButton class="btn btn-primary" value="Avançar" action="#{homologacoesBean.retornaReservaAmbiente}"/>
+                                            <div class="modal-footer">
+                                                <h:commandButton class="btn btn-default" value="Fechar" action="#{homologacoesBean.fecharEditar}"/>
+                                                <h:commandButton class="btn btn-primary" value="Abrir / Alterar" action="#{homologacoesBean.retornaAbrirHomologacao}"/>
+                                                <h:commandButton class="btn btn-success" value="Encerrar Homologação" action="#{homologacoesBean.encerrarHomologacao}" rendered="#{homologacoesBean.verificaEmAndamento(homologacoesBean.homologacao)}"/>
+                                            </div>
+                                        </h:form>
 
                                     </div>
-                                    </h:form>
 
                                 </div>
-
                             </div>
                         </div>
+
+
+                        <script type="text/javascript">
+                            $(window).load(function () {
+                                $('#editarHomologacao').modal('show');
+                            });
+                        </script>
                     </div>
-
-
-                    <script type="text/javascript">
-                        $(window).load(function () {
-                            $('#editarHomologacao').modal('show');
-                        });
-                    </script>
-                </div>
                 </div><!--/row-->
 
             </ui:define>

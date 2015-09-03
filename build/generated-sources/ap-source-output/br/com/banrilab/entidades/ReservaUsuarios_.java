@@ -12,6 +12,7 @@ public abstract class ReservaUsuarios_ {
 	public static volatile SingularAttribute<ReservaUsuarios, Long> id;
 	public static volatile SingularAttribute<ReservaUsuarios, Date> dataFim;
 	public static volatile SingularAttribute<ReservaUsuarios, Homologacoes> homologacao;
+	public static volatile SingularAttribute<ReservaUsuarios, String> finalidade;
 	public static volatile SingularAttribute<ReservaUsuarios, Usuarios> usuario;
 	public static volatile SingularAttribute<ReservaUsuarios, Date> dataInicio;
 

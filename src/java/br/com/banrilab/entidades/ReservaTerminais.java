@@ -5,6 +5,7 @@
  */
 package br.com.banrilab.entidades;
 
+import br.com.banrilab.converters.SampleEntity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
@@ -23,7 +24,7 @@ import javax.persistence.Temporal;
  */
 @Entity
 @Table(name="reserva_terminais")
-public class ReservaTerminais implements Serializable {
+public class ReservaTerminais implements Serializable, SampleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -36,6 +37,9 @@ public class ReservaTerminais implements Serializable {
     
     @ManyToOne
     private Usuarios dono;
+    
+    @ManyToOne
+    private ReservaUsuarios testador;
     
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataInicio;
@@ -104,6 +108,16 @@ public class ReservaTerminais implements Serializable {
     public void setFinalidade(String finalidade) {
         this.finalidade = finalidade;
     }
+
+    public ReservaUsuarios getTestador() {
+        return testador;
+    }
+
+    public void setTestador(ReservaUsuarios testador) {
+        this.testador = testador;
+    }
+    
+    
 
     @Override
     public int hashCode() {

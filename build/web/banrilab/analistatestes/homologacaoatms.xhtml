@@ -45,10 +45,6 @@
                                                         <h:outputText value="#{atm.nome}" />
                                                     </p:column>
 
-                                                    <p:column headerText="Descrição" style="width: 100px">
-                                                        <h:outputText value="#{atm.descricao}" />
-                                                    </p:column>
-
                                                     <p:column headerText="Modelo" style="width: 100px">
                                                         <h:outputText value="#{atm.modelo}" />
                                                     </p:column>
@@ -61,12 +57,12 @@
                                                         <p:outputLabel class="#{atmsBean.exibirTalonadora(atm)}" />
                                                     </p:column>
 
-                                                    <p:column headerText="Status" class="text-center">
+                                                    <p:column headerText="Status" class="text-center" style="width: 120px">
                                                         <h:outputText value="#{atmsBean.exibirDisponibilidade(atm)}" />
                                                     </p:column>
 
                                                     <p:column headerText="Reservar" class="text-center" style="width: 85px">
-                                                        <h:commandLink class="glyphicon glyphicon-calendar" action="#{homologacoesBean.adicionarReservaAtmHomologacao(a)}" rendered="#{reservaAtmsBean.verificaDono(atm)}" /> 
+                                                        <h:commandLink class="glyphicon glyphicon-calendar" action="#{homologacoesBean.adicionarReservaAtmHomologacao(atm)}" rendered="#{reservaAtmsBean.verificaDono(atm)}" /> 
                                                     </p:column>
                                                 </p:dataTable>
                                             </div>

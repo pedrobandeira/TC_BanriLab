@@ -54,12 +54,14 @@ public class Homologacoes implements Serializable {
     private List<ReservaUsuarios> reservasTestadores;
     
     
-	@Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataSolicitacao;
-	@Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataAutorizacao;
-	@Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataAbertura;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dataInicioExecucao;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataFim;
     
@@ -250,6 +252,16 @@ public class Homologacoes implements Serializable {
         hash = 73 * hash + Objects.hashCode(this.id);
         return hash;
     }
+
+    public Date getDataInicioExecucao() {
+        return dataInicioExecucao;
+    }
+
+    public void setDataInicioExecucao(Date dataInicioExecucao) {
+        this.dataInicioExecucao = dataInicioExecucao;
+    }
+    
+    
 
     @Override
     public boolean equals(Object obj) {

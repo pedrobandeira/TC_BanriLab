@@ -28,6 +28,7 @@ public abstract class Homologacoes_ {
 	public static volatile ListAttribute<Homologacoes, ReservaCartoesCredito> reservasCartoesCreditos;
 	public static volatile ListAttribute<Homologacoes, ReservaAtms> reservasAtms;
 	public static volatile SingularAttribute<Homologacoes, Integer> ciclo;
+	public static volatile SingularAttribute<Homologacoes, Date> dataInicioExecucao;
 	public static volatile ListAttribute<Homologacoes, ReservaEquipamentosAdicionais> reservasEquipamentosAdicionais;
 	public static volatile SingularAttribute<Homologacoes, Usuarios> analista;
 	public static volatile ListAttribute<Homologacoes, ReservaServidores> reservasServidores;

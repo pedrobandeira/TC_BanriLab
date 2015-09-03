@@ -10,6 +10,7 @@ import br.com.banrilab.dao.UsuariosDaoInterface;
 import br.com.banrilab.entidades.Login;
 import br.com.banrilab.entidades.Usuarios;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -47,6 +48,7 @@ public class UsuariosBean implements Serializable {
     
     public String adicionarUsuario() {
         if (usuario.getId() == null) {
+            usuario.setDisponivel(true);
             usuario.setSenha(usuario.getMatricula());
         }
         usuarioDao.addUsuario(usuario);
@@ -96,6 +98,21 @@ public class UsuariosBean implements Serializable {
 
     public void setUsuario(Usuarios u) {
         this.usuario = u;
+    }
+    
+    public String exibirDisponibilidade(Usuarios u) {
+            if (u.isDisponivel()) {
+                return "Disponível";
+            }
+            if (u.getReserva() != null) {
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                if (!(u.getReserva().getHomologacao() == null)) {
+                    if (!(u.getReserva().getHomologacao().getSistema() == null)) {
+                        return "Alocado para " + u.getReserva().getHomologacao().getSistema().getNome()+" versão "+u.getReserva().getHomologacao().getVersaoSistema()+" até " + sdf.format(u.getReserva().getDataFim());
+                    } 
+                }
+            }
+        return "Não reservável";
     }
 
     @Override
