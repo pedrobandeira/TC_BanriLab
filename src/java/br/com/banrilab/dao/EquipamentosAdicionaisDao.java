@@ -47,6 +47,7 @@ public class EquipamentosAdicionaisDao implements EquipamentosAdicionaisDaoInter
        
         javax.persistence.criteria.CriteriaQuery cq = entityManager.getCriteriaBuilder().createQuery();
         cq.select(cq.from(EquipamentosAdicionais.class));
+        cq.orderBy(entityManager.getCriteriaBuilder().asc(cq.from(EquipamentosAdicionais.class).get("nome")));
         return entityManager.createQuery(cq).getResultList();
     }
 

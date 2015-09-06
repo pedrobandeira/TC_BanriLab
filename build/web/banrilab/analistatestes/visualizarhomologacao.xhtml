@@ -99,6 +99,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <h:commandButton class="btn btn-default" value="Fechar" action="#{homologacoesBean.fecharEditar}"/>
+                                                <h:commandButton class="btn btn-default" value="Visualizar ambiente utilizado" action="#{homologacoesBean.retornaVisualizarAmbienteHomologacao()}" rendered="#{homologacoesBean.verificaEmAndamentoConcluidas(homologacoesBean.homologacao)}"/>
                                             </div>
                                         </h:form>
 

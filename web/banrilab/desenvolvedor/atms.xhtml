@@ -35,8 +35,7 @@
             <h:form>
                 <p:dataTable var="atm" value="#{atmsBean.atms}" editable="false" >
                     <p:column headerText="ATM" style="width: 80px">
- 
-                        <h:outputText value="#{atm.nome}" />
+                        <h:outputText value="#{atm.nome}"/>
                     </p:column>
                 
                     <p:column headerText="Descrição" style="width: 100px">
@@ -61,8 +60,7 @@
                 
                     <p:column headerText="Status" class="text-center">
                         <h:outputText value="#{atmsBean.exibirDisponibilidade(atm)}" />
-                    </p:column>
-                
+                    </p:column>                
                     <p:column headerText="Reservar" class="text-center" style="width: 85px">
                         <h:commandLink class="glyphicon glyphicon-calendar" action="#{reservaAtmsBean.carregarAtm(atm)}" rendered="#{reservaAtmsBean.verificaDono(atm)}" /> 
                     </p:column>

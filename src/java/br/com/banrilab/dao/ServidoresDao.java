@@ -46,6 +46,7 @@ public class ServidoresDao implements ServidoresDaoInterface {
        
         javax.persistence.criteria.CriteriaQuery cq = entityManager.getCriteriaBuilder().createQuery();
         cq.select(cq.from(Servidores.class));
+        cq.orderBy(entityManager.getCriteriaBuilder().asc(cq.from(Servidores.class).get("nome")));
         return entityManager.createQuery(cq).getResultList();
     }
 

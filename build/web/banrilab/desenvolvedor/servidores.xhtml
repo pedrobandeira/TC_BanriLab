@@ -33,26 +33,25 @@
             </div>
             <h:form>
                 <p:dataTable var="servidor" value="#{servidoresBean.servidores}" editable="false">
-                    <p:column headerText="Servidor" style="width: 100px">
+                    <p:column headerText="Servidor" style="width: 90px" class="text-center">
                         <h:outputText value="#{servidor.nome}" />
                     </p:column>
                 
-                    <p:column headerText="Descrição" style="width: 100px">
+                    <p:column headerText="Descrição" style="width: 100px" class="text-center">
                         <h:outputText value="#{servidor.descricao}" />
                     </p:column>
 
-                    <p:column headerText="Modelo" style="width: 100px">
+                    <p:column headerText="Modelo" style="width: 80px" class="text-center">
                         <h:outputText value="#{servidor.modelo}" />
                     </p:column>
 
-                    <p:column headerText="Patrimônio" style="width: 100px">
+                    <p:column headerText="Patrimônio" style="width: 95px" class="text-center">
                         <h:outputText value="#{servidor.patrimonio}" />
                     </p:column>
                 
                     <p:column headerText="Status" class="text-center">
                         <h:outputText value="#{servidoresBean.exibirDisponibilidade(servidor)}" />
                     </p:column>
-                
                     <p:column headerText="Reservar" class="text-center" style="width: 85px">
                         <h:commandLink class="glyphicon glyphicon-calendar" action="#{reservaServidoresBean.carregarServidor(servidor)}" rendered="#{reservaServidoresBean.verificaDono(servidor)}" /> 
                     </p:column>

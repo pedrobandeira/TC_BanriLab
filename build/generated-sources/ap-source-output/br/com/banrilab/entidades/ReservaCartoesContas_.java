@@ -14,6 +14,7 @@ public abstract class ReservaCartoesContas_ {
 	public static volatile SingularAttribute<ReservaCartoesContas, Homologacoes> homologacao;
 	public static volatile SingularAttribute<ReservaCartoesContas, String> finalidade;
 	public static volatile SingularAttribute<ReservaCartoesContas, Date> dataInicio;
+	public static volatile SingularAttribute<ReservaCartoesContas, ReservaUsuarios> testador;
 	public static volatile SingularAttribute<ReservaCartoesContas, CartoesContas> cartao;
 	public static volatile SingularAttribute<ReservaCartoesContas, Usuarios> dono;
 

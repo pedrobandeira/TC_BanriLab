@@ -62,6 +62,7 @@ public class HomologacoesDao implements HomologacoesDaoInterface {
        
         javax.persistence.criteria.CriteriaQuery cq = entityManager.getCriteriaBuilder().createQuery();
         cq.select(cq.from(Homologacoes.class));
+        cq.orderBy(entityManager.getCriteriaBuilder().asc(cq.from(Homologacoes.class).get("dataSolicitacao")));
         return entityManager.createQuery(cq).getResultList();
     }
 	/*
@@ -128,7 +129,8 @@ public class HomologacoesDao implements HomologacoesDaoInterface {
         CriteriaQuery<Homologacoes> c = cb.createQuery(Homologacoes.class);
         Root<Homologacoes> homologacoes = c.from(Homologacoes.class);
         c.where(homologacoes.get("status").in("1","2","3"));
-
+        c.orderBy(cb.asc(homologacoes.get("dataSolicitacao")));
+        
         TypedQuery q = entityManager.createQuery(c);
         return q.getResultList();
     }

@@ -73,7 +73,7 @@ public class ReservaServidoresBean implements Serializable {
     }
     
     public String removerReserva() {
-        //this.reservaAtm = r;
+        
         this.reservaServidor.getServidor().setDisponivel(true);
         this.reservaServidoresDao.addServidores(reservaServidor.getServidor());
         reservaServidoresDao.removeReservaServidores(this.reservaServidor);

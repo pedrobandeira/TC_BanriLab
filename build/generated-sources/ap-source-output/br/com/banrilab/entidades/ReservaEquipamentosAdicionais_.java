@@ -14,6 +14,7 @@ public abstract class ReservaEquipamentosAdicionais_ {
 	public static volatile SingularAttribute<ReservaEquipamentosAdicionais, Homologacoes> homologacao;
 	public static volatile SingularAttribute<ReservaEquipamentosAdicionais, String> finalidade;
 	public static volatile SingularAttribute<ReservaEquipamentosAdicionais, Date> dataInicio;
+	public static volatile SingularAttribute<ReservaEquipamentosAdicionais, ReservaUsuarios> testador;
 	public static volatile SingularAttribute<ReservaEquipamentosAdicionais, Usuarios> dono;
 	public static volatile SingularAttribute<ReservaEquipamentosAdicionais, EquipamentosAdicionais> equipamento;
 

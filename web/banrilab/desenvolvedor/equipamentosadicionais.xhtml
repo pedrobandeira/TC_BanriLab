@@ -33,16 +33,16 @@
             </div>
             <h:form>
                 <p:dataTable var="equipamento" value="#{equipamentosAdicionaisBean.equipamentosAdicionais}" editable="false">
-                    <p:column headerText="Equipamento Adicional">
+                    <p:column headerText="Equipamento Adicional" style="width: 110px" class="text-center">
  
                         <h:outputText value="#{equipamento.nome}" />
                     </p:column>
                 
-                    <p:column headerText="Descrição">
+                    <p:column headerText="Descrição" style="width: 100px" class="text-center">
                         <h:outputText value="#{equipamento.descricao}" />
                     </p:column>
 
-                    <p:column headerText="Patrimônio">
+                    <p:column headerText="Patrimônio" style="width: 95px" class="text-center">
                         <h:outputText value="#{equipamento.patrimonio}" />
                     </p:column>
                 

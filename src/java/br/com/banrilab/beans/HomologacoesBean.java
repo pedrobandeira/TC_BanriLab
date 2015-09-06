@@ -81,6 +81,7 @@ public class HomologacoesBean implements Serializable {
         this.homologacao.setStatus(2);
         this.homologacao.setDataAutorizacao(retornaDataAtual());
 	this.homologacao.setAutorizador(carregaUsuarioAtivo());
+        this.homologacao.setCiclo(1);
         homologacaoDao.addHomologacao(homologacao);
         limpaCampos();
         return "homologacoes";
@@ -98,6 +99,62 @@ public class HomologacoesBean implements Serializable {
         this.homologacao.setStatus(4);
         this.homologacao.setDataFim(retornaDataAtual());
         // tem que fazer um metodo para excluir as reservas
+        if (!(homologacao.getReservasServidores().isEmpty())) {
+            for (ReservaServidores reservaServidor: homologacao.getReservasServidores()) {
+                reservaServidor.getServidor().setDisponivel(true);
+                reservaServidor.getServidor().setReserva(null);
+                homologacaoDao.addServidor(reservaServidor.getServidor());
+            }
+            //homologacao.getReservasServidores().clear();
+        }
+        if (!(homologacao.getReservasAtms().isEmpty())) {
+            for (ReservaAtms reservaAtm: homologacao.getReservasAtms()) {
+                reservaAtm.getAtm().setDisponivel(true);
+                reservaAtm.getAtm().setReserva(null);
+                homologacaoDao.addAtms(reservaAtm.getAtm());
+            }
+            //homologacao.getReservasAtms().clear();
+        }
+        if (!(homologacao.getReservasTerminais().isEmpty())) {
+            for (ReservaTerminais reservaTerminal: homologacao.getReservasTerminais()) {
+                reservaTerminal.getTerminal().setDisponivel(true);
+                reservaTerminal.getTerminal().setReserva(null);
+                homologacaoDao.addTerminais(reservaTerminal.getTerminal());
+            }
+            //homologacao.getReservasTerminais().clear();
+        }
+        if (!(homologacao.getReservasEquipamentosAdicionais().isEmpty())) {
+            for (ReservaEquipamentosAdicionais reservaEqp: homologacao.getReservasEquipamentosAdicionais()) {
+                reservaEqp.getEquipamento().setDisponivel(true);
+                reservaEqp.getEquipamento().setReserva(null);
+                homologacaoDao.addEquipamentosAdicionais(reservaEqp.getEquipamento());
+            }
+            //homologacao.getReservasEquipamentosAdicionais().clear();
+        }
+        if (!(homologacao.getReservasCartoesCreditos().isEmpty())) {
+            for (ReservaCartoesCredito reservaCartaoCredito: homologacao.getReservasCartoesCreditos()) {
+                reservaCartaoCredito.getCartaoCredito().setDisponivel(true);
+                reservaCartaoCredito.getCartaoCredito().setReserva(null);
+                homologacaoDao.addCartoesCredito(reservaCartaoCredito.getCartaoCredito());
+            }
+            //homologacao.getReservasCartoesCreditos().clear();
+        }
+        if (!(homologacao.getReservasCartoesContas().isEmpty())) {
+            for (ReservaCartoesContas reservaCartaoConta: homologacao.getReservasCartoesContas()) {
+                reservaCartaoConta.getCartaoConta().setDisponivel(true);
+                reservaCartaoConta.getCartaoConta().setReserva(null);
+                homologacaoDao.addCartoesContas(reservaCartaoConta.getCartaoConta());
+            }
+            //homologacao.getReservasCartoesContas().clear();
+        }
+        if (!(homologacao.getReservasTestadores().isEmpty())) {
+            for (ReservaUsuarios reservaTestador: homologacao.getReservasTestadores()) {
+                reservaTestador.getUsuario().setDisponivel(true);
+                reservaTestador.getUsuario().setReserva(null);
+                homologacaoDao.addUsuarios(reservaTestador.getUsuario());
+            }
+            //homologacao.getReservasTestadores().clear();
+        }
         homologacaoDao.addHomologacao(homologacao);
         limpaCampos();
         return "homologacoes";
@@ -161,6 +218,17 @@ public class HomologacoesBean implements Serializable {
     
     public String retornaTestadoresEquipamentos() {
         return "homologacaotestadoresequipamentos";
+    }
+    
+    public String retornaVisualizarAmbienteHomologacao() {
+        return "visualizarambientehomologacao";
+    }
+    
+    public boolean verificaPossuiReservaTestadores() {
+        if (this.homologacao.getReservasTestadores().isEmpty()) {
+            return false;
+        }
+        return true;
     }
     
     public boolean verificaPossuiReservaServidores() {
@@ -232,13 +300,19 @@ public class HomologacoesBean implements Serializable {
         return false;
     }
 	
-	public boolean verificaSolicitadasAutorizadas (Homologacoes h) {
+    public boolean verificaSolicitadasAutorizadas (Homologacoes h) {
         if ((h.getStatus() == 1) || (h.getStatus() == 2)) return true;
         return false;
     }
 	
     public boolean verificaAutorizadasEmAndamento (Homologacoes h) {
         if (((h.getStatus() == 2) || (h.getStatus() == 3)) && (carregaUsuarioAtivo().equals(h.getAnalista()))) 
+                return true;
+        return false;
+    }
+    
+    public boolean verificaEmAndamentoConcluidas (Homologacoes h) {
+        if (((h.getStatus() == 4) || (h.getStatus() == 3))) 
                 return true;
         return false;
     }
@@ -408,15 +482,15 @@ public class HomologacoesBean implements Serializable {
            reserva.setDataInicio(retornaDataAtual());
            reserva.setFinalidade("Homologação "+homologacao.getSistema().getNome()+" versão "+homologacao.getVersaoSistema());
            reserva.setHomologacao(homologacao);
-           reserva.setEquipamentoAdicional(e);
+           reserva.setEquipamento(e);
            reservasEquipamentosAdicionais = homologacao.getReservasEquipamentosAdicionais();
            reservasEquipamentosAdicionais.add(reserva);
            homologacao.setReservasEquipamentosAdicionais(reservasEquipamentosAdicionais);
            homologacaoDao.addReservaEquipamentosAdicionais(reserva);
-           reserva.getEquipamentoAdicional().setDisponivel(false);
-           reserva.getEquipamentoAdicional().setReserva(reserva);
+           reserva.getEquipamento().setDisponivel(false);
+           reserva.getEquipamento().setReserva(reserva);
     
-           homologacaoDao.addEquipamentosAdicionais(reserva.getEquipamentoAdicional());
+           homologacaoDao.addEquipamentosAdicionais(reserva.getEquipamento());
           
         return "homologacaoequipamentosadicionais";
     }

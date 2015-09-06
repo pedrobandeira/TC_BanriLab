@@ -38,6 +38,7 @@ public class CartoesContasDao implements CartoesContasDaoInterface{
     public List<CartoesContas> getCartoesContas() {
         javax.persistence.criteria.CriteriaQuery cq = entityManager.getCriteriaBuilder().createQuery();
         cq.select(cq.from(CartoesContas.class));
+        cq.orderBy(entityManager.getCriteriaBuilder().asc(cq.from(CartoesContas.class).get("agencia")), entityManager.getCriteriaBuilder().asc(cq.from(CartoesContas.class).get("nome")));
         return entityManager.createQuery(cq).getResultList();
     }
     

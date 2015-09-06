@@ -10,6 +10,8 @@
         <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
         <meta charset="utf-8"/>
         <title>Equipes do Laboratório de Testes</title>
+        <link rel="icon" href="resources/images/banrisul-icone.png" type="image/x-icon" />
+        <link rel="shortcut icon" href="resources/images/banrisul-icone.png" type="image/x-icon" />
         <meta name="generator" content="Bootply" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
         <h:outputStylesheet name="css/bootstrap.min.css"/>
@@ -23,34 +25,97 @@
     <h:body>
         <ui:composition template="template.xhtml">
             <ui:define name="content">
-
+                
                 <div class="col-sm-9 col-md-10 main" style="width: 100%">           
 
                     <div class="panel panel-default">
                         <!-- Default panel contents -->
-                        <div class="panel-heading">Equipe Testes Laboratório de Testes</div>
+                        <div class="panel-heading">Equipe Coordenadores de Testes Laboratório de Testes</div>
+                        <div class="panel-body">
+
+                            <h:form>
+                                <p:dataTable var="eqpcoord" value="#{usuariosBean.equipeCoordenadores}" editable="false">
+                                    <p:column headerText="Nome" style="width: 150px" class="text-center">
+                                        <h:outputText value="#{eqpcoord.nome}" />
+                                    </p:column>
+
+                                    <p:column headerText="Matrícula" style="width: 90px" class="text-center">
+                                        <h:outputText value="#{eqpcoord.matricula}" />
+                                    </p:column>
+
+                                    <p:column headerText="E-mail" style="width: 120px" class="text-center">
+                                        <h:outputText  value="#{eqpcoord.email}" />
+                                    </p:column>
+
+                                    <p:column headerText="Perfil" style="width: 120px" class="text-center">
+                                        <h:outputText  value="#{usuariosBean.exibirPerfil(eqpcoord)}" />
+                                    </p:column>
+                                </p:dataTable>
+
+                            </h:form>
+                        </div>
+                    </div>
+                </div><!--/row-->
+                
+                <div class="col-sm-9 col-md-10 main" style="width: 100%">           
+
+                    <div class="panel panel-default">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading">Equipe Analistas de Testes Laboratório de Testes</div>
+                        <div class="panel-body">
+
+                            <h:form>
+                                <p:dataTable var="eqpanalista" value="#{usuariosBean.equipeAnalistas}" editable="false">
+                                    <p:column headerText="Nome" style="width: 150px" class="text-center">
+                                        <h:outputText value="#{eqpanalista.nome}" />
+                                    </p:column>
+
+                                    <p:column headerText="Matrícula" style="width: 90px" class="text-center">
+                                        <h:outputText value="#{eqpanalista.matricula}" />
+                                    </p:column>
+
+                                    <p:column headerText="E-mail" style="width: 120px" class="text-center">
+                                        <h:outputText  value="#{eqpanalista.email}" />
+                                    </p:column>
+
+                                    <p:column headerText="Perfil" style="width: 120px" class="text-center">
+                                        <h:outputText  value="#{usuariosBean.exibirPerfil(eqpanalista)}" />
+                                    </p:column>
+                                </p:dataTable>
+
+                            </h:form>
+                        </div>
+                    </div>
+                </div><!--/row-->
+                
+                
+                <div class="col-sm-9 col-md-10 main" style="width: 100%">           
+
+                    <div class="panel panel-default">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading">Equipe Testadores Laboratório de Testes</div>
                         <div class="panel-body">
 
                             <h:form>
                                 <p:dataTable var="eqptestes" value="#{usuariosBean.equipeTestes}" editable="false">
-                                    <p:column headerText="Nome">
+                                    <p:column headerText="Nome" style="width: 200px" class="text-center">
                                         <h:outputText value="#{eqptestes.nome}" />
                                     </p:column>
 
-                                    <p:column headerText="Matrícula" style="width: 90px">
+                                    <p:column headerText="Matrícula" style="width: 90px" class="text-center">
                                         <h:outputText value="#{eqptestes.matricula}" />
                                     </p:column>
 
-                                    <p:column headerText="E-mail" style="width: 260px">
+                                    <p:column headerText="E-mail" style="width: 170px" class="text-center">
                                         <h:outputText  value="#{eqptestes.email}" />
                                     </p:column>
 
-                                    <p:column headerText="Perfil">
+                                    <p:column headerText="Perfil" style="width: 120px" class="text-center">
                                         <h:outputText  value="#{usuariosBean.exibirPerfil(eqptestes)}" />
                                     </p:column>
 
-                                    <p:column headerText="Status" style="width: 100px">
-                                        <h:outputText value="Disponível" />
+                                    <p:column headerText="Status" class="text-center">
+                                        <h:outputText value="#{usuariosBean.exibirDisponibilidade(eqptestes)}" />
                                     </p:column>
                                 </p:dataTable>
 
@@ -68,24 +133,20 @@
 
                             <h:form>
                                 <p:dataTable var="eqpdes" value="#{usuariosBean.equipeDesenvolvimento}" editable="false">
-                                    <p:column headerText="Nome">
+                                    <p:column headerText="Nome" style="width: 150px" class="text-center">
                                         <h:outputText value="#{eqpdes.nome}" />
                                     </p:column>
 
-                                    <p:column headerText="Matrícula" style="width: 90px">
+                                    <p:column headerText="Matrícula" style="width: 90px" class="text-center">
                                         <h:outputText value="#{eqpdes.matricula}" />
                                     </p:column>
 
-                                    <p:column headerText="E-mail" style="width: 260px">
+                                    <p:column headerText="E-mail" style="width: 120px" class="text-center">
                                         <h:outputText  value="#{eqpdes.email}" />
                                     </p:column>
 
-                                    <p:column headerText="Perfil">
+                                    <p:column headerText="Perfil" style="width: 120px" class="text-center">
                                         <h:outputText  value="#{usuariosBean.exibirPerfil(eqpdes)}" />
-                                    </p:column>
-
-                                    <p:column headerText="Status" style="width: 100px">
-                                        <h:outputText value="Disponível" />
                                     </p:column>
                                 </p:dataTable>
                             </h:form>
@@ -101,24 +162,20 @@
 
                             <h:form>
                                 <p:dataTable var="eqpadm" value="#{usuariosBean.equipeAdmLaboratorio}" editable="false">
-                                    <p:column headerText="Nome">
+                                    <p:column headerText="Nome" style="width: 150px" class="text-center">
                                         <h:outputText value="#{eqpadm.nome}" />
                                     </p:column>
 
-                                    <p:column headerText="Matrícula" style="width: 90px">
+                                    <p:column headerText="Matrícula" style="width: 90px" class="text-center">
                                         <h:outputText value="#{eqpadm.matricula}" />
                                     </p:column>
 
-                                    <p:column headerText="E-mail" style="width: 260px">
+                                    <p:column headerText="E-mail" style="width: 120px" class="text-center">
                                         <h:outputText  value="#{eqpadm.email}" />
                                     </p:column>
 
-                                    <p:column headerText="Perfil">
+                                    <p:column headerText="Perfil" style="width: 120px" class="text-center">
                                         <h:outputText  value="#{usuariosBean.exibirPerfil(eqpadm)}" />
-                                    </p:column>
-
-                                    <p:column headerText="Status" style="width: 100px">
-                                        <h:outputText value="Disponível" />
                                     </p:column>
                                 </p:dataTable>
                             </h:form>

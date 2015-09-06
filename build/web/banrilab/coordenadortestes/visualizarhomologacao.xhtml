@@ -6,105 +6,122 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-   	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-	<meta charset="utf-8"/>
-	<title>Homologações do Laboratório de Testes</title>
-	<meta name="generator" content="Bootply" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-	<h:outputStylesheet name="css/bootstrap.min.css"/>
-	<!--[if lt IE 9]>
-		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+        <meta charset="utf-8"/>
+        <title>Homologações do Laboratório de Testes</title>
+        <meta name="generator" content="Bootply" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+        <h:outputStylesheet name="css/bootstrap.min.css"/>
+        <!--[if lt IE 9]>
+                <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
         <h:outputStylesheet name="css/styles.css"/>
-   
+
     </h:head>
     <h:body>
         <ui:composition template="template.xhtml">
-        <ui:define name="content">
+            <ui:define name="content">
 
-        <div class="col-sm-9 col-md-10 main" >
-                       
-            <div class="panel panel-default">
-        
-        <!-- Modal visualizar Homologação -->
-        <div class="modal fade" data-backdrop="static" id="visualizarHomologacao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel">Visualizar Homologação</h4>
-                            </div>
-                            <div class="modal-body">
-                                
-                                <h:form>
-                                    <div class="container-fluid">
-                                    <div class="row">
-                                    <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="OutputSistema">Sistema</label>
-                                        <p:outputLabel class="form-control" id="OutputSistema" value="#{homologacoesBean.homologacao.sistema.nome}" />
+                <div class="col-sm-9 col-md-10 main" >
+
+                    <div class="panel panel-default">
+
+                        <!-- Modal visualizar Homologação -->
+                        <div class="modal fade" data-backdrop="static" id="visualizarHomologacao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" id="myModalLabel">Visualizar Homologação</h4>
                                     </div>
+                                    <div class="modal-body">
+
+                                        <h:form>
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="OutputSistema">Sistema</label>
+                                                            <p:outputLabel class="form-control" id="OutputSistema" value="#{homologacoesBean.homologacao.sistema.nome}" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="OutputVersao">Versão</label>
+                                                            <p:outputLabel class="form-control" id="OutputVersao" value="#{homologacoesBean.homologacao.versaoSistema}"/>                                       
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-5">               
+                                                        <div class="form-group">
+                                                            <label for="OutputSolicitante">Solicitante</label>
+                                                            <p:outputLabel class="form-control" id="OutputSolicitante" value="#{homologacoesBean.homologacao.solicitante.nome}" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">				
+                                                        <div class="form-group">
+                                                            <label for="OutputDataSolicitacao">Data solicitação</label><br/>
+                                                            <p:outputLabel id="OutputDataSolicitacao" class="form-control" value="#{homologacoesBean.homologacao.dataSolicitacao}">  
+                                                                <f:convertDateTime pattern="dd/MM/yyyy"/>  
+                                                            </p:outputLabel>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-5">               
+                                                        <div class="form-group">
+                                                            <label for="OutputAutorizador">Autorizador</label>
+                                                            <p:outputLabel class="form-control" id="OutputAutorizador" value="#{homologacoesBean.homologacao.autorizador.nome}" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">				
+                                                        <div class="form-group">
+                                                            <label for="OutputDataAutorizacao">Data autorização</label><br/>
+                                                            <p:outputLabel id="OutputDataAutorizacao" class="form-control" value="#{homologacoesBean.homologacao.dataAutorizacao}">  
+                                                                <f:convertDateTime pattern="dd/MM/yyyy"/>  
+                                                            </p:outputLabel>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="OutputRequisitos">Requisitos</label>
+                                                    <p:inputTextarea disabled="true" class="form-control" id="OutputRequisitos" value="#{homologacoesBean.homologacao.requisitos}"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="OutputObservacoes">Observações</label>
+                                                    <p:inputTextarea disabled="true" class="form-control" id="OutputObservacoes" value="#{homologacoesBean.homologacao.observacoes}"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="OutputAnalista">Analista</label>
+                                                    <p:outputLabel class="form-control" value="#{homologacoesBean.homologacao.analista.nome}" />
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <h:commandButton class="btn btn-default" value="Fechar" action="#{homologacoesBean.fecharEditar}"/>
+                                                <h:commandButton class="btn btn-default" value="Visualizar ambiente utilizado" action="#{homologacoesBean.retornaVisualizarAmbienteHomologacao()}" rendered="#{homologacoesBean.verificaEmAndamentoConcluidas(homologacoesBean.homologacao)}"/>
+                                            </div>
+                                        </h:form>
+
                                     </div>
-                                        <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="OutputVersao">Versão</label>
-                                        <p:outputLabel class="form-control" id="OutputVersao" value="#{homologacoesBean.homologacao.versaoSistema}"/>                                       
-                                       </div>
-                                        </div>
-                                    </div>
-									
-				    <div class="row">
-                                    <div class="col-md-5">               
-                                    <div class="form-group">
-                                        <label for="OutputSolicitante">Solicitante</label>
-                                        <p:outputLabel class="form-control" id="OutputSolicitante" value="#{homologacoesBean.homologacao.solicitante.nome}" />
-                                    </div>
-                                    </div>
-					<div class="col-md-4">				
-                                    <div class="form-group">
-                                        <label for="OutputDataFim">Data solicitação</label><br/>
-                                        <p:outputLabel id="OutputDataFim" class="form-control" value="#{homologacoesBean.homologacao.dataSolicitacao}">  
-                                            <f:convertDateTime pattern="dd/MM/yyyy"/>  
-                                        </p:outputLabel>
-                                    </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="OutputRequisitos">Requisitos</label>
-                                        <p:inputTextarea disabled="true" class="form-control" id="OutputRequisitos" value="#{homologacoesBean.homologacao.requisitos}"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="OutputObservacoes">Observações</label>
-                                        <p:inputTextarea disabled="true" class="form-control" id="OutputObservacoes" value="#{homologacoesBean.homologacao.observacoes}"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="OutputAnalista">Analista</label>
-                                        <p:outputLabel class="form-control" value="#{homologacoesBean.homologacao.analista.nome}" />
-                                    </div>
+
                                 </div>
-                                    <div class="modal-footer">
-                                        <h:commandButton class="btn btn-default" value="Fechar" action="#{homologacoesBean.fecharEditar}"/>
-                                    </div>
-                                </h:form>
-                                
                             </div>
-
                         </div>
+                        <script type="text/javascript">
+                            $(window).load(function () {
+                                $('#visualizarHomologacao').modal('show');
+                            });
+                        </script>
                     </div>
-                </div>
-        <script type="text/javascript">
-        $(window).load(function(){
-        $('#visualizarHomologacao').modal('show');
-         });
-        </script>
-    </div>
-      </div><!--/row-->
-	
-        </ui:define>
-         </ui:composition>
-        
-	<!-- script references -->
+                </div><!--/row-->
+
+            </ui:define>
+        </ui:composition>
+
+        <!-- script references -->
         <h:outputScript name="js/jquery-1.11.2.min.js"/>
-	<h:outputScript name="js/bootstrap.min.js"/>
+        <h:outputScript name="js/bootstrap.min.js"/>
         <h:outputScript name="js/scripts.js"/>
 
     </h:body>

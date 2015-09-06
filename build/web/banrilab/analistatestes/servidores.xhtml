@@ -33,24 +33,24 @@
             </div>
             <h:form>
                 <p:dataTable var="servidor" value="#{servidoresBean.servidores}" editable="false">
-                    <p:column headerText="Servidor">
+                    <p:column headerText="Servidor" style="width: 90px" class="text-center">
                         <h:outputText value="#{servidor.nome}" />
                     </p:column>
                 
-                    <p:column headerText="Descrição">
+                    <p:column headerText="Descrição" style="width: 100px" class="text-center">
                         <h:outputText value="#{servidor.descricao}" />
                     </p:column>
 
-                    <p:column headerText="Modelo">
+                    <p:column headerText="Modelo" style="width: 80px" class="text-center">
                         <h:outputText value="#{servidor.modelo}" />
                     </p:column>
 
-                    <p:column headerText="Patrimônio">
+                    <p:column headerText="Patrimônio" style="width: 95px" class="text-center">
                         <h:outputText value="#{servidor.patrimonio}" />
                     </p:column>
                 
-                    <p:column headerText="Status" style="width: 100px">
-                        <h:outputText value="Disponível" />
+                    <p:column headerText="Status" class="text-center">
+                        <h:outputText value="#{servidoresBean.exibirDisponibilidade(servidor)}" />
                     </p:column>
                 </p:dataTable>
           

@@ -15,6 +15,7 @@ public abstract class ReservaTerminais_ {
 	public static volatile SingularAttribute<ReservaTerminais, Terminais> terminal;
 	public static volatile SingularAttribute<ReservaTerminais, String> finalidade;
 	public static volatile SingularAttribute<ReservaTerminais, Date> dataInicio;
+	public static volatile SingularAttribute<ReservaTerminais, ReservaUsuarios> testador;
 	public static volatile SingularAttribute<ReservaTerminais, Usuarios> dono;
 
 }

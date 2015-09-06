@@ -47,6 +47,7 @@ public class TerminaisDao implements TerminaisDaoInterface {
        
         javax.persistence.criteria.CriteriaQuery cq = entityManager.getCriteriaBuilder().createQuery();
         cq.select(cq.from(Terminais.class));
+        cq.orderBy(entityManager.getCriteriaBuilder().asc(cq.from(Terminais.class).get("nome")));
         return entityManager.createQuery(cq).getResultList();
     }
 

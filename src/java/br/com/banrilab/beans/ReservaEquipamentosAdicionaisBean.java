@@ -55,10 +55,10 @@ public class ReservaEquipamentosAdicionaisBean implements Serializable {
            
            this.reservaEquipamentoAdicional.setDataInicio(retornaDataAtual());
            reservaEquipamentosAdicionaisDao.addReservaEquipamentosAdicionais(reservaEquipamentoAdicional);
-           this.reservaEquipamentoAdicional.getEquipamentoAdicional().setDisponivel(false);
-           this.reservaEquipamentoAdicional.getEquipamentoAdicional().setReserva(reservaEquipamentoAdicional);
+           this.reservaEquipamentoAdicional.getEquipamento().setDisponivel(false);
+           this.reservaEquipamentoAdicional.getEquipamento().setReserva(reservaEquipamentoAdicional);
     
-           this.reservaEquipamentosAdicionaisDao.addEquipamentosAdicionais(this.reservaEquipamentoAdicional.getEquipamentoAdicional());
+           this.reservaEquipamentosAdicionaisDao.addEquipamentosAdicionais(this.reservaEquipamentoAdicional.getEquipamento());
            limpaCampos();
           
         return "equipamentosadicionais";
@@ -66,7 +66,7 @@ public class ReservaEquipamentosAdicionaisBean implements Serializable {
     
     public void limpaCampos() {
         this.reservaEquipamentoAdicional.setId(null);
-        this.reservaEquipamentoAdicional.setEquipamentoAdicional(null);
+        this.reservaEquipamentoAdicional.setEquipamento(null);
         this.reservaEquipamentoAdicional.setFinalidade(null);
         this.reservaEquipamentoAdicional.setDono(null);
         this.reservaEquipamentoAdicional.setHomologacao(null);
@@ -76,8 +76,8 @@ public class ReservaEquipamentosAdicionaisBean implements Serializable {
     
     public String removerReserva() {
         //this.reservaAtm = r;
-        this.reservaEquipamentoAdicional.getEquipamentoAdicional().setDisponivel(true);
-        this.reservaEquipamentosAdicionaisDao.addEquipamentosAdicionais(reservaEquipamentoAdicional.getEquipamentoAdicional());
+        this.reservaEquipamentoAdicional.getEquipamento().setDisponivel(true);
+        this.reservaEquipamentosAdicionaisDao.addEquipamentosAdicionais(reservaEquipamentoAdicional.getEquipamento());
         reservaEquipamentosAdicionaisDao.removeReservaEquipamentosAdicionais(this.reservaEquipamentoAdicional);
         limpaCampos();
         return "equipamentosadicionais";
@@ -89,13 +89,13 @@ public class ReservaEquipamentosAdicionaisBean implements Serializable {
     }
     
     public String carregarEquipamentoAdicional(EquipamentosAdicionais e) {
-        this.reservaEquipamentoAdicional.setEquipamentoAdicional(e);
+        this.reservaEquipamentoAdicional.setEquipamento(e);
         
         if (e.isReservavel()) {
             if (e.isDisponivel()){
                 return "reservarequipamentoadicional";
             } else if (!(e.isDisponivel())) {
-                carregarReserva(this.reservaEquipamentoAdicional.getEquipamentoAdicional().getReserva());
+                carregarReserva(this.reservaEquipamentoAdicional.getEquipamento().getReserva());
                 return "reservarequipamentoadicional";
             }
         }

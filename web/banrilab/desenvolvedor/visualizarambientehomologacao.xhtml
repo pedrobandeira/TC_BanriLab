@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+        <meta charset="utf-8"/>
+        <title>Homologações do Laboratório de Testes</title>
+        <meta name="generator" content="Bootply" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+        <h:outputStylesheet name="css/bootstrap.min.css"/>
+        <!--[if lt IE 9]>
+                <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <h:outputStylesheet name="css/styles.css"/>
+
+    </h:head>
+    <h:body>
+        <ui:composition template="template.xhtml">
+            <ui:define name="content">
+
+                <div class="col-sm-9 col-md-10 main" >
+
+
+                    <div class="panel panel-default">
+
+                        <!-- Modal Ambiente Homologacao -->
+                        <div class="modal fade" data-backdrop="static" id="ambienteHomologacao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" id="myModalLabel">Visualizar ambiente utilizado e testadores alocados</h4>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <h:form>
+                                            <div class="container-fluid" style="height: 450px">
+                                                <p:dataTable var="reservaTestador" value="#{homologacoesBean.homologacao.reservasTestadores}" editable="false" rendered="#{homologacoesBean.verificaPossuiReservaTestadores()}">
+                                                    <p:column headerText="Testadores">
+
+                                                        <h:outputText value="#{reservaTestador.usuario.nome}" />
+                                                    </p:column>
+  
+                                                </p:dataTable>
+                                                
+                                                <p:dataTable var="reservaServidor" value="#{homologacoesBean.homologacao.reservasServidores}" editable="false" rendered="#{homologacoesBean.verificaPossuiReservaServidores()}">
+                                                    <p:column headerText="Servidores" style="width: 100px">
+                                                        <h:outputText value="#{reservaServidor.servidor.nome}" />
+                                                    </p:column>
+                                                    <p:column headerText="Testador" style="width: 100px" rendered="#{homologacoesBean.verificaPossuiReservaTestadores()}">
+                                                        <h:outputText value="#{reservaServidor.testador.usuario.nome}"/>
+                                                    </p:column>
+                                                </p:dataTable>
+
+                                                <p:dataTable var="reservaTerminal" value="#{homologacoesBean.homologacao.reservasTerminais}" editable="false" rendered="#{homologacoesBean.verificaPossuiReservaTerminais()}">
+                                                    <p:column headerText="Terminais" style="width: 100px">
+                                                        <h:outputText value="#{reservaTerminal.terminal.nome}" />
+                                                    </p:column>
+                                                    <p:column headerText="Testador" style="width: 100px" rendered="#{homologacoesBean.verificaPossuiReservaTestadores()}">
+                                                        <h:outputText value="#{reservaTerminal.testador.usuario.nome}"/>
+                                                    </p:column>
+                                                </p:dataTable>
+                                                
+                                                <p:dataTable var="reservaAtm" value="#{homologacoesBean.homologacao.reservasAtms}" editable="false" rendered="#{homologacoesBean.verificaPossuiReservaAtms()}">
+                                                    <p:column headerText="ATMs" style="width: 100px">
+                                                        <h:outputText value="#{reservaAtm.atm.nome}" />
+                                                    </p:column>
+                                                    <p:column headerText="Testador" style="width: 100px" rendered="#{homologacoesBean.verificaPossuiReservaTestadores()}">
+                                                        <h:outputText value="#{reservaAtm.testador.usuario.nome}"/>
+                                                    </p:column>
+                                                </p:dataTable>
+                                                
+                                                <p:dataTable var="reservaEqpAdc" value="#{homologacoesBean.homologacao.reservasEquipamentosAdicionais}" editable="false" rendered="#{homologacoesBean.verificaPossuiReservaEquipamentosAdicionais()}">
+                                                    <p:column headerText="Equipamentos Adc." style="width: 100px">
+                                                        <h:outputText value="#{reservaEqpAdc.equipamento.nome}" />
+                                                    </p:column>
+                                                    <p:column headerText="Testador" style="width: 100px" rendered="#{homologacoesBean.verificaPossuiReservaTestadores()}">
+                                                        <h:outputText value="#{reservaEqpAdc.testador.usuario.nome}"/>
+                                                    </p:column>
+                                                </p:dataTable>
+                                                
+                                                <p:dataTable var="reservaCartaoConta" value="#{homologacoesBean.homologacao.reservasCartoesContas}" editable="false" rendered="#{homologacoesBean.verificaPossuiReservaCartoesContas()}">
+                                                    <p:column headerText="Cartões de contas" style="width: 100px">
+                                                        <h:outputText value="#{reservaCartaoConta.cartaoConta.nome}" />
+                                                    </p:column>
+                                                    <p:column headerText="Testador" style="width: 100px" rendered="#{homologacoesBean.verificaPossuiReservaTestadores()}">
+                                                        <h:outputText value="#{reservaCartaoConta.testador.usuario.nome}"/>
+                                                    </p:column>
+                                                </p:dataTable>
+                                                
+                                                <p:dataTable var="reservaCartaoCredito" value="#{homologacoesBean.homologacao.reservasCartoesCreditos}" editable="false" rendered="#{homologacoesBean.verificaPossuiReservaCartoesCredito()}">
+                                                    <p:column headerText="Cartões de crédito" style="width: 100px">
+                                                        <h:outputText value="#{reservaCartaoCredito.cartaoCredito.nome}" />
+                                                    </p:column>
+                                                    <p:column headerText="Testador" style="width: 100px" rendered="#{homologacoesBean.verificaPossuiReservaTestadores()}">
+                                                        <h:outputText value="#{reservaCartaoCredito.testador.usuario.nome}"/>
+                                                    </p:column>
+                                                </p:dataTable>
+
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <h:commandButton class="btn btn-primary" value="Voltar" action="#{homologacoesBean.visualizarHomologacao(homologacoesBean.homologacao)}"/>
+
+                                            </div>
+
+                                        </h:form>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <script type="text/javascript">
+                            $(window).load(function () {
+                                $('#ambienteHomologacao').modal('show');
+                            });
+                        </script>
+                    </div>
+                </div><!--/row-->
+
+            </ui:define>
+        </ui:composition>
+
+        <!-- script references -->
+        <h:outputScript name="js/jquery-1.11.2.min.js"/>
+        <h:outputScript name="js/bootstrap.min.js"/>
+        <h:outputScript name="js/scripts.js"/>
+
+    </h:body>
+</html>

@@ -109,13 +109,6 @@ public class ReservaCartoesCredito implements Serializable, SampleEntity {
         this.finalidade = finalidade;
     }
 
-    public CartoesCredito getCartao() {
-        return cartao;
-    }
-
-    public void setCartao(CartoesCredito cartao) {
-        this.cartao = cartao;
-    }
 
     public ReservaUsuarios getTestador() {
         return testador;

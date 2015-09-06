@@ -80,20 +80,20 @@
             </div>
             <h:form>
                 <p:dataTable var="terminal" value="#{terminaisBean.terminais}" editable="false">
-                    <p:column headerText="Terminal">
+                    <p:column headerText="Terminal" style="width: 100px" class="text-center">
  
                         <h:outputText value="#{terminal.nome}" />
                     </p:column>
                 
-                    <p:column headerText="Descrição">
+                    <p:column headerText="Descrição" style="width: 100px" class="text-center">
                         <h:outputText value="#{terminal.descricao}" />
                     </p:column>
 
-                    <p:column headerText="Patrimônio">
+                    <p:column headerText="Patrimônio" style="width: 95px" class="text-center">
                         <h:outputText value="#{terminal.patrimonio}" />
                     </p:column>
                 
-                    <p:column headerText="Status" class="text-center" style="width: 100px">
+                    <p:column headerText="Status" class="text-center">
                         <h:outputText value="#{terminaisBean.exibirDisponibilidade(terminal)}" />
                     </p:column>
                 

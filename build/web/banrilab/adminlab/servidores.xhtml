@@ -81,19 +81,19 @@
             </div>
             <h:form>
                 <p:dataTable var="servidor" value="#{servidoresBean.servidores}" editable="false">
-                    <p:column headerText="Servidor" style="width: 90px">
+                    <p:column headerText="Servidor" style="width: 90px" class="text-center">
                         <h:outputText value="#{servidor.nome}" />
                     </p:column>
                 
-                    <p:column headerText="Descrição" style="width: 100px">
+                    <p:column headerText="Descrição" style="width: 100px" class="text-center">
                         <h:outputText value="#{servidor.descricao}" />
                     </p:column>
 
-                    <p:column headerText="Modelo" style="width: 80px">
+                    <p:column headerText="Modelo" style="width: 80px" class="text-center">
                         <h:outputText value="#{servidor.modelo}" />
                     </p:column>
 
-                    <p:column headerText="Patrimônio" style="width: 95px">
+                    <p:column headerText="Patrimônio" style="width: 95px" class="text-center">
                         <h:outputText value="#{servidor.patrimonio}" />
                     </p:column>
                 

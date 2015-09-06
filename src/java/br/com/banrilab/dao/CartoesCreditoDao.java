@@ -38,6 +38,7 @@ public class CartoesCreditoDao implements CartoesCreditoDaoInterface {
     public List<CartoesCredito> getCartoesCredito() {
         javax.persistence.criteria.CriteriaQuery cq = entityManager.getCriteriaBuilder().createQuery();
         cq.select(cq.from(CartoesCredito.class));
+        cq.orderBy(entityManager.getCriteriaBuilder().asc(cq.from(CartoesCredito.class).get("bandeira")), entityManager.getCriteriaBuilder().asc(cq.from(CartoesCredito.class).get("nome")));
         return entityManager.createQuery(cq).getResultList();
     }
     

@@ -49,6 +49,7 @@ public class UsuariosDao implements UsuariosDaoInterface {
        
         javax.persistence.criteria.CriteriaQuery cq = entityManager.getCriteriaBuilder().createQuery();
         cq.select(cq.from(Usuarios.class));
+        cq.orderBy(entityManager.getCriteriaBuilder().asc(cq.from(Usuarios.class).get("nome")));
         return entityManager.createQuery(cq).getResultList();
     }
     
@@ -58,6 +59,7 @@ public class UsuariosDao implements UsuariosDaoInterface {
         CriteriaQuery<Usuarios> c = cb.createQuery(Usuarios.class);
         Root<Usuarios> usuarios = c.from(Usuarios.class);
         c.where(usuarios.get("perfil").in("4") );
+        c.orderBy(cb.asc(usuarios.get("nome")));
 
         TypedQuery q = entityManager.createQuery(c);
         return q.getResultList();
@@ -69,7 +71,8 @@ public class UsuariosDao implements UsuariosDaoInterface {
         CriteriaQuery<Usuarios> c = cb.createQuery(Usuarios.class);
         Root<Usuarios> usuarios = c.from(Usuarios.class);
         c.where(usuarios.get("perfil").in("3") );
-
+        c.orderBy(cb.asc(usuarios.get("nome")));
+        
         TypedQuery q = entityManager.createQuery(c);
         return q.getResultList();
     }
@@ -80,7 +83,8 @@ public class UsuariosDao implements UsuariosDaoInterface {
         CriteriaQuery<Usuarios> c = cb.createQuery(Usuarios.class);
         Root<Usuarios> usuarios = c.from(Usuarios.class);
         c.where(usuarios.get("perfil").in("2") );
-
+        c.orderBy(cb.asc(usuarios.get("nome")));
+        
         TypedQuery q = entityManager.createQuery(c);
         return q.getResultList();
     }
@@ -91,7 +95,8 @@ public class UsuariosDao implements UsuariosDaoInterface {
         CriteriaQuery<Usuarios> c = cb.createQuery(Usuarios.class);
         Root<Usuarios> usuarios = c.from(Usuarios.class);
         c.where(usuarios.get("perfil").in("5") );
-
+        c.orderBy(cb.asc(usuarios.get("nome")));
+        
         TypedQuery q = entityManager.createQuery(c);
         return q.getResultList();
     }
@@ -102,7 +107,8 @@ public class UsuariosDao implements UsuariosDaoInterface {
         CriteriaQuery<Usuarios> c = cb.createQuery(Usuarios.class);
         Root<Usuarios> usuarios = c.from(Usuarios.class);
         c.where(usuarios.get("perfil").in("1") );
-
+        c.orderBy(cb.asc(usuarios.get("nome")));
+        
         TypedQuery q = entityManager.createQuery(c);
         return q.getResultList();
     }

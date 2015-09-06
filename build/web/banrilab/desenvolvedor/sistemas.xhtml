@@ -34,22 +34,21 @@
             </div>
             <h:form>
                 <p:dataTable var="sistema" value="#{sistemasBean.sistemas}" editable="false">
-                    <p:column headerText="Sistema" style="width: 100px">
+                    <p:column headerText="Sistema" style="width: 100px" class="text-center">
                         <h:outputText value="#{sistema.nome}" />
                     </p:column>
                     
-                    <p:column headerText="Versão produção" style="width: 100px">
+                    <p:column headerText="Versão produção" style="width: 100px" class="text-center">
                         <h:outputText value="#{sistema.versao}" />
                     </p:column>
                 
-                    <p:column headerText="Descrição">
+                    <p:column headerText="Descrição" class="text-center">
                         <h:outputText value="#{sistema.descricao}" />
                     </p:column>
 
-                    <p:column headerText="Responsável" style="width: 150px">
+                    <p:column headerText="Responsável" style="width: 200px" class="text-center">
                         <h:outputText value="#{sistema.responsavel.nome}" />
                     </p:column>
-                
                 </p:dataTable>
           
 

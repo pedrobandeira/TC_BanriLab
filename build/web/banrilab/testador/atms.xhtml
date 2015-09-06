@@ -32,20 +32,20 @@
             </div>
             <h:form>
                 <p:dataTable var="atm" value="#{atmsBean.atms}" editable="false" >
-                    <p:column headerText="ATM">
+                    <p:column headerText="ATM" style="width: 80px">
  
-                        <h:outputText value="#{atm.nome}" />
+                        <h:outputText value="#{atm.nome}"/>
                     </p:column>
                 
-                    <p:column headerText="Descrição">
+                    <p:column headerText="Descrição" style="width: 100px">
                         <h:outputText value="#{atm.descricao}" />
                     </p:column>
 
-                    <p:column headerText="Modelo">
+                    <p:column headerText="Modelo" style="width: 100px">
                         <h:outputText value="#{atm.modelo}" />
                     </p:column>
 
-                    <p:column headerText="Patrimônio">
+                    <p:column headerText="Patrimônio" style="width: 100px">
                         <h:outputText value="#{atm.patrimonio}" />
                     </p:column>
                     
@@ -57,8 +57,8 @@
                         <p:outputLabel class="#{atmsBean.exibirTalonadora(atm)}" />
                     </p:column>
                 
-                    <p:column headerText="Status" style="width: 100px">
-                        <h:outputText value="Disponível" />
+                    <p:column headerText="Status" class="text-center">
+                        <h:outputText value="#{atmsBean.exibirDisponibilidade(atm)}" />
                     </p:column>
                 </p:dataTable>
                         

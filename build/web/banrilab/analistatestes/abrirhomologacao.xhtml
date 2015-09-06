@@ -5,6 +5,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view contentType="text/html">
     <h:head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
         <meta charset="utf-8"/>
@@ -50,23 +51,26 @@
                                                             <p:inputText disabled="true" class="form-control" value="#{homologacoesBean.homologacao.versaoSistema}"/>
                                                         </div>
                                                     </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label>Ciclo</label>
+                                                            <p:inputText class="form-control" value="#{homologacoesBean.homologacao.ciclo}" placeholder="Ciclo de testes"/>
+                                                        </div>
+                                                    </div>
                                                 </div>
 
                                                 <div class="row">
-                                                    <div class="col-md-5">
+                                                    <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="InputDataInicio">Data início testes</label><br/>
-                                                            <p:inputText class="form-control" placeholder="Data início de testes" id="InputDataInicio" value="#{homologacoesBean.homologacao.dataFim}">  
-                                                                <f:convertDateTime pattern="dd/MM/yyyy"/>  
-                                                            </p:inputText>
+                                                            <p:calendar id="InputDataInicio" value="#{homologacoesBean.homologacao.dataInicioExecucao}" mode="inline" mindate="#{homologacoesBean.retornaDataAtual()}"/>  
+                                                             
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-5">
+                                                    <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="InputDataFim">Data fim</label><br/>
-                                                            <p:inputText class="form-control" placeholder="Data fim da homologação" id="InputDataFim" value="#{homologacoesBean.homologacao.dataFim}">  
-                                                                <f:convertDateTime pattern="dd/MM/yyyy"/>  
-                                                            </p:inputText>
+                                                            <label for="InputDataFim">Data fim testes</label><br/>
+                                                            <p:calendar id="InputDataFim" value="#{homologacoesBean.homologacao.dataFim}" mode="inline" mindate="#{homologacoesBean.retornaDataAtual()}"/>  
                                                         </div>
                                                     </div>
                                                 </div>
@@ -104,4 +108,5 @@
         <h:outputScript name="js/scripts.js"/>
 
     </h:body>
+    </f:view>
 </html>

@@ -47,6 +47,7 @@ public class AtmsDao implements AtmsDaoInterface {
        
         javax.persistence.criteria.CriteriaQuery cq = entityManager.getCriteriaBuilder().createQuery();
         cq.select(cq.from(Atms.class));
+        cq.orderBy(entityManager.getCriteriaBuilder().asc(cq.from(Atms.class).get("nome")));
         return entityManager.createQuery(cq).getResultList();
     }
 

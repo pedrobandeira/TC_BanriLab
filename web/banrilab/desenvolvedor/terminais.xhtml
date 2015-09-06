@@ -33,23 +33,22 @@
             </div>
             <h:form>
                 <p:dataTable var="terminal" value="#{terminaisBean.terminais}" editable="false">
-                    <p:column headerText="Terminal" style="width: 100px">
+                    <p:column headerText="Terminal" style="width: 100px" class="text-center">
  
                         <h:outputText value="#{terminal.nome}" />
                     </p:column>
                 
-                    <p:column headerText="Descrição">
+                    <p:column headerText="Descrição" style="width: 100px" class="text-center">
                         <h:outputText value="#{terminal.descricao}" />
                     </p:column>
 
-                    <p:column headerText="Patrimônio" style="width: 100px">
+                    <p:column headerText="Patrimônio" style="width: 95px" class="text-center">
                         <h:outputText value="#{terminal.patrimonio}" />
                     </p:column>
                 
                     <p:column headerText="Status" class="text-center">
                         <h:outputText value="#{terminaisBean.exibirDisponibilidade(terminal)}" />
                     </p:column>
-                
                     <p:column headerText="Reservar" class="text-center" style="width: 85px">
                         <h:commandLink class="glyphicon glyphicon-calendar" action="#{reservaTerminaisBean.carregarTerminal(terminal)}" rendered="#{reservaTerminaisBean.verificaDono(terminal)}" /> 
                     </p:column>

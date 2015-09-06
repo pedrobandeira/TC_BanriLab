@@ -15,6 +15,7 @@ public abstract class ReservaServidores_ {
 	public static volatile SingularAttribute<ReservaServidores, Servidores> servidor;
 	public static volatile SingularAttribute<ReservaServidores, String> finalidade;
 	public static volatile SingularAttribute<ReservaServidores, Date> dataInicio;
+	public static volatile SingularAttribute<ReservaServidores, ReservaUsuarios> testador;
 	public static volatile SingularAttribute<ReservaServidores, Usuarios> dono;
 
 }

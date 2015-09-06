@@ -61,13 +61,6 @@ public class ReservaEquipamentosAdicionais implements Serializable, SampleEntity
         this.id = id;
     }
 
-    public EquipamentosAdicionais getEquipamentoAdicional() {
-        return equipamento;
-    }
-
-    public void setEquipamentoAdicional(EquipamentosAdicionais equipamento) {
-        this.equipamento = equipamento;
-    }
 
     public Homologacoes getHomologacao() {
         return homologacao;

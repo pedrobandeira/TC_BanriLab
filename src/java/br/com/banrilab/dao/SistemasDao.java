@@ -38,6 +38,7 @@ public class SistemasDao implements SistemasDaoInterface {
     public List<Sistemas> getSistemas() {
         javax.persistence.criteria.CriteriaQuery cq = entityManager.getCriteriaBuilder().createQuery();
         cq.select(cq.from(Sistemas.class));
+        cq.orderBy(entityManager.getCriteriaBuilder().asc(cq.from(Sistemas.class).get("nome")));
         return entityManager.createQuery(cq).getResultList();
     }
     
