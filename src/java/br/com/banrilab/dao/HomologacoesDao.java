@@ -257,5 +257,17 @@ public class HomologacoesDao implements HomologacoesDaoInterface {
         else
             entityManager.merge(u);
     }
+    
+    @Override
+    public List<Usuarios> getEquipeCoordenadores() {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Usuarios> c = cb.createQuery(Usuarios.class);
+        Root<Usuarios> usuarios = c.from(Usuarios.class);
+        c.where(usuarios.get("perfil").in("2") );
+        c.orderBy(cb.asc(usuarios.get("nome")));
+        
+        TypedQuery q = entityManager.createQuery(c);
+        return q.getResultList();
+    }
   
 }

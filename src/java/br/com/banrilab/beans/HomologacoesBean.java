@@ -23,6 +23,7 @@ import br.com.banrilab.entidades.Servidores;
 import br.com.banrilab.entidades.Terminais;
 import br.com.banrilab.entidades.Usuarios;
 import java.io.Serializable;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -32,6 +33,16 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+import java.util.Properties;
+import javax.mail.Address;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
 
 /**
  *
@@ -45,7 +56,11 @@ public class HomologacoesBean implements Serializable {
     private HomologacoesDaoInterface homologacaoDao;
     
     private List<Homologacoes> homologacoes = new ArrayList<>();
-	private List<Homologacoes> homologacoesAbertas = new ArrayList<>();
+    private List<Homologacoes> homologacoesAbertas = new ArrayList<>();
+    
+    private List<String> destinatariosEmail = new ArrayList<>();
+    private String conteudoEmail;
+    private String assuntoEmail;
     
     public HomologacoesBean() {
     }
@@ -62,8 +77,33 @@ public class HomologacoesBean implements Serializable {
             this.homologacao.setDataSolicitacao(retornaDataAtual());
             this.homologacao.setSolicitante(carregaUsuarioAtivo());
             this.homologacao.setStatus(1);
+            homologacaoDao.addHomologacao(homologacao);
+            for (Usuarios coordenador: homologacaoDao.getEquipeCoordenadores()) {
+                destinatariosEmail.add(coordenador.getEmail());
+                System.out.println("email: "+coordenador.getEmail());
+            }
+            assuntoEmail = "Notificação sistema BanriLab: Nova homologação solicitada";
+            conteudoEmail = "Prezado Coordenador de Testes, "
+                    + "\n"
+                    + "\n"
+                    +"Uma nova homologação foi solicitada no sistema BanriLab e necessita de sua atenção. "
+                    + "\n"
+                    + "\n"
+                    + "Solicitante: "+homologacao.getSolicitante().getNome()
+                    + "\n"
+                    + "\n"
+                    + "Sistema: "+homologacao.getSistema().getNome()
+                    + "\n"
+                    + "\n"
+                    + "Versão: "+homologacao.getVersaoSistema()
+                    + "\n"
+                    + "\n"
+                    + "\n"
+                    + "Para ver maiores detalhes e para fazer a liberação da homologação, acesse a ferramenta BanriLab.";
+            enviaEmail();
+        } else {
+            homologacaoDao.addHomologacao(homologacao);
         }
-        homologacaoDao.addHomologacao(homologacao);
         limpaCampos();
         return "homologacoes";
     }
@@ -83,6 +123,29 @@ public class HomologacoesBean implements Serializable {
 	this.homologacao.setAutorizador(carregaUsuarioAtivo());
         this.homologacao.setCiclo(1);
         homologacaoDao.addHomologacao(homologacao);
+        destinatariosEmail.add(homologacao.getAnalista().getEmail());
+        assuntoEmail = "Notificação sistema BanriLab: Nova homologação autorizada";
+        conteudoEmail = "Prezado analista de testes "+homologacao.getAnalista().getNome()+":"
+                    + "\n"
+                    + "\n"
+                    +"Uma homologação foi autorizada e designada para você no sistema BanriLab. "
+                    + "\n"
+                    + "\n"
+                    + "Solicitante: "+homologacao.getSolicitante().getNome()
+                    + "\n"
+                    + "\n"
+                    + "Sistema: "+homologacao.getSistema().getNome()
+                    + "\n"
+                    + "\n"
+                    + "Versão: "+homologacao.getVersaoSistema()
+                    + "\n"
+                    + "\n"
+                    + "Autorizador: "+homologacao.getAutorizador().getNome()
+                    + "\n"
+                    + "\n"
+                    + "\n"
+                    + "Para ver maiores detalhes e para fazer a abertura da homologação, acesse a ferramenta BanriLab.";
+        enviaEmail();
         limpaCampos();
         return "homologacoes";
     }
@@ -91,6 +154,118 @@ public class HomologacoesBean implements Serializable {
         this.homologacao.setStatus(3);
         this.homologacao.setDataAbertura(retornaDataAtual());
         homologacaoDao.addHomologacao(homologacao);
+        String ambienteHomologacao = "";
+        String testadores = "";
+        if (verificaPossuiReservaTestadores()) {
+            for (ReservaUsuarios testador: homologacao.getReservasTestadores()) {
+                testadores = testadores+"\n"+testador.getUsuario().getNome();
+            }
+        }
+        if (verificaPossuiReservaServidores()) {
+            ambienteHomologacao = "Servidores: ";
+            for (ReservaServidores r: homologacao.getReservasServidores()) {
+                if (r.getTestador() == null) {
+                    ambienteHomologacao = ambienteHomologacao+"\n "+r.getServidor().getNome()+" alocado para todos os testadores";
+                } else {
+                    ambienteHomologacao = ambienteHomologacao+"\n "+r.getServidor().getNome()+" alocado para "+r.getTestador().getUsuario().getNome();
+                }
+            }
+        }
+        if (verificaPossuiReservaTerminais()) {
+            ambienteHomologacao = ambienteHomologacao+"\n\n Terminais: ";
+            for (ReservaTerminais r: homologacao.getReservasTerminais()) {
+                if (r.getTestador() == null) {
+                    ambienteHomologacao = ambienteHomologacao+"\n "+r.getTerminal().getNome()+" alocado para todos os testadores";
+                } else {
+                    ambienteHomologacao = ambienteHomologacao+"\n "+r.getTerminal().getNome()+" alocado para "+r.getTestador().getUsuario().getNome();
+                }
+            }
+        }
+        if (verificaPossuiReservaAtms()) {
+            ambienteHomologacao = ambienteHomologacao+"\n\n ATMs: ";
+            for (ReservaAtms r: homologacao.getReservasAtms()) {
+                if (r.getTestador() == null) {
+                    ambienteHomologacao = ambienteHomologacao+"\n "+r.getAtm().getNome()+" alocado para todos os testadores";
+                } else {
+                    ambienteHomologacao = ambienteHomologacao+"\n "+r.getAtm().getNome()+" alocado para "+r.getTestador().getUsuario().getNome();
+                }
+            }
+        }
+        if (verificaPossuiReservaEquipamentosAdicionais()) {
+            ambienteHomologacao = ambienteHomologacao+"\n\n Equipamentos adicionais: ";
+            for (ReservaEquipamentosAdicionais r: homologacao.getReservasEquipamentosAdicionais()) {
+                if (r.getTestador() == null) {
+                    ambienteHomologacao = ambienteHomologacao+"\n "+r.getEquipamento().getNome()+" alocado para todos os testadores";
+                } else {
+                    ambienteHomologacao = ambienteHomologacao+"\n "+r.getEquipamento().getNome()+" alocado para "+r.getTestador().getUsuario().getNome();
+                }
+            }
+        }
+        if (verificaPossuiReservaCartoesContas()) {
+            ambienteHomologacao = ambienteHomologacao+"\n\n Cartões de contas: ";
+            for (ReservaCartoesContas r: homologacao.getReservasCartoesContas()) {
+                if (r.getTestador() == null) {
+                    ambienteHomologacao = ambienteHomologacao+"\n "+r.getCartaoConta().getNome()+" alocado para todos os testadores";
+                } else {
+                    ambienteHomologacao = ambienteHomologacao+"\n "+r.getCartaoConta().getNome()+" alocado para "+r.getTestador().getUsuario().getNome();
+                }
+            }
+        }
+        if (verificaPossuiReservaCartoesCredito()) {
+            ambienteHomologacao = ambienteHomologacao+"\n\n Cartões de crédito: ";
+            for (ReservaCartoesCredito r: homologacao.getReservasCartoesCreditos()) {
+                if (r.getTestador() == null) {
+                    ambienteHomologacao = ambienteHomologacao+"\n "+r.getCartaoCredito().getNome()+" alocado para todos os testadores";
+                } else {
+                    ambienteHomologacao = ambienteHomologacao+"\n "+r.getCartaoCredito().getNome()+" alocado para "+r.getTestador().getUsuario().getNome();
+                }
+            }
+        }
+        for (ReservaUsuarios reservaTestador: homologacao.getReservasTestadores()) {
+            destinatariosEmail.add(reservaTestador.getUsuario().getEmail());
+            System.out.println("email: "+reservaTestador.getUsuario().getEmail());
+        }
+            DateFormat formataData = DateFormat.getDateInstance(); 
+
+            assuntoEmail = "Notificação sistema BanriLab: Nova homologação em andamento";
+            conteudoEmail = "Prezado testador(a):"
+                    + "\n"
+                    + "\n"
+                    +"Uma homologação foi aberta no sistema BanriLab e a execução de testes foi designada a você. "
+                    + "\n"
+                    + "\n"
+                    + "Solicitante: "+homologacao.getSolicitante().getNome()
+                    + "\n"
+                    + "\n"
+                    + "Sistema: "+homologacao.getSistema().getNome()
+                    + "\n"
+                    + "\n"
+                    + "Versão: "+homologacao.getVersaoSistema()
+                    + "\n"
+                    + "\n"
+                    + "Data início de testes: "+formataData.format(homologacao.getDataInicioExecucao())
+                    + "\n"
+                    + "\n"
+                    + "Data prevista para fim de testes: "+formataData.format(homologacao.getDataFim())
+                    + "\n"
+                    + "\n"
+                    + "Analista de testes responsável: "+homologacao.getAnalista().getNome()
+                    + "\n"
+                    + "\n"
+                    + "Testadores: "
+                    + testadores
+                    + "\n"
+                    + "\n"
+                    + "Ambiente reservado para testes: "
+                    + "\n"
+                    + "\n"
+                    + ambienteHomologacao
+                    + "\n"
+                    + "\n"
+                    + "\n"
+                    + "Para ver maiores detalhes sobre a homologação, acesse a ferramenta BanriLab.";
+           enviaEmail();
+        
         limpaCampos();
         return "homologacoes";
     }
@@ -583,5 +758,52 @@ public class HomologacoesBean implements Serializable {
            homologacaoDao.addUsuarios(reserva.getUsuario());
           
         return "homologacaotestadores";
+    }
+    
+    public void enviaEmail() {
+        Properties props = new Properties();
+            /** Parâmetros de conexão com servidor Gmail */
+            props.put("mail.smtp.host", "smtp.gmail.com");
+            props.put("mail.smtp.socketFactory.port", "465");
+            props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.port", "465");
+
+            Session session = Session.getInstance(props,
+                        new javax.mail.Authenticator() {
+                             protected PasswordAuthentication getPasswordAuthentication() 
+                             {
+                                   return new PasswordAuthentication("banrilab@gmail.com", "banrilab1397");
+                             }
+                        });
+
+            /** Ativa Debug para sessão */
+            session.setDebug(true);
+
+            try {
+
+                  Message message = new MimeMessage(session);
+                  message.setFrom(new InternetAddress("banrilab@gmail.com")); //Remetente
+                  String listaEmails = "";
+                  for (String email: destinatariosEmail) {
+                      listaEmails = email+", "+listaEmails;
+                      System.out.println("lista mails: "+listaEmails);
+                  }
+                  Address[] toUser = InternetAddress //Destinatário(s)
+                             .parse(listaEmails);  
+
+                  message.setRecipients(Message.RecipientType.TO, toUser);
+                  message.setSubject(assuntoEmail);//Assunto
+                  message.setText(conteudoEmail);
+                  /**Método para enviar a mensagem criada*/
+                  Transport.send(message);
+                  destinatariosEmail.clear();
+                  conteudoEmail = "";
+                  assuntoEmail = "";
+                  System.out.println("Feito!!!");
+
+             } catch (MessagingException e) {
+                  throw new RuntimeException(e);
+            }
     }
 }

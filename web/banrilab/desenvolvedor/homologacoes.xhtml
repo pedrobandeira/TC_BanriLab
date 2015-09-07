@@ -88,18 +88,29 @@
             </div>
             <h:form>
                 <p:dataTable var="homologacao" value="#{homologacoesBean.homologacoesAbertas}" editable="false">
-                    <p:column headerText="Sistema">
-                        <h:outputText value="#{homologacao.sistema.nome}" />
-                    </p:column>
-                
-                    <p:column headerText="Versão">
-                        <h:outputText value="#{homologacao.versaoSistema}" />
-                    </p:column>
-                
-                    <p:column headerText="Status" class="text-center" style="width: 100px">
-                        <h:outputText value="#{homologacoesBean.exibirStatus(homologacao)}" />
-                    </p:column>
-                
+                    <p:column headerText="Sistema" style="width: 75px" class="text-center">
+                                        <h:outputText value="#{homologacao.sistema.nome}" />
+                                    </p:column>
+
+                                    <p:column headerText="Versão" style="width: 70px" class="text-center">
+                                        <h:outputText value="#{homologacao.versaoSistema}" />
+                                    </p:column>
+                                    <p:column headerText="Data solicitação" style="width: 95px" class="text-center">
+                                        <h:outputText id="OutputDataSolicitacao" value="#{homologacao.dataSolicitacao}">  
+                                            <f:convertDateTime pattern="dd/MM/yyyy"/>  
+                                        </h:outputText>
+                                    </p:column>
+                                    <p:column headerText="Solicitante" class="text-center">
+                                        <h:outputText value="#{homologacao.solicitante.nome}" />
+                                    </p:column>
+                                    <p:column headerText="Analista de testes" class="text-center">
+                                        <h:outputText value="#{homologacao.analista.nome}" />
+                                    </p:column>
+
+                                    <p:column headerText="Status" class="text-center" style="width: 100px">
+                                        <h:outputText value="#{homologacoesBean.exibirStatus(homologacao)}" />
+                                    </p:column>
+
                     <p:column headerText="Ver detalhes / Editar" class="text-center" style="width: 120px">
                         <h:commandLink class="glyphicon glyphicon-edit" action="#{homologacoesBean.carregarHomologacao(homologacao)}" rendered="#{homologacoesBean.verificaSolicitadas(homologacao)}" />                   
 			<h:commandLink class="glyphicon glyphicon-zoom-in" action="#{homologacoesBean.visualizarHomologacao(homologacao)}" rendered="#{!homologacoesBean.verificaSolicitadas(homologacao)}" />						

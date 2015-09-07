@@ -45,5 +45,6 @@ public interface HomologacoesDaoInterface {
     public void addUsuarios (Usuarios u);
     public void addReservaAtms (ReservaAtms r);
     public void addAtms (Atms a);
+    public List<Usuarios> getEquipeCoordenadores();
     
 }
