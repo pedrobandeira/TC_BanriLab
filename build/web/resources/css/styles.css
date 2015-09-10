@@ -11,7 +11,25 @@ footer {
   padding-right: 15px;
   background-color: #fff;
 }
+.verde {  
+    color: #419641;    
+    background-image: none;  
+}  
+      
+.amarelo {  
+    color: #d58512;    
+    background-image: none;  
+} 
 
+.azul {  
+    color: #428bca;    
+    background-image: none;  
+}  
+  
+.vermelho {  
+    color: #dd4b39;    
+    background-image: none;  
+}
 /*
  * Off Canvas
  * --------------------------------------------------

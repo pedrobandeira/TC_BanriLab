@@ -33,7 +33,8 @@
             <div class="panel-heading">Homologações abertas do Laboratório de Testes</div>
             
             <h:form>
-                <p:dataTable var="homologacao" value="#{homologacoesBean.homologacoesAbertas}" editable="false">
+                <p:dataTable var="homologacao" value="#{homologacoesBean.homologacoesAbertas}" editable="false"
+                             rowStyleClass="#{homologacao.status eq 2 ? 'amarelo' : homologacao.status eq 3 ? 'azul' : homologacao.status eq 4 ? 'verde' : homologacao.status eq 5 ? 'vermelho' : null}">
                     <p:column headerText="Sistema" style="width: 75px" class="text-center">
                                         <h:outputText value="#{homologacao.sistema.nome}" />
                                     </p:column>
