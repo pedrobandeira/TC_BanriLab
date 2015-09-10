@@ -37,8 +37,12 @@
                                     <div class="modal-body">
 
                                         <h:form>
-                                            <div class="container-fluid" style="height: 450px">
-                                                
+                                            <div class="container-fluid">
+                                                <h:panelGrid rendered="#{!homologacoesBean.verificaPossuiAlgumaReservaEquipamento()}">
+                                                <div class="alert alert-info" role="alert">
+                                                    Esta homologação <strong>não possui equipamentos reservados</strong> para vinculação.
+                                                </div>
+                                                </h:panelGrid>
                                                 <p:dataTable var="reservaServidor" value="#{homologacoesBean.homologacao.reservasServidores}" editable="false" rendered="#{homologacoesBean.verificaPossuiReservaServidores()}">
                                                     <p:column headerText="Servidores" style="width: 100px">
 

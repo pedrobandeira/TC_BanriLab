@@ -38,6 +38,11 @@
 
                                         <h:form>
                                             <div class="container-fluid" style="height: 450px">
+                                                <h:panelGrid rendered="#{!homologacoesBean.verificaPossuiAlgumaReservaEquipamentoOuTestador()}">
+                                                <div class="alert alert-info" role="alert">
+                                                    Esta homologação <strong>não possui equipamentos reservados e testadores alocados</strong>.
+                                                </div>
+                                                </h:panelGrid>
                                                 <p:dataTable var="reservaTestador" value="#{homologacoesBean.homologacao.reservasTestadores}" editable="false" rendered="#{homologacoesBean.verificaPossuiReservaTestadores()}">
                                                     <p:column headerText="Testadores">
 

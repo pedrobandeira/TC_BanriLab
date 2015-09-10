@@ -29,7 +29,7 @@
 
                         <!-- Modal Reservar Cartões Contas -->
                         <div class="modal fade" data-backdrop="static" id="reservarCartoesContas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
+                            <div class="modal-dialog  modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h4 class="modal-title" id="myModalLabel">Reservar Cartões de Contas</h4>
@@ -37,7 +37,7 @@
                                     <div class="modal-body">
 
                                         <h:form>
-                                            <div class="container-fluid" style="height: 450px">
+                                            <div class="container-fluid">
                                                 <p:dataTable var="cartao" value="#{cartoesContasBean.cartoesContas}" editable="false">
                                                     <p:column headerText="Agência" class="text-center" style="width: 100px">
                                                         <h:outputText value="#{cartao.agencia}" />

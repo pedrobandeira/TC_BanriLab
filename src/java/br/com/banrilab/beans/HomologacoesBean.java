@@ -83,7 +83,7 @@ public class HomologacoesBean implements Serializable {
                 System.out.println("email: "+coordenador.getEmail());
             }
             assuntoEmail = "Notificação sistema BanriLab: Nova homologação solicitada";
-            conteudoEmail = "Prezado Coordenador de Testes, "
+            conteudoEmail = "Prezado coordenador(a) de testes: "
                     + "\n"
                     + "\n"
                     +"Uma nova homologação foi solicitada no sistema BanriLab e necessita de sua atenção. "
@@ -113,6 +113,26 @@ public class HomologacoesBean implements Serializable {
 	this.homologacao.setDataFim(retornaDataAtual());
 	this.homologacao.setAutorizador(carregaUsuarioAtivo());
         homologacaoDao.addHomologacao(homologacao);
+        destinatariosEmail.add(homologacao.getSolicitante().getEmail());       
+        assuntoEmail = "Notificação sistema BanriLab: Homologação cancelada";
+        conteudoEmail = "Prezado analista de sistemas, "
+                    + "\n"
+                    + "\n"
+                    +"Uma homologação solicitada por você no sistema BanriLab foi cancelada. "
+                    + "\n"
+                    + "\n"
+                    + "Sistema: "+homologacao.getSistema().getNome()
+                    + "\n"
+                    + "\n"
+                    + "Versão: "+homologacao.getVersaoSistema()
+                    + "\n"
+                    + "\n"
+                    + "Cancelada por: "+homologacao.getAutorizador().getNome()
+                    + "\n"
+                    + "\n"
+                    + "\n"
+                    + "Para ver maiores detalhes ou para solicitar uma nova homologação, acesse a ferramenta BanriLab.";
+        enviaEmail();
         limpaCampos();
         return "homologacoes";
     }
@@ -144,7 +164,7 @@ public class HomologacoesBean implements Serializable {
                     + "\n"
                     + "\n"
                     + "\n"
-                    + "Para ver maiores detalhes e para fazer a abertura da homologação, acesse a ferramenta BanriLab.";
+                    + "Para ver maiores detalhes ou para fazer a abertura da homologação, acesse a ferramenta BanriLab.";
         enviaEmail();
         limpaCampos();
         return "homologacoes";
@@ -154,6 +174,7 @@ public class HomologacoesBean implements Serializable {
         this.homologacao.setStatus(3);
         this.homologacao.setDataAbertura(retornaDataAtual());
         homologacaoDao.addHomologacao(homologacao);
+        if (!homologacao.getReservasTestadores().isEmpty()) {
         String ambienteHomologacao = "";
         String testadores = "";
         if (verificaPossuiReservaTestadores()) {
@@ -265,7 +286,7 @@ public class HomologacoesBean implements Serializable {
                     + "\n"
                     + "Para ver maiores detalhes sobre a homologação, acesse a ferramenta BanriLab.";
            enviaEmail();
-        
+        }        
         limpaCampos();
         return "homologacoes";
     }
@@ -331,6 +352,39 @@ public class HomologacoesBean implements Serializable {
             //homologacao.getReservasTestadores().clear();
         }
         homologacaoDao.addHomologacao(homologacao);
+        for (Usuarios coordenador: homologacaoDao.getEquipeCoordenadores()) {
+                destinatariosEmail.add(coordenador.getEmail());
+            }
+        for (ReservaUsuarios reservaTestador: homologacao.getReservasTestadores()) {
+                destinatariosEmail.add(reservaTestador.getUsuario().getEmail());
+                System.out.println("email: "+reservaTestador.getUsuario().getEmail());
+            }
+        destinatariosEmail.add(homologacao.getSolicitante().getEmail());
+        assuntoEmail = "Notificação sistema BanriLab: Homologação concluída";
+        conteudoEmail = "Prezado colaborador: "
+                    + "\n"
+                    + "\n"
+                    +"Uma homologação foi concluída no sistema BanriLab. "
+                    + "\n"
+                    + "\n"
+                    + "Solicitante: "+homologacao.getSolicitante().getNome()
+                    + "\n"
+                    + "\n"
+                    + "Sistema: "+homologacao.getSistema().getNome()
+                    + "\n"
+                    + "\n"
+                    + "Versão: "+homologacao.getVersaoSistema()
+                    + "\n"
+                    + "\n"
+                    + "Autorizador: "+homologacao.getAutorizador().getNome()
+                    + "\n"
+                    + "\n"
+                    + "Analista de testes: "+homologacao.getAnalista().getNome()
+                    + "\n"
+                    + "\n"
+                    + "\n"
+                    + "Para ver maiores detalhes, acesse a ferramenta BanriLab.";
+        enviaEmail();
         limpaCampos();
         return "homologacoes";
     }
@@ -350,6 +404,20 @@ public class HomologacoesBean implements Serializable {
     public String visualizarHomologacao(Homologacoes h) {
         this.homologacao = h;
 	return "visualizarhomologacao";
+    }
+    
+    public boolean verificaPossuiAlgumaReservaEquipamento() {
+        if (!verificaPossuiReservaAtms() && !verificaPossuiReservaCartoesContas()
+                && !verificaPossuiReservaCartoesCredito() && !verificaPossuiReservaEquipamentosAdicionais()
+                && !verificaPossuiReservaServidores() && !verificaPossuiReservaTerminais())
+            return false;
+        return true;
+    }
+    
+    public boolean verificaPossuiAlgumaReservaEquipamentoOuTestador() {
+        if (verificaPossuiAlgumaReservaEquipamento() || verificaPossuiReservaTestadores())
+            return true;
+        return false;
     }
     
     public String retornaReservaAmbiente() {

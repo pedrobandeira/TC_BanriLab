@@ -88,33 +88,33 @@
             </div>
             <h:form>
                 <p:dataTable var="usuario" value="#{usuariosBean.usuarios}" editable="false">
-                    <p:column headerText="Nome">
+                    <p:column headerText="Nome" class="text-center" style="width: 180px">
                         <h:outputText value="#{usuario.nome}" />
                     </p:column>
                 
-                    <p:column headerText="Matrícula" style="width: 90px">
+                    <p:column headerText="Matrícula" class="text-center" style="width: 90px">
                         <h:outputText value="#{usuario.matricula}" />
                     </p:column>
                     
-                    <p:column headerText="E-mail" style="width: 260px">
+                    <p:column headerText="E-mail" class="text-center" style="width: 200px">
                         <h:outputText  value="#{usuario.email}" />
                     </p:column>
 
-                    <p:column headerText="Perfil">
+                    <p:column headerText="Perfil" class="text-center" style="width: 120px">
                         <h:outputText  value="#{usuariosBean.exibirPerfil(usuario)}" />
                     </p:column>
                                     
-                    <p:column headerText="Status" style="width: 100px">
-                        <h:outputText value="Disponível" />
+                    <p:column headerText="Status" class="text-center">
+                        <h:outputText value="#{usuariosBean.exibirDisponibilidade(usuario)}" rendered="#{usuariosBean.isTestador(usuario)}" />
                     </p:column>
                 
                     <p:column headerText="Editar" class="text-center" style="width: 70px">
-                        <h:commandLink class="glyphicon glyphicon-edit" action="#{usuariosBean.carregarUsuario(usuario)}" /> 
+                        <h:commandLink class="glyphicon glyphicon-edit" action="#{usuariosBean.carregarUsuario(usuario)}" rendered="#{usuario.disponivel}" /> 
                                              
                     </p:column>
                 
                 <p:column headerText="Excluir" class="text-center" style="width: 70px">
-                    <h:commandLink class="glyphicon glyphicon-remove" action="#{usuariosBean.removerUsuario(usuario)}" />
+                    <h:commandLink class="glyphicon glyphicon-remove" action="#{usuariosBean.removerUsuario(usuario)}" rendered="#{usuario.disponivel}" />
                                                        
                     </p:column>
                 </p:dataTable>

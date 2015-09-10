@@ -179,6 +179,13 @@ public class UsuariosBean implements Serializable {
         this.equipeCoordenadores = equipeCoordenadores;
     }
     
+    public boolean isTestador(Usuarios usuario) {
+        if (usuario.getPerfil() == 4) {
+            return true;
+        }
+        return false;
+    }
+    
     
     
     public void limpaCampos() {
