@@ -6,6 +6,7 @@
 package br.com.banrilab.dao;
 
 import br.com.banrilab.entidades.EquipamentosAdicionais;
+import br.com.banrilab.entidades.ReservaEquipamentosAdicionais;
 import java.util.List;
 
 /**
@@ -16,4 +17,6 @@ public interface EquipamentosAdicionaisDaoInterface {
     public void addEquipamentoAdicional (EquipamentosAdicionais e);
     public void removeEquipamentoAdicional (EquipamentosAdicionais e);
     public List<EquipamentosAdicionais> getEquipamentosAdicionais();
+    public void removeReservaEquipamentoAdicional (ReservaEquipamentosAdicionais r);
+    public List<ReservaEquipamentosAdicionais> getReservasEquipamentosAdicionais();
 }

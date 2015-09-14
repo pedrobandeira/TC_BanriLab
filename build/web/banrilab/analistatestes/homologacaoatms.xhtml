@@ -32,14 +32,15 @@
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h4 class="modal-title" id="myModalLabel">Reservar Servidores</h4>
+                                        <h4 class="modal-title" id="myModalLabel">Reservar ATMs</h4>
                                     </div>
                                     <div class="modal-body">
 
                                         <h:form>
                                             <div class="container-fluid">
 
-                                                <p:dataTable var="atm" value="#{atmsBean.atms}" editable="false" >
+                                                <p:dataTable var="atm" value="#{atmsBean.atms}" editable="false"
+                                                             rowStyleClass="#{atm.reservavel eq false ? null : atm.disponivel eq true ? 'verde' : atm.reserva.homologacao.analista eq homologacoesBean.carregaUsuarioAtivo() ? 'amarelo' : 'vermelho'}">
                                                     <p:column headerText="ATM" style="width: 80px">
 
                                                         <h:outputText value="#{atm.nome}" />

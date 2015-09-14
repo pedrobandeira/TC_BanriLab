@@ -31,16 +31,13 @@
                 
             </div>
             <h:form>
-                <p:dataTable var="atm" value="#{atmsBean.atms}" editable="false" >
+                <p:dataTable var="atm" value="#{atmsBean.atms}" editable="false" 
+                             rowStyleClass="#{atm.reservavel eq false ? null : atm.disponivel eq true ? 'verde' :'vermelho'}">
                     <p:column headerText="ATM" style="width: 80px">
  
                         <h:outputText value="#{atm.nome}"/>
                     </p:column>
                 
-                    <p:column headerText="Descrição" style="width: 100px">
-                        <h:outputText value="#{atm.descricao}" />
-                    </p:column>
-
                     <p:column headerText="Modelo" style="width: 100px">
                         <h:outputText value="#{atm.modelo}" />
                     </p:column>

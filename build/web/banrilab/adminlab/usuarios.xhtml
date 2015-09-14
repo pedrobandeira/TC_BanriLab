@@ -87,16 +87,18 @@
                 </div>
             </div>
             <h:form>
-                <p:dataTable var="usuario" value="#{usuariosBean.usuarios}" editable="false">
-                    <p:column headerText="Nome" class="text-center" style="width: 180px">
+                <p:dataTable var="usuario" value="#{usuariosBean.usuarios}" editable="false"
+                             rowStyleClass="#{usuario.perfil ne 4 ? null : usuario.disponivel eq true ? 'verde' :'vermelho'}">
+                    
+                    <p:column headerText="Nome" class="text-center" style="width: 145px">
                         <h:outputText value="#{usuario.nome}" />
                     </p:column>
                 
-                    <p:column headerText="Matrícula" class="text-center" style="width: 90px">
+                    <p:column headerText="Matríc." class="text-center" style="width: 72px" >
                         <h:outputText value="#{usuario.matricula}" />
                     </p:column>
                     
-                    <p:column headerText="E-mail" class="text-center" style="width: 200px">
+                    <p:column headerText="E-mail" class="text-center" style="width: 195px" >
                         <h:outputText  value="#{usuario.email}" />
                     </p:column>
 
@@ -104,16 +106,24 @@
                         <h:outputText  value="#{usuariosBean.exibirPerfil(usuario)}" />
                     </p:column>
                                     
-                    <p:column headerText="Status" class="text-center">
+                    <p:column headerText="Reservado para" class="text-center" style="width: 100px">
                         <h:outputText value="#{usuariosBean.exibirDisponibilidade(usuario)}" rendered="#{usuariosBean.isTestador(usuario)}" />
                     </p:column>
+                    <p:column headerText="Finalidade" class="text-center" style="width: 115px">
+                        <h:outputText value="#{usuario.reserva.finalidade}" rendered="#{usuariosBean.isTestador(usuario)}"/>
+                    </p:column>
+                    <p:column headerText="Data fim" style="width: 92px">
+                        <h:outputText value="#{usuario.reserva.dataFim}" rendered="#{usuariosBean.isTestador(usuario)}">
+                              <f:convertDateTime pattern="dd/MM/yyyy"/>  
+                        </h:outputText>
+                    </p:column>
                 
-                    <p:column headerText="Editar" class="text-center" style="width: 70px">
+                    <p:column headerText="Editar" class="text-center" style="width: 58px">
                         <h:commandLink class="glyphicon glyphicon-edit" action="#{usuariosBean.carregarUsuario(usuario)}" rendered="#{usuario.disponivel}" /> 
                                              
                     </p:column>
                 
-                <p:column headerText="Excluir" class="text-center" style="width: 70px">
+                <p:column headerText="Excluir" class="text-center" style="width: 62px">
                     <h:commandLink class="glyphicon glyphicon-remove" action="#{usuariosBean.removerUsuario(usuario)}" rendered="#{usuario.disponivel}" />
                                                        
                     </p:column>

@@ -5,6 +5,7 @@
  */
 package br.com.banrilab.dao;
 
+import br.com.banrilab.entidades.ReservaTerminais;
 import br.com.banrilab.entidades.Terminais;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -51,4 +52,16 @@ public class TerminaisDao implements TerminaisDaoInterface {
         return entityManager.createQuery(cq).getResultList();
     }
 
+    @Override
+    public void removeReservaTerminal(ReservaTerminais r) {
+        ReservaTerminais reservaARemover = entityManager.merge(r);
+        entityManager.remove(reservaARemover);
+    }
+
+    @Override
+    public List<ReservaTerminais> getReservasTerminais() {
+        javax.persistence.criteria.CriteriaQuery cq = entityManager.getCriteriaBuilder().createQuery();
+        cq.select(cq.from(ReservaTerminais.class));
+        return entityManager.createQuery(cq).getResultList();
+    }
 }

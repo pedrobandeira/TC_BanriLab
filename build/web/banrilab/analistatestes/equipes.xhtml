@@ -25,7 +25,7 @@
     <h:body>
         <ui:composition template="template.xhtml">
             <ui:define name="content">
-                
+
                 <div class="col-sm-9 col-md-10 main" style="width: 100%">           
 
                     <div class="panel panel-default">
@@ -43,20 +43,17 @@
                                         <h:outputText value="#{eqpcoord.matricula}" />
                                     </p:column>
 
-                                    <p:column headerText="E-mail" style="width: 120px" class="text-center">
+                                    <p:column headerText="E-mail" style="width: 200px" class="text-center">
                                         <h:outputText  value="#{eqpcoord.email}" />
                                     </p:column>
 
-                                    <p:column headerText="Perfil" style="width: 120px" class="text-center">
-                                        <h:outputText  value="#{usuariosBean.exibirPerfil(eqpcoord)}" />
-                                    </p:column>
                                 </p:dataTable>
 
                             </h:form>
                         </div>
                     </div>
                 </div><!--/row-->
-                
+
                 <div class="col-sm-9 col-md-10 main" style="width: 100%">           
 
                     <div class="panel panel-default">
@@ -74,21 +71,18 @@
                                         <h:outputText value="#{eqpanalista.matricula}" />
                                     </p:column>
 
-                                    <p:column headerText="E-mail" style="width: 120px" class="text-center">
+                                    <p:column headerText="E-mail" style="width: 200px" class="text-center">
                                         <h:outputText  value="#{eqpanalista.email}" />
                                     </p:column>
 
-                                    <p:column headerText="Perfil" style="width: 120px" class="text-center">
-                                        <h:outputText  value="#{usuariosBean.exibirPerfil(eqpanalista)}" />
-                                    </p:column>
                                 </p:dataTable>
 
                             </h:form>
                         </div>
                     </div>
                 </div><!--/row-->
-                
-                
+
+
                 <div class="col-sm-9 col-md-10 main" style="width: 100%">           
 
                     <div class="panel panel-default">
@@ -97,25 +91,30 @@
                         <div class="panel-body">
 
                             <h:form>
-                                <p:dataTable var="eqptestes" value="#{usuariosBean.equipeTestes}" editable="false">
-                                    <p:column headerText="Nome" style="width: 200px" class="text-center">
+                                <p:dataTable var="eqptestes" value="#{usuariosBean.equipeTestes}" editable="false"
+                                             rowStyleClass="#{eqptestes.disponivel eq true ? 'verde' : eqptestes.reserva.homologacao.analista eq homologacoesBean.carregaUsuarioAtivo() ? 'amarelo' : 'vermelho'}">
+                                    <p:column headerText="Nome" class="text-center" style="width: 150px">
                                         <h:outputText value="#{eqptestes.nome}" />
                                     </p:column>
 
-                                    <p:column headerText="Matrícula" style="width: 90px" class="text-center">
+                                    <p:column headerText="Matríc." class="text-center" style="width: 75px">
                                         <h:outputText value="#{eqptestes.matricula}" />
                                     </p:column>
 
-                                    <p:column headerText="E-mail" style="width: 170px" class="text-center">
+                                    <p:column headerText="E-mail" class="text-center" style="width: 200px">
                                         <h:outputText  value="#{eqptestes.email}" />
                                     </p:column>
 
-                                    <p:column headerText="Perfil" style="width: 120px" class="text-center">
-                                        <h:outputText  value="#{usuariosBean.exibirPerfil(eqptestes)}" />
-                                    </p:column>
-
-                                    <p:column headerText="Status" class="text-center">
+                                    <p:column headerText="Reservado para" class="text-center" style="width: 100px">
                                         <h:outputText value="#{usuariosBean.exibirDisponibilidade(eqptestes)}" />
+                                    </p:column>
+                                    <p:column headerText="Finalidade" class="text-center" style="width: 120px">
+                                        <h:outputText value="#{eqptestes.reserva.finalidade}"/>
+                                    </p:column>
+                                    <p:column headerText="Data fim" style="width: 95px">
+                                        <h:outputText value="#{eqptestes.reserva.dataFim}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy"/>  
+                                        </h:outputText>
                                     </p:column>
                                 </p:dataTable>
 
@@ -141,13 +140,10 @@
                                         <h:outputText value="#{eqpdes.matricula}" />
                                     </p:column>
 
-                                    <p:column headerText="E-mail" style="width: 120px" class="text-center">
+                                    <p:column headerText="E-mail" style="width: 200px" class="text-center">
                                         <h:outputText  value="#{eqpdes.email}" />
                                     </p:column>
 
-                                    <p:column headerText="Perfil" style="width: 120px" class="text-center">
-                                        <h:outputText  value="#{usuariosBean.exibirPerfil(eqpdes)}" />
-                                    </p:column>
                                 </p:dataTable>
                             </h:form>
                         </div>
@@ -170,13 +166,10 @@
                                         <h:outputText value="#{eqpadm.matricula}" />
                                     </p:column>
 
-                                    <p:column headerText="E-mail" style="width: 120px" class="text-center">
+                                    <p:column headerText="E-mail" style="width: 200px" class="text-center">
                                         <h:outputText  value="#{eqpadm.email}" />
                                     </p:column>
 
-                                    <p:column headerText="Perfil" style="width: 120px" class="text-center">
-                                        <h:outputText  value="#{usuariosBean.exibirPerfil(eqpadm)}" />
-                                    </p:column>
                                 </p:dataTable>
                             </h:form>
                         </div>

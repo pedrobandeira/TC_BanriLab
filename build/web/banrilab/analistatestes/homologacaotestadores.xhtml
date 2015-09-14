@@ -6,28 +6,28 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-   	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-	<meta charset="utf-8"/>
-	<title>Testadores do Laboratório de Testes</title>
-	<meta name="generator" content="Bootply" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-	<h:outputStylesheet name="css/bootstrap.min.css"/>
-	<!--[if lt IE 9]>
-		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+        <meta charset="utf-8"/>
+        <title>Testadores do Laboratório de Testes</title>
+        <meta name="generator" content="Bootply" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+        <h:outputStylesheet name="css/bootstrap.min.css"/>
+        <!--[if lt IE 9]>
+                <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
         <h:outputStylesheet name="css/styles.css"/>
-   
+
     </h:head>
     <h:body>
         <ui:composition template="template.xhtml">
-        <ui:define name="content">
+            <ui:define name="content">
 
-        <div class="col-sm-9 col-md-10 main" >
-           
-            
-            <div class="panel panel-default">
-        
-        <!-- Modal Reservar Testadores -->
+                <div class="col-sm-9 col-md-10 main" >
+
+
+                    <div class="panel panel-default">
+
+                        <!-- Modal Reservar Testadores -->
                         <div class="modal fade" data-backdrop="static" id="reservarTestadores" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
@@ -38,32 +38,40 @@
 
                                         <h:form>
                                             <div class="container-fluid">
-                                               
-                                                <p:dataTable var="testador" value="#{usuariosBean.equipeTestes}" editable="false">
-                                                        <p:column headerText="Testador">
-                                                            <h:outputText value="#{testador.nome}" />
-                                                        </p:column>
 
-                                                        <p:column headerText="Matrícula">
-                                                            <h:outputText value="#{testador.matricula}" />
-                                                        </p:column>
+                                                <p:dataTable var="testador" value="#{usuariosBean.equipeTestes}" editable="false"
+                                                             rowStyleClass="#{eqptestes.disponivel eq true ? 'verde' : eqptestes.reserva.homologacao.analista eq homologacoesBean.carregaUsuarioAtivo() ? 'amarelo' : 'vermelho'}">
+                                                    <p:column headerText="Testador" style="width: 120px">
+                                                        <h:outputText value="#{testador.nome}" />
+                                                    </p:column>
 
-                                                        <p:column headerText="Status" class="text-center">
-                                                            <h:outputText value="#{usuariosBean.exibirDisponibilidade(testador)}" />
-                                                        </p:column>
+                                                    <p:column headerText="Matrícula" style="width: 100px">
+                                                        <h:outputText value="#{testador.matricula}" />
+                                                    </p:column>
 
-                                                        <p:column headerText="Alocar" class="text-center" style="width: 85px">
-                                                            <h:commandLink class="glyphicon glyphicon-calendar" action="#{homologacoesBean.adicionarReservaTestadorHomologacao(testador)}" rendered="#{reservaUsuariosBean.verificaDono(testador)}" /> 
-                                                        </p:column>
-                                                    </p:dataTable>
+                                                    <p:column headerText="Alocado para" class="text-center" >
+                                                        <h:outputText value="#{usuariosBean.exibirDisponibilidade(testador)}" />
+                                                    </p:column>
+                                                    <p:column headerText="Finalidade" class="text-center">
+                                                        <h:outputText value="#{testador.reserva.finalidade}"/>
+                                                    </p:column>
+                                                    <p:column headerText="Data fim" style="width: 95px">
+                                                        <h:outputText value="#{testador.reserva.dataFim}">
+                                                            <f:convertDateTime pattern="dd/MM/yyyy"/>  
+                                                        </h:outputText>
+                                                    </p:column>
+                                                    <p:column headerText="Alocar" class="text-center" style="width: 85px">
+                                                        <h:commandLink class="glyphicon glyphicon-calendar" action="#{homologacoesBean.adicionarReservaTestadorHomologacao(testador)}" rendered="#{reservaUsuariosBean.verificaDono(testador)}" /> 
+                                                    </p:column>
+                                                </p:dataTable>
                                             </div>
-                                            
+
                                             <div class="modal-footer">
                                                 <h:commandButton class="btn btn-default" value="Voltar" action="#{homologacoesBean.retornaAbrirHomologacao}"/>
                                                 <h:commandButton class="btn btn-primary" value="Avançar" action="#{homologacoesBean.retornaReservaAmbiente}"/>
-                                               
+
                                             </div>
-                                             
+
                                         </h:form>
 
                                     </div>
@@ -71,20 +79,20 @@
                                 </div>
                             </div>
                         </div>
-        <script type="text/javascript">
-        $(window).load(function(){
-        $('#reservarTestadores').modal('show');
-         });
-        </script>
-    </div>
-      </div><!--/row-->
-	
-        </ui:define>
-         </ui:composition>
-        
-	<!-- script references -->
+                        <script type="text/javascript">
+                            $(window).load(function () {
+                                $('#reservarTestadores').modal('show');
+                            });
+                        </script>
+                    </div>
+                </div><!--/row-->
+
+            </ui:define>
+        </ui:composition>
+
+        <!-- script references -->
         <h:outputScript name="js/jquery-1.11.2.min.js"/>
-	<h:outputScript name="js/bootstrap.min.js"/>
+        <h:outputScript name="js/bootstrap.min.js"/>
         <h:outputScript name="js/scripts.js"/>
 
     </h:body>

@@ -9,6 +9,7 @@ import br.com.banrilab.entidades.Atms;
 import br.com.banrilab.entidades.CartoesContas;
 import br.com.banrilab.entidades.CartoesCredito;
 import br.com.banrilab.entidades.EquipamentosAdicionais;
+import br.com.banrilab.entidades.HistoricoHomologacaoCiclos;
 import br.com.banrilab.entidades.Homologacoes;
 import br.com.banrilab.entidades.ReservaAtms;
 import br.com.banrilab.entidades.ReservaCartoesContas;
@@ -62,65 +63,9 @@ public class HomologacoesDao implements HomologacoesDaoInterface {
        
         javax.persistence.criteria.CriteriaQuery cq = entityManager.getCriteriaBuilder().createQuery();
         cq.select(cq.from(Homologacoes.class));
-        cq.orderBy(entityManager.getCriteriaBuilder().asc(cq.from(Homologacoes.class).get("dataSolicitacao")));
+        cq.orderBy(entityManager.getCriteriaBuilder().desc(cq.from(Homologacoes.class).get("dataSolicitacao")));
         return entityManager.createQuery(cq).getResultList();
     }
-	/*
-	public List<Homologacoes> getHomologacoesSolicitadas() {
-      
-		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Homologacoes> c = cb.createQuery(Homologacoes.class);
-        Root<Homologacoes> homologacoes = c.from(Homologacoes.class);
-        c.where(homologacoes.get("status").in("1") );
-
-        TypedQuery q = entityManager.createQuery(c);
-        return q.getResultList();
-		
-    }*/
-	/*
-	public List<Homologacoes> getHomologacoesAutorizadas() {
-       
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Homologacoes> c = cb.createQuery(Homologacoes.class);
-        Root<Homologacoes> homologacoes = c.from(Homologacoes.class);
-        c.where(homologacoes.get("status").in("2") );
-
-        TypedQuery q = entityManager.createQuery(c);
-        return q.getResultList();
-    }*/
-	/*
-	public List<Homologacoes> getHomologacoesEmAndamento() {
-       
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Homologacoes> c = cb.createQuery(Homologacoes.class);
-        Root<Homologacoes> homologacoes = c.from(Homologacoes.class);
-        c.where(homologacoes.get("status").in("3") );
-
-        TypedQuery q = entityManager.createQuery(c);
-        return q.getResultList();
-    }*/
-	/*
-	public List<Homologacoes> getHomologacoesConcluidas() {
-       
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Homologacoes> c = cb.createQuery(Homologacoes.class);
-        Root<Homologacoes> homologacoes = c.from(Homologacoes.class);
-        c.where(homologacoes.get("status").in("4") );
-
-        TypedQuery q = entityManager.createQuery(c);
-        return q.getResultList();
-    }*/
-	/*
-	public List<Homologacoes> getHomologacoesCanceladas() {
-       
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Homologacoes> c = cb.createQuery(Homologacoes.class);
-        Root<Homologacoes> homologacoes = c.from(Homologacoes.class);
-        c.where(homologacoes.get("status").in("5") );
-
-        TypedQuery q = entityManager.createQuery(c);
-        return q.getResultList();
-    } */
 	
     @Override
     public List<Homologacoes> getHomologacoesAbertas() {
@@ -129,23 +74,12 @@ public class HomologacoesDao implements HomologacoesDaoInterface {
         CriteriaQuery<Homologacoes> c = cb.createQuery(Homologacoes.class);
         Root<Homologacoes> homologacoes = c.from(Homologacoes.class);
         c.where(homologacoes.get("status").in("1","2","3"));
-        c.orderBy(cb.asc(homologacoes.get("dataSolicitacao")));
+        c.orderBy(cb.desc(homologacoes.get("dataSolicitacao")));
         
         TypedQuery q = entityManager.createQuery(c);
         return q.getResultList();
     }
-	/*
-	public List<Homologacoes> getHomologacoesFechadas() {
-       
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Homologacoes> c = cb.createQuery(Homologacoes.class);
-        Root<Homologacoes> homologacoes = c.from(Homologacoes.class);
-        c.where(homologacoes.get("status").in("4","5") );
-
-        TypedQuery q = entityManager.createQuery(c);
-        return q.getResultList();
-    } */
-
+	
     @Override
     public void addReservaServidores(ReservaServidores r) {
         if(r.getId() == null)
@@ -265,6 +199,33 @@ public class HomologacoesDao implements HomologacoesDaoInterface {
         Root<Usuarios> usuarios = c.from(Usuarios.class);
         c.where(usuarios.get("perfil").in("2") );
         c.orderBy(cb.asc(usuarios.get("nome")));
+        
+        TypedQuery q = entityManager.createQuery(c);
+        return q.getResultList();
+    }
+
+    @Override
+    public void addHistoricoHomologacaoCiclo(HistoricoHomologacaoCiclos h) {
+        if(h.getId() == null)
+            entityManager.persist(h);
+        else
+            entityManager.merge(h);
+    
+    }
+
+    @Override
+    public void removeHistoricoHomologacaoCiclo(HistoricoHomologacaoCiclos h) {
+        HistoricoHomologacaoCiclos historicoARemover = entityManager.merge(h);
+        entityManager.remove(historicoARemover);
+    }
+
+    @Override
+    public List<HistoricoHomologacaoCiclos> getHistoricoHomologacoesCiclos(Homologacoes h) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<HistoricoHomologacaoCiclos> c = cb.createQuery(HistoricoHomologacaoCiclos.class);
+        Root<HistoricoHomologacaoCiclos> historico = c.from(HistoricoHomologacaoCiclos.class);
+        c.where(historico.get("homologacao").in(h));
+        c.orderBy(cb.desc(historico.get("dataFimCiclo")));
         
         TypedQuery q = entityManager.createQuery(c);
         return q.getResultList();

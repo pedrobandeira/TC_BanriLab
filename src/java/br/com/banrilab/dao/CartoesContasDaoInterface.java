@@ -6,6 +6,7 @@
 package br.com.banrilab.dao;
 
 import br.com.banrilab.entidades.CartoesContas;
+import br.com.banrilab.entidades.ReservaCartoesContas;
 import java.util.List;
 
 /**
@@ -16,4 +17,6 @@ public interface CartoesContasDaoInterface {
     public void addCartaoConta (CartoesContas c);
     public void removeCartaoConta (CartoesContas c);
     public List<CartoesContas> getCartoesContas();
+    public void removeReservaCartaoConta (ReservaCartoesContas r);
+    public List<ReservaCartoesContas> getReservasCartoesContas();
 }

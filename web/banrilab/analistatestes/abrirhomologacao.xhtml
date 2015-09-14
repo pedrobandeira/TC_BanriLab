@@ -57,7 +57,13 @@
                                                             <p:inputText class="form-control" value="#{homologacoesBean.homologacao.ciclo}" placeholder="Ciclo de testes"/>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label/>
+                                                            <h:commandButton class="btn btn-info" value="Encerrar Ciclo" action="#{homologacoesBean.encerrarCicloHomologacao}" rendered="#{homologacoesBean.verificaEmAndamento(homologacoesBean.homologacao)}"/>
+                                                        </div>
+                                                    </div>
+                                                        </div>
 
                                                 <div class="row">
                                                     <div class="col-md-6">
@@ -79,7 +85,8 @@
 
                                             <div class="modal-footer">
                                                 <h:commandButton class="btn btn-default" value="Voltar" action="#{homologacoesBean.retornaEditarHomologacao}"/>
-                                                <h:commandButton class="btn btn-primary" value="Avançar" action="#{homologacoesBean.retornaReservaTestadores}"/>
+                                                <h:commandButton class="btn btn-success" value="Concluir Homologação" action="#{homologacoesBean.encerrarHomologacao}" rendered="#{homologacoesBean.verificaEmAndamento(homologacoesBean.homologacao)}"/>
+                                                <h:commandButton class="btn btn-primary" value="Alocar ambiente" action="#{homologacoesBean.retornaReservaTestadores}"/>
 
                                             </div>
                                         </h:form>

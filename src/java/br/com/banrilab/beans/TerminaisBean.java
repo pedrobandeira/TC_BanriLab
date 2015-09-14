@@ -7,6 +7,7 @@ package br.com.banrilab.beans;
 
 import br.com.banrilab.dao.TerminaisDao;
 import br.com.banrilab.dao.TerminaisDaoInterface;
+import br.com.banrilab.entidades.ReservaTerminais;
 import br.com.banrilab.entidades.Terminais;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -42,6 +43,11 @@ public class TerminaisBean implements Serializable {
     
     public String removerTerminal(Terminais t) {
         this.terminal = t;
+        for (ReservaTerminais reserva : terminalDao.getReservasTerminais()) {
+            if (reserva.getTerminal().equals(t)) {
+            terminalDao.removeReservaTerminal(reserva);
+            }
+        }
         terminalDao.removeTerminal(this.terminal);
         limpaCampos();
         return "terminais";
@@ -71,18 +77,18 @@ public class TerminaisBean implements Serializable {
                 return "Disponível";
             }
             if (t.getReserva() != null) {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 if (!(t.getReserva().getDono() == null)) {
                     if (!(t.getReserva().getDono().getNome().isEmpty())) {
-                        return "Reservado para " + t.getReserva().getDono().getNome() + " até " + sdf.format(t.getReserva().getDataFim());
+                        return t.getReserva().getDono().getNome();
                     } 
                 }
                 if (!(t.getReserva().getHomologacao() == null)) {
-                    return ("Reservado para "+t.getReserva().getFinalidade()+" até "+ sdf.format(t.getReserva().getDataFim()));
+                    return t.getReserva().getHomologacao().getAnalista().getNome();
                 }
             }
         }
         return "Não reservável";
+
     }
     
     public void limpaCampos() {

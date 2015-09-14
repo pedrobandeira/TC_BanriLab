@@ -60,10 +60,7 @@
                                         <label for="InputModelo">Modelo</label>
                                         <p:inputText placeholder="Digite o modelo do ATM" class="form-control" id="InputModelo" value="#{atmsBean.atm.modelo}"/>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="InputDescricao">Descrição</label>
-                                        <p:inputText placeholder="Digite uma descrição para o ATM" class="form-control" id="InputDescricao" value="#{atmsBean.atm.descricao}"/>
-                                    </div>
+                                    
                                     <div class="form-group">
                                         <p:selectBooleanCheckbox value="#{atmsBean.atm.depositario}" style="font-weight: bold" itemLabel="Possui depositário" />
                                     </div>
@@ -90,21 +87,18 @@
                 </div>
             </div>
             <h:form>
-                <p:dataTable var="atm" value="#{atmsBean.atms}" editable="false" >
+                <p:dataTable var="atm" value="#{atmsBean.atms}" editable="false"
+                             rowStyleClass="#{atm.reservavel eq false ? null : atm.disponivel eq true ? 'verde' :'vermelho'}">
                     <p:column headerText="ATM" style="width: 80px">
  
                         <h:outputText value="#{atm.nome}"/>
-                    </p:column>
-                
-                    <p:column headerText="Descrição" style="width: 100px">
-                        <h:outputText value="#{atm.descricao}" />
                     </p:column>
 
                     <p:column headerText="Modelo" style="width: 100px">
                         <h:outputText value="#{atm.modelo}" />
                     </p:column>
 
-                    <p:column headerText="Patrimônio" style="width: 100px">
+                    <p:column headerText="Patrim." style="width: 70px">
                         <h:outputText value="#{atm.patrimonio}" />
                     </p:column>
                     
@@ -116,14 +110,22 @@
                         <p:outputLabel class="#{atmsBean.exibirTalonadora(atm)}" />
                     </p:column>
                 
-                    <p:column headerText="Status" class="text-center">
+                    <p:column headerText="Reservado para" class="text-center" style="width: 100px">
                         <h:outputText value="#{atmsBean.exibirDisponibilidade(atm)}" />
                     </p:column>
-                    <p:column headerText="Editar" class="text-center" style="width: 70px">
+                    <p:column headerText="Finalidade" class="text-center" style="width: 120px">
+                        <h:outputText value="#{atm.reserva.finalidade}" />
+                    </p:column>
+                    <p:column headerText="Data fim" class="text-center" style="width: 100px">
+                        <h:outputText value="#{atm.reserva.dataFim}">
+                              <f:convertDateTime pattern="dd/MM/yyyy"/>  
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Editar" class="text-center" style="width: 65px">
                         <h:commandLink class="glyphicon glyphicon-edit" action="#{atmsBean.carregarAtm(atm)}" rendered="#{atm.disponivel}"/> 
                     </p:column>
                 
-                    <p:column headerText="Excluir" class="text-center" style="width: 70px">
+                    <p:column headerText="Excluir" class="text-center" style="width: 65px">
                         <h:commandLink class="glyphicon glyphicon-remove" action="#{atmsBean.removerAtm(atm)}" rendered="#{atm.disponivel}"/>
                     </p:column>
                 </p:dataTable>

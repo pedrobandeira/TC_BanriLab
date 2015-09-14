@@ -39,7 +39,8 @@
                                         <h:form>
                                             <div class="container-fluid">
                                                
-                                                    <p:dataTable var="servidor" value="#{servidoresBean.servidores}" editable="false">
+                                                    <p:dataTable var="servidor" value="#{servidoresBean.servidores}" editable="false"
+                                                                 rowStyleClass="#{servidor.reservavel eq false ? null : servidor.disponivel eq true ? 'verde' : servidor.reserva.homologacao.analista eq homologacoesBean.carregaUsuarioAtivo() ? 'amarelo' : 'vermelho'}">
                                                         <p:column headerText="Servidor" style="width: 100px">
                                                             <h:outputText value="#{servidor.nome}" />
                                                         </p:column>

@@ -10,6 +10,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(Homologacoes.class)
 public abstract class Homologacoes_ {
 
+	public static volatile ListAttribute<Homologacoes, HistoricoHomologacaoCiclos> historicoCiclos;
 	public static volatile SingularAttribute<Homologacoes, String> versaoSistema;
 	public static volatile ListAttribute<Homologacoes, ReservaTerminais> reservasTerminais;
 	public static volatile SingularAttribute<Homologacoes, Integer> status;

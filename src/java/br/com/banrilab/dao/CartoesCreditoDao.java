@@ -6,6 +6,7 @@
 package br.com.banrilab.dao;
 
 import br.com.banrilab.entidades.CartoesCredito;
+import br.com.banrilab.entidades.ReservaCartoesCredito;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -42,4 +43,16 @@ public class CartoesCreditoDao implements CartoesCreditoDaoInterface {
         return entityManager.createQuery(cq).getResultList();
     }
     
+     @Override
+    public void removeReservaCartaoCredito(ReservaCartoesCredito r) {
+        ReservaCartoesCredito reservaARemover = entityManager.merge(r);
+        entityManager.remove(reservaARemover);
+    }
+
+    @Override
+    public List<ReservaCartoesCredito> getReservasCartoesCredito() {
+        javax.persistence.criteria.CriteriaQuery cq = entityManager.getCriteriaBuilder().createQuery();
+        cq.select(cq.from(ReservaCartoesCredito.class));
+        return entityManager.createQuery(cq).getResultList();
+    }
 }

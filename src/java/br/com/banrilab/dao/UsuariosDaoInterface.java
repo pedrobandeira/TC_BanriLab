@@ -5,6 +5,7 @@
  */
 package br.com.banrilab.dao;
 
+import br.com.banrilab.entidades.ReservaUsuarios;
 import br.com.banrilab.entidades.Usuarios;
 import java.util.List;
 
@@ -21,4 +22,6 @@ public interface UsuariosDaoInterface {
     public List<Usuarios> getEquipeCoordenadores();
     public List<Usuarios> getEquipeDesenvolvimento();
     public List<Usuarios> getEquipeAdminLaboratorio();
+    public void removeReservaUsuario (ReservaUsuarios r);
+    public List<ReservaUsuarios> getReservasUsuarios();
 }

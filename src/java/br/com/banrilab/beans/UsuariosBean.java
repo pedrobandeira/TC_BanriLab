@@ -8,6 +8,7 @@ package br.com.banrilab.beans;
 import br.com.banrilab.dao.UsuariosDao;
 import br.com.banrilab.dao.UsuariosDaoInterface;
 import br.com.banrilab.entidades.Login;
+import br.com.banrilab.entidades.ReservaUsuarios;
 import br.com.banrilab.entidades.Usuarios;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -38,6 +39,7 @@ public class UsuariosBean implements Serializable {
     private List<Usuarios> equipeDesenvolvimento = new ArrayList<>();
     private List<Usuarios> equipeAdmLaboratorio = new ArrayList<>();
     
+
     private Login login = new Login();
     private FacesContext fc;
     private HttpSession session;
@@ -59,6 +61,11 @@ public class UsuariosBean implements Serializable {
     public String removerUsuario(Usuarios u) {
         
         this.usuario = u;
+        for (ReservaUsuarios reserva : usuarioDao.getReservasUsuarios()) {
+            if (reserva.getUsuario().equals(u)) {
+            usuarioDao.removeReservaUsuario(reserva);
+            }
+        }
         usuarioDao.removeUsuario(this.usuario);
         limpaCampos();
         return "usuarios";
@@ -105,11 +112,8 @@ public class UsuariosBean implements Serializable {
                 return "Disponível";
             }
             if (u.getReserva() != null) {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 if (!(u.getReserva().getHomologacao() == null)) {
-                    if (!(u.getReserva().getHomologacao().getSistema() == null)) {
-                        return "Alocado para " + u.getReserva().getHomologacao().getSistema().getNome()+" versão "+u.getReserva().getHomologacao().getVersaoSistema()+" até " + sdf.format(u.getReserva().getDataFim());
-                    } 
+                    return u.getReserva().getHomologacao().getAnalista().getNome();
                 }
             }
         return "Não reservável";

@@ -17,7 +17,6 @@ public abstract class Atms_ {
 	public static volatile SingularAttribute<Atms, Boolean> disponivel;
 	public static volatile SingularAttribute<Atms, String> modelo;
 	public static volatile SingularAttribute<Atms, ReservaAtms> reserva;
-	public static volatile SingularAttribute<Atms, String> descricao;
 
 }
 

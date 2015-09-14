@@ -5,6 +5,7 @@
  */
 package br.com.banrilab.dao;
 
+import br.com.banrilab.entidades.ReservaServidores;
 import br.com.banrilab.entidades.Servidores;
 import java.util.List;
 
@@ -16,5 +17,7 @@ public interface ServidoresDaoInterface {
     public void addServidor (Servidores s);
     public void removeServidor (Servidores s);
     public List<Servidores> getServidores();
+    public void removeReservaServidor (ReservaServidores r);
+    public List<ReservaServidores> getReservasServidores();
     
 }

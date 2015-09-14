@@ -32,7 +32,8 @@
                 
             </div>
             <h:form>
-                <p:dataTable var="servidor" value="#{servidoresBean.servidores}" editable="false">
+                <p:dataTable var="servidor" value="#{servidoresBean.servidores}" editable="false"
+                             rowStyleClass="#{servidor.reservavel eq false ? null : servidor.disponivel eq true ? 'verde' :'vermelho'}">
                     <p:column headerText="Servidor" style="width: 90px" class="text-center">
                         <h:outputText value="#{servidor.nome}" />
                     </p:column>

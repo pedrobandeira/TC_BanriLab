@@ -33,21 +33,31 @@
                                 
             </div>
             <h:form>
-                <p:dataTable var="cartao" value="#{cartoesCreditoBean.cartoesCredito}" editable="false">
+                <p:dataTable var="cartao" value="#{cartoesCreditoBean.cartoesCredito}" editable="false"
+                             rowStyleClass="#{cartao.reservavel eq false ? null : cartao.disponivel eq true ? 'verde' :'vermelho'}">
                     <p:column headerText="Bandeira" class="text-center" style="width: 100px">
                         <h:outputText value="#{cartoesCreditoBean.exibirBandeira(cartao)}" />
                     </p:column>
                 
-                    <p:column headerText="Número do cartão" class="text-center" style="width: 180px">
+                    <p:column headerText="Número do cartão" class="text-center" style="width: 160px">
                         <h:outputText value="#{cartao.numero}" />
                     </p:column>
 
-                    <p:column headerText="Nome do cliente" class="text-center" style="width: 200px">
+                    <p:column headerText="Nome do cliente" class="text-center" style="width: 160px">
                         <h:outputText value="#{cartao.nome}" />
                     </p:column>
-                    <p:column headerText="Status" class="text-center">
+                    <p:column headerText="Reservado para" class="text-center" style="width: 120px">
                         <h:outputText value="#{cartoesCreditoBean.exibirDisponibilidade(cartao)}" />
                     </p:column>
+                    <p:column headerText="Finalidade" class="text-center" style="width: 120px">
+                        <h:outputText value="#{cartao.reserva.finalidade}" />
+                    </p:column>
+                    <p:column headerText="Data fim" class="text-center" style="width: 100px">
+                        <h:outputText value="#{cartao.reserva.dataFim}">
+                              <f:convertDateTime pattern="dd/MM/yyyy"/>  
+                        </h:outputText>
+                    </p:column>
+                
                 </p:dataTable>                
             </h:form>
             </div>

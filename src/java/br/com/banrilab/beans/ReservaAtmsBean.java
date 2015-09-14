@@ -76,6 +76,7 @@ public class ReservaAtmsBean implements Serializable {
         this.reservaAtm.setHomologacao(null);
         this.reservaAtm.setDataInicio(null);
         this.reservaAtm.setDataFim(null);
+        this.reservaAtm.setTestador(null);
     }
     
     public String removerReserva() {

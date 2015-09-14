@@ -85,7 +85,8 @@
                 </div>
             </div>
             <h:form>
-                <p:dataTable var="usuario" value="#{usuariosBean.usuarios}" editable="false">
+                <p:dataTable var="usuario" value="#{usuariosBean.usuarios}" editable="false"
+                             rowStyleClass="#{usuario.perfil ne 4 ? null : usuario.disponivel eq true ? 'verde' :'vermelho'}">
                     <p:column headerText="Nome">
                         <h:outputText value="#{usuario.nome}" />
                     </p:column>

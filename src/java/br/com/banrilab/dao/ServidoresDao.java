@@ -5,6 +5,7 @@
  */
 package br.com.banrilab.dao;
 
+import br.com.banrilab.entidades.ReservaServidores;
 import br.com.banrilab.entidades.Servidores;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -50,5 +51,16 @@ public class ServidoresDao implements ServidoresDaoInterface {
         return entityManager.createQuery(cq).getResultList();
     }
 
-    
+    @Override
+    public void removeReservaServidor(ReservaServidores r) {
+        ReservaServidores reservaARemover = entityManager.merge(r);
+        entityManager.remove(reservaARemover);
+    }
+
+    @Override
+    public List<ReservaServidores> getReservasServidores() {
+        javax.persistence.criteria.CriteriaQuery cq = entityManager.getCriteriaBuilder().createQuery();
+        cq.select(cq.from(ReservaServidores.class));
+        return entityManager.createQuery(cq).getResultList();
+    }
 }

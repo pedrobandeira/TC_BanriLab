@@ -7,6 +7,7 @@ package br.com.banrilab.entidades;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,7 +27,6 @@ public class Atms implements Serializable {
     private Integer patrimonio;
     private String nome;
     private String modelo;
-    private String descricao;
     private boolean depositario;
     private boolean talonadora;
     private boolean disponivel;
@@ -78,13 +78,6 @@ public class Atms implements Serializable {
         this.modelo = modelo;
     }
 
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
 
     @Override
     public int hashCode() {

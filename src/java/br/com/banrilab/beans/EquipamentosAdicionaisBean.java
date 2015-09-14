@@ -7,6 +7,7 @@ package br.com.banrilab.beans;
 
 import br.com.banrilab.dao.EquipamentosAdicionaisDaoInterface;
 import br.com.banrilab.entidades.EquipamentosAdicionais;
+import br.com.banrilab.entidades.ReservaEquipamentosAdicionais;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -41,6 +42,11 @@ public class EquipamentosAdicionaisBean implements Serializable {
     
     public String removerEquipamentoAdicional(EquipamentosAdicionais e) {
         this.equipamentoAdicional = e;
+        for (ReservaEquipamentosAdicionais reserva : equipDao.getReservasEquipamentosAdicionais()) {
+            if (reserva.getEquipamento().equals(e)) {
+            equipDao.removeReservaEquipamentoAdicional(reserva);
+            }
+        }
         equipDao.removeEquipamentoAdicional(this.equipamentoAdicional);
         limpaCampos();
         return "equipamentosadicionais";
@@ -70,18 +76,18 @@ public class EquipamentosAdicionaisBean implements Serializable {
                 return "Disponível";
             }
             if (e.getReserva() != null) {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 if (!(e.getReserva().getDono() == null)) {
                     if (!(e.getReserva().getDono().getNome().isEmpty())) {
-                        return "Reservado para " + e.getReserva().getDono().getNome() + " até " + sdf.format(e.getReserva().getDataFim());
+                        return e.getReserva().getDono().getNome();
                     } 
                 }
                 if (!(e.getReserva().getHomologacao() == null)) {
-                    return ("Reservado para "+e.getReserva().getFinalidade()+" até "+ sdf.format(e.getReserva().getDataFim()));
+                    return e.getReserva().getHomologacao().getAnalista().getNome();
                 }
             }
         }
         return "Não reservável";
+
     }
     
     public void limpaCampos() {

@@ -36,7 +36,8 @@
 
                                         <h:form>
                                             <div class="container-fluid">
-                                                <p:dataTable var="equipamento" value="#{equipamentosAdicionaisBean.equipamentosAdicionais}" editable="false">
+                                                <p:dataTable var="equipamento" value="#{equipamentosAdicionaisBean.equipamentosAdicionais}" editable="false"
+                                                             rowStyleClass="#{equipamento.reservavel eq false ? null : equipamento.disponivel eq true ? 'verde' : equipamento.reserva.homologacao.analista eq homologacoesBean.carregaUsuarioAtivo() ? 'amarelo' : 'vermelho'}">
                                                     <p:column headerText="Equipamento Adicional">
 
                                                         <h:outputText value="#{equipamento.nome}" />

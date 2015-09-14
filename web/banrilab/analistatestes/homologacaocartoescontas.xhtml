@@ -38,7 +38,8 @@
 
                                         <h:form>
                                             <div class="container-fluid">
-                                                <p:dataTable var="cartao" value="#{cartoesContasBean.cartoesContas}" editable="false">
+                                                <p:dataTable var="cartao" value="#{cartoesContasBean.cartoesContas}" editable="false"
+                                                             rowStyleClass="#{cartao.reservavel eq false ? null : cartao.disponivel eq true ? 'verde' : cartao.reserva.homologacao.analista eq homologacoesBean.carregaUsuarioAtivo() ? 'amarelo' : 'vermelho'}">
                                                     <p:column headerText="Agência" class="text-center" style="width: 100px">
                                                         <h:outputText value="#{cartao.agencia}" />
                                                     </p:column>

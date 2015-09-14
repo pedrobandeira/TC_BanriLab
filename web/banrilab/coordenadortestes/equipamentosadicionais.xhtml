@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
    	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 	<meta charset="utf-8"/>
@@ -45,8 +46,16 @@
                         <h:outputText value="#{equipamento.patrimonio}" />
                     </p:column>
                 
-                    <p:column headerText="Status" class="text-center">
+                   <p:column headerText="Reservado para" class="text-center" style="width: 100px">
                         <h:outputText value="#{equipamentosAdicionaisBean.exibirDisponibilidade(equipamento)}" />
+                    </p:column>
+                    <p:column headerText="Finalidade" class="text-center" style="width: 120px">
+                        <h:outputText value="#{equipamento.reserva.finalidade}" />
+                    </p:column>
+                    <p:column headerText="Data fim" class="text-center" style="width: 100px">
+                        <h:outputText value="#{equipamento.reserva.dataFim}">
+                              <f:convertDateTime pattern="dd/MM/yyyy"/>  
+                        </h:outputText>
                     </p:column>
                 </p:dataTable>
           

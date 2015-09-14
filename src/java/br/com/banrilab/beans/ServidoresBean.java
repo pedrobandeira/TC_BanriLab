@@ -7,6 +7,7 @@ package br.com.banrilab.beans;
 
 import br.com.banrilab.dao.ServidoresDao;
 import br.com.banrilab.dao.ServidoresDaoInterface;
+import br.com.banrilab.entidades.ReservaServidores;
 import br.com.banrilab.entidades.Servidores;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -43,6 +44,11 @@ public class ServidoresBean implements Serializable {
 
     public String removerServidor(Servidores s) {
         this.servidor = s;
+        for (ReservaServidores reserva : servidorDao.getReservasServidores()) {
+            if (reserva.getServidor().equals(s)) {
+            servidorDao.removeReservaServidor(reserva);
+            }
+        }
         servidorDao.removeServidor(this.servidor);
         limpaCampos();
         return "servidores";
@@ -72,18 +78,18 @@ public class ServidoresBean implements Serializable {
                 return "Disponível";
             }
             if (s.getReserva() != null) {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 if (!(s.getReserva().getDono() == null)) {
                     if (!(s.getReserva().getDono().getNome().isEmpty())) {
-                        return "Reservado para " + s.getReserva().getDono().getNome() + " até " + sdf.format(s.getReserva().getDataFim());
+                        return s.getReserva().getDono().getNome();
                     } 
                 }
                 if (!(s.getReserva().getHomologacao() == null)) {
-                    return ("Reservado para "+s.getReserva().getFinalidade()+" até "+ sdf.format(s.getReserva().getDataFim()));
+                    return s.getReserva().getHomologacao().getAnalista().getNome();
                 }
             }
         }
         return "Não reservável";
+
     }
 
     public void limpaCampos() {

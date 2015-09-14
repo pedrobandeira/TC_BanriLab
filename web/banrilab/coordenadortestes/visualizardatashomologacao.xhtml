@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+        <meta charset="utf-8"/>
+        <title>Homologações do Laboratório de Testes</title>
+        <meta name="generator" content="Bootply" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+        <h:outputStylesheet name="css/bootstrap.min.css"/>
+        <!--[if lt IE 9]>
+                <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <h:outputStylesheet name="css/styles.css"/>
+
+    </h:head>
+    <h:body>
+        <ui:composition template="template.xhtml">
+            <ui:define name="content">
+
+                <div class="col-sm-9 col-md-10 main" >
+
+
+                    <div class="panel panel-default">
+
+                        <!-- Modal Datas Homologacao -->
+                        <div class="modal fade" data-backdrop="static" id="datasHomologacao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" id="myModalLabel">Visualizar histórico da homologação</h4>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <h:form>
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="form-group">
+                                                            <label>Solicitante</label>
+                                                            <p:inputText disabled="true" class="form-control" value="#{homologacoesBean.homologacao.solicitante.nome}"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <div class="form-group">
+                                                            <label>Data solicitação</label>
+                                                            <p:inputText disabled="true" class="form-control" value="#{homologacoesBean.homologacao.dataSolicitacao}">
+                                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                            </p:inputText>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="form-group">
+                                                            <label>Autorizador</label>
+                                                            <p:inputText disabled="true" class="form-control" value="#{homologacoesBean.homologacao.autorizador.nome}"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <div class="form-group">
+                                                            <label>Data autorização</label>
+                                                            <p:inputText disabled="true" class="form-control" value="#{homologacoesBean.homologacao.dataAutorizacao}">
+                                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                            </p:inputText>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="form-group">
+                                                            <label>Analista de testes</label>
+                                                            <p:inputText disabled="true" class="form-control" value="#{homologacoesBean.homologacao.analista.nome}"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <div class="form-group">
+                                                            <label>Data abertura</label>
+                                                            <p:inputText disabled="true" class="form-control" value="#{homologacoesBean.homologacao.dataAbertura}">
+                                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                            </p:inputText>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <p:dataTable var="ciclo" scrollable="true" style="width: 230px" scrollHeight="150" value="#{homologacoesBean.homologacao.historicoCiclos}" editable="false">
+                                                    <p:column headerText="Ciclo" class="text-center">
+
+                                                        <h:outputText value="#{ciclo.ciclo}" />
+                                                    </p:column>
+                                                    <p:column headerText="Data encerramento" class="text-center">
+                                                        <h:outputText value="#{ciclo.dataFimCiclo}">
+                                                            <f:convertDateTime pattern="dd/MM/yyyy"/> 
+                                                        </h:outputText>
+                                                    </p:column>
+  
+                                                </p:dataTable>
+                                                
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <h:commandButton class="btn btn-primary" value="Voltar" action="#{homologacoesBean.visualizarHomologacao(homologacoesBean.homologacao)}"/>
+
+                                            </div>
+
+                                        </h:form>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <script type="text/javascript">
+                            $(window).load(function () {
+                                $('#datasHomologacao').modal('show');
+                            });
+                        </script>
+                    </div>
+                </div><!--/row-->
+
+            </ui:define>
+        </ui:composition>
+
+        <!-- script references -->
+        <h:outputScript name="js/jquery-1.11.2.min.js"/>
+        <h:outputScript name="js/bootstrap.min.js"/>
+        <h:outputScript name="js/scripts.js"/>
+
+    </h:body>
+</html>

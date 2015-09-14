@@ -5,6 +5,7 @@
  */
 package br.com.banrilab.dao;
 
+import br.com.banrilab.entidades.ReservaTerminais;
 import br.com.banrilab.entidades.Terminais;
 import java.util.List;
 
@@ -16,4 +17,6 @@ public interface TerminaisDaoInterface {
     public void addTerminal (Terminais t);
     public void removeTerminal (Terminais t);
     public List<Terminais> getTerminais();
+    public void removeReservaTerminal (ReservaTerminais r);
+    public List<ReservaTerminais> getReservasTerminais();
 }

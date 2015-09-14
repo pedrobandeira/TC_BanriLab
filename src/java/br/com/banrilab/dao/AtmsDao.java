@@ -6,6 +6,7 @@
 package br.com.banrilab.dao;
 
 import br.com.banrilab.entidades.Atms;
+import br.com.banrilab.entidades.ReservaAtms;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -48,6 +49,19 @@ public class AtmsDao implements AtmsDaoInterface {
         javax.persistence.criteria.CriteriaQuery cq = entityManager.getCriteriaBuilder().createQuery();
         cq.select(cq.from(Atms.class));
         cq.orderBy(entityManager.getCriteriaBuilder().asc(cq.from(Atms.class).get("nome")));
+        return entityManager.createQuery(cq).getResultList();
+    }
+    
+    @Override
+    public void removeReservaAtms(ReservaAtms r) {
+        ReservaAtms reservaARemover = entityManager.merge(r);
+        entityManager.remove(reservaARemover);
+    }
+
+    @Override
+    public List<ReservaAtms> getReservasAtms() {
+        javax.persistence.criteria.CriteriaQuery cq = entityManager.getCriteriaBuilder().createQuery();
+        cq.select(cq.from(ReservaAtms.class));
         return entityManager.createQuery(cq).getResultList();
     }
 

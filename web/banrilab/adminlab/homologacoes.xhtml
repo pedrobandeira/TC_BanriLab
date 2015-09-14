@@ -6,37 +6,37 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-        <meta charset="utf-8"/>
-        <title>Homologações do Laboratório de Testes</title>
+   	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+	<meta charset="utf-8"/>
+	<title>Homologações do Laboratório de Testes</title>
         <link rel="icon" href="resources/images/banrisul-icone.png" type="image/x-icon" />
         <link rel="shortcut icon" href="resources/images/banrisul-icone.png" type="image/x-icon" />
-        <meta name="generator" content="Bootply" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-        <h:outputStylesheet name="css/bootstrap.min.css"/>
-        <!--[if lt IE 9]>
-                <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+	<meta name="generator" content="Bootply" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+	<h:outputStylesheet name="css/bootstrap.min.css"/>
+	<!--[if lt IE 9]>
+		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
         <h:outputStylesheet name="css/styles.css"/>
-
+   
     </h:head>
-
+    
     <h:body>
         <ui:composition template="template.xhtml">
-            <ui:define name="content">
+        <ui:define name="content">
 
-                <div class="col-sm-9 col-md-10 main" style="width: 100%">
-
-
-                    <div class="panel panel-default">
-                        <!-- Default panel contents -->
-                        <div class="panel-heading">Homologações abertas Laboratório de Testes</div>
-                        <div class="panel-body">
-
-                            <h:form>
-                                <p:dataTable var="homologacao" value="#{homologacoesBean.homologacoesAbertas}" editable="false" binding=""
-                                             rowStyleClass="#{homologacao.status eq 2 ? 'amarelo' : homologacao.status eq 3 ? 'azul' : homologacao.status eq 4 ? 'verde' : homologacao.status eq 5 ? 'vermelho' : null}">
-                                    <p:column headerText="Sistema" style="width: 75px" class="text-center">
+        <div class="col-sm-9 col-md-10 main" style="width: 100%">
+           
+            
+            <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Homologações abertas do Laboratório de Testes</div>
+            <div class="panel-body">
+            
+            <h:form>
+                <p:dataTable var="homologacao" value="#{homologacoesBean.homologacoesAbertas}" editable="false"
+                             rowStyleClass="#{homologacao.status eq 2 ? 'amarelo' : homologacao.status eq 3 ? 'azul' : homologacao.status eq 4 ? 'verde' : homologacao.status eq 5 ? 'vermelho' : null}">
+                    <p:column headerText="Sistema" style="width: 75px" class="text-center">
                                         <h:outputText value="#{homologacao.sistema.nome}" />
                                     </p:column>
 
@@ -59,27 +59,26 @@
                                         <h:outputText value="#{homologacoesBean.exibirStatus(homologacao)}" />
                                     </p:column>
 
-                                    <p:column headerText="Ver detalhes" class="text-center" style="width: 120px">                  
-                                        <h:commandLink class="glyphicon glyphicon-zoom-in" action="#{homologacoesBean.visualizarHomologacao(homologacao)}"/>
-                                    </p:column>
-
-                                </p:dataTable>
-
-                            </h:form>
-                        </div>
-                        
-                        <div class="panel-footer">
-                            <h:link class="btn btn-default" value="Visualizar todas as homologações" outcome="historicohomologacoes" />
-                        </div>
-                    </div>
-                </div><!--/row-->
-
-            </ui:define>
-        </ui:composition>
-
-        <!-- script references -->
+                    <p:column headerText="Ver detalhes" class="text-center" style="width: 120px">
+                        <h:commandLink class="glyphicon glyphicon-zoom-in" action="#{homologacoesBean.visualizarHomologacao(homologacao)}"/>						
+                    </p:column>
+                
+                </p:dataTable>
+                          
+            </h:form>
+            </div>
+            </div>
+                <div class="panel-footer">
+                        <h:link class="btn btn-default" value="Visualizar todas as homologações" outcome="historicohomologacoes" />
+                </div>
+      </div><!--/row-->
+	
+        </ui:define>
+         </ui:composition>
+        
+	<!-- script references -->
         <h:outputScript name="js/jquery-1.11.2.min.js"/>
-        <h:outputScript name="js/bootstrap.min.js"/>
+	<h:outputScript name="js/bootstrap.min.js"/>
         <h:outputScript name="js/scripts.js"/>
 
     </h:body>

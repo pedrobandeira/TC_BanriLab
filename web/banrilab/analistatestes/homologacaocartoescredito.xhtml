@@ -35,7 +35,8 @@
 
                                         <h:form>
                                             <div class="container-fluid">
-                                                <p:dataTable var="cartao" value="#{cartoesCreditoBean.cartoesCredito}" editable="false">
+                                                <p:dataTable var="cartao" value="#{cartoesCreditoBean.cartoesCredito}" editable="false"
+                                                             rowStyleClass="#{cartao.reservavel eq false ? null : cartao.disponivel eq true ? 'verde' : cartao.reserva.homologacao.analista eq homologacoesBean.carregaUsuarioAtivo() ? 'amarelo' : 'vermelho'}">
                                                     <p:column headerText="Bandeira" class="text-center" style="width: 100px">
                                                         <h:outputText value="#{cartoesCreditoBean.exibirBandeira(cartao)}" />
                                                     </p:column>

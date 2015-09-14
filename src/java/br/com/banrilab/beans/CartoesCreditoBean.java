@@ -6,6 +6,7 @@
 package br.com.banrilab.beans;
 
 import br.com.banrilab.entidades.CartoesCredito;
+import br.com.banrilab.entidades.ReservaCartoesCredito;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -41,6 +42,11 @@ public class CartoesCreditoBean implements Serializable {
     
     public String removerCartaoCredito(CartoesCredito c) {
         this.cartaoCredito = c;
+        for (ReservaCartoesCredito reserva : cartaoCreditoDao.getReservasCartoesCredito()) {
+            if (reserva.getCartaoCredito().equals(c)) {
+            cartaoCreditoDao.removeReservaCartaoCredito(reserva);
+            }
+        }
         cartaoCreditoDao.removeCartaoCredito(this.cartaoCredito);
         limpaCampos();
         return "cartoescredito";
@@ -79,18 +85,18 @@ public class CartoesCreditoBean implements Serializable {
                 return "Disponível";
             }
             if (c.getReserva() != null) {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 if (!(c.getReserva().getDono() == null)) {
                     if (!(c.getReserva().getDono().getNome().isEmpty())) {
-                        return "Reservado para " + c.getReserva().getDono().getNome() + " até " + sdf.format(c.getReserva().getDataFim());
+                        return c.getReserva().getDono().getNome();
                     } 
                 }
                 if (!(c.getReserva().getHomologacao() == null)) {
-                    return ("Reservado para "+c.getReserva().getFinalidade()+" até "+ sdf.format(c.getReserva().getDataFim()));
+                    return c.getReserva().getHomologacao().getAnalista().getNome();
                 }
             }
         }
         return "Não reservável";
+
     }
     
     public void limpaCampos() {

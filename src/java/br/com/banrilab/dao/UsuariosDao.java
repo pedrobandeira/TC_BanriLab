@@ -5,6 +5,7 @@
  */
 package br.com.banrilab.dao;
 
+import br.com.banrilab.entidades.ReservaUsuarios;
 import br.com.banrilab.entidades.Usuarios;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -112,6 +113,18 @@ public class UsuariosDao implements UsuariosDaoInterface {
         TypedQuery q = entityManager.createQuery(c);
         return q.getResultList();
     }
+    
+    @Override
+    public void removeReservaUsuario(ReservaUsuarios r) {
+        ReservaUsuarios reservaARemover = entityManager.merge(r);
+        entityManager.remove(reservaARemover);
+    }
 
+    @Override
+    public List<ReservaUsuarios> getReservasUsuarios() {
+        javax.persistence.criteria.CriteriaQuery cq = entityManager.getCriteriaBuilder().createQuery();
+        cq.select(cq.from(ReservaUsuarios.class));
+        return entityManager.createQuery(cq).getResultList();
+    }
     
 }

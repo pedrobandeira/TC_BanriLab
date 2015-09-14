@@ -8,6 +8,7 @@ package br.com.banrilab.beans;
 import br.com.banrilab.dao.AtmsDao;
 import br.com.banrilab.dao.AtmsDaoInterface;
 import br.com.banrilab.entidades.Atms;
+import br.com.banrilab.entidades.ReservaAtms;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -43,16 +44,19 @@ public class AtmsBean implements Serializable {
     
     public String removerAtm(Atms a) {
         this.atm = a;
-        //if (this.atm.isDisponivel()) {
-            atmDao.removeAtm(this.atm);
-       // }
+        for (ReservaAtms reserva : atmDao.getReservasAtms() ) {
+            if (reserva.getAtm().equals(a)) {
+            atmDao.removeReservaAtms(reserva);
+            }
+        }
+        atmDao.removeAtm(this.atm);
+
         limpaCampos();
         return "atms";
     }
     
     public void limpaCampos() {
         this.atm.setId(null);
-        this.atm.setDescricao(null);
         this.atm.setModelo(null);
         this.atm.setNome(null);
         this.atm.setPatrimonio(null);  
@@ -60,6 +64,7 @@ public class AtmsBean implements Serializable {
         this.atm.setTalonadora(false);
         this.atm.setDisponivel(true);
         this.atm.setReservavel(true);
+        this.atm.setReserva(null);
     }
     
     public String carregarAtm(Atms a) {
@@ -88,14 +93,13 @@ public class AtmsBean implements Serializable {
                 return "Disponível";
             }
             if (a.getReserva() != null) {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 if (!(a.getReserva().getDono() == null)) {
                     if (!(a.getReserva().getDono().getNome().isEmpty())) {
-                        return "Reservado para " + a.getReserva().getDono().getNome() + " até " + sdf.format(a.getReserva().getDataFim());
+                        return a.getReserva().getDono().getNome();
                     } 
                 }
                 if (!(a.getReserva().getHomologacao() == null)) {
-                    return ("Reservado para "+a.getReserva().getFinalidade()+" até "+ sdf.format(a.getReserva().getDataFim()));
+                    return a.getReserva().getHomologacao().getAnalista().getNome();
                 }
             }
         }

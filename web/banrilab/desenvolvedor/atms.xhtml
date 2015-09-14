@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
    	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 	<meta charset="utf-8"/>
@@ -33,15 +34,12 @@
                
             </div>
             <h:form>
-                <p:dataTable var="atm" value="#{atmsBean.atms}" editable="false" >
+                <p:dataTable var="atm" value="#{atmsBean.atms}" editable="false"
+                             rowStyleClass="#{atm.reservavel eq false ? null : atm.disponivel eq true ? 'verde' : atm.reserva.dono eq homologacoesBean.carregaUsuarioAtivo() ? 'amarelo' : 'vermelho'}">
                     <p:column headerText="ATM" style="width: 80px">
                         <h:outputText value="#{atm.nome}"/>
                     </p:column>
                 
-                    <p:column headerText="Descrição" style="width: 100px">
-                        <h:outputText value="#{atm.descricao}" />
-                    </p:column>
-
                     <p:column headerText="Modelo" style="width: 100px">
                         <h:outputText value="#{atm.modelo}" />
                     </p:column>
@@ -58,10 +56,18 @@
                         <p:outputLabel class="#{atmsBean.exibirTalonadora(atm)}" />
                     </p:column>
                 
-                    <p:column headerText="Status" class="text-center">
+                    <p:column headerText="Reservado para" class="text-center" style="width: 100px">
                         <h:outputText value="#{atmsBean.exibirDisponibilidade(atm)}" />
-                    </p:column>                
-                    <p:column headerText="Reservar" class="text-center" style="width: 85px">
+                    </p:column>
+                    <p:column headerText="Finalidade" class="text-center" style="width: 120px">
+                        <h:outputText value="#{atm.reserva.finalidade}" />
+                    </p:column>
+                    <p:column headerText="Data fim" class="text-center" style="width: 100px">
+                        <h:outputText value="#{atm.reserva.dataFim}">
+                              <f:convertDateTime pattern="dd/MM/yyyy"/>  
+                        </h:outputText>
+                    </p:column>              
+                    <p:column headerText="Reserva" class="text-center" style="width: 85px">
                         <h:commandLink class="glyphicon glyphicon-calendar" action="#{reservaAtmsBean.carregarAtm(atm)}" rendered="#{reservaAtmsBean.verificaDono(atm)}" /> 
                     </p:column>
                 </p:dataTable>

@@ -70,6 +70,8 @@ public class Homologacoes implements Serializable {
     private String requisitos;
     private String observacoes; 
     private String versaoSistema;
+    @OneToMany (mappedBy = "homologacao")
+    private List<HistoricoHomologacaoCiclos> historicoCiclos;
     
     public Homologacoes() {
         this.ciclo = 1;
@@ -276,6 +278,14 @@ public class Homologacoes implements Serializable {
             return false;
         }
         return true;
+    }
+
+    public List<HistoricoHomologacaoCiclos> getHistoricoCiclos() {
+        return historicoCiclos;
+    }
+
+    public void setHistoricoCiclos(List<HistoricoHomologacaoCiclos> historicoCiclos) {
+        this.historicoCiclos = historicoCiclos;
     }
     
     

@@ -6,6 +6,7 @@
 package br.com.banrilab.dao;
 
 import br.com.banrilab.entidades.EquipamentosAdicionais;
+import br.com.banrilab.entidades.ReservaEquipamentosAdicionais;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -51,4 +52,16 @@ public class EquipamentosAdicionaisDao implements EquipamentosAdicionaisDaoInter
         return entityManager.createQuery(cq).getResultList();
     }
 
+    @Override
+    public void removeReservaEquipamentoAdicional(ReservaEquipamentosAdicionais r) {
+        ReservaEquipamentosAdicionais reservaARemover = entityManager.merge(r);
+        entityManager.remove(reservaARemover);
+    }
+
+    @Override
+    public List<ReservaEquipamentosAdicionais> getReservasEquipamentosAdicionais() {
+        javax.persistence.criteria.CriteriaQuery cq = entityManager.getCriteriaBuilder().createQuery();
+        cq.select(cq.from(ReservaEquipamentosAdicionais.class));
+        return entityManager.createQuery(cq).getResultList();
+    }
 }

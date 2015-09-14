@@ -9,6 +9,7 @@ import br.com.banrilab.entidades.Atms;
 import br.com.banrilab.entidades.CartoesContas;
 import br.com.banrilab.entidades.CartoesCredito;
 import br.com.banrilab.entidades.EquipamentosAdicionais;
+import br.com.banrilab.entidades.HistoricoHomologacaoCiclos;
 import br.com.banrilab.entidades.Homologacoes;
 import br.com.banrilab.entidades.ReservaAtms;
 import br.com.banrilab.entidades.ReservaCartoesContas;
@@ -46,5 +47,7 @@ public interface HomologacoesDaoInterface {
     public void addReservaAtms (ReservaAtms r);
     public void addAtms (Atms a);
     public List<Usuarios> getEquipeCoordenadores();
-    
+    public void addHistoricoHomologacaoCiclo (HistoricoHomologacaoCiclos h);
+    public void removeHistoricoHomologacaoCiclo (HistoricoHomologacaoCiclos h);
+    public List<HistoricoHomologacaoCiclos> getHistoricoHomologacoesCiclos(Homologacoes h);
 }
