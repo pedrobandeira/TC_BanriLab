@@ -692,6 +692,20 @@ public class HomologacoesBean implements Serializable {
            homologacaoDao.addServidor(reserva.getServidor());
         return "homologacaoservidores";
     }
+    
+    public String removerReservaServidorHomologacao(Servidores s) {
+           List<ReservaServidores> reservasServidores = new ArrayList<ReservaServidores>();
+           reservasServidores = homologacao.getReservasServidores();
+           reservasServidores.remove(s.getReserva());
+           homologacao.setReservasServidores(reservasServidores);
+           homologacaoDao.removeReservaServidores(s.getReserva());
+           s.setDisponivel(true);
+           s.setReserva(null);
+           homologacaoDao.addServidor(s);
+          
+        return "homologacaoservidores";
+    }
+    
     public String adicionarAlocacaoTestadorServidor(ReservaServidores r) {
         
         List<ReservaServidores> reservasServidores = new ArrayList<ReservaServidores>();
@@ -718,6 +732,19 @@ public class HomologacoesBean implements Serializable {
            reserva.getAtm().setDisponivel(false);
            reserva.getAtm().setReserva(reserva);
            homologacaoDao.addAtms(reserva.getAtm());
+          
+        return "homologacaoatms";
+    }
+    
+    public String removerReservaAtmHomologacao(Atms a) {
+           List<ReservaAtms> reservasAtms = new ArrayList<ReservaAtms>();
+           reservasAtms = homologacao.getReservasAtms();
+           reservasAtms.remove(a.getReserva());
+           homologacao.setReservasAtms(reservasAtms);
+           homologacaoDao.removeReservaAtms(a.getReserva());
+           a.setDisponivel(true);
+           a.setReserva(null);
+           homologacaoDao.addAtms(a);
           
         return "homologacaoatms";
     }
@@ -751,6 +778,19 @@ public class HomologacoesBean implements Serializable {
         return "homologacaoterminais";
     }
     
+    public String removerReservaTerminalHomologacao(Terminais t) {
+           List<ReservaTerminais> reservasTerminais = new ArrayList<ReservaTerminais>();
+           reservasTerminais = homologacao.getReservasTerminais();
+           reservasTerminais.remove(t.getReserva());
+           homologacao.setReservasTerminais(reservasTerminais);
+           homologacaoDao.removeReservaTerminais(t.getReserva());
+           t.setDisponivel(true);
+           t.setReserva(null);
+           homologacaoDao.addTerminais(t);
+          
+        return "homologacaoterminais";
+    }
+    
     public String adicionarAlocacaoTestadorTerminal(ReservaTerminais r) {
         List<ReservaTerminais> reservasTerminais = new ArrayList<ReservaTerminais>();
         reservasTerminais = homologacao.getReservasTerminais();
@@ -776,6 +816,19 @@ public class HomologacoesBean implements Serializable {
            reserva.getEquipamento().setReserva(reserva);
     
            homologacaoDao.addEquipamentosAdicionais(reserva.getEquipamento());
+          
+        return "homologacaoequipamentosadicionais";
+    }
+    
+    public String removerReservaEquipamentoAdicionalHomologacao(EquipamentosAdicionais e) {
+           List<ReservaEquipamentosAdicionais> reservasEquipamentosAdicionais = new ArrayList<ReservaEquipamentosAdicionais>();
+           reservasEquipamentosAdicionais = homologacao.getReservasEquipamentosAdicionais();
+           reservasEquipamentosAdicionais.remove(e.getReserva());
+           homologacao.setReservasEquipamentosAdicionais(reservasEquipamentosAdicionais);
+           homologacaoDao.removeReservaEquipamentosAdicionais(e.getReserva());
+           e.setDisponivel(true);
+           e.setReserva(null);
+           homologacaoDao.addEquipamentosAdicionais(e);
           
         return "homologacaoequipamentosadicionais";
     }
@@ -810,6 +863,19 @@ public class HomologacoesBean implements Serializable {
         return "homologacaocartoescontas";
     }
     
+    public String removerReservaCartaoContaHomologacao(CartoesContas c) {
+           List<ReservaCartoesContas> reservasCartoes = new ArrayList<ReservaCartoesContas>();
+           reservasCartoes = homologacao.getReservasCartoesContas();
+           reservasCartoes.remove(c.getReserva());
+           homologacao.setReservasCartoesContas(reservasCartoes);
+           homologacaoDao.removeReservaCartoesContas(c.getReserva());
+           c.setDisponivel(true);
+           c.setReserva(null);
+           homologacaoDao.addCartoesContas(c);
+          
+        return "homologacaocartoescontas";
+    }
+    
     public String adicionarAlocacaoTestadorCartaoConta(ReservaCartoesContas r) {
         List<ReservaCartoesContas> reservasCartoesContas = new ArrayList<ReservaCartoesContas>();
         reservasCartoesContas = homologacao.getReservasCartoesContas();
@@ -840,6 +906,19 @@ public class HomologacoesBean implements Serializable {
         return "homologacaocartoescredito";
     }
     
+    public String removerReservaCartaoCreditoHomologacao(CartoesCredito c) {
+           List<ReservaCartoesCredito> reservasCartoes = new ArrayList<ReservaCartoesCredito>();
+           reservasCartoes = homologacao.getReservasCartoesCreditos();
+           reservasCartoes.remove(c.getReserva());
+           homologacao.setReservasCartoesCreditos(reservasCartoes);
+           homologacaoDao.removeReservaCartoesCredito(c.getReserva());
+           c.setDisponivel(true);
+           c.setReserva(null);
+           homologacaoDao.addCartoesCredito(c);
+          
+        return "homologacaocartoescontas";
+    }
+    
     public String adicionarAlocacaoTestadorCartaoCredito(ReservaCartoesCredito r) {
         List<ReservaCartoesCredito> reservasCartoesCredito = new ArrayList<ReservaCartoesCredito>();
         reservasCartoesCredito = homologacao.getReservasCartoesCreditos();
@@ -866,6 +945,19 @@ public class HomologacoesBean implements Serializable {
            reserva.getUsuario().setReserva(reserva);
     
            homologacaoDao.addUsuarios(reserva.getUsuario());
+          
+        return "homologacaotestadores";
+    }
+    
+    public String removerReservaTestadorHomologacao(Usuarios u) {
+           List<ReservaUsuarios> reservasTestadores = new ArrayList<ReservaUsuarios>();
+           reservasTestadores = homologacao.getReservasTestadores();
+           reservasTestadores.remove(u.getReserva());
+           homologacao.setReservasTestadores(reservasTestadores);
+           homologacaoDao.removeReservaUsuarios(u.getReserva());
+           u.setDisponivel(true);
+           u.setReserva(null);
+           homologacaoDao.addUsuarios(u);
           
         return "homologacaotestadores";
     }

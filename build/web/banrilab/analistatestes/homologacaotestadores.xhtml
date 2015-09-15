@@ -40,7 +40,7 @@
                                             <div class="container-fluid">
 
                                                 <p:dataTable var="testador" value="#{usuariosBean.equipeTestes}" editable="false"
-                                                             rowStyleClass="#{eqptestes.disponivel eq true ? 'verde' : eqptestes.reserva.homologacao.analista eq homologacoesBean.carregaUsuarioAtivo() ? 'amarelo' : 'vermelho'}">
+                                                             rowStyleClass="#{testador.disponivel eq true ? 'verde' : testador.reserva.homologacao.analista eq homologacoesBean.carregaUsuarioAtivo() ? 'amarelo' : 'vermelho'}">
                                                     <p:column headerText="Testador" style="width: 120px">
                                                         <h:outputText value="#{testador.nome}" />
                                                     </p:column>
@@ -61,7 +61,7 @@
                                                         </h:outputText>
                                                     </p:column>
                                                     <p:column headerText="Alocar" class="text-center" style="width: 85px">
-                                                        <h:commandLink class="glyphicon glyphicon-calendar" action="#{homologacoesBean.adicionarReservaTestadorHomologacao(testador)}" rendered="#{reservaUsuariosBean.verificaDono(testador)}" /> 
+                                                        <h:commandLink class="glyphicon glyphicon-calendar" action="#{reservaUsuariosBean.carregarUsuario(testador)}" rendered="#{reservaUsuariosBean.verificaDono(testador)}" /> 
                                                     </p:column>
                                                 </p:dataTable>
                                             </div>

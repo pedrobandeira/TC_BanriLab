@@ -93,6 +93,8 @@ public class ReservaAtmsBean implements Serializable {
         //return "editarreserva";
     }
     
+ 
+    
     public String carregarAtm(Atms a) {
         this.reservaAtm.setAtm(a);
         

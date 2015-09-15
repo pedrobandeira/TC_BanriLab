@@ -230,5 +230,48 @@ public class HomologacoesDao implements HomologacoesDaoInterface {
         TypedQuery q = entityManager.createQuery(c);
         return q.getResultList();
     }
+    @Override
+    public void removeReservaAtms(ReservaAtms r) {
+        ReservaAtms reservaARemover = entityManager.merge(r);
+        entityManager.remove(reservaARemover);
+    }
+    
+    @Override
+    public void removeReservaCartoesContas(ReservaCartoesContas r) {
+        ReservaCartoesContas reservaARemover = entityManager.merge(r);
+        entityManager.remove(reservaARemover);
+    }
+    
+    @Override
+    public void removeReservaCartoesCredito(ReservaCartoesCredito r) {
+        ReservaCartoesCredito reservaARemover = entityManager.merge(r);
+        entityManager.remove(reservaARemover);
+    }
+    
+    @Override
+    public void removeReservaEquipamentosAdicionais(ReservaEquipamentosAdicionais r) {
+        ReservaEquipamentosAdicionais reservaARemover = entityManager.merge(r);
+        entityManager.remove(reservaARemover);
+    }
+    
+    @Override
+    public void removeReservaServidores(ReservaServidores r) {
+        ReservaServidores reservaARemover = entityManager.merge(r);
+        entityManager.remove(reservaARemover);
+    }
+    
+    @Override
+    public void removeReservaTerminais(ReservaTerminais r) {
+        ReservaTerminais reservaARemover = entityManager.merge(r);
+        entityManager.remove(reservaARemover);
+    }
+
+    @Override
+    public void removeReservaUsuarios(ReservaUsuarios r) {
+        ReservaUsuarios reservaARemover = entityManager.merge(r);
+        entityManager.remove(reservaARemover);
+    }
+
+
   
 }

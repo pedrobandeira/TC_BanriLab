@@ -50,12 +50,20 @@
                                                         <h:outputText value="#{terminal.descricao}" />
                                                     </p:column>
 
-                                                    <p:column headerText="Status" class="text-center">
+                                                    <p:column headerText="Reservado para" class="text-center" style="width: 100px">
                                                         <h:outputText value="#{terminaisBean.exibirDisponibilidade(terminal)}" />
                                                     </p:column>
+                                                    <p:column headerText="Finalidade" class="text-center" style="width: 120px">
+                                                        <h:outputText value="#{terminal.reserva.finalidade}" />
+                                                    </p:column>
+                                                    <p:column headerText="Data fim" class="text-center" style="width: 100px">
+                                                        <h:outputText value="#{terminal.reserva.dataFim}">
+                                                            <f:convertDateTime pattern="dd/MM/yyyy"/>  
+                                                        </h:outputText>
+                                                    </p:column>
 
-                                                    <p:column headerText="Reservar" class="text-center" style="width: 85px">
-                                                        <h:commandLink class="glyphicon glyphicon-calendar" action="#{homologacoesBean.adicionarReservaTerminalHomologacao(terminal)}" rendered="#{reservaTerminaisBean.verificaDono(terminal)}" /> 
+                                                    <p:column headerText="Reserva" class="text-center" style="width: 85px">
+                                                        <h:commandLink class="glyphicon glyphicon-calendar" action="#{reservaTerminaisBean.carregarTerminal(terminal)}" rendered="#{reservaTerminaisBean.verificaDono(terminal)}" /> 
                                                     </p:column>
                                                 </p:dataTable>
 

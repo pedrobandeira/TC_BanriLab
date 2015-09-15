@@ -48,12 +48,20 @@
                                                     <p:column headerText="Nome do cliente" class="text-center" style="width: 160px">
                                                         <h:outputText value="#{cartao.nome}" />
                                                     </p:column>
-                                                    <p:column headerText="Status" class="text-center">
+                                                    <p:column headerText="Reservado para" class="text-center" style="width: 120px">
                                                         <h:outputText value="#{cartoesCreditoBean.exibirDisponibilidade(cartao)}" />
                                                     </p:column>
+                                                    <p:column headerText="Finalidade" class="text-center" style="width: 120px">
+                                                        <h:outputText value="#{cartao.reserva.finalidade}" />
+                                                    </p:column>
+                                                    <p:column headerText="Data fim" class="text-center" style="width: 100px">
+                                                        <h:outputText value="#{cartao.reserva.dataFim}">
+                                                            <f:convertDateTime pattern="dd/MM/yyyy"/>  
+                                                        </h:outputText>
+                                                    </p:column>
 
-                                                    <p:column headerText="Reservar" class="text-center" style="width: 85px">
-                                                        <h:commandLink class="glyphicon glyphicon-calendar" action="#{homologacoesBean.adicionarReservaCartaoCreditoHomologacao(cartao)}" rendered="#{reservaCartoesCreditoBean.verificaDono(cartao)}" /> 
+                                                    <p:column headerText="Reserva" class="text-center" style="width: 85px">
+                                                        <h:commandLink class="glyphicon glyphicon-calendar" action="#{reservaCartoesCreditoBean.carregarCartaoCredito(cartao)}" rendered="#{reservaCartoesCreditoBean.verificaDono(cartao)}" /> 
                                                     </p:column>
                                                 </p:dataTable>
                                             </div>

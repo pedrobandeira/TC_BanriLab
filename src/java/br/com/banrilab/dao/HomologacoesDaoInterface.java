@@ -50,4 +50,11 @@ public interface HomologacoesDaoInterface {
     public void addHistoricoHomologacaoCiclo (HistoricoHomologacaoCiclos h);
     public void removeHistoricoHomologacaoCiclo (HistoricoHomologacaoCiclos h);
     public List<HistoricoHomologacaoCiclos> getHistoricoHomologacoesCiclos(Homologacoes h);
+    public void removeReservaAtms (ReservaAtms r);
+    public void removeReservaCartoesContas (ReservaCartoesContas r);
+    public void removeReservaCartoesCredito (ReservaCartoesCredito r);
+    public void removeReservaEquipamentosAdicionais (ReservaEquipamentosAdicionais r);
+    public void removeReservaServidores (ReservaServidores r);
+    public void removeReservaTerminais (ReservaTerminais r);
+    public void removeReservaUsuarios (ReservaUsuarios r);
 }

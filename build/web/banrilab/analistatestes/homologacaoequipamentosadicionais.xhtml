@@ -47,12 +47,20 @@
                                                         <h:outputText value="#{equipamento.descricao}" />
                                                     </p:column>
 
-                                                    <p:column headerText="Status" class="text-center">
+                                                    <p:column headerText="Reservado para" class="text-center" style="width: 100px">
                                                         <h:outputText value="#{equipamentosAdicionaisBean.exibirDisponibilidade(equipamento)}" />
                                                     </p:column>
+                                                    <p:column headerText="Finalidade" class="text-center" style="width: 120px">
+                                                        <h:outputText value="#{equipamento.reserva.finalidade}" />
+                                                    </p:column>
+                                                    <p:column headerText="Data fim" class="text-center" style="width: 100px">
+                                                        <h:outputText value="#{equipamento.reserva.dataFim}">
+                                                            <f:convertDateTime pattern="dd/MM/yyyy"/>  
+                                                        </h:outputText>
+                                                    </p:column>
 
-                                                    <p:column headerText="Reservar" class="text-center" style="width: 85px">
-                                                        <h:commandLink class="glyphicon glyphicon-calendar" action="#{homologacoesBean.adicionarReservaEquipamentoAdicionalHomologacao(equipamento)}" rendered="#{reservaEquipamentosAdicionaisBean.verificaDono(equipamento)}" /> 
+                                                    <p:column headerText="Reserva" class="text-center" style="width: 85px">
+                                                        <h:commandLink class="glyphicon glyphicon-calendar" action="#{reservaEquipamentosAdicionaisBean.carregarEquipamentoAdicional(equipamento)}" rendered="#{reservaEquipamentosAdicionaisBean.verificaDono(equipamento)}" /> 
                                                     </p:column>
 
                                                 </p:dataTable>

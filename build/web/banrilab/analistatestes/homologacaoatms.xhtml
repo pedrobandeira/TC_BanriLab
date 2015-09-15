@@ -58,12 +58,20 @@
                                                         <p:outputLabel class="#{atmsBean.exibirTalonadora(atm)}" />
                                                     </p:column>
 
-                                                    <p:column headerText="Status" class="text-center" style="width: 120px">
+                                                    <p:column headerText="Reservado para" class="text-center">
                                                         <h:outputText value="#{atmsBean.exibirDisponibilidade(atm)}" />
                                                     </p:column>
+                                                    <p:column headerText="Finalidade" class="text-center">
+                                                        <h:outputText value="#{atm.reserva.finalidade}" />
+                                                    </p:column>
+                                                    <p:column headerText="Data fim" class="text-center">
+                                                        <h:outputText value="#{atm.reserva.dataFim}">
+                                                            <f:convertDateTime pattern="dd/MM/yyyy"/>  
+                                                        </h:outputText>
+                                                    </p:column>
 
-                                                    <p:column headerText="Reservar" class="text-center" style="width: 85px">
-                                                        <h:commandLink class="glyphicon glyphicon-calendar" action="#{homologacoesBean.adicionarReservaAtmHomologacao(atm)}" rendered="#{reservaAtmsBean.verificaDono(atm)}" /> 
+                                                    <p:column headerText="Reserva" class="text-center" style="width: 85px">
+                                                        <h:commandLink class="glyphicon glyphicon-calendar" action="#{reservaAtmsBean.carregarAtm(atm)}" rendered="#{reservaAtmsBean.verificaDono(atm)}" /> 
                                                     </p:column>
                                                 </p:dataTable>
                                             </div>
