@@ -27,33 +27,37 @@
             
             <div class="panel panel-default">
         
-        <!-- Modal Reservar Terminal -->
-        <div class="modal fade" data-backdrop="static" id="reservarTerminal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
+        <!-- Modal Reservar Usuário -->
+        <div class="modal fade" data-backdrop="static" id="reservarUsuario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-sm">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel">Reservar Terminal</h4>
+                                <h4 class="modal-title" id="myModalLabel">Alocar Testadores</h4>
                             </div>
                             <div class="modal-body">
                                 <h:form>
                                     <div class="form-group">
                                         <label for="OutputNome">Nome</label>
-                                        <p:outputLabel class="form-control" id="OutputNome" value="#{reservaTerminaisBean.reservaTerminal.terminal.nome}"/>
+                                        <p:outputLabel class="form-control" id="OutputNome" value="#{reservaUsuariosBean.reservaUsuario.usuario.nome}"/>
                                     </div>
+                                    <p:panel rendered="#{!reservaUsuariosBean.reservaUsuario.usuario.disponivel}">
                                     <div class="form-group">
-                                        <label for="InputDataFim">Data fim</label><br/>
-                                        <p:calendar id="InputDataFim" value="#{reservaTerminaisBean.reservaTerminal.dataFim}" mode="inline" mindate="#{homologacoesBean.retornaDataAtual()}"/>
+                                        <label for="OutputDataFim">Data fim</label><br/>
+                                        <p:outputLabel class="form-control" value="#{reservaUsuariosBean.reservaUsuario.dataFim}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy"/>  
+                                        </p:outputLabel> 
                                     </div>
                                     
                                     <div class="form-group">
-                                        <label for="InputFinalidade">Finalidade</label>
-                                        <p:inputText class="form-control" id="InputFinalidade" value="#{reservaTerminaisBean.reservaTerminal.finalidade}"/>
+                                        <label for="OutputFinalidade">Finalidade</label>
+                                        <p:outputLabel class="form-control" id="OutputFinalidade" value="#{reservaUsuariosBean.reservaUsuario.finalidade}"/>
                                         
                                     </div>
+                                    </p:panel>
                                     <div class="modal-footer">
-                                        <h:commandButton class="btn btn-default" value="Fechar" action="#{reservaTerminaisBean.fecharEditar}"/>
-                                        <h:commandButton class="btn btn-danger" value="Excluir reserva" action="#{reservaTerminaisBean.removerReserva}" rendered="#{!reservaTerminaisBean.reservaTerminal.terminal.disponivel}"/>
-                                        <h:commandButton value="Salvar" class="btn btn-primary" action="#{reservaTerminaisBean.adicionarReserva}"/>
+                                        <h:commandButton class="btn btn-default" value="Fechar" action="#{homologacoesBean.retornaReservaTestadores}"/>
+                                        <h:commandButton class="btn btn-danger" value="Excluir" action="#{homologacoesBean.removerReservaTestadorHomologacao(reservaUsuariosBean.reservaUsuario.usuario)}" rendered="#{!reservaUsuariosBean.reservaUsuario.usuario.disponivel}"/>
+                                        <h:commandButton value="Alocar" class="btn btn-primary" action="#{homologacoesBean.adicionarReservaTestadorHomologacao(reservaUsuariosBean.reservaUsuario.usuario)}" rendered="#{reservaUsuariosBean.reservaUsuario.usuario.disponivel}"/>
                                     </div>
                                 </h:form>
                                 
@@ -64,7 +68,7 @@
                 </div>
         <script type="text/javascript">
         $(window).load(function(){
-        $('#reservarTerminal').modal('show');
+        $('#reservarUsuario').modal('show');
          });
         </script>
     </div>

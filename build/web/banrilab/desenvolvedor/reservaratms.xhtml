@@ -29,7 +29,7 @@
         
         <!-- Modal Reservar ATM -->
         <div class="modal fade" data-backdrop="static" id="reservarAtm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
+                    <div class="modal-dialog modal-sm">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h4 class="modal-title" id="myModalLabel">Reservar ATM</h4>
@@ -52,7 +52,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <h:commandButton class="btn btn-default" value="Fechar" action="#{reservaAtmsBean.fecharEditar}"/>
-                                        <h:commandButton class="btn btn-danger" value="Excluir reserva" action="#{reservaAtmsBean.removerReserva}" rendered="#{!reservaAtmsBean.reservaAtm.atm.disponivel}"/>
+                                        <h:commandButton class="btn btn-danger" value="Excluir" action="#{reservaAtmsBean.removerReserva}" rendered="#{!reservaAtmsBean.reservaAtm.atm.disponivel}"/>
                                         <h:commandButton value="Salvar" class="btn btn-primary" action="#{reservaAtmsBean.adicionarReserva}"/>
                                     </div>
                                 </h:form>

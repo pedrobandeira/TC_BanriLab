@@ -44,7 +44,6 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-
 /**
  *
  * @author Pedro
@@ -52,6 +51,7 @@ import javax.mail.internet.MimeMessage;
 @ManagedBean
 @SessionScoped
 public class HomologacoesBean implements Serializable {
+    
     private Homologacoes homologacao = new Homologacoes();
     @EJB
     private HomologacoesDaoInterface homologacaoDao;
@@ -63,7 +63,7 @@ public class HomologacoesBean implements Serializable {
     private String conteudoEmail;
     private String assuntoEmail;
     
-    private HistoricoHomologacaoCiclos historicoCiclos = new HistoricoHomologacaoCiclos();
+    
     
     public HomologacoesBean() {
     }
@@ -81,24 +81,24 @@ public class HomologacoesBean implements Serializable {
             this.homologacao.setSolicitante(carregaUsuarioAtivo());
             this.homologacao.setStatus(1);
             homologacaoDao.addHomologacao(homologacao);
-            for (Usuarios coordenador: homologacaoDao.getEquipeCoordenadores()) {
+            for (Usuarios coordenador : homologacaoDao.getEquipeCoordenadores()) {
                 destinatariosEmail.add(coordenador.getEmail());
-                System.out.println("email: "+coordenador.getEmail());
+                System.out.println("email: " + coordenador.getEmail());
             }
             assuntoEmail = "Notificação sistema BanriLab: Nova homologação solicitada";
             conteudoEmail = "Prezado coordenador(a) de testes: "
                     + "\n"
                     + "\n"
-                    +"Uma nova homologação foi solicitada no sistema BanriLab e necessita de sua atenção. "
+                    + "Uma nova homologação foi solicitada no sistema BanriLab e necessita de sua atenção. "
                     + "\n"
                     + "\n"
-                    + "Solicitante: "+homologacao.getSolicitante().getNome()
+                    + "Solicitante: " + homologacao.getSolicitante().getNome()
                     + "\n"
                     + "\n"
-                    + "Sistema: "+homologacao.getSistema().getNome()
+                    + "Sistema: " + homologacao.getSistema().getNome()
                     + "\n"
                     + "\n"
-                    + "Versão: "+homologacao.getVersaoSistema()
+                    + "Versão: " + homologacao.getVersaoSistema()
                     + "\n"
                     + "\n"
                     + "\n"
@@ -113,28 +113,28 @@ public class HomologacoesBean implements Serializable {
     
     public String cancelarHomologacao() {
         this.homologacao.setStatus(5);
-	this.homologacao.setDataFim(retornaDataAtual());
-	this.homologacao.setAutorizador(carregaUsuarioAtivo());
+        this.homologacao.setDataFim(retornaDataAtual());
+        this.homologacao.setAutorizador(carregaUsuarioAtivo());
         homologacaoDao.addHomologacao(homologacao);
-        destinatariosEmail.add(homologacao.getSolicitante().getEmail());       
+        destinatariosEmail.add(homologacao.getSolicitante().getEmail());
         assuntoEmail = "Notificação sistema BanriLab: Homologação cancelada";
         conteudoEmail = "Prezado analista de sistemas, "
-                    + "\n"
-                    + "\n"
-                    +"Uma homologação solicitada por você no sistema BanriLab foi cancelada. "
-                    + "\n"
-                    + "\n"
-                    + "Sistema: "+homologacao.getSistema().getNome()
-                    + "\n"
-                    + "\n"
-                    + "Versão: "+homologacao.getVersaoSistema()
-                    + "\n"
-                    + "\n"
-                    + "Cancelada por: "+homologacao.getAutorizador().getNome()
-                    + "\n"
-                    + "\n"
-                    + "\n"
-                    + "Para ver maiores detalhes ou para solicitar uma nova homologação, acesse a ferramenta BanriLab.";
+                + "\n"
+                + "\n"
+                + "Uma homologação solicitada por você no sistema BanriLab foi cancelada. "
+                + "\n"
+                + "\n"
+                + "Sistema: " + homologacao.getSistema().getNome()
+                + "\n"
+                + "\n"
+                + "Versão: " + homologacao.getVersaoSistema()
+                + "\n"
+                + "\n"
+                + "Cancelada por: " + homologacao.getAutorizador().getNome()
+                + "\n"
+                + "\n"
+                + "\n"
+                + "Para ver maiores detalhes ou para solicitar uma nova homologação, acesse a ferramenta BanriLab.";
         //enviaEmail();
         limpaCampos();
         return "homologacoes";
@@ -143,31 +143,31 @@ public class HomologacoesBean implements Serializable {
     public String liberarHomologacao() {
         this.homologacao.setStatus(2);
         this.homologacao.setDataAutorizacao(retornaDataAtual());
-	this.homologacao.setAutorizador(carregaUsuarioAtivo());
+        this.homologacao.setAutorizador(carregaUsuarioAtivo());
         this.homologacao.setCiclo(1);
         homologacaoDao.addHomologacao(homologacao);
         destinatariosEmail.add(homologacao.getAnalista().getEmail());
         assuntoEmail = "Notificação sistema BanriLab: Nova homologação autorizada";
-        conteudoEmail = "Prezado analista de testes "+homologacao.getAnalista().getNome()+":"
-                    + "\n"
-                    + "\n"
-                    +"Uma homologação foi autorizada e designada para você no sistema BanriLab. "
-                    + "\n"
-                    + "\n"
-                    + "Solicitante: "+homologacao.getSolicitante().getNome()
-                    + "\n"
-                    + "\n"
-                    + "Sistema: "+homologacao.getSistema().getNome()
-                    + "\n"
-                    + "\n"
-                    + "Versão: "+homologacao.getVersaoSistema()
-                    + "\n"
-                    + "\n"
-                    + "Autorizador: "+homologacao.getAutorizador().getNome()
-                    + "\n"
-                    + "\n"
-                    + "\n"
-                    + "Para ver maiores detalhes ou para fazer a abertura da homologação, acesse a ferramenta BanriLab.";
+        conteudoEmail = "Prezado analista de testes " + homologacao.getAnalista().getNome() + ":"
+                + "\n"
+                + "\n"
+                + "Uma homologação foi autorizada e designada para você no sistema BanriLab. "
+                + "\n"
+                + "\n"
+                + "Solicitante: " + homologacao.getSolicitante().getNome()
+                + "\n"
+                + "\n"
+                + "Sistema: " + homologacao.getSistema().getNome()
+                + "\n"
+                + "\n"
+                + "Versão: " + homologacao.getVersaoSistema()
+                + "\n"
+                + "\n"
+                + "Autorizador: " + homologacao.getAutorizador().getNome()
+                + "\n"
+                + "\n"
+                + "\n"
+                + "Para ver maiores detalhes ou para fazer a abertura da homologação, acesse a ferramenta BanriLab.";
         //enviaEmail();
         limpaCampos();
         return "homologacoes";
@@ -178,102 +178,102 @@ public class HomologacoesBean implements Serializable {
         this.homologacao.setDataAbertura(retornaDataAtual());
         homologacaoDao.addHomologacao(homologacao);
         if (!homologacao.getReservasTestadores().isEmpty()) {
-        String ambienteHomologacao = "";
-        String testadores = "";
-        if (verificaPossuiReservaTestadores()) {
-            for (ReservaUsuarios testador: homologacao.getReservasTestadores()) {
-                testadores = testadores+"\n"+testador.getUsuario().getNome();
-            }
-        }
-        if (verificaPossuiReservaServidores()) {
-            ambienteHomologacao = "Servidores: ";
-            for (ReservaServidores r: homologacao.getReservasServidores()) {
-                if (r.getTestador() == null) {
-                    ambienteHomologacao = ambienteHomologacao+"\n "+r.getServidor().getNome()+" alocado para todos os testadores";
-                } else {
-                    ambienteHomologacao = ambienteHomologacao+"\n "+r.getServidor().getNome()+" alocado para "+r.getTestador().getUsuario().getNome();
+            String ambienteHomologacao = "";
+            String testadores = "";
+            if (verificaPossuiReservaTestadores()) {
+                for (ReservaUsuarios testador : homologacao.getReservasTestadores()) {
+                    testadores = testadores + "\n" + testador.getUsuario().getNome();
                 }
             }
-        }
-        if (verificaPossuiReservaTerminais()) {
-            ambienteHomologacao = ambienteHomologacao+"\n\n Terminais: ";
-            for (ReservaTerminais r: homologacao.getReservasTerminais()) {
-                if (r.getTestador() == null) {
-                    ambienteHomologacao = ambienteHomologacao+"\n "+r.getTerminal().getNome()+" alocado para todos os testadores";
-                } else {
-                    ambienteHomologacao = ambienteHomologacao+"\n "+r.getTerminal().getNome()+" alocado para "+r.getTestador().getUsuario().getNome();
+            if (verificaPossuiReservaServidores()) {
+                ambienteHomologacao = "Servidores: ";
+                for (ReservaServidores r : homologacao.getReservasServidores()) {
+                    if (r.getTestador() == null) {
+                        ambienteHomologacao = ambienteHomologacao + "\n " + r.getServidor().getNome() + " alocado para todos os testadores";
+                    } else {
+                        ambienteHomologacao = ambienteHomologacao + "\n " + r.getServidor().getNome() + " alocado para " + r.getTestador().getUsuario().getNome();
+                    }
                 }
             }
-        }
-        if (verificaPossuiReservaAtms()) {
-            ambienteHomologacao = ambienteHomologacao+"\n\n ATMs: ";
-            for (ReservaAtms r: homologacao.getReservasAtms()) {
-                if (r.getTestador() == null) {
-                    ambienteHomologacao = ambienteHomologacao+"\n "+r.getAtm().getNome()+" alocado para todos os testadores";
-                } else {
-                    ambienteHomologacao = ambienteHomologacao+"\n "+r.getAtm().getNome()+" alocado para "+r.getTestador().getUsuario().getNome();
+            if (verificaPossuiReservaTerminais()) {
+                ambienteHomologacao = ambienteHomologacao + "\n\n Terminais: ";
+                for (ReservaTerminais r : homologacao.getReservasTerminais()) {
+                    if (r.getTestador() == null) {
+                        ambienteHomologacao = ambienteHomologacao + "\n " + r.getTerminal().getNome() + " alocado para todos os testadores";
+                    } else {
+                        ambienteHomologacao = ambienteHomologacao + "\n " + r.getTerminal().getNome() + " alocado para " + r.getTestador().getUsuario().getNome();
+                    }
                 }
             }
-        }
-        if (verificaPossuiReservaEquipamentosAdicionais()) {
-            ambienteHomologacao = ambienteHomologacao+"\n\n Equipamentos adicionais: ";
-            for (ReservaEquipamentosAdicionais r: homologacao.getReservasEquipamentosAdicionais()) {
-                if (r.getTestador() == null) {
-                    ambienteHomologacao = ambienteHomologacao+"\n "+r.getEquipamento().getNome()+" alocado para todos os testadores";
-                } else {
-                    ambienteHomologacao = ambienteHomologacao+"\n "+r.getEquipamento().getNome()+" alocado para "+r.getTestador().getUsuario().getNome();
+            if (verificaPossuiReservaAtms()) {
+                ambienteHomologacao = ambienteHomologacao + "\n\n ATMs: ";
+                for (ReservaAtms r : homologacao.getReservasAtms()) {
+                    if (r.getTestador() == null) {
+                        ambienteHomologacao = ambienteHomologacao + "\n " + r.getAtm().getNome() + " alocado para todos os testadores";
+                    } else {
+                        ambienteHomologacao = ambienteHomologacao + "\n " + r.getAtm().getNome() + " alocado para " + r.getTestador().getUsuario().getNome();
+                    }
                 }
             }
-        }
-        if (verificaPossuiReservaCartoesContas()) {
-            ambienteHomologacao = ambienteHomologacao+"\n\n Cartões de contas: ";
-            for (ReservaCartoesContas r: homologacao.getReservasCartoesContas()) {
-                if (r.getTestador() == null) {
-                    ambienteHomologacao = ambienteHomologacao+"\n "+r.getCartaoConta().getNome()+" alocado para todos os testadores";
-                } else {
-                    ambienteHomologacao = ambienteHomologacao+"\n "+r.getCartaoConta().getNome()+" alocado para "+r.getTestador().getUsuario().getNome();
+            if (verificaPossuiReservaEquipamentosAdicionais()) {
+                ambienteHomologacao = ambienteHomologacao + "\n\n Equipamentos adicionais: ";
+                for (ReservaEquipamentosAdicionais r : homologacao.getReservasEquipamentosAdicionais()) {
+                    if (r.getTestador() == null) {
+                        ambienteHomologacao = ambienteHomologacao + "\n " + r.getEquipamento().getNome() + " alocado para todos os testadores";
+                    } else {
+                        ambienteHomologacao = ambienteHomologacao + "\n " + r.getEquipamento().getNome() + " alocado para " + r.getTestador().getUsuario().getNome();
+                    }
                 }
             }
-        }
-        if (verificaPossuiReservaCartoesCredito()) {
-            ambienteHomologacao = ambienteHomologacao+"\n\n Cartões de crédito: ";
-            for (ReservaCartoesCredito r: homologacao.getReservasCartoesCreditos()) {
-                if (r.getTestador() == null) {
-                    ambienteHomologacao = ambienteHomologacao+"\n "+r.getCartaoCredito().getNome()+" alocado para todos os testadores";
-                } else {
-                    ambienteHomologacao = ambienteHomologacao+"\n "+r.getCartaoCredito().getNome()+" alocado para "+r.getTestador().getUsuario().getNome();
+            if (verificaPossuiReservaCartoesContas()) {
+                ambienteHomologacao = ambienteHomologacao + "\n\n Cartões de contas: ";
+                for (ReservaCartoesContas r : homologacao.getReservasCartoesContas()) {
+                    if (r.getTestador() == null) {
+                        ambienteHomologacao = ambienteHomologacao + "\n " + r.getCartaoConta().getNome() + " alocado para todos os testadores";
+                    } else {
+                        ambienteHomologacao = ambienteHomologacao + "\n " + r.getCartaoConta().getNome() + " alocado para " + r.getTestador().getUsuario().getNome();
+                    }
                 }
             }
-        }
-        for (ReservaUsuarios reservaTestador: homologacao.getReservasTestadores()) {
-            destinatariosEmail.add(reservaTestador.getUsuario().getEmail());
-            System.out.println("email: "+reservaTestador.getUsuario().getEmail());
-        }
-            DateFormat formataData = DateFormat.getDateInstance(); 
-
+            if (verificaPossuiReservaCartoesCredito()) {
+                ambienteHomologacao = ambienteHomologacao + "\n\n Cartões de crédito: ";
+                for (ReservaCartoesCredito r : homologacao.getReservasCartoesCreditos()) {
+                    if (r.getTestador() == null) {
+                        ambienteHomologacao = ambienteHomologacao + "\n " + r.getCartaoCredito().getNome() + " alocado para todos os testadores";
+                    } else {
+                        ambienteHomologacao = ambienteHomologacao + "\n " + r.getCartaoCredito().getNome() + " alocado para " + r.getTestador().getUsuario().getNome();
+                    }
+                }
+            }
+            for (ReservaUsuarios reservaTestador : homologacao.getReservasTestadores()) {
+                destinatariosEmail.add(reservaTestador.getUsuario().getEmail());
+                System.out.println("email: " + reservaTestador.getUsuario().getEmail());
+            }
+            DateFormat formataData = DateFormat.getDateInstance();
+            
             assuntoEmail = "Notificação sistema BanriLab: Nova homologação em andamento";
             conteudoEmail = "Prezado testador(a):"
                     + "\n"
                     + "\n"
-                    +"Uma homologação foi aberta no sistema BanriLab e a execução de testes foi designada a você. "
+                    + "Uma homologação foi aberta no sistema BanriLab e a execução de testes foi designada a você. "
                     + "\n"
                     + "\n"
-                    + "Solicitante: "+homologacao.getSolicitante().getNome()
+                    + "Solicitante: " + homologacao.getSolicitante().getNome()
                     + "\n"
                     + "\n"
-                    + "Sistema: "+homologacao.getSistema().getNome()
+                    + "Sistema: " + homologacao.getSistema().getNome()
                     + "\n"
                     + "\n"
-                    + "Versão: "+homologacao.getVersaoSistema()
+                    + "Versão: " + homologacao.getVersaoSistema()
                     + "\n"
                     + "\n"
-                    + "Data início de testes: "+formataData.format(homologacao.getDataInicioExecucao())
+                    + "Data início de testes: " + formataData.format(homologacao.getDataInicioExecucao())
                     + "\n"
                     + "\n"
-                    + "Data prevista para fim de testes: "+formataData.format(homologacao.getDataFim())
+                    + "Data prevista para fim de testes: " + formataData.format(homologacao.getDataFim())
                     + "\n"
                     + "\n"
-                    + "Analista de testes responsável: "+homologacao.getAnalista().getNome()
+                    + "Analista de testes responsável: " + homologacao.getAnalista().getNome()
                     + "\n"
                     + "\n"
                     + "Testadores: "
@@ -288,8 +288,8 @@ public class HomologacoesBean implements Serializable {
                     + "\n"
                     + "\n"
                     + "Para ver maiores detalhes sobre a homologação, acesse a ferramenta BanriLab.";
-           //enviaEmail();
-        }        
+            //enviaEmail();
+        }
         limpaCampos();
         return "homologacoes";
     }
@@ -297,12 +297,13 @@ public class HomologacoesBean implements Serializable {
     public String encerrarCicloHomologacao() {
         List<HistoricoHomologacaoCiclos> his = new ArrayList<>();
         his = homologacao.getHistoricoCiclos();
+        HistoricoHomologacaoCiclos historicoCiclos = new HistoricoHomologacaoCiclos();
         historicoCiclos.setCiclo(homologacao.getCiclo());
         historicoCiclos.setDataFimCiclo(retornaDataAtual());
         historicoCiclos.setHomologacao(homologacao);
         homologacaoDao.addHistoricoHomologacaoCiclo(historicoCiclos);
         his.add(historicoCiclos);
-        homologacao.setCiclo(homologacao.getCiclo()+1);
+        homologacao.setCiclo(homologacao.getCiclo() + 1);
         homologacao.setHistoricoCiclos(his);
         homologacaoDao.addHomologacao(homologacao);
         return "editarhomologacao";
@@ -312,7 +313,7 @@ public class HomologacoesBean implements Serializable {
         this.homologacao.setStatus(4);
         this.homologacao.setDataFim(retornaDataAtual());
         boolean cicloJaEncerrado = false;
-        for(HistoricoHomologacaoCiclos hist : homologacao.getHistoricoCiclos()) {
+        for (HistoricoHomologacaoCiclos hist : homologacao.getHistoricoCiclos()) {
             if (hist.getHomologacao().equals(homologacao) && hist.getCiclo().equals(homologacao.getCiclo())) {
                 cicloJaEncerrado = true;
             }
@@ -320,6 +321,7 @@ public class HomologacoesBean implements Serializable {
         if (!cicloJaEncerrado) {
             List<HistoricoHomologacaoCiclos> his = new ArrayList<>();
             his = homologacao.getHistoricoCiclos();
+            HistoricoHomologacaoCiclos historicoCiclos = new HistoricoHomologacaoCiclos();
             historicoCiclos.setCiclo(homologacao.getCiclo());
             historicoCiclos.setDataFimCiclo(retornaDataAtual());
             historicoCiclos.setHomologacao(homologacao);
@@ -328,7 +330,7 @@ public class HomologacoesBean implements Serializable {
             homologacao.setHistoricoCiclos(his);
         }
         if (!(homologacao.getReservasServidores().isEmpty())) {
-            for (ReservaServidores reservaServidor: homologacao.getReservasServidores()) {
+            for (ReservaServidores reservaServidor : homologacao.getReservasServidores()) {
                 reservaServidor.getServidor().setDisponivel(true);
                 reservaServidor.getServidor().setReserva(null);
                 homologacaoDao.addServidor(reservaServidor.getServidor());
@@ -336,7 +338,7 @@ public class HomologacoesBean implements Serializable {
             //homologacao.getReservasServidores().clear();
         }
         if (!(homologacao.getReservasAtms().isEmpty())) {
-            for (ReservaAtms reservaAtm: homologacao.getReservasAtms()) {
+            for (ReservaAtms reservaAtm : homologacao.getReservasAtms()) {
                 reservaAtm.getAtm().setDisponivel(true);
                 reservaAtm.getAtm().setReserva(null);
                 homologacaoDao.addAtms(reservaAtm.getAtm());
@@ -344,7 +346,7 @@ public class HomologacoesBean implements Serializable {
             //homologacao.getReservasAtms().clear();
         }
         if (!(homologacao.getReservasTerminais().isEmpty())) {
-            for (ReservaTerminais reservaTerminal: homologacao.getReservasTerminais()) {
+            for (ReservaTerminais reservaTerminal : homologacao.getReservasTerminais()) {
                 reservaTerminal.getTerminal().setDisponivel(true);
                 reservaTerminal.getTerminal().setReserva(null);
                 homologacaoDao.addTerminais(reservaTerminal.getTerminal());
@@ -352,7 +354,7 @@ public class HomologacoesBean implements Serializable {
             //homologacao.getReservasTerminais().clear();
         }
         if (!(homologacao.getReservasEquipamentosAdicionais().isEmpty())) {
-            for (ReservaEquipamentosAdicionais reservaEqp: homologacao.getReservasEquipamentosAdicionais()) {
+            for (ReservaEquipamentosAdicionais reservaEqp : homologacao.getReservasEquipamentosAdicionais()) {
                 reservaEqp.getEquipamento().setDisponivel(true);
                 reservaEqp.getEquipamento().setReserva(null);
                 homologacaoDao.addEquipamentosAdicionais(reservaEqp.getEquipamento());
@@ -360,7 +362,7 @@ public class HomologacoesBean implements Serializable {
             //homologacao.getReservasEquipamentosAdicionais().clear();
         }
         if (!(homologacao.getReservasCartoesCreditos().isEmpty())) {
-            for (ReservaCartoesCredito reservaCartaoCredito: homologacao.getReservasCartoesCreditos()) {
+            for (ReservaCartoesCredito reservaCartaoCredito : homologacao.getReservasCartoesCreditos()) {
                 reservaCartaoCredito.getCartaoCredito().setDisponivel(true);
                 reservaCartaoCredito.getCartaoCredito().setReserva(null);
                 homologacaoDao.addCartoesCredito(reservaCartaoCredito.getCartaoCredito());
@@ -368,7 +370,7 @@ public class HomologacoesBean implements Serializable {
             //homologacao.getReservasCartoesCreditos().clear();
         }
         if (!(homologacao.getReservasCartoesContas().isEmpty())) {
-            for (ReservaCartoesContas reservaCartaoConta: homologacao.getReservasCartoesContas()) {
+            for (ReservaCartoesContas reservaCartaoConta : homologacao.getReservasCartoesContas()) {
                 reservaCartaoConta.getCartaoConta().setDisponivel(true);
                 reservaCartaoConta.getCartaoConta().setReserva(null);
                 homologacaoDao.addCartoesContas(reservaCartaoConta.getCartaoConta());
@@ -376,7 +378,7 @@ public class HomologacoesBean implements Serializable {
             //homologacao.getReservasCartoesContas().clear();
         }
         if (!(homologacao.getReservasTestadores().isEmpty())) {
-            for (ReservaUsuarios reservaTestador: homologacao.getReservasTestadores()) {
+            for (ReservaUsuarios reservaTestador : homologacao.getReservasTestadores()) {
                 reservaTestador.getUsuario().setDisponivel(true);
                 reservaTestador.getUsuario().setReserva(null);
                 homologacaoDao.addUsuarios(reservaTestador.getUsuario());
@@ -384,38 +386,38 @@ public class HomologacoesBean implements Serializable {
             //homologacao.getReservasTestadores().clear();
         }
         homologacaoDao.addHomologacao(homologacao);
-        for (Usuarios coordenador: homologacaoDao.getEquipeCoordenadores()) {
-                destinatariosEmail.add(coordenador.getEmail());
-            }
-        for (ReservaUsuarios reservaTestador: homologacao.getReservasTestadores()) {
-                destinatariosEmail.add(reservaTestador.getUsuario().getEmail());
-                System.out.println("email: "+reservaTestador.getUsuario().getEmail());
-            }
+        for (Usuarios coordenador : homologacaoDao.getEquipeCoordenadores()) {
+            destinatariosEmail.add(coordenador.getEmail());
+        }
+        for (ReservaUsuarios reservaTestador : homologacao.getReservasTestadores()) {
+            destinatariosEmail.add(reservaTestador.getUsuario().getEmail());
+            System.out.println("email: " + reservaTestador.getUsuario().getEmail());
+        }
         destinatariosEmail.add(homologacao.getSolicitante().getEmail());
         assuntoEmail = "Notificação sistema BanriLab: Homologação concluída";
         conteudoEmail = "Prezado colaborador: "
-                    + "\n"
-                    + "\n"
-                    +"Uma homologação foi concluída no sistema BanriLab. "
-                    + "\n"
-                    + "\n"
-                    + "Solicitante: "+homologacao.getSolicitante().getNome()
-                    + "\n"
-                    + "\n"
-                    + "Sistema: "+homologacao.getSistema().getNome()
-                    + "\n"
-                    + "\n"
-                    + "Versão: "+homologacao.getVersaoSistema()
-                    + "\n"
-                    + "\n"
-                    + "Autorizador: "+homologacao.getAutorizador().getNome()
-                    + "\n"
-                    + "\n"
-                    + "Analista de testes: "+homologacao.getAnalista().getNome()
-                    + "\n"
-                    + "\n"
-                    + "\n"
-                    + "Para ver maiores detalhes, acesse a ferramenta BanriLab.";
+                + "\n"
+                + "\n"
+                + "Uma homologação foi concluída no sistema BanriLab. "
+                + "\n"
+                + "\n"
+                + "Solicitante: " + homologacao.getSolicitante().getNome()
+                + "\n"
+                + "\n"
+                + "Sistema: " + homologacao.getSistema().getNome()
+                + "\n"
+                + "\n"
+                + "Versão: " + homologacao.getVersaoSistema()
+                + "\n"
+                + "\n"
+                + "Autorizador: " + homologacao.getAutorizador().getNome()
+                + "\n"
+                + "\n"
+                + "Analista de testes: " + homologacao.getAnalista().getNome()
+                + "\n"
+                + "\n"
+                + "\n"
+                + "Para ver maiores detalhes, acesse a ferramenta BanriLab.";
         //enviaEmail();
         limpaCampos();
         return "homologacoes";
@@ -432,25 +434,28 @@ public class HomologacoesBean implements Serializable {
         this.homologacao = h;
         return "editarhomologacao";
     }
-	
+    
     public String visualizarHomologacao(Homologacoes h) {
         this.homologacao = h;
-        if (verificaAutorizadasEmAndamento(homologacao) && (homologacao.getAnalista().equals(carregaUsuarioAtivo())))
+        if (verificaAutorizadasEmAndamento(homologacao) && (homologacao.getAnalista().equals(carregaUsuarioAtivo()))) {
             return "editarhomologacao";
-	return "visualizarhomologacao";
+        }
+        return "visualizarhomologacao";
     }
     
     public boolean verificaPossuiAlgumaReservaEquipamento() {
         if (!verificaPossuiReservaAtms() && !verificaPossuiReservaCartoesContas()
                 && !verificaPossuiReservaCartoesCredito() && !verificaPossuiReservaEquipamentosAdicionais()
-                && !verificaPossuiReservaServidores() && !verificaPossuiReservaTerminais())
+                && !verificaPossuiReservaServidores() && !verificaPossuiReservaTerminais()) {
             return false;
+        }
         return true;
     }
     
     public boolean verificaPossuiAlgumaReservaEquipamentoOuTestador() {
-        if (verificaPossuiAlgumaReservaEquipamento() || verificaPossuiReservaTestadores())
+        if (verificaPossuiAlgumaReservaEquipamento() || verificaPossuiReservaTestadores()) {
             return true;
+        }
         return false;
     }
     
@@ -469,6 +474,7 @@ public class HomologacoesBean implements Serializable {
     public String retornaReservaTestadores() {
         return "homologacaotestadores";
     }
+    
     public String retornaReservaTerminais() {
         return "homologacaoterminais";
     }
@@ -554,7 +560,7 @@ public class HomologacoesBean implements Serializable {
         return true;
     }
     
-    public String fecharEditar () {
+    public String fecharEditar() {
         limpaCampos();
         return "homologacoes";
     }
@@ -562,48 +568,65 @@ public class HomologacoesBean implements Serializable {
     public Homologacoes getHomologacao() {
         return homologacao;
     }
-
+    
     public void setHomologacao(Homologacoes h) {
         this.homologacao = h;
     }
     
     public String exibirStatus(Homologacoes h) {
-        if (h.getStatus() == null) return "Sem status";
-        if (h.getStatus() == 1) return "Solicitada";
-        if (h.getStatus() == 2) return "Autorizada";
-        if (h.getStatus() == 3) return "Em andamento";
-        if (h.getStatus() == 4) return "Concluída";
+        if (h.getStatus() == null) {
+            return "Sem status";
+        }
+        if (h.getStatus() == 1) {
+            return "Solicitada";
+        }
+        if (h.getStatus() == 2) {
+            return "Autorizada";
+        }
+        if (h.getStatus() == 3) {
+            return "Em andamento";
+        }
+        if (h.getStatus() == 4) {
+            return "Concluída";
+        }
         return "Cancelada";
     }
     
-    public boolean verificaSolicitadas (Homologacoes h) {
-        if ((h.getStatus() == 1) && (carregaUsuarioAtivo().equals(h.getSolicitante()))) return true;
-        return false;
-    }
-	
-    public boolean verificaSolicitadasAutorizadas (Homologacoes h) {
-        if ((h.getStatus() == 1) || (h.getStatus() == 2)) return true;
-        return false;
-    }
-	
-    public boolean verificaAutorizadasEmAndamento (Homologacoes h) {
-        if (((h.getStatus() == 2) || (h.getStatus() == 3)) && (carregaUsuarioAtivo().equals(h.getAnalista()))) 
-                return true;
+    public boolean verificaSolicitadas(Homologacoes h) {
+        if ((h.getStatus() == 1) && (carregaUsuarioAtivo().equals(h.getSolicitante()))) {
+            return true;
+        }
         return false;
     }
     
-    public boolean verificaEmAndamentoConcluidas (Homologacoes h) {
-        if (((h.getStatus() == 4) || (h.getStatus() == 3))) 
-                return true;
+    public boolean verificaSolicitadasAutorizadas(Homologacoes h) {
+        if ((h.getStatus() == 1) || (h.getStatus() == 2)) {
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean verificaAutorizadasEmAndamento(Homologacoes h) {
+        if (((h.getStatus() == 2) || (h.getStatus() == 3)) && (carregaUsuarioAtivo().equals(h.getAnalista()))) {
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean verificaEmAndamentoConcluidas(Homologacoes h) {
+        if (((h.getStatus() == 4) || (h.getStatus() == 3))) {
+            return true;
+        }
         return false;
     }
     
     public boolean verificaEmAndamento(Homologacoes h) {
-        if ((h.getStatus() == 3) && (carregaUsuarioAtivo().equals(h.getAnalista()))) 
-                return true;
+        if ((h.getStatus() == 3) && (carregaUsuarioAtivo().equals(h.getAnalista()))) {
+            return true;
+        }
         return false;
     }
-	
+    
     public Date retornaDataAtual() {
         Date data = new Date();
         return data;
@@ -632,34 +655,30 @@ public class HomologacoesBean implements Serializable {
         this.homologacao.setRequisitos(null);
         this.homologacao.setObservacoes(null);
         this.homologacao.setDataInicioExecucao(null);
-        this.historicoCiclos.setCiclo(null);
-        this.historicoCiclos.setDataFimCiclo(null);
-        this.historicoCiclos.setHomologacao(null);
-        this.historicoCiclos.setId(null);
+      
     }
-
+    
     public List<Homologacoes> getHomologacoes() {
         this.homologacoes = homologacaoDao.getHomologacoes();
         return homologacoes;
     }
-
+    
     public void setHomologacoes(List<Homologacoes> homologacoes) {
         this.homologacoes = homologacoes;
     }
-
+    
     public List<Homologacoes> getHomologacoesAbertas() {
         this.homologacoesAbertas = homologacaoDao.getHomologacoesAbertas();
         return homologacoesAbertas;
     }
-
-
+    
     @Override
     public int hashCode() {
         int hash = 5;
         hash = 53 * hash + Objects.hashCode(this.homologacao);
         return hash;
     }
-
+    
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -676,33 +695,35 @@ public class HomologacoesBean implements Serializable {
     }
     
     public String adicionarReservaServidorHomologacao(Servidores s) {
-           List<ReservaServidores> reservasServidores = new ArrayList<ReservaServidores>();
-           ReservaServidores reserva = new ReservaServidores();
-           reserva.setDataFim(homologacao.getDataFim());
-           reserva.setDataInicio(retornaDataAtual());
-           reserva.setFinalidade("Homologação "+homologacao.getSistema().getNome()+" "+homologacao.getVersaoSistema());
-           reserva.setHomologacao(homologacao);
-           reserva.setServidor(s);
-           reservasServidores = homologacao.getReservasServidores();
-           reservasServidores.add(reserva);
-           homologacao.setReservasServidores(reservasServidores);
-           homologacaoDao.addReservaServidores(reserva);
-           reserva.getServidor().setDisponivel(false);
-           reserva.getServidor().setReserva(reserva);
-           homologacaoDao.addServidor(reserva.getServidor());
+        List<ReservaServidores> reservasServidores = new ArrayList<ReservaServidores>();
+        ReservaServidores reserva = new ReservaServidores();
+        reserva.setDataFim(homologacao.getDataFim());
+        reserva.setDataInicio(retornaDataAtual());
+        reserva.setFinalidade("Homologação " + homologacao.getSistema().getNome() + " " + homologacao.getVersaoSistema());
+        reserva.setHomologacao(homologacao);
+        reserva.setServidor(s);
+        reservasServidores = homologacao.getReservasServidores();
+        reservasServidores.add(reserva);
+        homologacao.setReservasServidores(reservasServidores);
+        homologacaoDao.addReservaServidores(reserva);
+        reserva.getServidor().setDisponivel(false);
+        reserva.getServidor().setReserva(reserva);
+        homologacaoDao.addServidor(reserva.getServidor());
+        homologacaoDao.addHomologacao(homologacao);
         return "homologacaoservidores";
     }
     
     public String removerReservaServidorHomologacao(Servidores s) {
-           List<ReservaServidores> reservasServidores = new ArrayList<ReservaServidores>();
-           reservasServidores = homologacao.getReservasServidores();
-           reservasServidores.remove(s.getReserva());
-           homologacao.setReservasServidores(reservasServidores);
-           homologacaoDao.removeReservaServidores(s.getReserva());
-           s.setDisponivel(true);
-           s.setReserva(null);
-           homologacaoDao.addServidor(s);
-          
+        List<ReservaServidores> reservasServidores = new ArrayList<ReservaServidores>();
+        reservasServidores = homologacao.getReservasServidores();
+        reservasServidores.remove(s.getReserva());
+        homologacao.setReservasServidores(reservasServidores);
+        homologacaoDao.removeReservaServidores(s.getReserva());
+        homologacaoDao.addHomologacao(homologacao);
+        s.setDisponivel(true);
+        s.setReserva(null);
+        homologacaoDao.addServidor(s);
+        
         return "homologacaoservidores";
     }
     
@@ -714,38 +735,40 @@ public class HomologacoesBean implements Serializable {
         reservasServidores.add(r);
         homologacao.setReservasServidores(reservasServidores);
         homologacaoDao.addReservaServidores(r);
+        homologacaoDao.addHomologacao(homologacao);
         return "homologacaotestadoresequipamentos";
     }
     
     public String adicionarReservaAtmHomologacao(Atms a) {
-           List<ReservaAtms> reservasAtms = new ArrayList<ReservaAtms>();
-           ReservaAtms reserva = new ReservaAtms();
-           reserva.setDataFim(homologacao.getDataFim());
-           reserva.setDataInicio(retornaDataAtual());
-           reserva.setFinalidade("Homologação "+homologacao.getSistema().getNome()+" "+homologacao.getVersaoSistema());
-           reserva.setHomologacao(homologacao);
-           reserva.setAtm(a);
-           reservasAtms = homologacao.getReservasAtms();
-           reservasAtms.add(reserva);
-           homologacao.setReservasAtms(reservasAtms);
-           homologacaoDao.addReservaAtms(reserva);
-           reserva.getAtm().setDisponivel(false);
-           reserva.getAtm().setReserva(reserva);
-           homologacaoDao.addAtms(reserva.getAtm());
-          
+        List<ReservaAtms> reservasAtms = new ArrayList<ReservaAtms>();
+        ReservaAtms reserva = new ReservaAtms();
+        reserva.setDataFim(homologacao.getDataFim());
+        reserva.setDataInicio(retornaDataAtual());
+        reserva.setFinalidade("Homologação " + homologacao.getSistema().getNome() + " " + homologacao.getVersaoSistema());
+        reserva.setHomologacao(homologacao);
+        reserva.setAtm(a);
+        reservasAtms = homologacao.getReservasAtms();
+        reservasAtms.add(reserva);
+        homologacao.setReservasAtms(reservasAtms);
+        homologacaoDao.addReservaAtms(reserva);
+        reserva.getAtm().setDisponivel(false);
+        reserva.getAtm().setReserva(reserva);
+        homologacaoDao.addAtms(reserva.getAtm());
+        homologacaoDao.addHomologacao(homologacao);
         return "homologacaoatms";
     }
     
     public String removerReservaAtmHomologacao(Atms a) {
-           List<ReservaAtms> reservasAtms = new ArrayList<ReservaAtms>();
-           reservasAtms = homologacao.getReservasAtms();
-           reservasAtms.remove(a.getReserva());
-           homologacao.setReservasAtms(reservasAtms);
-           homologacaoDao.removeReservaAtms(a.getReserva());
-           a.setDisponivel(true);
-           a.setReserva(null);
-           homologacaoDao.addAtms(a);
-          
+        List<ReservaAtms> reservasAtms = new ArrayList<ReservaAtms>();
+        reservasAtms = homologacao.getReservasAtms();
+        reservasAtms.remove(a.getReserva());
+        homologacao.setReservasAtms(reservasAtms);
+        homologacaoDao.removeReservaAtms(a.getReserva());
+        homologacaoDao.addHomologacao(homologacao);
+        a.setDisponivel(true);
+        a.setReserva(null);
+        homologacaoDao.addAtms(a);
+        
         return "homologacaoatms";
     }
     
@@ -756,38 +779,40 @@ public class HomologacoesBean implements Serializable {
         reservasAtms.add(r);
         homologacao.setReservasAtms(reservasAtms);
         homologacaoDao.addReservaAtms(r);
+        homologacaoDao.addHomologacao(homologacao);
         return "homologacaotestadoresequipamentos";
     }
     
     public String adicionarReservaTerminalHomologacao(Terminais t) {
-           List<ReservaTerminais> reservasTerminais = new ArrayList<ReservaTerminais>();
-           ReservaTerminais reserva = new ReservaTerminais();
-           reserva.setDataFim(homologacao.getDataFim());
-           reserva.setDataInicio(retornaDataAtual());
-           reserva.setFinalidade("Homologação "+homologacao.getSistema().getNome()+" "+homologacao.getVersaoSistema());
-           reserva.setHomologacao(homologacao);
-           reserva.setTerminal(t);
-           reservasTerminais = homologacao.getReservasTerminais();
-           reservasTerminais.add(reserva);
-           homologacao.setReservasTerminais(reservasTerminais);
-           homologacaoDao.addReservaTerminais(reserva);
-           reserva.getTerminal().setDisponivel(false);
-           reserva.getTerminal().setReserva(reserva);
-           homologacaoDao.addTerminais(reserva.getTerminal());
-          
+        List<ReservaTerminais> reservasTerminais = new ArrayList<ReservaTerminais>();
+        ReservaTerminais reserva = new ReservaTerminais();
+        reserva.setDataFim(homologacao.getDataFim());
+        reserva.setDataInicio(retornaDataAtual());
+        reserva.setFinalidade("Homologação " + homologacao.getSistema().getNome() + " " + homologacao.getVersaoSistema());
+        reserva.setHomologacao(homologacao);
+        reserva.setTerminal(t);
+        reservasTerminais = homologacao.getReservasTerminais();
+        reservasTerminais.add(reserva);
+        homologacao.setReservasTerminais(reservasTerminais);
+        homologacaoDao.addReservaTerminais(reserva);
+        reserva.getTerminal().setDisponivel(false);
+        reserva.getTerminal().setReserva(reserva);
+        homologacaoDao.addTerminais(reserva.getTerminal());
+        homologacaoDao.addHomologacao(homologacao);
         return "homologacaoterminais";
     }
     
     public String removerReservaTerminalHomologacao(Terminais t) {
-           List<ReservaTerminais> reservasTerminais = new ArrayList<ReservaTerminais>();
-           reservasTerminais = homologacao.getReservasTerminais();
-           reservasTerminais.remove(t.getReserva());
-           homologacao.setReservasTerminais(reservasTerminais);
-           homologacaoDao.removeReservaTerminais(t.getReserva());
-           t.setDisponivel(true);
-           t.setReserva(null);
-           homologacaoDao.addTerminais(t);
-          
+        List<ReservaTerminais> reservasTerminais = new ArrayList<ReservaTerminais>();
+        reservasTerminais = homologacao.getReservasTerminais();
+        reservasTerminais.remove(t.getReserva());
+        homologacao.setReservasTerminais(reservasTerminais);
+        homologacaoDao.removeReservaTerminais(t.getReserva());
+        homologacaoDao.addHomologacao(homologacao);
+        t.setDisponivel(true);
+        t.setReserva(null);
+        homologacaoDao.addTerminais(t);
+        
         return "homologacaoterminais";
     }
     
@@ -798,38 +823,41 @@ public class HomologacoesBean implements Serializable {
         reservasTerminais.add(r);
         homologacao.setReservasTerminais(reservasTerminais);
         homologacaoDao.addReservaTerminais(r);
+        homologacaoDao.addHomologacao(homologacao);
         return "homologacaotestadoresequipamentos";
     }
-    public String adicionarReservaEquipamentoAdicionalHomologacao(EquipamentosAdicionais e) {
-           List<ReservaEquipamentosAdicionais> reservasEquipamentosAdicionais = new ArrayList<ReservaEquipamentosAdicionais>();
-           ReservaEquipamentosAdicionais reserva = new ReservaEquipamentosAdicionais();
-           reserva.setDataFim(homologacao.getDataFim());
-           reserva.setDataInicio(retornaDataAtual());
-           reserva.setFinalidade("Homologação "+homologacao.getSistema().getNome()+" "+homologacao.getVersaoSistema());
-           reserva.setHomologacao(homologacao);
-           reserva.setEquipamento(e);
-           reservasEquipamentosAdicionais = homologacao.getReservasEquipamentosAdicionais();
-           reservasEquipamentosAdicionais.add(reserva);
-           homologacao.setReservasEquipamentosAdicionais(reservasEquipamentosAdicionais);
-           homologacaoDao.addReservaEquipamentosAdicionais(reserva);
-           reserva.getEquipamento().setDisponivel(false);
-           reserva.getEquipamento().setReserva(reserva);
     
-           homologacaoDao.addEquipamentosAdicionais(reserva.getEquipamento());
-          
+    public String adicionarReservaEquipamentoAdicionalHomologacao(EquipamentosAdicionais e) {
+        List<ReservaEquipamentosAdicionais> reservasEquipamentosAdicionais = new ArrayList<ReservaEquipamentosAdicionais>();
+        ReservaEquipamentosAdicionais reserva = new ReservaEquipamentosAdicionais();
+        reserva.setDataFim(homologacao.getDataFim());
+        reserva.setDataInicio(retornaDataAtual());
+        reserva.setFinalidade("Homologação " + homologacao.getSistema().getNome() + " " + homologacao.getVersaoSistema());
+        reserva.setHomologacao(homologacao);
+        reserva.setEquipamento(e);
+        reservasEquipamentosAdicionais = homologacao.getReservasEquipamentosAdicionais();
+        reservasEquipamentosAdicionais.add(reserva);
+        homologacao.setReservasEquipamentosAdicionais(reservasEquipamentosAdicionais);
+        homologacaoDao.addReservaEquipamentosAdicionais(reserva);
+        reserva.getEquipamento().setDisponivel(false);
+        reserva.getEquipamento().setReserva(reserva);
+        
+        homologacaoDao.addEquipamentosAdicionais(reserva.getEquipamento());
+        homologacaoDao.addHomologacao(homologacao);
         return "homologacaoequipamentosadicionais";
     }
     
     public String removerReservaEquipamentoAdicionalHomologacao(EquipamentosAdicionais e) {
-           List<ReservaEquipamentosAdicionais> reservasEquipamentosAdicionais = new ArrayList<ReservaEquipamentosAdicionais>();
-           reservasEquipamentosAdicionais = homologacao.getReservasEquipamentosAdicionais();
-           reservasEquipamentosAdicionais.remove(e.getReserva());
-           homologacao.setReservasEquipamentosAdicionais(reservasEquipamentosAdicionais);
-           homologacaoDao.removeReservaEquipamentosAdicionais(e.getReserva());
-           e.setDisponivel(true);
-           e.setReserva(null);
-           homologacaoDao.addEquipamentosAdicionais(e);
-          
+        List<ReservaEquipamentosAdicionais> reservasEquipamentosAdicionais = new ArrayList<ReservaEquipamentosAdicionais>();
+        reservasEquipamentosAdicionais = homologacao.getReservasEquipamentosAdicionais();
+        reservasEquipamentosAdicionais.remove(e.getReserva());
+        homologacao.setReservasEquipamentosAdicionais(reservasEquipamentosAdicionais);
+        homologacaoDao.removeReservaEquipamentosAdicionais(e.getReserva());
+        homologacaoDao.addHomologacao(homologacao);
+        e.setDisponivel(true);
+        e.setReserva(null);
+        homologacaoDao.addEquipamentosAdicionais(e);
+        
         return "homologacaoequipamentosadicionais";
     }
     
@@ -840,39 +868,41 @@ public class HomologacoesBean implements Serializable {
         reservasEquipamentosAdicionais.add(r);
         homologacao.setReservasEquipamentosAdicionais(reservasEquipamentosAdicionais);
         homologacaoDao.addReservaEquipamentosAdicionais(r);
+        homologacaoDao.addHomologacao(homologacao);
         return "homologacaotestadoresequipamentos";
     }
     
     public String adicionarReservaCartaoContaHomologacao(CartoesContas c) {
-           List<ReservaCartoesContas> reservasCartoesContas = new ArrayList<ReservaCartoesContas>();
-           ReservaCartoesContas reserva = new ReservaCartoesContas();
-           reserva.setDataFim(homologacao.getDataFim());
-           reserva.setDataInicio(retornaDataAtual());
-           reserva.setFinalidade("Homologação "+homologacao.getSistema().getNome()+" "+homologacao.getVersaoSistema());
-           reserva.setHomologacao(homologacao);
-           reserva.setCartaoConta(c);
-           reservasCartoesContas = homologacao.getReservasCartoesContas();
-           reservasCartoesContas.add(reserva);
-           homologacao.setReservasCartoesContas(reservasCartoesContas);
-           homologacaoDao.addReservaCartoesContas(reserva);
-           reserva.getCartaoConta().setDisponivel(false);
-           reserva.getCartaoConta().setReserva(reserva);
-    
-           homologacaoDao.addCartoesContas(reserva.getCartaoConta());
-          
+        List<ReservaCartoesContas> reservasCartoesContas = new ArrayList<ReservaCartoesContas>();
+        ReservaCartoesContas reserva = new ReservaCartoesContas();
+        reserva.setDataFim(homologacao.getDataFim());
+        reserva.setDataInicio(retornaDataAtual());
+        reserva.setFinalidade("Homologação " + homologacao.getSistema().getNome() + " " + homologacao.getVersaoSistema());
+        reserva.setHomologacao(homologacao);
+        reserva.setCartaoConta(c);
+        reservasCartoesContas = homologacao.getReservasCartoesContas();
+        reservasCartoesContas.add(reserva);
+        homologacao.setReservasCartoesContas(reservasCartoesContas);
+        homologacaoDao.addReservaCartoesContas(reserva);
+        reserva.getCartaoConta().setDisponivel(false);
+        reserva.getCartaoConta().setReserva(reserva);
+        
+        homologacaoDao.addCartoesContas(reserva.getCartaoConta());
+        homologacaoDao.addHomologacao(homologacao);
         return "homologacaocartoescontas";
     }
     
     public String removerReservaCartaoContaHomologacao(CartoesContas c) {
-           List<ReservaCartoesContas> reservasCartoes = new ArrayList<ReservaCartoesContas>();
-           reservasCartoes = homologacao.getReservasCartoesContas();
-           reservasCartoes.remove(c.getReserva());
-           homologacao.setReservasCartoesContas(reservasCartoes);
-           homologacaoDao.removeReservaCartoesContas(c.getReserva());
-           c.setDisponivel(true);
-           c.setReserva(null);
-           homologacaoDao.addCartoesContas(c);
-          
+        List<ReservaCartoesContas> reservasCartoes = new ArrayList<ReservaCartoesContas>();
+        reservasCartoes = homologacao.getReservasCartoesContas();
+        reservasCartoes.remove(c.getReserva());
+        homologacao.setReservasCartoesContas(reservasCartoes);
+        homologacaoDao.removeReservaCartoesContas(c.getReserva());
+        homologacaoDao.addHomologacao(homologacao);
+        c.setDisponivel(true);
+        c.setReserva(null);
+        homologacaoDao.addCartoesContas(c);
+        
         return "homologacaocartoescontas";
     }
     
@@ -883,39 +913,41 @@ public class HomologacoesBean implements Serializable {
         reservasCartoesContas.add(r);
         homologacao.setReservasCartoesContas(reservasCartoesContas);
         homologacaoDao.addReservaCartoesContas(r);
+        homologacaoDao.addHomologacao(homologacao);
         return "homologacaotestadoresequipamentos";
     }
     
     public String adicionarReservaCartaoCreditoHomologacao(CartoesCredito c) {
-           List<ReservaCartoesCredito> reservasCartoesCredito = new ArrayList<ReservaCartoesCredito>();
-           ReservaCartoesCredito reserva = new ReservaCartoesCredito();
-           reserva.setDataFim(homologacao.getDataFim());
-           reserva.setDataInicio(retornaDataAtual());
-           reserva.setFinalidade("Homologação "+homologacao.getSistema().getNome()+" "+homologacao.getVersaoSistema());
-           reserva.setHomologacao(homologacao);
-           reserva.setCartaoCredito(c);
-           reservasCartoesCredito = homologacao.getReservasCartoesCreditos();
-           reservasCartoesCredito.add(reserva);
-           homologacao.setReservasCartoesCreditos(reservasCartoesCredito);
-           homologacaoDao.addReservaCartoesCredito(reserva);
-           reserva.getCartaoCredito().setDisponivel(false);
-           reserva.getCartaoCredito().setReserva(reserva);
-    
-           homologacaoDao.addCartoesCredito(reserva.getCartaoCredito());
-          
+        List<ReservaCartoesCredito> reservasCartoesCredito = new ArrayList<ReservaCartoesCredito>();
+        ReservaCartoesCredito reserva = new ReservaCartoesCredito();
+        reserva.setDataFim(homologacao.getDataFim());
+        reserva.setDataInicio(retornaDataAtual());
+        reserva.setFinalidade("Homologação " + homologacao.getSistema().getNome() + " " + homologacao.getVersaoSistema());
+        reserva.setHomologacao(homologacao);
+        reserva.setCartaoCredito(c);
+        reservasCartoesCredito = homologacao.getReservasCartoesCreditos();
+        reservasCartoesCredito.add(reserva);
+        homologacao.setReservasCartoesCreditos(reservasCartoesCredito);
+        homologacaoDao.addReservaCartoesCredito(reserva);
+        reserva.getCartaoCredito().setDisponivel(false);
+        reserva.getCartaoCredito().setReserva(reserva);
+        
+        homologacaoDao.addCartoesCredito(reserva.getCartaoCredito());
+        homologacaoDao.addHomologacao(homologacao);
         return "homologacaocartoescredito";
     }
     
     public String removerReservaCartaoCreditoHomologacao(CartoesCredito c) {
-           List<ReservaCartoesCredito> reservasCartoes = new ArrayList<ReservaCartoesCredito>();
-           reservasCartoes = homologacao.getReservasCartoesCreditos();
-           reservasCartoes.remove(c.getReserva());
-           homologacao.setReservasCartoesCreditos(reservasCartoes);
-           homologacaoDao.removeReservaCartoesCredito(c.getReserva());
-           c.setDisponivel(true);
-           c.setReserva(null);
-           homologacaoDao.addCartoesCredito(c);
-          
+        List<ReservaCartoesCredito> reservasCartoes = new ArrayList<ReservaCartoesCredito>();
+        reservasCartoes = homologacao.getReservasCartoesCreditos();
+        reservasCartoes.remove(c.getReserva());
+        homologacao.setReservasCartoesCreditos(reservasCartoes);
+        homologacaoDao.removeReservaCartoesCredito(c.getReserva());
+        homologacaoDao.addHomologacao(homologacao);
+        c.setDisponivel(true);
+        c.setReserva(null);
+        homologacaoDao.addCartoesCredito(c);
+        
         return "homologacaocartoescontas";
     }
     
@@ -926,86 +958,171 @@ public class HomologacoesBean implements Serializable {
         reservasCartoesCredito.add(r);
         homologacao.setReservasCartoesCreditos(reservasCartoesCredito);
         homologacaoDao.addReservaCartoesCredito(r);
+        homologacaoDao.addHomologacao(homologacao);
         return "homologacaotestadoresequipamentos";
     }
     
     public String adicionarReservaTestadorHomologacao(Usuarios u) {
-           List<ReservaUsuarios> reservasTestadores = new ArrayList<ReservaUsuarios>();
-           ReservaUsuarios reserva = new ReservaUsuarios();
-           reserva.setDataFim(homologacao.getDataFim());
-           reserva.setDataInicio(retornaDataAtual());
-           reserva.setFinalidade("Homologação "+homologacao.getSistema().getNome()+" "+homologacao.getVersaoSistema());
-           reserva.setHomologacao(homologacao);
-           reserva.setUsuario(u);
-           reservasTestadores = homologacao.getReservasTestadores();
-           reservasTestadores.add(reserva);
-           homologacao.setReservasTestadores(reservasTestadores);
-           homologacaoDao.addReservaUsuarios(reserva);
-           reserva.getUsuario().setDisponivel(false);
-           reserva.getUsuario().setReserva(reserva);
-    
-           homologacaoDao.addUsuarios(reserva.getUsuario());
-          
+        List<ReservaUsuarios> reservasTestadores = new ArrayList<ReservaUsuarios>();
+        ReservaUsuarios reserva = new ReservaUsuarios();
+        reserva.setDataFim(homologacao.getDataFim());
+        reserva.setDataInicio(retornaDataAtual());
+        reserva.setFinalidade("Homologação " + homologacao.getSistema().getNome() + " " + homologacao.getVersaoSistema());
+        reserva.setHomologacao(homologacao);
+        reserva.setUsuario(u);
+        reservasTestadores = homologacao.getReservasTestadores();
+        reservasTestadores.add(reserva);
+        homologacao.setReservasTestadores(reservasTestadores);
+        homologacaoDao.addReservaUsuarios(reserva);
+        reserva.getUsuario().setDisponivel(false);
+        reserva.getUsuario().setReserva(reserva);
+        
+        homologacaoDao.addUsuarios(reserva.getUsuario());
+        homologacaoDao.addHomologacao(homologacao);
         return "homologacaotestadores";
     }
     
     public String removerReservaTestadorHomologacao(Usuarios u) {
-           List<ReservaUsuarios> reservasTestadores = new ArrayList<ReservaUsuarios>();
-           reservasTestadores = homologacao.getReservasTestadores();
-           reservasTestadores.remove(u.getReserva());
-           homologacao.setReservasTestadores(reservasTestadores);
-           homologacaoDao.removeReservaUsuarios(u.getReserva());
-           u.setDisponivel(true);
-           u.setReserva(null);
-           homologacaoDao.addUsuarios(u);
-          
+        List<ReservaUsuarios> reservasTestadores = new ArrayList<ReservaUsuarios>();
+        reservasTestadores = homologacao.getReservasTestadores();
+        /*
+        if (!homologacao.getReservasAtms().isEmpty()) {
+            for (ReservaAtms reserva : homologacao.getReservasAtms()) {
+                if (reserva.getTestador() != null) {
+                    if (reserva.getTestador().getUsuario().equals(u)) {
+                        homologacaoDao.removeReservaAtms(reserva);
+                        List<ReservaAtms> reservasAtms = new ArrayList<ReservaAtms>();
+                        reservasAtms = homologacao.getReservasAtms();
+                        reservasAtms.remove(reserva);                        
+                        reserva.setTestador(null);
+                        reservasAtms.add(reserva);
+                        homologacaoDao.addReservaAtms(reserva);
+                    }
+                }
+            }
+        }
+        if (!homologacao.getReservasCartoesContas().isEmpty()) {
+            for (ReservaCartoesContas reserva : homologacao.getReservasCartoesContas()) {
+                if (reserva.getTestador().getUsuario().equals(u)) {
+                    List<ReservaCartoesContas> reservasCartoes = new ArrayList<ReservaCartoesContas>();
+                    reservasCartoes = homologacao.getReservasCartoesContas();
+                    reservasCartoes.remove(reserva);                    
+                    reserva.setTestador(null);
+                    reservasCartoes.add(reserva);
+                    homologacaoDao.addReservaCartoesContas(reserva);
+                }
+            }
+        }
+        if (!homologacao.getReservasCartoesCreditos().isEmpty()) {
+            for (ReservaCartoesCredito reserva : homologacao.getReservasCartoesCreditos()) {
+                if (reserva.getTestador().getUsuario().equals(u)) {
+                    List<ReservaCartoesCredito> reservasCartoes = new ArrayList<ReservaCartoesCredito>();
+                    reservasCartoes = homologacao.getReservasCartoesCreditos();
+                    reservasCartoes.remove(reserva);                    
+                    reserva.setTestador(null);
+                    reservasCartoes.add(reserva);
+                    homologacaoDao.addReservaCartoesCredito(reserva);
+                }
+            }
+        }
+        if (!homologacao.getReservasEquipamentosAdicionais().isEmpty()) {
+            for (ReservaEquipamentosAdicionais reserva : homologacao.getReservasEquipamentosAdicionais()) {
+                if (reserva.getTestador().getUsuario().equals(u)) {
+                    List<ReservaEquipamentosAdicionais> reservasEq = new ArrayList<ReservaEquipamentosAdicionais>();
+                    reservasEq = homologacao.getReservasEquipamentosAdicionais();
+                    reservasEq.remove(reserva);                    
+                    reserva.setTestador(null);
+                    reservasEq.add(reserva);
+                    homologacaoDao.addReservaEquipamentosAdicionais(reserva);
+                }
+            }
+        }
+        if (!homologacao.getReservasServidores().isEmpty()) {
+            for (ReservaServidores reserva : homologacao.getReservasServidores()) {
+                if (reserva.getTestador() != null) {
+                    if (reserva.getTestador().getUsuario().equals(u)) {
+                        List<ReservaServidores> reservasServidores = new ArrayList<ReservaServidores>();
+                        reservasServidores = homologacao.getReservasServidores();
+                        reservasServidores.remove(reserva);                        
+                        reserva.setTestador(null);
+                        reservasServidores.add(reserva);
+                        homologacaoDao.addReservaServidores(reserva);
+                    }
+                }
+            }
+        }
+        if (!homologacao.getReservasTerminais().isEmpty()) {
+            for (ReservaTerminais reserva : homologacao.getReservasTerminais()) {
+                if (reserva.getTestador().getUsuario().equals(u)) {
+                    List<ReservaTerminais> reservasTerminais = new ArrayList<ReservaTerminais>();
+                    reservasTerminais = homologacao.getReservasTerminais();
+                    reservasTerminais.remove(reserva);                    
+                    reserva.setTestador(null);
+                    reservasTerminais.add(reserva);
+                    homologacaoDao.addReservaTerminais(reserva);
+                }
+            }
+        }
+        */
+        reservasTestadores.remove(u.getReserva());
+        homologacao.setReservasTestadores(reservasTestadores);
+        homologacaoDao.removeReservaUsuarios(u.getReserva());
+        u.setDisponivel(true);
+        u.setReserva(null);
+        homologacaoDao.addUsuarios(u);
+        homologacaoDao.addHomologacao(homologacao);
         return "homologacaotestadores";
     }
     
     public void enviaEmail() {
         Properties props = new Properties();
-            /** Parâmetros de conexão com servidor Gmail */
-            props.put("mail.smtp.host", "smtp.gmail.com");
-            props.put("mail.smtp.socketFactory.port", "465");
-            props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-            props.put("mail.smtp.auth", "true");
-            props.put("mail.smtp.port", "465");
+        /**
+         * Parâmetros de conexão com servidor Gmail
+         */
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.socketFactory.port", "465");
+        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.port", "465");
+        
+        Session session = Session.getInstance(props,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication("banrilab@gmail.com", "banrilab1397");
+                    }
+                });
 
-            Session session = Session.getInstance(props,
-                        new javax.mail.Authenticator() {
-                             protected PasswordAuthentication getPasswordAuthentication() 
-                             {
-                                   return new PasswordAuthentication("banrilab@gmail.com", "banrilab1397");
-                             }
-                        });
-
-            /** Ativa Debug para sessão */
-            session.setDebug(true);
-
-            try {
-
-                  Message message = new MimeMessage(session);
-                  message.setFrom(new InternetAddress("banrilab@gmail.com")); //Remetente
-                  String listaEmails = "";
-                  for (String email: destinatariosEmail) {
-                      listaEmails = email+", "+listaEmails;
-                      System.out.println("lista mails: "+listaEmails);
-                  }
-                  Address[] toUser = InternetAddress //Destinatário(s)
-                             .parse(listaEmails);  
-
-                  message.setRecipients(Message.RecipientType.TO, toUser);
-                  message.setSubject(assuntoEmail);//Assunto
-                  message.setText(conteudoEmail);
-                  /**Método para enviar a mensagem criada*/
-                  Transport.send(message);
-                  destinatariosEmail.clear();
-                  conteudoEmail = "";
-                  assuntoEmail = "";
-                  System.out.println("Feito!!!");
-
-             } catch (MessagingException e) {
-                  throw new RuntimeException(e);
+        /**
+         * Ativa Debug para sessão
+         */
+        session.setDebug(true);
+        
+        try {
+            
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("banrilab@gmail.com")); //Remetente
+            String listaEmails = "";
+            for (String email : destinatariosEmail) {
+                listaEmails = email + ", " + listaEmails;
+                System.out.println("lista mails: " + listaEmails);
             }
+            Address[] toUser = InternetAddress //Destinatário(s)
+                    .parse(listaEmails);
+            
+            message.setRecipients(Message.RecipientType.TO, toUser);
+            message.setSubject(assuntoEmail);//Assunto
+            message.setText(conteudoEmail);
+            /**
+             * Método para enviar a mensagem criada
+             */
+            Transport.send(message);
+            destinatariosEmail.clear();
+            conteudoEmail = "";
+            assuntoEmail = "";
+            System.out.println("Feito!!!");
+            
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -30,7 +30,7 @@
         <!-- Modal Reservar Terminal -->
         <div class="modal fade" data-backdrop="static" id="reservarTerminal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
-                        <div class="modal-content">
+                        <div class="modal-content modal-sm">
                             <div class="modal-header">
                                 <h4 class="modal-title" id="myModalLabel">Reservar Terminal</h4>
                             </div>
@@ -52,7 +52,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <h:commandButton class="btn btn-default" value="Fechar" action="#{reservaTerminaisBean.fecharEditar}"/>
-                                        <h:commandButton class="btn btn-danger" value="Excluir reserva" action="#{reservaTerminaisBean.removerReserva}" rendered="#{!reservaTerminaisBean.reservaTerminal.terminal.disponivel}"/>
+                                        <h:commandButton class="btn btn-danger" value="Excluir" action="#{reservaTerminaisBean.removerReserva}" rendered="#{!reservaTerminaisBean.reservaTerminal.terminal.disponivel}"/>
                                         <h:commandButton value="Salvar" class="btn btn-primary" action="#{reservaTerminaisBean.adicionarReserva}"/>
                                     </div>
                                 </h:form>

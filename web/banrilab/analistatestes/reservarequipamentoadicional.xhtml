@@ -56,7 +56,7 @@
                                     </p:panel>
                                     <div class="modal-footer">
                                         <h:commandButton class="btn btn-default" value="Fechar" action="#{homologacoesBean.retornaReservaEquipamentosAdicionais}"/>
-                                        <h:commandButton class="btn btn-danger" value="Excluir reserva" action="#{homologacoesBean.removerReservaEquipamentoAdicionalHomologacao(reservaEquipamentosAdicionaisBean.reservaEquipamentoAdicional.equipamento)}" rendered="#{!reservaEquipamentosAdicionaisBean.reservaEquipamentoAdicional.equipamento.disponivel}"/>
+                                        <h:commandButton class="btn btn-danger" value="Excluir" action="#{homologacoesBean.removerReservaEquipamentoAdicionalHomologacao(reservaEquipamentosAdicionaisBean.reservaEquipamentoAdicional.equipamento)}" rendered="#{!reservaEquipamentosAdicionaisBean.reservaEquipamentoAdicional.equipamento.disponivel}"/>
                                         <h:commandButton value="Reservar" class="btn btn-primary" action="#{homologacoesBean.adicionarReservaEquipamentoAdicionalHomologacao(reservaEquipamentosAdicionaisBean.reservaEquipamentoAdicional.equipamento)}" rendered="#{reservaEquipamentosAdicionaisBean.reservaEquipamentoAdicional.equipamento.disponivel}"/>
                                     </div>
                                 </h:form>

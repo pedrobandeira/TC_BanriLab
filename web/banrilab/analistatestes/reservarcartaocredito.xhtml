@@ -27,7 +27,7 @@
             
             <div class="panel panel-default">
         
-        <!-- Modal Reservar ATM -->
+        <!-- Modal Reservar Cartao credito -->
         <div class="modal fade" data-backdrop="static" id="reservarCartaoCredito" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-sm">
                         <div class="modal-content">
@@ -56,7 +56,7 @@
                                     </p:panel>
                                     <div class="modal-footer">
                                         <h:commandButton class="btn btn-default" value="Fechar" action="#{homologacoesBean.retornaReservaCartoesCredito}"/>
-                                        <h:commandButton class="btn btn-danger" value="Excluir reserva" action="#{homologacoesBean.removerReservaCartaoCreditoHomologacao(reservaCartoesCreditoBean.reservaCartoesCredito.cartaoCredito)}" rendered="#{!reservaCartoesCreditoBean.reservaCartoesCredito.cartaoCredito.disponivel}"/>
+                                        <h:commandButton class="btn btn-danger" value="Excluir" action="#{homologacoesBean.removerReservaCartaoCreditoHomologacao(reservaCartoesCreditoBean.reservaCartoesCredito.cartaoCredito)}" rendered="#{!reservaCartoesCreditoBean.reservaCartoesCredito.cartaoCredito.disponivel}"/>
                                         <h:commandButton value="Reservar" class="btn btn-primary" action="#{homologacoesBean.adicionarReservaCartaoCreditoHomologacao(reservaCartoesCreditoBean.reservaCartoesCredito.cartaoCredito)}" rendered="#{reservaCartoesCreditoBean.reservaCartoesCredito.cartaoCredito.disponivel}"/>
                                     </div>
                                 </h:form>

@@ -29,7 +29,7 @@
         
         <!-- Modal Reservar Cartão -->
         <div class="modal fade" data-backdrop="static" id="reservarCartao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
+                    <div class="modal-dialog modal-sm">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h4 class="modal-title" id="myModalLabel">Reservar Cartão de Conta</h4>
@@ -52,7 +52,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <h:commandButton class="btn btn-default" value="Fechar" action="#{reservaCartoesContasBean.fecharEditar}"/>
-                                        <h:commandButton class="btn btn-danger" value="Excluir reserva" action="#{reservaCartoesContasBean.removerReserva}" rendered="#{!reservaCartoesContasBean.reservaCartoesContas.cartaoConta.disponivel}"/>
+                                        <h:commandButton class="btn btn-danger" value="Excluir" action="#{reservaCartoesContasBean.removerReserva}" rendered="#{!reservaCartoesContasBean.reservaCartoesContas.cartaoConta.disponivel}"/>
                                         <h:commandButton value="Salvar" class="btn btn-primary" action="#{reservaCartoesContasBean.adicionarReserva}"/>
                                     </div>
                                 </h:form>
