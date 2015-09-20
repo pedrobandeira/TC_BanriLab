@@ -106,6 +106,7 @@ public class CartoesCreditoBean implements Serializable {
         this.cartaoCredito.setNome(null);
         this.cartaoCredito.setDisponivel(true);
         this.cartaoCredito.setReservavel(true);
+        this.cartaoCredito.setReserva(null);
     }
     
 

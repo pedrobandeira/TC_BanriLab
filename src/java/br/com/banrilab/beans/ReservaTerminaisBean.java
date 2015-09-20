@@ -71,6 +71,7 @@ public class ReservaTerminaisBean implements Serializable {
     public String removerReserva() {
         //this.reservaAtm = r;
         this.reservaTerminal.getTerminal().setDisponivel(true);
+        this.reservaTerminal.getTerminal().setReserva(null);
         this.reservaTerminaisDao.addTerminais(reservaTerminal.getTerminal());
         reservaTerminaisDao.removeReservaTerminais(this.reservaTerminal);
         limpaCampos();

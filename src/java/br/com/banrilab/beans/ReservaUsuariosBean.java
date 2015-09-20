@@ -65,6 +65,7 @@ public class ReservaUsuariosBean implements Serializable {
     public void removerReserva() {
         //this.reservaAtm = r;
         this.reservaUsuario.getUsuario().setDisponivel(true);
+        this.reservaUsuario.getUsuario().setReserva(null);
         this.reservaUsuariosDao.addUsuarios(reservaUsuario.getUsuario());
         reservaUsuariosDao.removeReservaUsuarios(this.reservaUsuario);
         limpaCampos();

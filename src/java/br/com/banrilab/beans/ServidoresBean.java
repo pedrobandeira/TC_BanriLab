@@ -100,6 +100,7 @@ public class ServidoresBean implements Serializable {
         this.servidor.setPatrimonio(null);
         this.servidor.setDisponivel(true);
         this.servidor.setReservavel(true);
+        this.servidor.setReserva(null);
     }
 
     @Override

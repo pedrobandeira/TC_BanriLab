@@ -76,6 +76,7 @@ public class ReservaCartoesContasBean implements Serializable {
     public String removerReserva() {
         //this.reservaAtm = r;
         this.reservaCartao.getCartaoConta().setDisponivel(true);
+        this.reservaCartao.getCartaoConta().setReserva(null);
         this.reservaCartoesDao.addCartoesContas(reservaCartao.getCartaoConta());
         reservaCartoesDao.removeReservaCartoesContas(this.reservaCartao);
         limpaCampos();

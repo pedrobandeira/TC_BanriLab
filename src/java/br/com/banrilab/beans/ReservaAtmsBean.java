@@ -82,6 +82,7 @@ public class ReservaAtmsBean implements Serializable {
     public String removerReserva() {
         //this.reservaAtm = r;
         this.reservaAtm.getAtm().setDisponivel(true);
+        this.reservaAtm.getAtm().setReserva(null);
         this.reservaAtmsDao.addAtms(reservaAtm.getAtm());
         reservaAtmsDao.removeReservaAtms(this.reservaAtm);
         limpaCampos();
@@ -96,17 +97,17 @@ public class ReservaAtmsBean implements Serializable {
  
     
     public String carregarAtm(Atms a) {
-        this.reservaAtm.setAtm(a);
         
         if (a.isReservavel()) {
             if (a.isDisponivel()){
-                return "reservaratms";
+                limpaCampos();
+                this.reservaAtm.setAtm(a);
             } else if (!(a.isDisponivel())) {
+                this.reservaAtm.setAtm(a);
                 carregarReserva(this.reservaAtm.getAtm().getReserva());
-                return "reservaratms";
             }
         }
-        return "atms";
+        return "reservaratms";
     }
     
     public boolean verificaDono(Atms a) {
@@ -114,6 +115,7 @@ public class ReservaAtmsBean implements Serializable {
             if (a.isReservavel()) {
                 return true;
             } else {
+      
                 return false;
             }
         }

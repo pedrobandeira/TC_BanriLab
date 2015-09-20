@@ -98,6 +98,7 @@ public class TerminaisBean implements Serializable {
         this.terminal.setPatrimonio(null);
         this.terminal.setDisponivel(true);
         this.terminal.setReservavel(true);
+        this.terminal.setReserva(null);
     }
 
 

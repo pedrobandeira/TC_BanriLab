@@ -99,6 +99,7 @@ public class CartoesContasBean implements Serializable {
         this.cartaoConta.setNome(null);
         this.cartaoConta.setDisponivel(true);
         this.cartaoConta.setReservavel(true);
+        this.cartaoConta.setReserva(null);
     }
     
 

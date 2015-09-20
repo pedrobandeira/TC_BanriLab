@@ -97,6 +97,7 @@ public class EquipamentosAdicionaisBean implements Serializable {
         this.equipamentoAdicional.setPatrimonio(null);
         this.equipamentoAdicional.setDisponivel(true);
         this.equipamentoAdicional.setReservavel(true);
+        this.equipamentoAdicional.setReserva(null);
     }
 
     @Override

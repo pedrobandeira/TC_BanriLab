@@ -77,6 +77,7 @@ public class ReservaEquipamentosAdicionaisBean implements Serializable {
     public String removerReserva() {
         //this.reservaAtm = r;
         this.reservaEquipamentoAdicional.getEquipamento().setDisponivel(true);
+        this.reservaEquipamentoAdicional.getEquipamento().setReserva(null);
         this.reservaEquipamentosAdicionaisDao.addEquipamentosAdicionais(reservaEquipamentoAdicional.getEquipamento());
         reservaEquipamentosAdicionaisDao.removeReservaEquipamentosAdicionais(this.reservaEquipamentoAdicional);
         limpaCampos();
