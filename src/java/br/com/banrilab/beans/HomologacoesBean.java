@@ -12,6 +12,12 @@ import br.com.banrilab.entidades.CartoesContas;
 import br.com.banrilab.entidades.CartoesCredito;
 import br.com.banrilab.entidades.EquipamentosAdicionais;
 import br.com.banrilab.entidades.HistoricoHomologacaoCiclos;
+import br.com.banrilab.entidades.HistoricoReservaAtms;
+import br.com.banrilab.entidades.HistoricoReservaCartoesContas;
+import br.com.banrilab.entidades.HistoricoReservaCartoesCredito;
+import br.com.banrilab.entidades.HistoricoReservaEquipamentosAdicionais;
+import br.com.banrilab.entidades.HistoricoReservaServidores;
+import br.com.banrilab.entidades.HistoricoReservaTerminais;
 import br.com.banrilab.entidades.Homologacoes;
 import br.com.banrilab.entidades.ReservaAtms;
 import br.com.banrilab.entidades.ReservaCartoesContas;
@@ -539,6 +545,13 @@ public class HomologacoesBean implements Serializable {
         return true;
     }
     
+    public boolean verificaPossuiHistoricoReservaAtms() {
+        if (this.homologacao.getHistReservasAtms().isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+    
     public boolean verificaPossuiReservaEquipamentosAdicionais() {
         if (this.homologacao.getReservasEquipamentosAdicionais().isEmpty()) {
             return false;
@@ -696,16 +709,25 @@ public class HomologacoesBean implements Serializable {
     
     public String adicionarReservaServidorHomologacao(Servidores s) {
         List<ReservaServidores> reservasServidores = new ArrayList<ReservaServidores>();
+        List<HistoricoReservaServidores> histReservasServidores = new ArrayList<HistoricoReservaServidores>();
         ReservaServidores reserva = new ReservaServidores();
+        HistoricoReservaServidores histRes = new HistoricoReservaServidores();
+        
         reserva.setDataFim(homologacao.getDataFim());
         reserva.setDataInicio(retornaDataAtual());
         reserva.setFinalidade("Homologação " + homologacao.getSistema().getNome() + " " + homologacao.getVersaoSistema());
         reserva.setHomologacao(homologacao);
         reserva.setServidor(s);
+        histRes.setServidor(s.getNome());
+        histRes.setHomologacao(homologacao);
         reservasServidores = homologacao.getReservasServidores();
+        histReservasServidores = homologacao.getHistReservasServidores();
         reservasServidores.add(reserva);
+        histReservasServidores.add(histRes);
         homologacao.setReservasServidores(reservasServidores);
+        homologacao.setHistReservasServidores(histReservasServidores);
         homologacaoDao.addReservaServidores(reserva);
+        homologacaoDao.addHistoricoReservaServidores(histRes);
         reserva.getServidor().setDisponivel(false);
         reserva.getServidor().setReserva(reserva);
         homologacaoDao.addServidor(reserva.getServidor());
@@ -730,6 +752,21 @@ public class HomologacoesBean implements Serializable {
     public String adicionarAlocacaoTestadorServidor(ReservaServidores r) {
         
         List<ReservaServidores> reservasServidores = new ArrayList<ReservaServidores>();
+        List<HistoricoReservaServidores> histReservasServidores = new ArrayList<HistoricoReservaServidores>();
+        histReservasServidores = homologacao.getHistReservasServidores();
+        boolean encontrouHistorico = false;
+        HistoricoReservaServidores histRes = new HistoricoReservaServidores();
+        for (HistoricoReservaServidores res : histReservasServidores) {
+            if (res.getServidor().equals(r.getServidor().getNome())) {
+                histRes = res;
+            }
+        }
+        if (encontrouHistorico) {
+            histReservasServidores.remove(histRes);
+            histRes.setTestador(r.getTestador().getUsuario().getNome());
+            histReservasServidores.add(histRes);
+            homologacao.setHistReservasServidores(histReservasServidores);
+        }
         reservasServidores = homologacao.getReservasServidores();
         reservasServidores.remove(r);
         reservasServidores.add(r);
@@ -741,16 +778,24 @@ public class HomologacoesBean implements Serializable {
     
     public String adicionarReservaAtmHomologacao(Atms a) {
         List<ReservaAtms> reservasAtms = new ArrayList<ReservaAtms>();
+        List<HistoricoReservaAtms> histReservasAtms = new ArrayList<HistoricoReservaAtms>();
         ReservaAtms reserva = new ReservaAtms();
+        HistoricoReservaAtms histRes = new HistoricoReservaAtms();
         reserva.setDataFim(homologacao.getDataFim());
         reserva.setDataInicio(retornaDataAtual());
         reserva.setFinalidade("Homologação " + homologacao.getSistema().getNome() + " " + homologacao.getVersaoSistema());
         reserva.setHomologacao(homologacao);
         reserva.setAtm(a);
+        histRes.setAtm(a.getNome());
+        histRes.setHomologacao(homologacao);
         reservasAtms = homologacao.getReservasAtms();
+        histReservasAtms = homologacao.getHistReservasAtms();
         reservasAtms.add(reserva);
+        histReservasAtms.add(histRes);
         homologacao.setReservasAtms(reservasAtms);
+        homologacao.setHistReservasAtms(histReservasAtms);
         homologacaoDao.addReservaAtms(reserva);
+        homologacaoDao.addHistoricoReservaAtms(histRes);
         reserva.getAtm().setDisponivel(false);
         reserva.getAtm().setReserva(reserva);
         homologacaoDao.addAtms(reserva.getAtm());
@@ -774,6 +819,21 @@ public class HomologacoesBean implements Serializable {
     
     public String adicionarAlocacaoTestadorAtm(ReservaAtms r) {
         List<ReservaAtms> reservasAtms = new ArrayList<ReservaAtms>();
+        List<HistoricoReservaAtms> histReservasAtms = new ArrayList<HistoricoReservaAtms>();
+        histReservasAtms = homologacao.getHistReservasAtms();
+        boolean encontrouHistorico = false;
+        HistoricoReservaAtms histRes = new HistoricoReservaAtms();
+        for (HistoricoReservaAtms res : histReservasAtms) {
+            if (res.getAtm().equals(r.getAtm().getNome())) {
+                histRes = res;
+            }
+        }
+        if (encontrouHistorico) {
+            histReservasAtms.remove(histRes);
+            histRes.setTestador(r.getTestador().getUsuario().getNome());
+            histReservasAtms.add(histRes);
+            homologacao.setHistReservasAtms(histReservasAtms);
+        }
         reservasAtms = homologacao.getReservasAtms();
         reservasAtms.remove(r);
         reservasAtms.add(r);
@@ -785,6 +845,16 @@ public class HomologacoesBean implements Serializable {
     
     public String adicionarReservaTerminalHomologacao(Terminais t) {
         List<ReservaTerminais> reservasTerminais = new ArrayList<ReservaTerminais>();
+        
+        List<HistoricoReservaTerminais> histReservasTerminais = new ArrayList<HistoricoReservaTerminais>();
+        HistoricoReservaTerminais histRes = new HistoricoReservaTerminais();
+        histRes.setTerminal(t.getNome());
+        histRes.setHomologacao(homologacao);
+        histReservasTerminais = homologacao.getHistReservasTerminais();
+        histReservasTerminais.add(histRes);
+        homologacao.setHistReservasTerminais(histReservasTerminais);
+        homologacaoDao.addHistoricoReservaTerminais(histRes);
+        
         ReservaTerminais reserva = new ReservaTerminais();
         reserva.setDataFim(homologacao.getDataFim());
         reserva.setDataInicio(retornaDataAtual());
@@ -818,6 +888,21 @@ public class HomologacoesBean implements Serializable {
     
     public String adicionarAlocacaoTestadorTerminal(ReservaTerminais r) {
         List<ReservaTerminais> reservasTerminais = new ArrayList<ReservaTerminais>();
+        List<HistoricoReservaTerminais> histReservasTerminais = new ArrayList<HistoricoReservaTerminais>();
+        histReservasTerminais = homologacao.getHistReservasTerminais();
+        boolean encontrouHistorico = false;
+        HistoricoReservaTerminais histRes = new HistoricoReservaTerminais();
+        for (HistoricoReservaTerminais res : histReservasTerminais) {
+            if (res.getTerminal().equals(r.getTerminal().getNome())) {
+                histRes = res;
+            }
+        }
+        if (encontrouHistorico) {
+            histReservasTerminais.remove(histRes);
+            histRes.setTestador(r.getTestador().getUsuario().getNome());
+            histReservasTerminais.add(histRes);
+            homologacao.setHistReservasTerminais(histReservasTerminais);
+        }
         reservasTerminais = homologacao.getReservasTerminais();
         reservasTerminais.remove(r);
         reservasTerminais.add(r);
@@ -829,6 +914,17 @@ public class HomologacoesBean implements Serializable {
     
     public String adicionarReservaEquipamentoAdicionalHomologacao(EquipamentosAdicionais e) {
         List<ReservaEquipamentosAdicionais> reservasEquipamentosAdicionais = new ArrayList<ReservaEquipamentosAdicionais>();
+        
+        List<HistoricoReservaEquipamentosAdicionais> histReservasEqp = new ArrayList<HistoricoReservaEquipamentosAdicionais>();
+        HistoricoReservaEquipamentosAdicionais histRes = new HistoricoReservaEquipamentosAdicionais();
+        histRes.setEquipamento(e.getNome());
+        histRes.setHomologacao(homologacao);
+        histReservasEqp = homologacao.getHistReservasEquipamentosAdicionais();
+        histReservasEqp.add(histRes);
+        homologacao.setHistReservasEquipamentosAdicionais(histReservasEqp);
+        homologacaoDao.addHistoricoReservaEquipamentosAdicionais(histRes);
+        
+        
         ReservaEquipamentosAdicionais reserva = new ReservaEquipamentosAdicionais();
         reserva.setDataFim(homologacao.getDataFim());
         reserva.setDataInicio(retornaDataAtual());
@@ -863,6 +959,21 @@ public class HomologacoesBean implements Serializable {
     
     public String adicionarAlocacaoTestadorEquipamentoAdicional(ReservaEquipamentosAdicionais r) {
         List<ReservaEquipamentosAdicionais> reservasEquipamentosAdicionais = new ArrayList<ReservaEquipamentosAdicionais>();
+        List<HistoricoReservaEquipamentosAdicionais> histReservasEqp = new ArrayList<HistoricoReservaEquipamentosAdicionais>();
+        histReservasEqp = homologacao.getHistReservasEquipamentosAdicionais();
+        boolean encontrouHistorico = false;
+        HistoricoReservaEquipamentosAdicionais histRes = new HistoricoReservaEquipamentosAdicionais();
+        for (HistoricoReservaEquipamentosAdicionais res : histReservasEqp) {
+            if (res.getEquipamento().equals(r.getEquipamento().getNome())) {
+                histRes = res;
+            }
+        }
+        if (encontrouHistorico) {
+            histReservasEqp.remove(histRes);
+            histRes.setTestador(r.getTestador().getUsuario().getNome());
+            histReservasEqp.add(histRes);
+            homologacao.setHistReservasEquipamentosAdicionais(histReservasEqp);
+        }
         reservasEquipamentosAdicionais = homologacao.getReservasEquipamentosAdicionais();
         reservasEquipamentosAdicionais.remove(r);
         reservasEquipamentosAdicionais.add(r);
@@ -874,6 +985,17 @@ public class HomologacoesBean implements Serializable {
     
     public String adicionarReservaCartaoContaHomologacao(CartoesContas c) {
         List<ReservaCartoesContas> reservasCartoesContas = new ArrayList<ReservaCartoesContas>();
+        
+        List<HistoricoReservaCartoesContas> histReservasCartoes = new ArrayList<HistoricoReservaCartoesContas>();
+        HistoricoReservaCartoesContas histRes = new HistoricoReservaCartoesContas();
+        histRes.setCartao(c.getNome());
+        histRes.setHomologacao(homologacao);
+        histReservasCartoes = homologacao.getHistReservasCartoesContas();
+        histReservasCartoes.add(histRes);
+        homologacao.setHistReservasCartoesContas(histReservasCartoes);
+        homologacaoDao.addHistoricoReservaCartoesContas(histRes);
+        
+        
         ReservaCartoesContas reserva = new ReservaCartoesContas();
         reserva.setDataFim(homologacao.getDataFim());
         reserva.setDataInicio(retornaDataAtual());
@@ -908,6 +1030,21 @@ public class HomologacoesBean implements Serializable {
     
     public String adicionarAlocacaoTestadorCartaoConta(ReservaCartoesContas r) {
         List<ReservaCartoesContas> reservasCartoesContas = new ArrayList<ReservaCartoesContas>();
+        List<HistoricoReservaCartoesContas> histReservasCartoes = new ArrayList<HistoricoReservaCartoesContas>();
+        histReservasCartoes = homologacao.getHistReservasCartoesContas();
+        boolean encontrouHistorico = false;
+        HistoricoReservaCartoesContas histRes = new HistoricoReservaCartoesContas();
+        for (HistoricoReservaCartoesContas res : histReservasCartoes) {
+            if (res.getCartao().equals(r.getCartaoConta().getNome())) {
+                histRes = res;
+            }
+        }
+        if (encontrouHistorico) {
+            histReservasCartoes.remove(histRes);
+            histRes.setTestador(r.getTestador().getUsuario().getNome());
+            histReservasCartoes.add(histRes);
+            homologacao.setHistReservasCartoesContas(histReservasCartoes);
+        }
         reservasCartoesContas = homologacao.getReservasCartoesContas();
         reservasCartoesContas.remove(r);
         reservasCartoesContas.add(r);
@@ -919,6 +1056,16 @@ public class HomologacoesBean implements Serializable {
     
     public String adicionarReservaCartaoCreditoHomologacao(CartoesCredito c) {
         List<ReservaCartoesCredito> reservasCartoesCredito = new ArrayList<ReservaCartoesCredito>();
+        
+        List<HistoricoReservaCartoesContas> histReservasCartoes = new ArrayList<HistoricoReservaCartoesContas>();
+        HistoricoReservaCartoesContas histRes = new HistoricoReservaCartoesContas();
+        histRes.setCartao(c.getNome());
+        histRes.setHomologacao(homologacao);
+        histReservasCartoes = homologacao.getHistReservasCartoesContas();
+        histReservasCartoes.add(histRes);
+        homologacao.setHistReservasCartoesContas(histReservasCartoes);
+        homologacaoDao.addHistoricoReservaCartoesContas(histRes);
+        
         ReservaCartoesCredito reserva = new ReservaCartoesCredito();
         reserva.setDataFim(homologacao.getDataFim());
         reserva.setDataInicio(retornaDataAtual());
@@ -953,6 +1100,21 @@ public class HomologacoesBean implements Serializable {
     
     public String adicionarAlocacaoTestadorCartaoCredito(ReservaCartoesCredito r) {
         List<ReservaCartoesCredito> reservasCartoesCredito = new ArrayList<ReservaCartoesCredito>();
+        List<HistoricoReservaCartoesCredito> histReservasCartoes = new ArrayList<HistoricoReservaCartoesCredito>();
+        histReservasCartoes = homologacao.getHistReservasCartoesCredito();
+        boolean encontrouHistorico = false;
+        HistoricoReservaCartoesCredito histRes = new HistoricoReservaCartoesCredito();
+        for (HistoricoReservaCartoesCredito res : histReservasCartoes) {
+            if (res.getCartao().equals(r.getCartaoCredito().getNome())) {
+                histRes = res;
+            }
+        }
+        if (encontrouHistorico) {
+            histReservasCartoes.remove(histRes);
+            histRes.setTestador(r.getTestador().getUsuario().getNome());
+            histReservasCartoes.add(histRes);
+            homologacao.setHistReservasCartoesCredito(histReservasCartoes);
+        }
         reservasCartoesCredito = homologacao.getReservasCartoesCreditos();
         reservasCartoesCredito.remove(r);
         reservasCartoesCredito.add(r);

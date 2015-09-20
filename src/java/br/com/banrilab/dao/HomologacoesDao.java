@@ -10,6 +10,12 @@ import br.com.banrilab.entidades.CartoesContas;
 import br.com.banrilab.entidades.CartoesCredito;
 import br.com.banrilab.entidades.EquipamentosAdicionais;
 import br.com.banrilab.entidades.HistoricoHomologacaoCiclos;
+import br.com.banrilab.entidades.HistoricoReservaAtms;
+import br.com.banrilab.entidades.HistoricoReservaCartoesContas;
+import br.com.banrilab.entidades.HistoricoReservaCartoesCredito;
+import br.com.banrilab.entidades.HistoricoReservaEquipamentosAdicionais;
+import br.com.banrilab.entidades.HistoricoReservaServidores;
+import br.com.banrilab.entidades.HistoricoReservaTerminais;
 import br.com.banrilab.entidades.Homologacoes;
 import br.com.banrilab.entidades.ReservaAtms;
 import br.com.banrilab.entidades.ReservaCartoesContas;
@@ -272,6 +278,110 @@ public class HomologacoesDao implements HomologacoesDaoInterface {
         entityManager.remove(reservaARemover);
     }
 
+    @Override
+    public void addHistoricoReservaAtms(HistoricoReservaAtms h) {
+        if(h.getId() == null)
+            entityManager.persist(h);
+        else
+            entityManager.merge(h);    }
 
-  
+    @Override
+    public List<HistoricoReservaAtms> getHistoricoReservasAtms(Homologacoes h) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<HistoricoReservaAtms> c = cb.createQuery(HistoricoReservaAtms.class);
+        Root<HistoricoReservaAtms> historico = c.from(HistoricoReservaAtms.class);
+        c.where(historico.get("homologacao").in(h));
+
+        TypedQuery q = entityManager.createQuery(c);
+        return q.getResultList();
+    }
+    
+    @Override
+    public void addHistoricoReservaServidores(HistoricoReservaServidores h) {
+        if(h.getId() == null)
+            entityManager.persist(h);
+        else
+            entityManager.merge(h);    }
+
+    @Override
+    public List<HistoricoReservaServidores> getHistoricoReservasServidores(Homologacoes h) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<HistoricoReservaServidores> c = cb.createQuery(HistoricoReservaServidores.class);
+        Root<HistoricoReservaServidores> historico = c.from(HistoricoReservaServidores.class);
+        c.where(historico.get("homologacao").in(h));
+        
+        TypedQuery q = entityManager.createQuery(c);
+        return q.getResultList();
+    }
+    
+    @Override
+    public void addHistoricoReservaTerminais(HistoricoReservaTerminais h) {
+        if(h.getId() == null)
+            entityManager.persist(h);
+        else
+            entityManager.merge(h);    }
+
+    @Override
+    public List<HistoricoReservaTerminais> getHistoricoReservasTerminais(Homologacoes h) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<HistoricoReservaTerminais> c = cb.createQuery(HistoricoReservaTerminais.class);
+        Root<HistoricoReservaTerminais> historico = c.from(HistoricoReservaTerminais.class);
+        c.where(historico.get("homologacao").in(h));
+        
+        TypedQuery q = entityManager.createQuery(c);
+        return q.getResultList();
+    }
+    
+    @Override
+    public void addHistoricoReservaEquipamentosAdicionais(HistoricoReservaEquipamentosAdicionais h) {
+        if(h.getId() == null)
+            entityManager.persist(h);
+        else
+            entityManager.merge(h);    }
+
+    @Override
+    public List<HistoricoReservaEquipamentosAdicionais> getHistoricoReservasEquipamentosAdicionais(Homologacoes h) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<HistoricoReservaEquipamentosAdicionais> c = cb.createQuery(HistoricoReservaEquipamentosAdicionais.class);
+        Root<HistoricoReservaEquipamentosAdicionais> historico = c.from(HistoricoReservaEquipamentosAdicionais.class);
+        c.where(historico.get("homologacao").in(h));
+     
+        TypedQuery q = entityManager.createQuery(c);
+        return q.getResultList();
+    }
+    
+    @Override
+    public void addHistoricoReservaCartoesContas(HistoricoReservaCartoesContas h) {
+        if(h.getId() == null)
+            entityManager.persist(h);
+        else
+            entityManager.merge(h);    }
+
+    @Override
+    public List<HistoricoReservaCartoesContas> getHistoricoReservasCartoesContas(Homologacoes h) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<HistoricoReservaCartoesContas> c = cb.createQuery(HistoricoReservaCartoesContas.class);
+        Root<HistoricoReservaCartoesContas> historico = c.from(HistoricoReservaCartoesContas.class);
+        c.where(historico.get("homologacao").in(h));
+        
+        TypedQuery q = entityManager.createQuery(c);
+        return q.getResultList();
+    }
+    @Override
+    public void addHistoricoReservaCartoesCredito(HistoricoReservaCartoesCredito h) {
+        if(h.getId() == null)
+            entityManager.persist(h);
+        else
+            entityManager.merge(h);    }
+
+    @Override
+    public List<HistoricoReservaCartoesCredito> getHistoricoReservasCartoesCredito(Homologacoes h) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<HistoricoReservaCartoesCredito> c = cb.createQuery(HistoricoReservaCartoesCredito.class);
+        Root<HistoricoReservaCartoesCredito> historico = c.from(HistoricoReservaCartoesCredito.class);
+        c.where(historico.get("homologacao").in(h));
+        
+        TypedQuery q = entityManager.createQuery(c);
+        return q.getResultList();
+    }
 }

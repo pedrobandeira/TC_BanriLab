@@ -35,15 +35,27 @@ public class Homologacoes implements Serializable {
     @OneToMany (mappedBy = "homologacao")
     private List<ReservaAtms> reservasAtms;
     @OneToMany (mappedBy = "homologacao")
+    private List<HistoricoReservaAtms> histReservasAtms;
+    @OneToMany (mappedBy = "homologacao")
     private List<ReservaCartoesContas> reservasCartoesContas;
+    @OneToMany (mappedBy = "homologacao")
+    private List<HistoricoReservaCartoesContas> histReservasCartoesContas;
     @OneToMany (mappedBy = "homologacao")
     private List<ReservaCartoesCredito> reservasCartoesCreditos;
     @OneToMany (mappedBy = "homologacao")
+    private List<HistoricoReservaCartoesCredito> histReservasCartoesCredito;
+    @OneToMany (mappedBy = "homologacao")
     private List<ReservaEquipamentosAdicionais> reservasEquipamentosAdicionais;
+    @OneToMany (mappedBy = "homologacao")
+    private List<HistoricoReservaEquipamentosAdicionais> histReservasEquipamentosAdicionais;
     @OneToMany (mappedBy = "homologacao")
     private List<ReservaServidores> reservasServidores;
     @OneToMany (mappedBy = "homologacao")
+    private List<HistoricoReservaServidores> histReservasServidores;
+    @OneToMany (mappedBy = "homologacao")
     private List<ReservaTerminais> reservasTerminais;
+    @OneToMany (mappedBy = "homologacao")
+    private List<HistoricoReservaTerminais> histReservasTerminais;
     @ManyToOne
     private Usuarios solicitante;
     @ManyToOne
@@ -244,6 +256,54 @@ public class Homologacoes implements Serializable {
 
     public void setVersaoSistema(String versaoSistema) {
         this.versaoSistema = versaoSistema;
+    }
+
+    public List<HistoricoReservaAtms> getHistReservasAtms() {
+        return histReservasAtms;
+    }
+
+    public void setHistReservasAtms(List<HistoricoReservaAtms> histReservasAtms) {
+        this.histReservasAtms = histReservasAtms;
+    }
+
+    public List<HistoricoReservaCartoesContas> getHistReservasCartoesContas() {
+        return histReservasCartoesContas;
+    }
+
+    public void setHistReservasCartoesContas(List<HistoricoReservaCartoesContas> histReservasCartoesContas) {
+        this.histReservasCartoesContas = histReservasCartoesContas;
+    }
+
+    public List<HistoricoReservaCartoesCredito> getHistReservasCartoesCredito() {
+        return histReservasCartoesCredito;
+    }
+
+    public void setHistReservasCartoesCredito(List<HistoricoReservaCartoesCredito> histReservasCartoesCredito) {
+        this.histReservasCartoesCredito = histReservasCartoesCredito;
+    }
+
+    public List<HistoricoReservaEquipamentosAdicionais> getHistReservasEquipamentosAdicionais() {
+        return histReservasEquipamentosAdicionais;
+    }
+
+    public void setHistReservasEquipamentosAdicionais(List<HistoricoReservaEquipamentosAdicionais> histReservasEquipamentosAdicionais) {
+        this.histReservasEquipamentosAdicionais = histReservasEquipamentosAdicionais;
+    }
+
+    public List<HistoricoReservaServidores> getHistReservasServidores() {
+        return histReservasServidores;
+    }
+
+    public void setHistReservasServidores(List<HistoricoReservaServidores> histReservasServidores) {
+        this.histReservasServidores = histReservasServidores;
+    }
+
+    public List<HistoricoReservaTerminais> getHistReservasTerminais() {
+        return histReservasTerminais;
+    }
+
+    public void setHistReservasTerminais(List<HistoricoReservaTerminais> histReservasTerminais) {
+        this.histReservasTerminais = histReservasTerminais;
     }
     
     

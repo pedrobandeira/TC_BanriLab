@@ -69,12 +69,12 @@
                                                     </p:column>
                                                 </p:dataTable>
                                                 
-                                                <p:dataTable var="reservaAtm" value="#{homologacoesBean.homologacao.reservasAtms}" editable="false" rendered="#{homologacoesBean.verificaPossuiReservaAtms()}">
+                                                <p:dataTable var="reservaAtm" value="#{homologacoesBean.homologacao.histReservasAtms}" editable="false" rendered="#{homologacoesBean.verificaPossuiHistoricoReservaAtms()}">
                                                     <p:column headerText="ATMs" style="width: 100px">
-                                                        <h:outputText value="#{reservaAtm.atm.nome}" />
+                                                        <h:outputText value="#{reservaAtm.atm}" />
                                                     </p:column>
-                                                    <p:column headerText="Testador" style="width: 100px" rendered="#{homologacoesBean.verificaPossuiReservaTestadores()}">
-                                                        <h:outputText value="#{reservaAtm.testador.usuario.nome}"/>
+                                                    <p:column headerText="Testador" style="width: 100px">
+                                                        <h:outputText value="#{reservaAtm.testador}"/>
                                                     </p:column>
                                                 </p:dataTable>
                                                 
