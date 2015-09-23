@@ -38,34 +38,34 @@
 
                                         <h:form>
                                             <div class="container-fluid">
-                                                <h:panelGrid rendered="#{!homologacoesBean.verificaPossuiAlgumaReservaEquipamentoOuTestador()}">
+                                                <h:panelGrid rendered="#{!homologacoesBean.verificaPossuiAlgumHistoricoReserva()}">
                                                 <div class="alert alert-info" role="alert">
                                                     Esta homologação <strong>não possui equipamentos reservados e testadores alocados</strong>.
                                                 </div>
                                                 </h:panelGrid>
-                                                <p:dataTable var="reservaTestador" value="#{homologacoesBean.homologacao.reservasTestadores}" editable="false" rendered="#{homologacoesBean.verificaPossuiReservaTestadores()}">
+                                                <p:dataTable var="reservaTestador" value="#{homologacoesBean.homologacao.histReservasUsuarios}" editable="false" rendered="#{homologacoesBean.verificaPossuiHistoricoReservaUsuarios()}">
                                                     <p:column headerText="Testadores">
 
-                                                        <h:outputText value="#{reservaTestador.usuario.nome}" />
+                                                        <h:outputText value="#{reservaTestador.testador}" />
                                                     </p:column>
   
                                                 </p:dataTable>
                                                 
-                                                <p:dataTable var="reservaServidor" value="#{homologacoesBean.homologacao.reservasServidores}" editable="false" rendered="#{homologacoesBean.verificaPossuiReservaServidores()}">
+                                                <p:dataTable var="reservaServidor" value="#{homologacoesBean.homologacao.histReservasServidores}" editable="false" rendered="#{homologacoesBean.verificaPossuiHistoricoReservaServidores()}">
                                                     <p:column headerText="Servidores" style="width: 100px">
-                                                        <h:outputText value="#{reservaServidor.servidor.nome}" />
+                                                        <h:outputText value="#{reservaServidor.servidor}" />
                                                     </p:column>
-                                                    <p:column headerText="Testador" style="width: 100px" rendered="#{homologacoesBean.verificaPossuiReservaTestadores()}">
-                                                        <h:outputText value="#{reservaServidor.testador.usuario.nome}"/>
+                                                    <p:column headerText="Testador" style="width: 100px" rendered="#{homologacoesBean.verificaPossuiHistoricoReservaUsuarios()}">
+                                                        <h:outputText value="#{reservaServidor.testador}"/>
                                                     </p:column>
                                                 </p:dataTable>
 
-                                                <p:dataTable var="reservaTerminal" value="#{homologacoesBean.homologacao.reservasTerminais}" editable="false" rendered="#{homologacoesBean.verificaPossuiReservaTerminais()}">
+                                                <p:dataTable var="reservaTerminal" value="#{homologacoesBean.homologacao.histReservasTerminais}" editable="false" rendered="#{homologacoesBean.verificaPossuiHistoricoReservaTerminais()}">
                                                     <p:column headerText="Terminais" style="width: 100px">
-                                                        <h:outputText value="#{reservaTerminal.terminal.nome}" />
+                                                        <h:outputText value="#{reservaTerminal.terminal}" />
                                                     </p:column>
-                                                    <p:column headerText="Testador" style="width: 100px" rendered="#{homologacoesBean.verificaPossuiReservaTestadores()}">
-                                                        <h:outputText value="#{reservaTerminal.testador.usuario.nome}"/>
+                                                    <p:column headerText="Testador" style="width: 100px" rendered="#{homologacoesBean.verificaPossuiHistoricoReservaUsuarios()}">
+                                                        <h:outputText value="#{reservaTerminal.testador}"/>
                                                     </p:column>
                                                 </p:dataTable>
                                                 
@@ -73,35 +73,35 @@
                                                     <p:column headerText="ATMs" style="width: 100px">
                                                         <h:outputText value="#{reservaAtm.atm}" />
                                                     </p:column>
-                                                    <p:column headerText="Testador" style="width: 100px">
+                                                    <p:column headerText="Testador" style="width: 100px" rendered="#{homologacoesBean.verificaPossuiHistoricoReservaUsuarios()}">
                                                         <h:outputText value="#{reservaAtm.testador}"/>
                                                     </p:column>
                                                 </p:dataTable>
                                                 
-                                                <p:dataTable var="reservaEqpAdc" value="#{homologacoesBean.homologacao.reservasEquipamentosAdicionais}" editable="false" rendered="#{homologacoesBean.verificaPossuiReservaEquipamentosAdicionais()}">
+                                                <p:dataTable var="reservaEqpAdc" value="#{homologacoesBean.homologacao.histReservasEquipamentosAdicionais}" editable="false" rendered="#{homologacoesBean.verificaPossuiHistoricoReservaEquipamentosAdicionais()}">
                                                     <p:column headerText="Equipamentos Adc." style="width: 100px">
-                                                        <h:outputText value="#{reservaEqpAdc.equipamento.nome}" />
+                                                        <h:outputText value="#{reservaEqpAdc.equipamento}" />
                                                     </p:column>
-                                                    <p:column headerText="Testador" style="width: 100px" rendered="#{homologacoesBean.verificaPossuiReservaTestadores()}">
-                                                        <h:outputText value="#{reservaEqpAdc.testador.usuario.nome}"/>
+                                                    <p:column headerText="Testador" style="width: 100px" rendered="#{homologacoesBean.verificaPossuiHistoricoReservaUsuarios()}">
+                                                        <h:outputText value="#{reservaEqpAdc.testador}"/>
                                                     </p:column>
                                                 </p:dataTable>
                                                 
-                                                <p:dataTable var="reservaCartaoConta" value="#{homologacoesBean.homologacao.reservasCartoesContas}" editable="false" rendered="#{homologacoesBean.verificaPossuiReservaCartoesContas()}">
+                                                <p:dataTable var="reservaCartaoConta" value="#{homologacoesBean.homologacao.histReservasCartoesContas}" editable="false" rendered="#{homologacoesBean.verificaPossuiHistoricoReservaCartoesContas()}">
                                                     <p:column headerText="Cartões de contas" style="width: 100px">
-                                                        <h:outputText value="#{reservaCartaoConta.cartaoConta.nome}" />
+                                                        <h:outputText value="#{reservaCartaoConta.cartao}" />
                                                     </p:column>
-                                                    <p:column headerText="Testador" style="width: 100px" rendered="#{homologacoesBean.verificaPossuiReservaTestadores()}">
-                                                        <h:outputText value="#{reservaCartaoConta.testador.usuario.nome}"/>
+                                                    <p:column headerText="Testador" style="width: 100px" rendered="#{homologacoesBean.verificaPossuiHistoricoReservaUsuarios()}">
+                                                        <h:outputText value="#{reservaCartaoConta.testador}"/>
                                                     </p:column>
                                                 </p:dataTable>
                                                 
-                                                <p:dataTable var="reservaCartaoCredito" value="#{homologacoesBean.homologacao.reservasCartoesCreditos}" editable="false" rendered="#{homologacoesBean.verificaPossuiReservaCartoesCredito()}">
+                                                <p:dataTable var="reservaCartaoCredito" value="#{homologacoesBean.homologacao.histReservasCartoesCredito}" editable="false" rendered="#{homologacoesBean.verificaPossuiHistoricoReservaCartoesCredito()}">
                                                     <p:column headerText="Cartões de crédito" style="width: 100px">
-                                                        <h:outputText value="#{reservaCartaoCredito.cartaoCredito.nome}" />
+                                                        <h:outputText value="#{reservaCartaoCredito.cartao}" />
                                                     </p:column>
-                                                    <p:column headerText="Testador" style="width: 100px" rendered="#{homologacoesBean.verificaPossuiReservaTestadores()}">
-                                                        <h:outputText value="#{reservaCartaoCredito.testador.usuario.nome}"/>
+                                                    <p:column headerText="Testador" style="width: 100px" rendered="#{homologacoesBean.verificaPossuiHistoricoReservaUsuarios()}">
+                                                        <h:outputText value="#{reservaCartaoCredito.testador}"/>
                                                     </p:column>
                                                 </p:dataTable>
 
@@ -131,7 +131,8 @@
         </ui:composition>
 
         <!-- script references -->
-        <h:outputScript name="js/jquery-1.11.2.min.js"/>
+        <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
+        <h:outputScript library="primefaces" name="jquery/jquery-plugins.js" target="head" />
         <h:outputScript name="js/bootstrap.min.js"/>
         <h:outputScript name="js/scripts.js"/>
 

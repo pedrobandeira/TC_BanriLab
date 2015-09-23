@@ -87,12 +87,14 @@ public class ReservaCartoesCreditoBean implements Serializable {
     }
     
     public String carregarCartaoCredito(CartoesCredito c) {
-        this.reservaCartao.setCartaoCredito(c);
-        
+                
         if (c.isReservavel()) {
             if (c.isDisponivel()){
+                limpaCampos();
+                this.reservaCartao.setCartaoCredito(c);
                 return "reservarcartaocredito";
             } else if (!(c.isDisponivel())) {
+                this.reservaCartao.setCartaoCredito(c);
                 carregarReserva(this.reservaCartao.getCartaoCredito().getReserva());
                 return "reservarcartaocredito";
             }

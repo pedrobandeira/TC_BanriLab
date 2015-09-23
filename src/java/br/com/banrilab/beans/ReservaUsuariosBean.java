@@ -78,12 +78,14 @@ public class ReservaUsuariosBean implements Serializable {
     }
     
     public String carregarUsuario(Usuarios u) {
-        this.reservaUsuario.setUsuario(u);
         
         if (u.getPerfil() == 4) {
             if (u.isDisponivel()){
+                limpaCampos();
+                this.reservaUsuario.setUsuario(u);
                 return "reservarusuario";
             } else if (!(u.isDisponivel())) {
+                this.reservaUsuario.setUsuario(u);
                 carregarReserva(this.reservaUsuario.getUsuario().getReserva());
                 return "reservarusuario";
             }

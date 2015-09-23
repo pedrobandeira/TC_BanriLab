@@ -88,12 +88,14 @@ public class ReservaServidoresBean implements Serializable {
     }
     
     public String carregarServidor(Servidores s) {
-        this.reservaServidor.setServidor(s);
         
         if (s.isReservavel()) {
             if (s.isDisponivel()){
+                limpaCampos();
+                this.reservaServidor.setServidor(s);
                 return "reservarservidor";
             } else if (!(s.isDisponivel())) {
+                this.reservaServidor.setServidor(s); 
                 carregarReserva(this.reservaServidor.getServidor().getReserva());
                 return "reservarservidor";
             }

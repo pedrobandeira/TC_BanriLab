@@ -18,6 +18,7 @@ import br.com.banrilab.entidades.HistoricoReservaCartoesCredito;
 import br.com.banrilab.entidades.HistoricoReservaEquipamentosAdicionais;
 import br.com.banrilab.entidades.HistoricoReservaServidores;
 import br.com.banrilab.entidades.HistoricoReservaTerminais;
+import br.com.banrilab.entidades.HistoricoReservaUsuarios;
 import br.com.banrilab.entidades.Homologacoes;
 import br.com.banrilab.entidades.ReservaAtms;
 import br.com.banrilab.entidades.ReservaCartoesContas;
@@ -545,12 +546,6 @@ public class HomologacoesBean implements Serializable {
         return true;
     }
     
-    public boolean verificaPossuiHistoricoReservaAtms() {
-        if (this.homologacao.getHistReservasAtms().isEmpty()) {
-            return false;
-        }
-        return true;
-    }
     
     public boolean verificaPossuiReservaEquipamentosAdicionais() {
         if (this.homologacao.getReservasEquipamentosAdicionais().isEmpty()) {
@@ -568,6 +563,65 @@ public class HomologacoesBean implements Serializable {
     
     public boolean verificaPossuiReservaCartoesCredito() {
         if (this.homologacao.getReservasCartoesCreditos().isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+    
+    public boolean verificaPossuiHistoricoReservaAtms() {
+        if (this.homologacao.getHistReservasAtms().isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+    
+    public boolean verificaPossuiHistoricoReservaCartoesContas() {
+        if (this.homologacao.getHistReservasCartoesContas().isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+    
+    public boolean verificaPossuiHistoricoReservaCartoesCredito() {
+        if (this.homologacao.getHistReservasCartoesCredito().isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+    
+    public boolean verificaPossuiHistoricoReservaEquipamentosAdicionais() {
+        if (this.homologacao.getHistReservasEquipamentosAdicionais().isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+    
+    public boolean verificaPossuiHistoricoReservaServidores() {
+        if (this.homologacao.getHistReservasServidores().isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+    
+    public boolean verificaPossuiHistoricoReservaTerminais() {
+        if (this.homologacao.getHistReservasTerminais().isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+    
+    public boolean verificaPossuiHistoricoReservaUsuarios() {
+        if (this.homologacao.getHistReservasUsuarios().isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+    
+    public boolean verificaPossuiAlgumHistoricoReserva() {
+        if (!verificaPossuiHistoricoReservaAtms() && !verificaPossuiHistoricoReservaCartoesContas()
+                && !verificaPossuiHistoricoReservaCartoesCredito() && !verificaPossuiHistoricoReservaEquipamentosAdicionais()
+                && !verificaPossuiHistoricoReservaServidores() && !verificaPossuiHistoricoReservaTerminais()
+                && !verificaPossuiHistoricoReservaUsuarios()) {
             return false;
         }
         return true;
@@ -1057,14 +1111,14 @@ public class HomologacoesBean implements Serializable {
     public String adicionarReservaCartaoCreditoHomologacao(CartoesCredito c) {
         List<ReservaCartoesCredito> reservasCartoesCredito = new ArrayList<ReservaCartoesCredito>();
         
-        List<HistoricoReservaCartoesContas> histReservasCartoes = new ArrayList<HistoricoReservaCartoesContas>();
-        HistoricoReservaCartoesContas histRes = new HistoricoReservaCartoesContas();
+        List<HistoricoReservaCartoesCredito> histReservasCartoes = new ArrayList<HistoricoReservaCartoesCredito>();
+        HistoricoReservaCartoesCredito histRes = new HistoricoReservaCartoesCredito();
         histRes.setCartao(c.getNome());
         histRes.setHomologacao(homologacao);
-        histReservasCartoes = homologacao.getHistReservasCartoesContas();
+        histReservasCartoes = homologacao.getHistReservasCartoesCredito();
         histReservasCartoes.add(histRes);
-        homologacao.setHistReservasCartoesContas(histReservasCartoes);
-        homologacaoDao.addHistoricoReservaCartoesContas(histRes);
+        homologacao.setHistReservasCartoesCredito(histReservasCartoes);
+        homologacaoDao.addHistoricoReservaCartoesCredito(histRes);
         
         ReservaCartoesCredito reserva = new ReservaCartoesCredito();
         reserva.setDataFim(homologacao.getDataFim());
@@ -1126,6 +1180,17 @@ public class HomologacoesBean implements Serializable {
     
     public String adicionarReservaTestadorHomologacao(Usuarios u) {
         List<ReservaUsuarios> reservasTestadores = new ArrayList<ReservaUsuarios>();
+        
+        List<HistoricoReservaUsuarios> histReservasUsuarios = new ArrayList<HistoricoReservaUsuarios>();
+        HistoricoReservaUsuarios histRes = new HistoricoReservaUsuarios();
+        histRes.setTestador(u.getNome());
+        histRes.setHomologacao(homologacao);
+        histReservasUsuarios = homologacao.getHistReservasUsuarios();
+        histReservasUsuarios.add(histRes);
+        homologacao.setHistReservasUsuarios(histReservasUsuarios);
+        homologacaoDao.addHistoricoReservaUsuario(histRes);
+
+        
         ReservaUsuarios reserva = new ReservaUsuarios();
         reserva.setDataFim(homologacao.getDataFim());
         reserva.setDataInicio(retornaDataAtual());

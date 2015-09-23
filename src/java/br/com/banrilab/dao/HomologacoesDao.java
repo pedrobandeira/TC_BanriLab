@@ -16,6 +16,7 @@ import br.com.banrilab.entidades.HistoricoReservaCartoesCredito;
 import br.com.banrilab.entidades.HistoricoReservaEquipamentosAdicionais;
 import br.com.banrilab.entidades.HistoricoReservaServidores;
 import br.com.banrilab.entidades.HistoricoReservaTerminais;
+import br.com.banrilab.entidades.HistoricoReservaUsuarios;
 import br.com.banrilab.entidades.Homologacoes;
 import br.com.banrilab.entidades.ReservaAtms;
 import br.com.banrilab.entidades.ReservaCartoesContas;
@@ -379,6 +380,24 @@ public class HomologacoesDao implements HomologacoesDaoInterface {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<HistoricoReservaCartoesCredito> c = cb.createQuery(HistoricoReservaCartoesCredito.class);
         Root<HistoricoReservaCartoesCredito> historico = c.from(HistoricoReservaCartoesCredito.class);
+        c.where(historico.get("homologacao").in(h));
+        
+        TypedQuery q = entityManager.createQuery(c);
+        return q.getResultList();
+    }
+    
+    @Override
+    public void addHistoricoReservaUsuario(HistoricoReservaUsuarios h) {
+        if(h.getId() == null)
+            entityManager.persist(h);
+        else
+            entityManager.merge(h);    }
+
+    @Override
+    public List<HistoricoReservaUsuarios> getHistoricoReservasUsuarios(Homologacoes h) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<HistoricoReservaUsuarios> c = cb.createQuery(HistoricoReservaUsuarios.class);
+        Root<HistoricoReservaUsuarios> historico = c.from(HistoricoReservaUsuarios.class);
         c.where(historico.get("homologacao").in(h));
         
         TypedQuery q = entityManager.createQuery(c);

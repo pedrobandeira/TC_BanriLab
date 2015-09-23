@@ -64,6 +64,8 @@ public class Homologacoes implements Serializable {
     private Usuarios analista;
     @OneToMany (mappedBy = "homologacao")
     private List<ReservaUsuarios> reservasTestadores;
+    @OneToMany (mappedBy = "homologacao")
+    private List<HistoricoReservaUsuarios> histReservasUsuarios;
     
     
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -346,6 +348,14 @@ public class Homologacoes implements Serializable {
 
     public void setHistoricoCiclos(List<HistoricoHomologacaoCiclos> historicoCiclos) {
         this.historicoCiclos = historicoCiclos;
+    }
+
+    public List<HistoricoReservaUsuarios> getHistReservasUsuarios() {
+        return histReservasUsuarios;
+    }
+
+    public void setHistReservasUsuarios(List<HistoricoReservaUsuarios> histReservasUsuarios) {
+        this.histReservasUsuarios = histReservasUsuarios;
     }
     
     

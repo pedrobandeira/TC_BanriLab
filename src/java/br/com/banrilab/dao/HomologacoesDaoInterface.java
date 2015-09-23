@@ -16,6 +16,7 @@ import br.com.banrilab.entidades.HistoricoReservaCartoesCredito;
 import br.com.banrilab.entidades.HistoricoReservaEquipamentosAdicionais;
 import br.com.banrilab.entidades.HistoricoReservaServidores;
 import br.com.banrilab.entidades.HistoricoReservaTerminais;
+import br.com.banrilab.entidades.HistoricoReservaUsuarios;
 import br.com.banrilab.entidades.Homologacoes;
 import br.com.banrilab.entidades.ReservaAtms;
 import br.com.banrilab.entidades.ReservaCartoesContas;
@@ -75,4 +76,6 @@ public interface HomologacoesDaoInterface {
     public List<HistoricoReservaCartoesContas> getHistoricoReservasCartoesContas(Homologacoes h);
     public void addHistoricoReservaCartoesCredito (HistoricoReservaCartoesCredito h);
     public List<HistoricoReservaCartoesCredito> getHistoricoReservasCartoesCredito(Homologacoes h);
+    public void addHistoricoReservaUsuario (HistoricoReservaUsuarios h);
+    public List<HistoricoReservaUsuarios> getHistoricoReservasUsuarios(Homologacoes h);
 }

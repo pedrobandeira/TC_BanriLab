@@ -90,12 +90,14 @@ public class ReservaEquipamentosAdicionaisBean implements Serializable {
     }
     
     public String carregarEquipamentoAdicional(EquipamentosAdicionais e) {
-        this.reservaEquipamentoAdicional.setEquipamento(e);
-        
+                
         if (e.isReservavel()) {
             if (e.isDisponivel()){
+                limpaCampos();
+                this.reservaEquipamentoAdicional.setEquipamento(e);
                 return "reservarequipamentoadicional";
             } else if (!(e.isDisponivel())) {
+                this.reservaEquipamentoAdicional.setEquipamento(e);
                 carregarReserva(this.reservaEquipamentoAdicional.getEquipamento().getReserva());
                 return "reservarequipamentoadicional";
             }

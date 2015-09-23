@@ -6,126 +6,133 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-   	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-	<meta charset="utf-8"/>
-	<title>Cartões de Crédito do Laboratório de Testes</title>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+        <meta charset="utf-8"/>
+        <title>Cartões de Crédito do Laboratório de Testes</title>
         <link rel="icon" href="resources/images/banrisul-icone.png" type="image/x-icon" />
         <link rel="shortcut icon" href="resources/images/banrisul-icone.png" type="image/x-icon" />
-	<meta name="generator" content="Bootply" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-	<h:outputStylesheet name="css/bootstrap.min.css"/>
-	<!--[if lt IE 9]>
-		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
+        <meta name="generator" content="Bootply" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+        <h:outputStylesheet name="css/bootstrap.min.css"/>
+        <!--[if lt IE 9]>
+                <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
         <h:outputStylesheet name="css/styles.css"/>
-   
+
     </h:head>
-    
+
     <h:body>
         <ui:composition template="template.xhtml">
-        <ui:define name="content">
+            <ui:define name="content">
 
-        <div class="col-sm-9 col-md-10 main" style="width: 100%">
-           
-            
-            <div class="panel panel-default">
-            <!-- Default panel contents -->
-            <div class="panel-heading">Cartões de Crédito Laboratório de Testes</div>
-            <div class="panel-body">
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cadastrarCartaoCredito">
-                    Novo cartão de crédito...
-                </button>
+                <div class="col-sm-9 col-md-10 main" style="width: 100%">
 
-                <!-- Modal Novo Cartão de Crédito -->
-                <div class="modal fade" data-backdrop="static" id="cadastrarCartaoCredito" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel">Novo cartão de crédito</h4>
-                            </div>
-                            <div class="modal-body">
-                                <h:form>
-                                    <div class="form-group">
-                                        <label for="InputNumero">Número do cartão</label>
-                                        <p:inputText placeholder="Digite o número do cartão" class="form-control" id="InputNumero" value="#{cartoesCreditoBean.cartaoCredito.numero}"/>
-                                        
+
+                    <div class="panel panel-default">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading">Cartões de Crédito Laboratório de Testes</div>
+                        <div class="panel-body">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cadastrarCartaoCredito">
+                                Novo cartão de crédito...
+                            </button>
+
+                            <!-- Modal Novo Cartão de Crédito -->
+                            <div class="modal fade" data-backdrop="static" id="cadastrarCartaoCredito" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">Novo cartão de crédito</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h:form>
+                                                <div class="form-group">
+                                                    <label for="InputNumero">Número do cartão</label>
+                                                    <p:inputText placeholder="Digite o número do cartão" class="form-control" id="InputNumero" value="#{cartoesCreditoBean.cartaoCredito.numero}"/>
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="InputNome">Nome do cliente</label>
+                                                    <p:inputText placeholder="Digite o nome do cliente" class="form-control" id="InputNome" value="#{cartoesCreditoBean.cartaoCredito.nome}"/>
+
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="InputBandeira">Bandeira do cartão</label> 
+                                                    <p:selectOneListbox id="InputBandeira" value="#{cartoesCreditoBean.cartaoCredito.bandeira}" style="width:250px">
+                                                        <f:selectItem itemValue="1" itemLabel="MasterCard" />
+                                                        <f:selectItem itemValue="2" itemLabel="Visa" />						
+                                                    </p:selectOneListbox>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <p:selectBooleanCheckbox value="#{cartoesCreditoBean.cartaoCredito.reservavel}" style="font-weight: bold" itemLabel="Equipamento reservável"  />
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                                    <h:commandButton value="Cadastrar" class="btn btn-primary" action="#{cartoesCreditoBean.adicionarCartaoCredito}"/>
+                                                </div>        
+                                            </h:form>  
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="InputNome">Nome do cliente</label>
-                                        <p:inputText placeholder="Digite o nome do cliente" class="form-control" id="InputNome" value="#{cartoesCreditoBean.cartaoCredito.nome}"/>
-                                        
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="InputBandeira">Bandeira do cartão</label> 
-                                        <p:selectOneListbox id="InputBandeira" value="#{cartoesCreditoBean.cartaoCredito.bandeira}" style="width:250px">
-                                            <f:selectItem itemValue="1" itemLabel="MasterCard" />
-                                            <f:selectItem itemValue="2" itemLabel="Visa" />						
-                                        </p:selectOneListbox>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <p:selectBooleanCheckbox value="#{cartoesCreditoBean.cartaoCredito.reservavel}" style="font-weight: bold" itemLabel="Equipamento reservável"  />
-                                    </div>
-                                   
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                                        <h:commandButton value="Cadastrar" class="btn btn-primary" action="#{cartoesCreditoBean.adicionarCartaoCredito}"/>
-                                    </div>        
-                                </h:form>  
+                                </div>
                             </div>
                         </div>
+                        <h:form>
+                            <p:dataTable var="cartao" value="#{cartoesCreditoBean.cartoesCredito}" editable="false"
+                                         rowStyleClass="#{cartao.reservavel eq false ? null : cartao.disponivel eq true ? 'verde' :'vermelho'}">
+                                <p:column headerText="Bandeira" class="text-center" style="width: 100px">
+                                    <h:outputText value="#{cartoesCreditoBean.exibirBandeira(cartao)}" />
+                                </p:column>
+
+                                <p:column headerText="Número do cartão" class="text-center" style="width: 160px">
+                                    <h:outputText value="#{cartao.numero}" />
+                                </p:column>
+
+                                <p:column headerText="Nome do cliente" class="text-center" style="width: 160px">
+                                    <h:outputText value="#{cartao.nome}" />
+                                </p:column>
+                                <p:column headerText="Reservado para" class="text-center" style="width: 120px">
+                                    <h:outputText value="#{cartoesCreditoBean.exibirDisponibilidade(cartao)}" />
+                                </p:column>
+                                <p:column headerText="Finalidade" class="text-center" style="width: 120px">
+                                    <h:outputText value="#{cartao.reserva.finalidade}" />
+                                </p:column>
+                                <p:column headerText="Data fim" class="text-center" style="width: 100px">
+                                    <h:outputText value="#{cartao.reserva.dataFim}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy"/>  
+                                    </h:outputText>
+                                </p:column>
+
+                                <p:column headerText="Editar" class="text-center" style="width: 65px">
+                                    <h:commandLink class="glyphicon glyphicon-edit" action="#{cartoesCreditoBean.carregarCartaoCredito(cartao)}" rendered="#{cartao.disponivel}"/>                      
+                                </p:column>
+
+                                <p:column headerText="Excluir" class="text-center" style="width: 65px">
+                                    <p:commandLink class="glyphicon glyphicon-remove" action="#{cartoesCreditoBean.removerCartaoCredito(cartao)}" rendered="#{cartao.disponivel}" update="message">
+                                        <p:confirm header="Confirmação" message="Tem certeza que deseja excluir?" icon="ui-icon-alert" />
+                                    </p:commandLink>
+                                    <p:growl id="message" showDetail="true" />
+                                </p:column>
+
+                            </p:dataTable>
+
+                            <p:confirmDialog global="true">
+                                <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                            </p:confirmDialog>
+                        </h:form>
                     </div>
-                </div>
-            </div>
-            <h:form>
-                <p:dataTable var="cartao" value="#{cartoesCreditoBean.cartoesCredito}" editable="false"
-                             rowStyleClass="#{cartao.reservavel eq false ? null : cartao.disponivel eq true ? 'verde' :'vermelho'}">
-                    <p:column headerText="Bandeira" class="text-center" style="width: 100px">
-                        <h:outputText value="#{cartoesCreditoBean.exibirBandeira(cartao)}" />
-                    </p:column>
-                
-                    <p:column headerText="Número do cartão" class="text-center" style="width: 160px">
-                        <h:outputText value="#{cartao.numero}" />
-                    </p:column>
+                </div><!--/row-->
 
-                    <p:column headerText="Nome do cliente" class="text-center" style="width: 160px">
-                        <h:outputText value="#{cartao.nome}" />
-                    </p:column>
-                    <p:column headerText="Reservado para" class="text-center" style="width: 120px">
-                        <h:outputText value="#{cartoesCreditoBean.exibirDisponibilidade(cartao)}" />
-                    </p:column>
-                    <p:column headerText="Finalidade" class="text-center" style="width: 120px">
-                        <h:outputText value="#{cartao.reserva.finalidade}" />
-                    </p:column>
-                    <p:column headerText="Data fim" class="text-center" style="width: 100px">
-                        <h:outputText value="#{cartao.reserva.dataFim}">
-                              <f:convertDateTime pattern="dd/MM/yyyy"/>  
-                        </h:outputText>
-                    </p:column>
-                
-                    <p:column headerText="Editar" class="text-center" style="width: 65px">
-                        <h:commandLink class="glyphicon glyphicon-edit" action="#{cartoesCreditoBean.carregarCartaoCredito(cartao)}" rendered="#{cartao.disponivel}"/>                      
-                    </p:column>
-                
-                <p:column headerText="Excluir" class="text-center" style="width: 65px">
-                    <h:commandLink class="glyphicon glyphicon-remove" action="#{cartoesCreditoBean.removerCartaoCredito(cartao)}" rendered="#{cartao.disponivel}"/>                                                
-                    </p:column>
-                </p:dataTable>
-          
+            </ui:define>
+        </ui:composition>
 
-                
-            </h:form>
-            </div>
-      </div><!--/row-->
-	
-        </ui:define>
-         </ui:composition>
-        
-	<!-- script references -->
-        <h:outputScript name="js/jquery-1.11.2.min.js"/>
-	<h:outputScript name="js/bootstrap.min.js"/>
+        <!-- script references -->
+        <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
+        <h:outputScript library="primefaces" name="jquery/jquery-plugins.js" target="head" />
+        <h:outputScript name="js/bootstrap.min.js"/>
         <h:outputScript name="js/scripts.js"/>
 
     </h:body>

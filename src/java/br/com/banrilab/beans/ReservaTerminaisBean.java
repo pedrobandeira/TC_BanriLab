@@ -84,12 +84,14 @@ public class ReservaTerminaisBean implements Serializable {
     }
 
     public String carregarTerminal(Terminais t) {
-        this.reservaTerminal.setTerminal(t);
-
+        
         if (t.isReservavel()) {
             if (t.isDisponivel()) {
+                limpaCampos();
+                this.reservaTerminal.setTerminal(t);
                 return "reservarterminal";
             } else if (!(t.isDisponivel())) {
+                this.reservaTerminal.setTerminal(t);
                 carregarReserva(this.reservaTerminal.getTerminal().getReserva());
                 return "reservarterminal";
             }

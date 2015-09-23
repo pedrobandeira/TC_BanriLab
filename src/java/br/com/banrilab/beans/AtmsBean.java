@@ -52,7 +52,7 @@ public class AtmsBean implements Serializable {
         atmDao.removeAtm(this.atm);
 
         limpaCampos();
-        return "atms";
+        return "atms.xhtml?faces-redirect=true";
     }
     
     public void limpaCampos() {

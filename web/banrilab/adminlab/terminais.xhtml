@@ -7,129 +7,133 @@
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-   	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-	<meta charset="utf-8"/>
-	<title>Terminais do Laboratório de Testes</title>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+        <meta charset="utf-8"/>
+        <title>Terminais do Laboratório de Testes</title>
         <link rel="icon" href="resources/images/banrisul-icone.png" type="image/x-icon" />
         <link rel="shortcut icon" href="resources/images/banrisul-icone.png" type="image/x-icon" />
-	<meta name="generator" content="Bootply" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-	<h:outputStylesheet name="css/bootstrap.min.css"/>
-	<!--[if lt IE 9]>
-		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
+        <meta name="generator" content="Bootply" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+        <h:outputStylesheet name="css/bootstrap.min.css"/>
+        <!--[if lt IE 9]>
+                <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
         <h:outputStylesheet name="css/styles.css"/>
-   
+
     </h:head>
-    
+
     <h:body>
         <ui:composition template="template.xhtml">
-        <ui:define name="content">
+            <ui:define name="content">
 
-        <div class="col-sm-9 col-md-10 main" style="width: 100%">           
-            
-            <div class="panel panel-default">
-            <!-- Default panel contents -->
-            <div class="panel-heading">Terminais Laboratório de Testes</div>
-            <div class="panel-body">
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cadastrarTerminal">
-                    Novo terminal...
-                </button>
+                <div class="col-sm-9 col-md-10 main" style="width: 100%">           
 
-                <!-- Modal Novo Terminal -->
-                <div class="modal fade" data-backdrop="static" id="cadastrarTerminal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel">Novo terminal</h4>
+                    <div class="panel panel-default">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading">Terminais Laboratório de Testes</div>
+                        <div class="panel-body">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cadastrarTerminal">
+                                Novo terminal...
+                            </button>
+
+                            <!-- Modal Novo Terminal -->
+                            <div class="modal fade" data-backdrop="static" id="cadastrarTerminal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">Novo terminal</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h:form>
+                                                <div class="form-group">
+                                                    <label for="InputPatrimonio">Patrimônio</label>
+                                                    <p:inputText type="number" pt:placeholder="Digite o número de patrimônio do terminal" class="form-control" id="InputPatrimonio" value="#{terminaisBean.terminal.patrimonio}"/>
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="InputTerminal">Nome</label>
+                                                    <p:inputText placeholder="Digite o nome do terminal" class="form-control" id="InputTerminal" value="#{terminaisBean.terminal.nome}"/>
+
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="InputDescricao">Descrição</label>
+                                                    <p:inputText placeholder="Digite uma descrição para o terminal" class="form-control" id="InputDescricao" value="#{terminaisBean.terminal.descricao}"/>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <p:selectBooleanCheckbox style="font-weight: bold" itemLabel="Equipamento reservável" value="#{terminaisBean.terminal.reservavel}"  />
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                                    <h:commandButton value="Cadastrar" class="btn btn-primary" action="#{terminaisBean.adicionarTerminal}"/>
+                                                </div>
+
+                                            </h:form>
+
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
-                            <div class="modal-body">
-                                <h:form>
-                                    <div class="form-group">
-                                        <label for="InputPatrimonio">Patrimônio</label>
-                                        <p:inputText type="number" pt:placeholder="Digite o número de patrimônio do terminal" class="form-control" id="InputPatrimonio" value="#{terminaisBean.terminal.patrimonio}"/>
-                                        
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="InputTerminal">Nome</label>
-                                        <p:inputText placeholder="Digite o nome do terminal" class="form-control" id="InputTerminal" value="#{terminaisBean.terminal.nome}"/>
-                                        
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="InputDescricao">Descrição</label>
-                                        <p:inputText placeholder="Digite uma descrição para o terminal" class="form-control" id="InputDescricao" value="#{terminaisBean.terminal.descricao}"/>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <p:selectBooleanCheckbox style="font-weight: bold" itemLabel="Equipamento reservável" value="#{terminaisBean.terminal.reservavel}"  />
-                                    </div>
-                                    
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                                        <h:commandButton value="Cadastrar" class="btn btn-primary" action="#{terminaisBean.adicionarTerminal}"/>
-                                    </div>
-                                    
-                                </h:form>
-                                
-                            </div>
-
                         </div>
+                        <h:form>
+                            <p:dataTable var="terminal" value="#{terminaisBean.terminais}" editable="false"
+                                         rowStyleClass="#{terminal.reservavel eq false ? null : terminal.disponivel eq true ? 'verde' :'vermelho'}">
+                                <p:column headerText="Terminal" style="width: 100px" class="text-center">
+
+                                    <h:outputText value="#{terminal.nome}" />
+                                </p:column>
+
+                                <p:column headerText="Descrição" style="width: 100px" class="text-center">
+                                    <h:outputText value="#{terminal.descricao}" />
+                                </p:column>
+
+                                <p:column headerText="Patrimônio" style="width: 95px" class="text-center">
+                                    <h:outputText value="#{terminal.patrimonio}" />
+                                </p:column>
+
+                                <p:column headerText="Reservado para" class="text-center" style="width: 100px">
+                                    <h:outputText value="#{terminaisBean.exibirDisponibilidade(terminal)}" />
+                                </p:column>
+                                <p:column headerText="Finalidade" class="text-center" style="width: 120px">
+                                    <h:outputText value="#{terminal.reserva.finalidade}" />
+                                </p:column>
+                                <p:column headerText="Data fim" class="text-center" style="width: 100px">
+                                    <h:outputText value="#{terminal.reserva.dataFim}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy"/>  
+                                    </h:outputText>
+                                </p:column>
+
+                                <p:column headerText="Editar" class="text-center" style="width: 65px">
+                                    <h:commandLink class="glyphicon glyphicon-edit" action="#{terminaisBean.carregarTerminal(terminal)}" rendered="#{terminal.disponivel}" />                                              
+                                </p:column>
+                                <p:column headerText="Excluir" class="text-center" style="width: 65px">
+                                    <p:commandLink class="glyphicon glyphicon-remove" action="#{terminaisBean.removerTerminal(terminal)}" rendered="#{terminal.disponivel}" update="message">
+                                        <p:confirm header="Confirmação" message="Tem certeza que deseja excluir?" icon="ui-icon-alert" />
+                                    </p:commandLink>
+                                    <p:growl id="message" showDetail="true" />
+                                </p:column>
+
+                            </p:dataTable>
+
+                            <p:confirmDialog global="true">
+                                <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                            </p:confirmDialog>
+                        </h:form>
                     </div>
-                </div>
-            </div>
-            <h:form>
-                <p:dataTable var="terminal" value="#{terminaisBean.terminais}" editable="false"
-                             rowStyleClass="#{terminal.reservavel eq false ? null : terminal.disponivel eq true ? 'verde' :'vermelho'}">
-                    <p:column headerText="Terminal" style="width: 100px" class="text-center">
- 
-                        <h:outputText value="#{terminal.nome}" />
-                    </p:column>
-                
-                    <p:column headerText="Descrição" style="width: 100px" class="text-center">
-                        <h:outputText value="#{terminal.descricao}" />
-                    </p:column>
+                </div><!--/row-->
 
-                    <p:column headerText="Patrimônio" style="width: 95px" class="text-center">
-                        <h:outputText value="#{terminal.patrimonio}" />
-                    </p:column>
-                
-                    <p:column headerText="Reservado para" class="text-center" style="width: 100px">
-                        <h:outputText value="#{terminaisBean.exibirDisponibilidade(terminal)}" />
-                    </p:column>
-                    <p:column headerText="Finalidade" class="text-center" style="width: 120px">
-                        <h:outputText value="#{terminal.reserva.finalidade}" />
-                    </p:column>
-                    <p:column headerText="Data fim" class="text-center" style="width: 100px">
-                        <h:outputText value="#{terminal.reserva.dataFim}">
-                              <f:convertDateTime pattern="dd/MM/yyyy"/>  
-                        </h:outputText>
-                    </p:column>
-                
-                    <p:column headerText="Editar" class="text-center" style="width: 65px">
-                        <h:commandLink class="glyphicon glyphicon-edit" action="#{terminaisBean.carregarTerminal(terminal)}" rendered="#{terminal.disponivel}" /> 
-                                             
-                    </p:column>
-                
-                <p:column headerText="Excluir" class="text-center" style="width: 65px">
-                    <h:commandLink class="glyphicon glyphicon-remove" action="#{terminaisBean.removerTerminal(terminal)}" rendered="#{terminal.disponivel}" />
-                                                       
-                    </p:column>
-                </p:dataTable>
-          
+            </ui:define>
+        </ui:composition>
 
-                
-            </h:form>
-            </div>
-      </div><!--/row-->
-	
-        </ui:define>
-         </ui:composition>
-        
-	<!-- script references -->
-        <h:outputScript name="js/jquery-1.11.2.min.js"/>
-	<h:outputScript name="js/bootstrap.min.js"/>
+        <!-- script references -->
+        <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
+        <h:outputScript library="primefaces" name="jquery/jquery-plugins.js" target="head" />
+        <h:outputScript name="js/bootstrap.min.js"/>
         <h:outputScript name="js/scripts.js"/>
 
     </h:body>

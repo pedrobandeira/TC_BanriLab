@@ -89,12 +89,14 @@ public class ReservaCartoesContasBean implements Serializable {
     }
     
     public String carregarCartaoConta(CartoesContas c) {
-        this.reservaCartao.setCartaoConta(c);
         
         if (c.isReservavel()) {
             if (c.isDisponivel()){
+                limpaCampos();
+                this.reservaCartao.setCartaoConta(c);
                 return "reservarcartaoconta";
             } else if (!(c.isDisponivel())) {
+                this.reservaCartao.setCartaoConta(c);
                 carregarReserva(this.reservaCartao.getCartaoConta().getReserva());
                 return "reservarcartaoconta";
             }
