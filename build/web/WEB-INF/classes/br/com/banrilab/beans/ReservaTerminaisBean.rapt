@@ -1,0 +1,15 @@
+br/com/banrilab/entidades/ReservaUsuarios_.java
+br/com/banrilab/entidades/HistoricoReservaCartoesContas_.java
+br/com/banrilab/entidades/ReservaServidores_.java
+br/com/banrilab/entidades/HistoricoReservaEquipamentosAdicionais_.java
+br/com/banrilab/entidades/ReservaCartoesContas_.java
+br/com/banrilab/entidades/ReservaAtms_.java
+br/com/banrilab/entidades/HistoricoReservaServidores_.java
+br/com/banrilab/entidades/HistoricoReservaCartoesCredito_.java
+br/com/banrilab/entidades/HistoricoReservaAtms_.java
+br/com/banrilab/entidades/HistoricoReservaTerminais_.java
+br/com/banrilab/entidades/HistoricoHomologacaoCiclos_.java
+br/com/banrilab/entidades/HistoricoReservaUsuarios_.java
+br/com/banrilab/entidades/ReservaTerminais_.java
+br/com/banrilab/entidades/ReservaCartoesCredito_.java
+br/com/banrilab/entidades/ReservaEquipamentosAdicionais_.java

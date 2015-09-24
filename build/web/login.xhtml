@@ -34,7 +34,10 @@ and open the template in the editor.
                            <strong>Dados incorretos!</strong> Verifique os dados digitados e tente novamente.
                        </div> -->
                         <div id="meuAlerta"></div>
-                        <h1 class="text-center">Login BanriLab</h1>
+                        <h1 class="text-center">Login BanriLab
+                        <a tabindex="0" class="glyphicon glyphicon-info-sign pull-right" role="button" data-toggle="popover" data-trigger="focus" 
+                           title="Dica" data-placement="bottom" data-content="Para acessar o BanriLab, informe sua matrícula funcional (por exemplo: b12345) e sua senha. Caso você ainda não tenha acesso, entre em contato com a equipe do Laboratório de Testes."/>
+                        </h1>
                     </div>
                     <div class="modal-body">
                         <h:form class="form col-md-12 center-block">
@@ -60,9 +63,7 @@ and open the template in the editor.
                                 <p:password placeholder="Senha" required="true" requiredMessage="É necessário informar a senha para acesso" class="form-control input-lg" label="Senha" id="InputSenha" value="#{usuariosBean.usuario.senha}" />
                             </div>
                             <div class="form-group">
-                                <h:commandButton id="BotaoEntrar" value="Entrar" class="btn btn-primary btn-lg btn-block" action="#{usuariosBean.validaLogin}"/>
-
-                                <span class="pull-left"><a href="#">Ajuda</a></span>
+                                <h:commandButton id="BotaoEntrar" value="Entrar" class="btn btn-primary btn-lg btn-block" action="#{usuariosBean.validaLogin}"/>                      
                             </div>
 
                         </h:form>
@@ -74,6 +75,13 @@ and open the template in the editor.
                 </div>
             </div>
         </div>
+        
+        <script>
+                    $(document).ready(function () {
+                        $('[data-toggle="popover"]').popover();
+                    });
+        </script>
+        
         <!-- script references -->
         <h:outputScript name="js/jquery-1.11.2.min.js"/>
         <h:outputScript name="js/bootstrap.min.js"/>

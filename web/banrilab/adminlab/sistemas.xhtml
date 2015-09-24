@@ -30,7 +30,11 @@
 
                     <div class="panel panel-default">
                         <!-- Default panel contents -->
-                        <div class="panel-heading">Sistemas Laboratório de Testes</div>
+                        <div class="panel-heading">Sistemas Laboratório de Testes
+                            <a tabindex="0" class="glyphicon glyphicon-info-sign pull-right" role="button" data-toggle="popover" data-trigger="focus" 
+                           title="Dica" data-placement="bottom" data-content="Você pode cadastrar um novo sistema clicando no botão 'Novo sistema...' 
+                           ou então editar ou excluir os sistemas cadastrados clicando nos respectivos botões ao lado do sistema desejado."/>
+                        </div>
                         <div class="panel-body">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cadastrarSistema">
@@ -42,7 +46,10 @@
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h4 class="modal-title" id="myModalLabel">Novo sistema</h4>
+                                            <h4 class="modal-title" id="myModalLabel">Novo sistema
+                                                <a tabindex="0" class="glyphicon glyphicon-info-sign pull-right" role="button" data-toggle="popover" data-trigger="focus" 
+                                            title="Dica" data-placement="bottom" data-content="Para cadastrar um sistema, informe o nome do sistema, sua versão em produção e uma descrição. Selecione na lista o nome do desenvolvedor responsável."/>
+                                            </h4>
                                         </div>
                                         <div class="modal-body">
                                             <h:form>

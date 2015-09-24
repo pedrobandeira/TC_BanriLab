@@ -29,19 +29,25 @@
 
                     <div class="panel panel-default" >
                         <!-- Default panel contents -->
-                        <div class="panel-heading">ATMs Laboratório de Testes</div>
+                        <div class="panel-heading">ATMs Laboratório de Testes
+                            <a tabindex="0" class="glyphicon glyphicon-info-sign pull-right" role="button" data-toggle="popover" data-trigger="focus" 
+                           title="Dica" data-placement="bottom" data-content="Você pode cadastrar um novo ATM clicando no botão 'Novo ATM...' 
+                           ou então editar ou excluir os ATMs cadastrados (desde que não estejam reservados) clicando nos respectivos botões ao lado do equipamento desejado."/>                       
+                        </div>
                         <div class="panel-body">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cadastrarAtm">
                                 Novo ATM...
                             </button>
-
                             <!-- Modal Novo ATM -->
                             <div class="modal fade" data-backdrop="static" id="cadastrarAtm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h4 class="modal-title" id="myModalLabel">Novo ATM</h4>
+                                            <h4 class="modal-title" id="myModalLabel">Novo ATM
+                                            <a tabindex="0" class="glyphicon glyphicon-info-sign pull-right" role="button" data-toggle="popover" data-trigger="focus" 
+                                            title="Dica" data-placement="bottom" data-content="Para cadastrar um ATM, informe seu número de patrimônio, seu nome e seu modelo. Marque as opções 'Possui depositário', 'Possui talonadora' e 'Equipamento reservável' conforme as características do equipamento."/>
+                                            </h4>
                                         </div>
                                         <div class="modal-body">
                                             <h:form>
@@ -126,19 +132,19 @@
                                 </p:column>
 
                                 <p:column headerText="Excluir" class="text-center" style="width: 65px">
-                                    
+
                                     <p:commandLink class="glyphicon glyphicon-remove" action="#{atmsBean.removerAtm(atm)}" rendered="#{atm.disponivel}" update="message">
                                         <p:confirm header="Confirmação" message="Tem certeza que deseja excluir?" icon="ui-icon-alert" />
                                     </p:commandLink>
                                     <p:growl id="message" showDetail="true" />
-                                    
+
                                 </p:column>
-                                
+
                             </p:dataTable>
-                            
+
                             <p:confirmDialog global="true">
-                                        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                                        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                             </p:confirmDialog>
                         </h:form>
                     </div>

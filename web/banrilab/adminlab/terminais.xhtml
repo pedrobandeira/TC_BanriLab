@@ -30,7 +30,11 @@
 
                     <div class="panel panel-default">
                         <!-- Default panel contents -->
-                        <div class="panel-heading">Terminais Laboratório de Testes</div>
+                        <div class="panel-heading">Terminais Laboratório de Testes
+                            <a tabindex="0" class="glyphicon glyphicon-info-sign pull-right" role="button" data-toggle="popover" data-trigger="focus" 
+                           title="Dica" data-placement="bottom" data-content="Você pode cadastrar um novo terminal clicando no botão 'Novo terminal...' 
+                           ou então editar ou excluir os terminais cadastrados (desde que não estejam reservados) clicando nos respectivos botões ao lado do equipamento desejado."/>
+                        </div>
                         <div class="panel-body">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cadastrarTerminal">
@@ -42,7 +46,10 @@
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h4 class="modal-title" id="myModalLabel">Novo terminal</h4>
+                                            <h4 class="modal-title" id="myModalLabel">Novo terminal
+                                                <a tabindex="0" class="glyphicon glyphicon-info-sign pull-right" role="button" data-toggle="popover" data-trigger="focus" 
+                                            title="Dica" data-placement="bottom" data-content="Para cadastrar um terminal, informe o número de patrimônio, o nome e a descrição do terminal. Marque a opção 'Equipamento reservável' caso o terminal possa ser reservado."/>
+                                            </h4>
                                         </div>
                                         <div class="modal-body">
                                             <h:form>
