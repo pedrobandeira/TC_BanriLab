@@ -6,115 +6,119 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <f:view contentType="text/html">
-    <h:head>
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-        <meta charset="utf-8"/>
-        <title>Homologações do Laboratório de Testes</title>
-        <meta name="generator" content="Bootply" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-        <h:outputStylesheet name="css/bootstrap.min.css"/>
-        <!--[if lt IE 9]>
-                <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-        <h:outputStylesheet name="css/styles.css"/>
+        <h:head>
+            <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+            <meta charset="utf-8"/>
+            <title>Homologações do Laboratório de Testes</title>
+            <meta name="generator" content="Bootply" />
+            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+            <h:outputStylesheet name="css/bootstrap.min.css"/>
+            <!--[if lt IE 9]>
+                    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+            <![endif]-->
+            <h:outputStylesheet name="css/styles.css"/>
 
-    </h:head>
-    <h:body>
-        <ui:composition template="template.xhtml">
-            <ui:define name="content">
+        </h:head>
+        <h:body>
+            <ui:composition template="template.xhtml">
+                <ui:define name="content">
 
-                <div class="col-sm-9 col-md-10 main" >
+                    <div class="col-sm-9 col-md-10 main" >
 
-                    <div class="panel panel-default">
+                        <div class="panel panel-default">
 
-                        <!-- Modal Abrir Homologação -->
-                        <div class="modal fade" data-backdrop="static" id="abrirHomologacao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title" id="myModalLabel">Abrir Homologação</h4>
-                                    </div>
-                                    <div class="modal-body">
+                            <!-- Modal Abrir Homologação -->
+                            <div class="modal fade" data-backdrop="static" id="abrirHomologacao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">Abrir Homologação
+                                                <a tabindex="0" class="glyphicon glyphicon-info-sign pull-right" role="button" data-toggle="popover" data-trigger="focus" 
+                                                   title="Dica" data-placement="bottom" data-content="Para abrir a homologação, selecione no calendário a data de início de execução de testes e a data prevista para o término dos testes. Após, clique em 'Alocar ambiente' para reservar o ambiente necessário para os testes. 
+                                                   Você pode alterar o número do ciclo de testes no campo 'Ciclo' ou encerrar o ciclo clicando em 'Encerrar Ciclo'. Você pode encerrar a homologação clicando em 'Concluir Homologação'."/>
+                                            </h4>
+                                        </div>
+                                        <div class="modal-body">
 
-                                        <h:form>
-                                            <div class="container-fluid">
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label>Sistema</label>
-                                                            <p:inputText disabled="true" class="form-control" value="#{homologacoesBean.homologacao.sistema.nome}"/>
+                                            <h:form>
+                                                <div class="container-fluid">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label>Sistema</label>
+                                                                <p:inputText disabled="true" class="form-control" value="#{homologacoesBean.homologacao.sistema.nome}"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                <label>Versão</label>
+                                                                <p:inputText disabled="true" class="form-control" value="#{homologacoesBean.homologacao.versaoSistema}"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label>Ciclo</label>
+                                                                <p:inputText class="form-control" value="#{homologacoesBean.homologacao.ciclo}" placeholder="Ciclo de testes"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label/>
+                                                                <h:commandButton class="btn btn-info" value="Encerrar Ciclo" action="#{homologacoesBean.encerrarCicloHomologacao}" rendered="#{homologacoesBean.verificaEmAndamento(homologacoesBean.homologacao)}"/>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-2">
-                                                        <div class="form-group">
-                                                            <label>Versão</label>
-                                                            <p:inputText disabled="true" class="form-control" value="#{homologacoesBean.homologacao.versaoSistema}"/>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label>Ciclo</label>
-                                                            <p:inputText class="form-control" value="#{homologacoesBean.homologacao.ciclo}" placeholder="Ciclo de testes"/>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label/>
-                                                            <h:commandButton class="btn btn-info" value="Encerrar Ciclo" action="#{homologacoesBean.encerrarCicloHomologacao}" rendered="#{homologacoesBean.verificaEmAndamento(homologacoesBean.homologacao)}"/>
-                                                        </div>
-                                                    </div>
-                                                        </div>
 
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="InputDataInicio">Data início testes</label><br/>
-                                                            <p:calendar id="InputDataInicio" value="#{homologacoesBean.homologacao.dataInicioExecucao}" mode="inline" mindate="#{homologacoesBean.retornaDataAtual()}"/>  
-                                                             
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="InputDataInicio">Data início testes</label><br/>
+                                                                <p:calendar id="InputDataInicio" value="#{homologacoesBean.homologacao.dataInicioExecucao}" mode="inline" mindate="#{homologacoesBean.retornaDataAtual()}"/>  
+
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="InputDataFim">Data fim testes</label><br/>
-                                                            <p:calendar id="InputDataFim" value="#{homologacoesBean.homologacao.dataFim}" mode="inline" mindate="#{homologacoesBean.retornaDataAtual()}"/>  
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="InputDataFim">Data fim testes</label><br/>
+                                                                <p:calendar id="InputDataFim" value="#{homologacoesBean.homologacao.dataFim}" mode="inline" mindate="#{homologacoesBean.retornaDataAtual()}"/>  
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
 
-                                            <div class="modal-footer">
-                                                <h:commandButton class="btn btn-default" value="Voltar" action="#{homologacoesBean.retornaEditarHomologacao}"/>
-                                                <h:commandButton class="btn btn-success" value="Concluir Homologação" action="#{homologacoesBean.encerrarHomologacao}" rendered="#{homologacoesBean.verificaEmAndamento(homologacoesBean.homologacao)}"/>
-                                                <h:commandButton class="btn btn-primary" value="Alocar ambiente" action="#{homologacoesBean.retornaReservaTestadores}"/>
+                                                <div class="modal-footer">
+                                                    <h:commandButton class="btn btn-default" value="Voltar" action="#{homologacoesBean.retornaEditarHomologacao}"/>
+                                                    <h:commandButton class="btn btn-success" value="Concluir Homologação" action="#{homologacoesBean.encerrarHomologacao}" rendered="#{homologacoesBean.verificaEmAndamento(homologacoesBean.homologacao)}"/>
+                                                    <h:commandButton class="btn btn-primary" value="Alocar ambiente" action="#{homologacoesBean.retornaReservaTestadores}"/>
 
-                                            </div>
-                                        </h:form>
+                                                </div>
+                                            </h:form>
+
+                                        </div>
 
                                     </div>
-
                                 </div>
                             </div>
+
+
+                            <script type="text/javascript">
+                                $(window).load(function () {
+                                    $('#abrirHomologacao').modal('show');
+                                });
+                            </script>
                         </div>
+                    </div><!--/row-->
 
+                </ui:define>
+            </ui:composition>
 
-                        <script type="text/javascript">
-                            $(window).load(function () {
-                                $('#abrirHomologacao').modal('show');
-                            });
-                        </script>
-                    </div>
-                </div><!--/row-->
+            <!-- script references -->
+            <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
+            <h:outputScript library="primefaces" name="jquery/jquery-plugins.js" target="head" />
+            <h:outputScript name="js/bootstrap.min.js"/>
+            <h:outputScript name="js/scripts.js"/>
 
-            </ui:define>
-        </ui:composition>
-
-        <!-- script references -->
-        <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
-        <h:outputScript library="primefaces" name="jquery/jquery-plugins.js" target="head" />
-        <h:outputScript name="js/bootstrap.min.js"/>
-        <h:outputScript name="js/scripts.js"/>
-
-    </h:body>
+        </h:body>
     </f:view>
 </html>

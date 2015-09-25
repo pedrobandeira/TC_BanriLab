@@ -25,9 +25,11 @@
     <h:body>
         <ui:composition template="template.xhtml">
             <ui:define name="content">
+                <a tabindex="0" class="glyphicon glyphicon-info-sign pull-right" role="button" data-toggle="popover" data-trigger="focus" 
+                           title="Dica" data-placement="bottom" data-content="Nessa tela, você pode visualizar todos os usuários cadastrados no BanriLab, agrupados de acordo com seus perfís."/>
 
-                <div class="col-sm-9 col-md-10 main" style="width: 100%">           
-
+                <div class="col-sm-9 col-md-10 main" style="width: 100%">  
+    
                     <div class="panel panel-default">
                         <!-- Default panel contents -->
                         <div class="panel-heading">Equipe Coordenadores de Testes Laboratório de Testes</div>
@@ -92,7 +94,7 @@
 
                             <h:form>
                                 <p:dataTable var="eqptestes" value="#{usuariosBean.equipeTestes}" editable="false"
-                                             rowStyleClass="#{eqptestes.disponivel eq true ? 'verde' : eqptestes.reserva.homologacao.analista eq homologacoesBean.carregaUsuarioAtivo() ? 'amarelo' : 'vermelho'}">
+                                             rowStyleClass="#{eqptestes.disponivel eq true ? 'verde' : 'vermelho'}">
                                     <p:column headerText="Nome" class="text-center" style="width: 150px">
                                         <h:outputText value="#{eqptestes.nome}" />
                                     </p:column>

@@ -30,7 +30,11 @@
             
             <div class="panel panel-default">
             <!-- Default panel contents -->
-            <div class="panel-heading">Homologações Laboratório de Testes</div>
+            <div class="panel-heading">Homologações Laboratório de Testes
+            <a tabindex="0" class="glyphicon glyphicon-info-sign pull-right" role="button" data-toggle="popover" data-trigger="focus" 
+                           title="Dica" data-placement="bottom" data-content="Nessa tela são exibidas as homologações em aberto no Laboratório. Para solicitar uma nova homologação, clique em 'Solicitar homologação...'. Para visualizar também as homologações concluídas ou canceladas, clique em 'Visualizar todas as homologações'.
+                            Para ver maiores detalhes de uma homologação ou para alterar uma solicitação de homologação feita por você, clique no botão da coluna 'Ver detalhes / Editar' ao lado do item desejado. Você só pode alterar dados de homologações que ainda não tenham sido liberadas ou canceladas por um coordenador de testes"/>
+            </div>
             <div class="panel-body">
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#solicitarHomologacao">
@@ -42,7 +46,11 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel">Nova homologação</h4>
+                                <h4 class="modal-title" id="myModalLabel">Nova homologação
+                                    <a tabindex="0" class="glyphicon glyphicon-info-sign pull-right" role="button" data-toggle="popover" data-trigger="focus" 
+                                            title="Dica" data-placement="bottom" data-content="Para solicitar uma nova homologação, selecione na lista o sistema, informe a versão a ser testada e, se desejar,
+                                            informe os requisitos e demais observações. Após solicitada, sua homologação deve ser autorizada por um coordenador de testes."/>
+                                    </h4>
                             </div>
                             <div class="modal-body">
                                 <h:form>                                 
