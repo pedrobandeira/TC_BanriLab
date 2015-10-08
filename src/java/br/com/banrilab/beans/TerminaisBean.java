@@ -50,7 +50,7 @@ public class TerminaisBean implements Serializable {
         }
         terminalDao.removeTerminal(this.terminal);
         limpaCampos();
-        return "terminais";
+        return "terminais.xhtml?faces-redirect=true";
     }
     
     public String carregarTerminal(Terminais t) {

@@ -49,7 +49,7 @@ public class EquipamentosAdicionaisBean implements Serializable {
         }
         equipDao.removeEquipamentoAdicional(this.equipamentoAdicional);
         limpaCampos();
-        return "equipamentosadicionais";
+        return "equipamentosadicionais.xhtml?faces-redirect=true";
     }
     
     public String carregarEquipamentoAdicional(EquipamentosAdicionais e) {

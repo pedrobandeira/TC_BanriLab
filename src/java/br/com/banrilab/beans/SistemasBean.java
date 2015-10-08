@@ -43,7 +43,7 @@ public class SistemasBean implements Serializable {
         this.sistema = s;
         sistemaDao.removeSistema(this.sistema);
         limpaCampos();
-        return "sistemas";
+        return "sistemas.xhtml?faces-redirect=true";
     }
     
     public String carregarSistema(Sistemas s) {

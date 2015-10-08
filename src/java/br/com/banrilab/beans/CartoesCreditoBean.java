@@ -49,7 +49,7 @@ public class CartoesCreditoBean implements Serializable {
         }
         cartaoCreditoDao.removeCartaoCredito(this.cartaoCredito);
         limpaCampos();
-        return "cartoescredito";
+        return "cartoescredito.xhtml?faces-redirect=true";
     }
     
     public String carregarCartaoCredito(CartoesCredito c) {

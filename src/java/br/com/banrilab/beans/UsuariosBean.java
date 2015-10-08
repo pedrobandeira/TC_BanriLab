@@ -68,7 +68,7 @@ public class UsuariosBean implements Serializable {
         }
         usuarioDao.removeUsuario(this.usuario);
         limpaCampos();
-        return "usuarios";
+        return "usuarios.xhtml?faces-redirect=true";
     }
     
     public String carregarUsuario(Usuarios u) {

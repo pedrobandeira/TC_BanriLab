@@ -51,7 +51,7 @@ public class ServidoresBean implements Serializable {
         }
         servidorDao.removeServidor(this.servidor);
         limpaCampos();
-        return "servidores";
+        return "servidores.xhtml?faces-redirect=true";
     }
 
     public String carregarServidor(Servidores s) {

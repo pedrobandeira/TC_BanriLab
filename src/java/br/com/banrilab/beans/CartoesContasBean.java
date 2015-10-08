@@ -50,7 +50,7 @@ public class CartoesContasBean implements Serializable {
         }
         cartaoContaDao.removeCartaoConta(this.cartaoConta);
         limpaCampos();
-        return "cartoescontas";
+        return "cartoescontas.xhtml?faces-redirect=true";
     }
     
     public String carregarCartaoConta(CartoesContas c) {
