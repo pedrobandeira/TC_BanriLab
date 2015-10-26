@@ -21,6 +21,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+import org.quartz.Job;
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
 
 /**
  *
@@ -28,7 +31,7 @@ import javax.servlet.http.HttpSession;
  */
 @ManagedBean
 @SessionScoped
-public class ReservaCartoesContasBean implements Serializable {
+public class ReservaCartoesContasBean implements Serializable, Job {
     private ReservaCartoesContas reservaCartao = new ReservaCartoesContas();
     @EJB
     private ReservaCartoesContasDaoInterface reservaCartoesDao;
@@ -38,7 +41,18 @@ public class ReservaCartoesContasBean implements Serializable {
     
     public ReservaCartoesContasBean() {
         //atmsBean = new AtmsBean();
-    }   
+    }
+     @Override
+	public void execute(JobExecutionContext context)
+		throws JobExecutionException {
+                System.out.println(" teste example");
+                
+                for (ReservaCartoesContas r: reservaCartoesDao.getReservasCartoesContas()) {
+                    System.out.println("Reserva "+r.getId());
+                }
+
+	}
+    
 
     public Usuarios carregaUsuarioAtivo() {
         HttpSession httpsession = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);

@@ -21,6 +21,11 @@
     <h:body>
         <ui:composition template="template.xhtml">
         <ui:define name="content">
+            <h:panelGrid rendered="#{usuariosBean.verificaSenhaInicial()}">
+                                                <div class="alert alert-warning" role="alert">
+                                                    Para sua segurança, <strong>altere sua senha</strong>.
+                                                </div>
+            </h:panelGrid>
             <div class="jumbotron">
                 <h1>Bem-vindo(a), <h:outputText value="#{usuariosBean.exibeNomeUsuarioLogado()}"/>!</h1>
                     <p>Ferramenta para gerenciamento de ambiente do Laboratório de Testes Banrisul. Comece a navegar pelo menu ao lado.</p>

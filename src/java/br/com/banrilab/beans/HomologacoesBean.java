@@ -659,6 +659,15 @@ public class HomologacoesBean implements Serializable {
         return "Cancelada";
     }
     
+    public boolean verificaSeHaSolicitadas () {
+        for (Homologacoes h: homologacaoDao.getHomologacoes()) {
+            if (h.getStatus() == 1) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
     public boolean verificaSolicitadas(Homologacoes h) {
         if ((h.getStatus() == 1) && (carregaUsuarioAtivo().equals(h.getSolicitante()))) {
             return true;

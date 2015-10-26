@@ -5,6 +5,9 @@
  */
 package br.com.banrilab.jobs;
 
+import java.io.Serializable;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -13,6 +16,8 @@ import org.quartz.JobExecutionException;
  *
  * @author Pedro
  */
+@ManagedBean
+@SessionScoped
 public class SchedulerJob implements Job {
 
 	@Override
