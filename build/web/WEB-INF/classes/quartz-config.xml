@@ -27,8 +27,8 @@
 				<name>dummyTriggerName</name>
 				<job-name>AJob</job-name>
 				<job-group>AGroup</job-group>
-				<!-- It will run every 5 seconds -->
-				<cron-expression>0/5 * * * * ?</cron-expression>
+				<!-- It will run every 15 seconds -->
+				<cron-expression>0/15 * * * * ?</cron-expression>
 			</cron>
                 </trigger>
                 <trigger>
@@ -36,8 +36,8 @@
 				<name>TriggerReservaCartoesContas</name>
 				<job-name>RotinasReservasCartoesContas</job-name>
 				<job-group>Rotinas</job-group>
-				<!-- It will run every 5 seconds -->
-				<cron-expression>0/5 * * * * ?</cron-expression>
+				<!-- It will run every 15 seconds -->
+				<cron-expression>0/15 * * * * ?</cron-expression>
 			</cron>
 		</trigger>
 	</schedule>

@@ -63,7 +63,8 @@
                                     </p:column>
 
                                     <p:column headerText="Ver detalhes" class="text-center" style="width: 90px">                 
-                                        <h:commandLink class="glyphicon glyphicon-zoom-in" action="#{homologacoesBean.visualizarHomologacao(homologacao)}"/>
+                                        <h:commandLink class="glyphicon glyphicon-edit" action="#{homologacoesBean.carregarHomologacao(homologacao)}" rendered="#{homologacoesBean.verificaAutorizadasEmAndamento(homologacao)}" />                      
+                                        <h:commandLink class="glyphicon glyphicon-zoom-in" action="#{homologacoesBean.visualizarHomologacao(homologacao)}" rendered="#{!homologacoesBean.verificaAutorizadasEmAndamento(homologacao)}" />
                                     </p:column>
 
                                 </p:dataTable>

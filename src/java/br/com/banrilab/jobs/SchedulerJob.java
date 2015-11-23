@@ -24,7 +24,7 @@ public class SchedulerJob implements Job {
 	public void execute(JobExecutionContext context)
 		throws JobExecutionException {
 		
-		System.out.println("JSF 2 + Quartz 2 example");
+		System.out.println("Executando rotinas agendadas...");
 
 	}
 

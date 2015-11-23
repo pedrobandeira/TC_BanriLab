@@ -45,7 +45,7 @@ public class ReservaCartoesContasBean implements Serializable, Job {
      @Override
 	public void execute(JobExecutionContext context)
 		throws JobExecutionException {
-                System.out.println(" teste example");
+                System.out.println("Executando rotina agendada...");
                 
                 for (ReservaCartoesContas r: reservaCartoesDao.getReservasCartoesContas()) {
                     System.out.println("Reserva "+r.getId());

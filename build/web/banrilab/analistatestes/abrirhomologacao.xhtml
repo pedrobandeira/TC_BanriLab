@@ -64,7 +64,7 @@
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label/>
-                                                                <h:commandButton class="btn btn-info" value="Encerrar Ciclo" action="#{homologacoesBean.encerrarCicloHomologacao}" rendered="#{homologacoesBean.verificaEmAndamento(homologacoesBean.homologacao)}"/>
+                                                                <h:commandButton style="height: 60px" class="btn btn-info" value="Encerrar Ciclo" action="#{homologacoesBean.encerrarCicloHomologacao}" rendered="#{homologacoesBean.verificaEmAndamento(homologacoesBean.homologacao)}"/>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -73,7 +73,7 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="InputDataInicio">Data início testes</label><br/>
-                                                                <p:calendar id="InputDataInicio" value="#{homologacoesBean.homologacao.dataInicioExecucao}" mode="inline" mindate="#{homologacoesBean.retornaDataAtual()}"/>  
+                                                                <p:calendar id="InputDataInicio" value="#{homologacoesBean.homologacao.dataInicioExecucao}" mode="inline"/>  
 
                                                             </div>
                                                         </div>

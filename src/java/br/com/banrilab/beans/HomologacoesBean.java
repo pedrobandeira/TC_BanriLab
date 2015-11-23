@@ -689,6 +689,36 @@ public class HomologacoesBean implements Serializable {
         return false;
     }
     
+    public boolean verificaAutorizadasParaAnalista() {
+        for (Homologacoes h: homologacaoDao.getHomologacoes()) {
+            if (h.getStatus() == 2 && (carregaUsuarioAtivo().equals(h.getAnalista()))) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean verificaAbertasParaAnalista() {
+        for (Homologacoes h: homologacaoDao.getHomologacoes()) {
+            if (h.getStatus() == 3 && (carregaUsuarioAtivo().equals(h.getAnalista()))) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean verificaAbertasParaTestador() {
+        for (Homologacoes h: homologacaoDao.getHomologacoes()) {
+            if (h.getStatus() == 3) {
+                for (ReservaUsuarios reservaTestador: h.getReservasTestadores()) {
+                    if (carregaUsuarioAtivo().equals(reservaTestador.getUsuario()))
+                        return true;
+                }
+            }
+        }
+        return false;
+    }
+    
     public boolean verificaEmAndamentoConcluidas(Homologacoes h) {
         if (((h.getStatus() == 4) || (h.getStatus() == 3))) {
             return true;
